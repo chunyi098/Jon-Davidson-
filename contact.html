@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | JonDavidson</title>
+  <link rel="icon" type="image/webp" href="assets/logo.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logo.webp" alt="JonDavidson" />
+      <span class="tagline">WE GO THE DISTANCE</span>
+    </a>
+    <nav class="nav-links">
+      <div class="nav-item dropdown">
+        <a href="about.html">About Us <span class="caret">&#9660;</span></a>
+        <div class="dropdown-menu">
+          <a href="about.html#who-we-are">Who We Are</a>
+          <a href="about.html#our-team">Our Team</a>
+          <a href="about.html#our-offices">Our Offices</a>
+        </div>
+      </div>
+      <div class="nav-item dropdown">
+        <a href="services.html">Services <span class="caret">&#9660;</span></a>
+        <div class="dropdown-menu">
+          <a href="services.html#client-solutions">Client Solutions</a>
+          <a href="services.html#talent-profiling">Talent Profiling Tools</a>
+        </div>
+      </div>
+      <a href="jobs.html" class="nav-item">Browse Jobs</a>
+      <a href="news.html" class="nav-item">News &amp; Insights</a>
+      <a href="about.html#our-offices" class="nav-item">Offices</a>
+      <a href="contact.html" class="btn-contact">Contact Us</a>
+      <a href="contact.html#hire" class="btn-hire">Hire Talent</a>
+    </nav>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="about.html">About Us</a>
+    <a href="services.html">Services</a>
+    <a href="jobs.html">Browse Jobs</a>
+    <a href="contact.html">Contact Us</a>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow" style="justify-content:center;margin-bottom:1rem"><span class="line"></span> CONTACT <span class="line"></span></p>
+    <h1>Let's <em>Connect</em></h1>
+    <p>Whether you're looking to hire top talent or explore your next career move, we'd love to hear from you.</p>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h2>Get in <em>Touch</em></h2>
+        <p>Our team of executive search specialists is ready to assist you. Reach out to discuss your hiring needs or to explore opportunities.</p>
+        <div style="margin-top:2rem">
+          <p><strong>📍 Singapore HQ</strong></p>
+          <p>2 Kallang Avenue, #03-05 CT Hub<br/>Singapore 339407</p>
+          <p style="margin-top:1rem"><strong>📞 Phone</strong></p>
+          <p><a href="tel:+6562957155" style="color:var(--red);font-weight:600">+65 6295 7155</a></p>
+          <p style="margin-top:1rem"><strong>✉️ Email</strong></p>
+          <p><a href="mailto:partners@jondavidsongroup.com" style="color:var(--red)">partners@jondavidsongroup.com</a></p>
+          <p style="margin-top:1rem"><strong>🪪 EA Licence</strong></p>
+          <p>No. 22S1412</p>
+        </div>
+        <div style="margin-top:2.5rem;padding:1.5rem;background:var(--gray-light);border-radius:8px">
+          <h4 style="font-family:var(--serif);font-weight:700;margin-bottom:0.5rem">Our Networks</h4>
+          <p><a href="https://www.enexsearch.group" target="_blank" style="color:var(--red)">ENEX Global Search</a></p>
+          <p><a href="https://npaworldwide.com" target="_blank" style="color:var(--red)">NPA Worldwide</a></p>
+          <p><a href="https://www.elitez.asia" target="_blank" style="color:var(--red)">ELITEZ Group</a></p>
+        </div>
+      </div>
+      <div>
+        <div style="background:var(--white);border:1px solid var(--gray-mid);border-radius:8px;padding:2.5rem;box-shadow:var(--shadow)">
+          <h3 style="font-family:var(--serif);font-size:1.4rem;font-weight:700;margin-bottom:0.5rem">Send Us a Message</h3>
+          <p style="font-size:0.875rem;color:var(--text-light);margin-bottom:1.75rem">We'll get back to you within 1 business day.</p>
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" placeholder="Your full name" />
+          </div>
+          <div class="form-group">
+            <label>Email Address *</label>
+            <input type="email" placeholder="your@email.com" />
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="+65 xxxx xxxx" />
+          </div>
+          <div class="form-group">
+            <label>I am a...</label>
+            <select>
+              <option>Employer / Hiring Manager</option>
+              <option>Job Seeker / Candidate</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message *</label>
+            <textarea placeholder="Tell us about your hiring needs or career goals..."></textarea>
+          </div>
+          <button class="btn-primary" style="width:100%;justify-content:center">Send Message &rarr;</button>
+        </div>
+
+        <div id="hire" style="margin-top:2rem;background:var(--black);color:white;border-radius:8px;padding:2.5rem">
+          <h3 style="font-family:var(--serif);font-size:1.3rem;font-weight:700;color:white;margin-bottom:0.5rem">Hire Top Talent</h3>
+          <p style="font-size:0.875rem;color:rgba(255,255,255,0.6);margin-bottom:1.5rem">Submit a search mandate and our team will be in touch within 24 hours.</p>
+          <div class="form-group">
+            <label style="color:rgba(255,255,255,0.7)">Company Name *</label>
+            <input type="text" placeholder="Your company" style="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.15);color:white" />
+          </div>
+          <div class="form-group">
+            <label style="color:rgba(255,255,255,0.7)">Role to Fill *</label>
+            <input type="text" placeholder="e.g. CFO, VP Engineering" style="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.15);color:white" />
+          </div>
+          <div class="form-group">
+            <label style="color:rgba(255,255,255,0.7)">Contact Email *</label>
+            <input type="email" placeholder="your@email.com" style="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.15);color:white" />
+          </div>
+          <button class="btn-primary" style="width:100%;justify-content:center">Submit Mandate &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-top"><div class="container"><div class="footer-grid">
+    <div class="footer-brand"><img src="assets/logo.webp" alt="JonDavidson" class="footer-logo" /><p>Executive Search &amp; Staffing across Southeast Asia.</p><p class="licence">EA Licence No. 22S1412 | Member of ELITEZ Group</p></div>
+    <div class="footer-col"><h5>Company</h5><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a></div>
+    <div class="footer-col"><h5>Services</h5><a href="services.html#executive-search">Executive Search</a><a href="services.html#contingency">Contingency</a><a href="services.html#talent-profiling">Talent Profiling</a></div>
+    <div class="footer-col"><h5>Jobs</h5><a href="jobs.html">Browse Jobs</a><a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank">JobStreet</a></div>
+    <div class="footer-col"><h5>Contact</h5><p>2 Kallang Avenue #03-05, Singapore 339407</p><p>Tel: <a href="tel:+6562957155">+65 6295 7155</a></p></div>
+  </div></div></div>
+  <div class="footer-bottom"><div class="container"><p>&copy; 2025 JonDavidson Pte Ltd. All rights reserved.</p><p>EA Licence No. 22S1412</p></div></div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

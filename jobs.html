@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Jobs | JonDavidson</title>
+  <link rel="icon" type="image/webp" href="assets/logo.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logo.webp" alt="JonDavidson" />
+      <span class="tagline">WE GO THE DISTANCE</span>
+    </a>
+    <nav class="nav-links">
+      <div class="nav-item dropdown">
+        <a href="about.html">About Us <span class="caret">&#9660;</span></a>
+        <div class="dropdown-menu">
+          <a href="about.html#who-we-are">Who We Are</a>
+          <a href="about.html#our-team">Our Team</a>
+          <a href="about.html#our-offices">Our Offices</a>
+        </div>
+      </div>
+      <div class="nav-item dropdown">
+        <a href="services.html">Services <span class="caret">&#9660;</span></a>
+        <div class="dropdown-menu">
+          <a href="services.html#client-solutions">Client Solutions</a>
+          <a href="services.html#talent-profiling">Talent Profiling Tools</a>
+        </div>
+      </div>
+      <a href="jobs.html" class="nav-item">Browse Jobs</a>
+      <a href="news.html" class="nav-item">News &amp; Insights</a>
+      <a href="about.html#our-offices" class="nav-item">Offices</a>
+      <a href="contact.html" class="btn-contact">Contact Us</a>
+      <a href="contact.html#hire" class="btn-hire">Hire Talent</a>
+    </nav>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="about.html">About Us</a>
+    <a href="services.html">Services</a>
+    <a href="jobs.html">Browse Jobs</a>
+    <a href="news.html">News &amp; Insights</a>
+    <a href="contact.html">Contact Us</a>
+  </div>
+</header>
+
+<section class="job-search-section" style="padding-top:8rem">
+  <div class="container">
+    <h2>Browse <em>Open Roles</em></h2>
+    <p class="section-sub">Executive and professional positions across Southeast Asia</p>
+    <div class="search-bar">
+      <div class="search-group">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="jobKeyword" placeholder="Job title, keyword or company" />
+      </div>
+      <div class="search-group">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <select id="jobLocation">
+          <option value="">All Locations</option>
+          <option>Singapore</option>
+          <option>Kuala Lumpur</option>
+          <option>Jakarta</option>
+          <option>Bangkok</option>
+          <option>Ho Chi Minh City</option>
+          <option>India</option>
+        </select>
+      </div>
+      <div class="search-group">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <select id="jobCategory">
+          <option value="">All Categories</option>
+          <option value="finance">Finance &amp; Accounting</option>
+          <option value="tech">Technology</option>
+          <option value="hr">Human Resources</option>
+          <option value="sales">Sales &amp; Marketing</option>
+          <option value="legal">Legal &amp; Compliance</option>
+          <option value="ops">Operations</option>
+          <option value="exec">C-Suite / Executive</option>
+        </select>
+      </div>
+      <button class="btn-search" onclick="searchJobs()">Search</button>
+    </div>
+    <div class="search-platforms">
+      <span>Also search on:</span>
+      <a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank" class="platform-link">JobStreet</a>
+      <a href="https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0" target="_blank" class="platform-link">MyCareersFuture</a>
+      <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="platform-link">View All on RecruitCRM &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section style="padding:4rem 0">
+  <div class="container">
+    <div class="news-filter">
+      <button class="filter-btn active" onclick="filterJobs(this,'all')">All Jobs</button>
+      <button class="filter-btn" onclick="filterJobs(this,'finance')">Finance</button>
+      <button class="filter-btn" onclick="filterJobs(this,'tech')">Technology</button>
+      <button class="filter-btn" onclick="filterJobs(this,'exec')">C-Suite</button>
+      <button class="filter-btn" onclick="filterJobs(this,'hr')">HR</button>
+      <button class="filter-btn" onclick="filterJobs(this,'sales')">Sales</button>
+      <button class="filter-btn" onclick="filterJobs(this,'ops')">Operations</button>
+    </div>
+    <div class="jobs-grid" id="jobsGrid">
+      <div class="job-card" data-category="exec">
+        <div class="job-tag">C-Suite</div>
+        <h3>CFO — Regional</h3>
+        <p class="job-location">📍 Singapore</p>
+        <p class="job-type">Permanent &middot; SGD 25,000–35,000/mo</p>
+        <p class="job-desc">Senior executive role overseeing financial strategy across Southeast Asian operations for a listed MNC.</p>
+        <div class="job-actions">
+          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a>
+          <a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank" class="btn-save">JobStreet</a>
+        </div>
+      </div>
+      <div class="job-card" data-category="tech">
+        <div class="job-tag">Technology</div>
+        <h3>VP Engineering</h3>
+        <p class="job-location">📍 Kuala Lumpur</p>
+        <p class="job-type">Permanent &middot; Competitive</p>
+        <p class="job-desc">Lead engineering teams for a high-growth fintech startup expanding across ASEAN markets.</p>
+        <div class="job-actions">
+          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a>
+          <a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank" class="btn-save">JobStreet</a>
+        </div>
+      </div>
+      <div class="job-card" data-category="exec">
+        <div class="job-tag">C-Suite</div>
+        <h3>Country Manager</h3>
+        <p class="job-location">📍 Jakarta</p>
+        <p class="job-type">Permanent &middot; IDR Package</p>
+        <p class="job-desc">P&amp;L ownership for Indonesia market of an established FMCG multinational with regional ambitions.</p>
+        <div class="job-actions">
+          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a>
+          <a href="https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0" target="_blank" class="btn-save">MCF</a>
+        </div>
+      </div>
+      <div class="job-card" data-category="finance">
+        <div class="job-tag">Finance</div>
+        <h3>Head of Internal Audit</h3>
+        <p class="job-location">📍 Singapore</p>
+        <p class="job-type">Permanent &middot; SGD 15,000–20,000/mo</p>
+        <p class="job-desc">Lead the internal audit function for a regional financial institution with complex cross-border operations.</p>
+        <div class="job-actions">
+          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a>
+          <a href="https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0" target="_blank" class="btn-save">MCF</a>
+        </div>
+      </div>
+      <div class="job-card" data-category="hr">
+        <div class="job-tag">Human Resources</div>
+        <h3>HR Director — APAC</h3>
+        <p class="job-location">📍 Singapore</p>
+        <p class="job-type">Permanent &middot; SGD 18,000–24,000/mo</p>
+        <p class="job-desc">Strategic HR leadership role for a global professional services firm scaling rapidly across Asia Pacific.</p>
+        <div class="job-actions">
+          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a>
+          <a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank" class="btn-save">JobStreet</a>
+        </div>
+      </div>
+      <div class="job-card" data-category="sales">
+        <div class="job-tag">Sales</div>
+        <h3>Regional Sales Director</h3>
+        <p class="job-location">📍 Bangkok</p>
+        <p class="job-type">Permanent &middot; THB + Commission</p>
+        <p class="job-desc">Drive revenue growth for a B2B SaaS company expanding into Southeast Asian enterprise markets.</p>
+        <div class="job-actions">
+          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a>
+          <a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank" class="btn-save">JobStreet</a>
+        </div>
+      </div>
+    </div>
+    <div class="jobs-cta" style="margin-top:3rem">
+      <p style="color:var(--text-light);margin-bottom:1rem">Don't see what you're looking for? View all live roles directly on our job portals.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-primary">View All on RecruitCRM</a>
+        <a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank" class="btn-outline">JobStreet</a>
+        <a href="https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0" target="_blank" class="btn-outline">MyCareersFuture</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-top"><div class="container"><div class="footer-grid">
+    <div class="footer-brand"><img src="assets/logo.webp" alt="JonDavidson" class="footer-logo" /><p>Executive Search &amp; Staffing across Southeast Asia.</p><p class="licence">EA Licence No. 22S1412 | Member of ELITEZ Group</p></div>
+    <div class="footer-col"><h5>Company</h5><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a></div>
+    <div class="footer-col"><h5>Services</h5><a href="services.html#executive-search">Executive Search</a><a href="services.html#contingency">Contingency</a><a href="services.html#talent-profiling">Talent Profiling</a></div>
+    <div class="footer-col"><h5>Jobs</h5><a href="jobs.html">Browse Jobs</a><a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank">JobStreet</a><a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank">All Jobs</a></div>
+    <div class="footer-col"><h5>Contact</h5><p>2 Kallang Avenue #03-05, Singapore 339407</p><p>Tel: <a href="tel:+6562957155">+65 6295 7155</a></p></div>
+  </div></div></div>
+  <div class="footer-bottom"><div class="container"><p>&copy; 2025 JonDavidson Pte Ltd.</p><p>EA Licence No. 22S1412</p></div></div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+function filterJobs(btn, cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.job-card').forEach(card => {
+    if (cat === 'all' || card.dataset.category === cat) {
+      card.style.display = 'flex';
+      card.style.flexDirection = 'column';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>
