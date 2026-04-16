@@ -1,227 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JonDavidson | Executive Search & Staffing</title>
-  <link rel="icon" type="image/webp" href="assets/logo.webp" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
-  <style>
-    /* Custom Styling for the new shorter layout */
-    .hero-compact {
-      padding: 60px 0 40px;
-      text-align: center;
-      background: #fdfdfd;
-    }
-    .jd-main-logo {
-      height: 80px;
-      margin-bottom: 20px;
-    }
-    .hero-compact h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      margin-bottom: 30px;
-      color: #1a1a1a;
-    }
-    .action-cards {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 50px;
-      flex-wrap: wrap;
-    }
-    .action-btn {
-      padding: 15px 40px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: 0.3s;
-    }
-    .btn-find-job { background: #9e0403; color: white; }
-    .btn-find-talent { border: 2px solid #9e0403; color: #9e0403; }
-    .btn-find-job:hover { background: #7a0302; }
-
-    /* Compact Search Box */
-    .search-container-box {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr auto;
-      gap: 15px;
-      align-items: center;
-    }
-    .search-container-box select, .search-container-box input {
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      width: 100%;
-    }
-
-    /* Partner Section */
-    .partners-strip {
-      padding: 40px 0;
-      background: #fff;
-      text-align: center;
-      border-top: 1px solid #eee;
-    }
-    .partners-grid {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 40px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-    .partners-grid img {
-      height: 50px;
-      filter: grayscale(100%);
-      transition: 0.3s;
-      opacity: 0.8;
-    }
-    .partners-grid img:hover { filter: grayscale(0%); opacity: 1; }
-
-    /* Slim Footer */
-    .footer-slim {
-      padding: 40px 0;
-      background: #1a1a1a;
-      color: white;
-      text-align: center;
-    }
-    .footer-links { margin: 20px 0; }
-    .footer-links a { color: #ccc; margin: 0 15px; text-decoration: none; font-size: 0.9rem; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JonDavidson | Executive Search & Staffing · Southeast Asia</title>
+  <link rel="icon" type="image/webp" href="assets/logo.webp" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-<header class="navbar">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="assets/JonDavidsonLogo.webp" alt="JonDavidson" style="height:40px;">
-    </a>
-    <nav class="nav-links">
-      <a href="about.html" class="nav-item">About</a>
-      <a href="services.html" class="nav-item">Services</a>
-      <a href="jobs.html" class="nav-item">Jobs</a>
-      <a href="contact.html" class="btn-contact">Contact Us</a>
-    </nav>
-  </div>
+<!-- NAVIGATION -->
+  <div class="main-logo-container">
+    <a href="index.html">
+        <img src="JonDavidson Logo.webp" alt="Jon Davidson - We go the distance" class="jd-logo">
+    </a>
+</div>
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logo.webp" alt="JonDavidson" />
+      <span class="tagline">WE GO THE DISTANCE</span>
+    </a>
+    <nav class="nav-links">
+      <div class="nav-item dropdown">
+        <a href="about.html">About Us <span class="caret">&#9660;</span></a>
+        <div class="dropdown-menu">
+          <a href="about.html#who-we-are">Who We Are</a>
+          <a href="about.html#our-team">Our Team</a>
+          <a href="about.html#our-offices">Our Offices</a>
+        </div>
+      </div>
+      <div class="nav-item dropdown">
+        <a href="services.html">Services <span class="caret">&#9660;</span></a>
+        <div class="dropdown-menu">
+          <a href="services.html#client-solutions">Client Solutions</a>
+          <a href="services.html#talent-profiling">Talent Profiling Tools</a>
+        </div>
+      </div>
+      <a href="jobs.html" class="nav-item">Browse Jobs</a>
+      <a href="news.html" class="nav-item">News &amp; Insights</a>
+      <a href="about.html#our-offices" class="nav-item">Offices</a>
+      <a href="contact.html" class="btn-contact">Contact Us</a>
+      <a href="contact.html#hire" class="btn-hire">Hire Talent</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="about.html">About Us</a>
+    <a href="about.html#who-we-are">— Who We Are</a>
+    <a href="about.html#our-team">— Our Team</a>
+    <a href="about.html#our-offices">— Our Offices</a>
+    <a href="services.html">Services</a>
+    <a href="services.html#client-solutions">— Client Solutions</a>
+    <a href="services.html#talent-profiling">— Talent Profiling Tools</a>
+    <a href="jobs.html">Browse Jobs</a>
+    <a href="news.html">News &amp; Insights</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="contact.html#hire">Hire Talent</a>
+  </div>
 </header>
 
-<section class="hero-compact">
-  <div class="container">
-    <img src="assets/JonDavidsonLogo.webp" alt="Jon Davidson Logo" class="jd-main-logo">
-    <h1>What would you like to do today?</h1>
-    
-    <div class="action-cards">
-      <a href="#search-box" class="action-btn btn-find-job">Find a Job</a>
-      <a href="contact.html#hire" class="action-btn btn-find-talent">Find Talent</a>
-    </div>
-
-    <div id="search-box" class="search-container-box">
-      <input type="text" placeholder="Job Title or Keyword">
-      
-      <select id="jobLocation">
-        <option value="">Select Location</option>
-        <option value="singapore">Singapore</option>
-        <option value="malaysia">Malaysia</option>
-        <option value="indonesia">Indonesia</option>
-        <option value="thailand">Thailand</option>
-        <option value="vietnam">Vietnam</option>
-        <option value="hong-kong">Hong Kong</option>
-      </select>
-
-      <select id="jobCategory">
-        <option value="">All Categories</option>
-        <option value="finance">Finance</option>
-        <option value="tech">Technology</option>
-        <option value="exec">C-Suite</option>
-      </select>
-
-      <button class="btn-find-job" style="border:none; cursor:pointer; padding:12px 30px; border-radius:6px;">Search</button>
-    </div>
-  </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow"><span class="line"></span> EXECUTIVE SEARCH &amp; STAFFING &middot; SOUTHEAST ASIA</p>
+    <h1 class="hero-title">
+      Connecting<br/>
+      <em>Talent</em><br/>
+      With Opportunity
+    </h1>
+    <p class="hero-sub">An extension of your organisation. We identify, attract and place high-performing professionals across Southeast Asia — built on trust, relationship, and integrity.</p>
+    <div class="hero-btns">
+      <a href="jobs.html" class="btn-primary">Browse Latest Jobs &rarr;</a>
+      <a href="contact.html#hire" class="btn-outline">Engage Us</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card stat-large">
+      <div class="stat-num">40<span class="plus">+</span></div>
+      <div class="stat-label">YEARS OF EXPERTISE</div>
+      <p>Established focus on middle to C-suite recruitment since 1980 — depth that generalists can't match.</p>
+    </div>
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-num">50<span class="plus">+</span></div>
+        <div class="stat-label">ENEX OFFICES</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">6</div>
+        <div class="stat-label">COUNTRIES SERVED</div>
+      </div>
+    </div>
+    <div class="stat-card stat-accent">
+      <span class="dot"></span>
+      <div>
+        <div class="stat-num-sm">66,000+ Network</div>
+        <div class="stat-label">Active professionals across Southeast Asia</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section style="padding: 60px 0; background: #f9f9f9; text-align: center;">
-  <div class="container" style="max-width: 800px;">
-    <h2 style="font-family: 'Playfair Display';">Our Mission</h2>
-    <p style="font-size: 1.1rem; color: #555; line-height: 1.8;">
-      We identify, attract and place high-performing professionals across Southeast Asia. 
-      JonDavidson acts as an extension of your organisation, built on a foundation of trust, 
-      long-term relationships, and absolute integrity.
-    </p>
-  </div>
+<!-- JOB SEARCH -->
+<section class="job-search-section">
+  <div class="container">
+    <h2>Find Your Next <em>Opportunity</em></h2>
+    <p class="section-sub">Search from our latest roles across Southeast Asia</p>
+    <div class="search-bar">
+      <div class="search-group">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="jobKeyword" placeholder="Job title, keyword or company" />
+      </div>
+      <div class="search-group">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <input type="text" id="jobLocation" placeholder="Location" />
+      </div>
+      <div class="search-group">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <select id="jobCategory">
+          <option value="">All Categories</option>
+          <option value="finance">Finance &amp; Accounting</option>
+          <option value="tech">Technology</option>
+          <option value="hr">Human Resources</option>
+          <option value="sales">Sales &amp; Marketing</option>
+          <option value="legal">Legal &amp; Compliance</option>
+          <option value="ops">Operations</option>
+          <option value="exec">C-Suite / Executive</option>
+        </select>
+      </div>
+      <button class="btn-search" onclick="searchJobs()">Search Jobs</button>
+    </div>
+    <div class="search-platforms">
+      <span>Also search on:</span>
+      <a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank" class="platform-link">JobStreet</a>
+      <a href="https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0" target="_blank" class="platform-link">MyCareersFuture</a>
+      <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="platform-link">All Jobs &rarr;</a>
+    </div>
+  </div>
 </section>
 
-<section class="featured-jobs" style="padding: 60px 0;">
-  <div class="container">
-    <h2 style="text-align:center; margin-bottom:40px;">Featured <em>Roles</em></h2>
-    <div class="jobs-grid">
-      <div class="job-card" style="border:1px solid #eee; padding:20px; border-radius:8px;">
-        <span style="color:#9e0403; font-weight:bold; font-size:0.8rem;">FINANCE</span>
-        <h3>CFO — Regional</h3>
-        <p>📍 Singapore</p>
-        <a href="jobs.html" style="color:#9e0403; text-decoration:none; font-weight:bold;">View Details &rarr;</a>
-      </div>
-    </div>
-  </div>
+<!-- FEATURED JOBS -->
+<section class="featured-jobs">
+  <div class="container">
+    <div class="section-header">
+      <h2>Featured <em>Roles</em></h2>
+      <a href="jobs.html" class="see-all">See all jobs &rarr;</a>
+    </div>
+    <div class="jobs-grid" id="jobsGrid">
+      <div class="job-card">
+        <div class="job-tag">Finance</div>
+        <h3>CFO — Regional</h3>
+        <p class="job-location">📍 Singapore</p>
+        <p class="job-type">Permanent &middot; SGD 25,000–35,000/mo</p>
+        <p class="job-desc">Senior executive role overseeing financial strategy across Southeast Asian operations for a listed MNC.</p>
+        <div class="job-actions">
+          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a>
+          <a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank" class="btn-save">View on JobStreet</a>
+        </div>
+      </div>
+      <div class="job-card">
+        <div class="job-tag">Technology</div>
+        <h3>VP Engineering</h3>
+        <p class="job-location">📍 Kuala Lumpur</p>
+        <p class="job-type">Permanent &middot; Competitive</p>
+        <p class="job-desc">Lead engineering teams for a high-growth fintech startup expanding across ASEAN markets.</p>
+        <div class="job-actions">
+          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a>
+          <a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank" class="btn-save">View on JobStreet</a>
+        </div>
+      </div>
+      <div class="job-card">
+        <div class="job-tag">C-Suite</div>
+        <h3>Country Manager</h3>
+        <p class="job-location">📍 Jakarta</p>
+        <p class="job-type">Permanent &middot; IDR Package</p>
+        <p class="job-desc">P&amp;L ownership for Indonesia market of an established FMCG multinational with regional ambitions.</p>
+        <div class="job-actions">
+          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a>
+          <a href="https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0" target="_blank" class="btn-save">View on MCF</a>
+        </div>
+      </div>
+    </div>
+    <div class="jobs-cta">
+      <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-primary">Browse All Open Roles</a>
+    </div>
+  </div>
 </section>
 
-<section class="partners-strip">
-  <div class="container">
-    <h3>Who We Are Members With</h3>
-    <div class="partners-grid">
-      <a href="https://www.enexsearch.group/" target="_blank">
-        <img src="assets/enexlogo.jpeg" alt="Enex">
-      </a>
-      <a href="https://npaworldwide.com/" target="_blank">
-        <img src="assets/NPAworldwidelogo.jpeg" alt="NPA">
-      </a>
-      <a href="https://www.elitez.asia/" target="_blank">
-        <img src="assets/Elitez-Logo.png" alt="Elitez">
-      </a>
-    </div>
-  </div>
+<!-- WHY JONDAVIDSON -->
+<section class="why-section">
+  <div class="container">
+    <div class="why-text">
+      <p class="eyebrow"><span class="line"></span> WHY JONDAVIDSON</p>
+      <h2>Beyond Recruitment.<br/><em>True Partnership.</em></h2>
+      <p>We don't just fill positions — we build careers and shape organisations. With over 40 years of expertise and a presence across 6 countries in Southeast Asia, we bring unmatched depth to every search mandate.</p>
+      <a href="about.html" class="btn-primary" style="margin-top:2rem;display:inline-block">Our Story &rarr;</a>
+    </div>
+    <div class="why-pillars">
+      <div class="pillar">
+        <div class="pillar-icon">🌏</div>
+        <h4>World Wide Reach</h4>
+        <p>Through ENEX — present in 40 countries across 4 continents — we source talent globally.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🎯</div>
+        <h4>Local Expertise</h4>
+        <p>Deep-rooted knowledge of Southeast Asian business culture, markets, and talent pools.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🤝</div>
+        <h4>True Engagement</h4>
+        <p>We treat every individual as unique — understanding motivations, not just skill sets.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">⚡</div>
+        <h4>Speed &amp; Accuracy</h4>
+        <p>Our proven methodology delivers the right candidate with unparalleled speed and precision.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section style="padding: 60px 0; background: #fff;">
-  <div class="container">
-    <h2 style="text-align:center; margin-bottom:30px;">Latest News & Insights</h2>
-    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:20px;">
-      <article style="border-bottom: 3px solid #9e0403; padding: 15px;">
-        <h4 style="margin-bottom:10px;">Southeast Asia Talent Trends 2026</h4>
-        <p style="font-size:0.9rem; color:#666;">How C-suite expectations are shifting in the current economy...</p>
-        <a href="news.html" style="color:#9e0403; font-size:0.8rem; font-weight:bold;">Read More</a>
-      </article>
-      <article style="border-bottom: 3px solid #9e0403; padding: 15px;">
-        <h4 style="margin-bottom:10px;">The Importance of Cultural Fit</h4>
-        <p style="font-size:0.9rem; color:#666;">Why character often outweighs technical skill in long-term success...</p>
-        <a href="news.html" style="color:#9e0403; font-size:0.8rem; font-weight:bold;">Read More</a>
-      </article>
-    </div>
-  </div>
+<!-- SERVICES STRIP -->
+<section class="services-strip">
+  <div class="container">
+    <div class="section-header">
+      <h2>Our <em>Services</em></h2>
+      <a href="services.html" class="see-all">Learn more &rarr;</a>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="svc-num">01</div>
+        <h3>Executive Search</h3>
+        <p>Bespoke C-suite and senior leadership search mandates — confidential, precise, and thorough.</p>
+        <a href="services.html#executive-search">Explore &rarr;</a>
+      </div>
+      <div class="service-card">
+        <div class="svc-num">02</div>
+        <h3>Contingency Recruitment</h3>
+        <p>Fast-track placement of mid-level professionals across functional disciplines in SEA.</p>
+        <a href="services.html#contingency">Explore &rarr;</a>
+      </div>
+      <div class="service-card">
+        <div class="svc-num">03</div>
+        <h3>Talent Profiling</h3>
+        <p>Scientific assessment tools to evaluate cultural fit, leadership potential, and competencies.</p>
+        <a href="services.html#talent-profiling">Explore &rarr;</a>
+      </div>
+      <div class="service-card">
+        <div class="svc-num">04</div>
+        <h3>RPO &amp; Consulting</h3>
+        <p>Embedded recruitment solutions and HR consulting to scale talent acquisition capability.</p>
+        <a href="services.html#rpo">Explore &rarr;</a>
+      </div>
+    </div>
+  </div>
 </section>
 
-<footer class="footer-slim">
-  <div class="container">
-    <img src="assets/JonDavidsonLogo.webp" alt="JonDavidson Logo" style="height:35px; filter: brightness(0) invert(1);">
-    <div class="footer-links">
-      <a href="about.html">About Us</a>
-      <a href="jobs.html">Browse Jobs</a>
-      <a href="contact.html">Privacy Policy</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <p style="font-size: 0.8rem; color: #888;">&copy; 2026 JonDavidson Pte Ltd. EA Licence No. 22S1412</p>
-  </div>
+<!-- NEWS SECTION -->
+<section class="news-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>News &amp; <em>Insights</em></h2>
+      <a href="news.html" class="see-all">All articles &rarr;</a>
+    </div>
+    <div class="news-grid">
+      <div class="news-card news-featured">
+        <div class="news-img" style="background: linear-gradient(135deg, #9e0403 0%, #4a0101 100%);"></div>
+        <div class="news-body">
+          <span class="news-tag">Market Insights</span>
+          <h3>Southeast Asia Talent Trends 2025: What Leaders Need to Know</h3>
+          <p>A deep-dive into the evolving expectations of C-suite candidates and how organisations are adapting their EVP.</p>
+          <a href="news.html" class="read-more">Read More &rarr;</a>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-img" style="background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);"></div>
+        <div class="news-body">
+          <span class="news-tag">Career Advice</span>
+          <h3>How to Position Yourself for an Executive Role in 2025</h3>
+          <a href="news.html" class="read-more">Read More &rarr;</a>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-img" style="background: linear-gradient(135deg, #787878 0%, #444 100%);"></div>
+        <div class="news-body">
+          <span class="news-tag">Employer Insights</span>
+          <h3>Why Cultural Fit Matters More Than Ever in Hiring</h3>
+          <a href="news.html" class="read-more">Read More &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOBAL NETWORK BANNER -->
+<section class="network-banner">
+  <div class="container">
+    <div class="network-content">
+      <p class="eyebrow"><span class="line"></span> GLOBAL REACH</p>
+      <h2>Connected Across<br/><em>40 Countries</em></h2>
+      <p>Through ENEX — the world's leading network of independent executive search firms — JonDavidson brings you global reach with local intelligence.</p>
+      <div class="network-links">
+        <a href="https://www.enexsearch.group" target="_blank" class="btn-outline-dark">ENEX Global &rarr;</a>
+        <a href="https://npaworldwide.com" target="_blank" class="btn-outline-dark">NPA Worldwide &rarr;</a>
+        <a href="https://www.elitez.asia" target="_blank" class="btn-outline-dark">ELITEZ Group &rarr;</a>
+      </div>
+    </div>
+    <div class="network-map">
+      <div class="map-placeholder">
+        <div class="map-dot" style="top:35%;left:70%"></div>
+        <div class="map-dot" style="top:45%;left:72%"></div>
+        <div class="map-dot" style="top:50%;left:68%"></div>
+        <div class="map-dot" style="top:48%;left:64%"></div>
+        <div class="map-dot" style="top:55%;left:66%"></div>
+        <div class="map-pulse" style="top:47%;left:70%"></div>
+        <svg viewBox="0 0 800 400" class="map-svg" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="#9e0403" font-size="14" font-family="DM Sans" opacity="0.6">SOUTHEAST ASIA · INDIA · CHINA · VIETNAM</text></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/logo.webp" alt="JonDavidson" class="footer-logo" />
+          <p>Executive Search &amp; Staffing across Southeast Asia — built on trust, relationship, and integrity.</p>
+          <p class="licence">EA Licence No. 22S1412<br/>Member of ELITEZ Group</p>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="about.html#who-we-are">Who We Are</a>
+          <a href="about.html#our-team">Our Team</a>
+          <a href="about.html#our-offices">Our Offices</a>
+          <a href="news.html">News &amp; Insights</a>
+        </div>
+        <div class="footer-col">
+          <h5>Services</h5>
+          <a href="services.html#executive-search">Executive Search</a>
+          <a href="services.html#contingency">Contingency Recruitment</a>
+          <a href="services.html#talent-profiling">Talent Profiling</a>
+          <a href="services.html#rpo">RPO &amp; Consulting</a>
+        </div>
+        <div class="footer-col">
+          <h5>Jobs</h5>
+          <a href="jobs.html">Browse All Jobs</a>
+          <a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank">Jobs on JobStreet</a>
+          <a href="https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0" target="_blank">Jobs on MyCareersFuture</a>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <p>2 Kallang Avenue, #03-05<br/>CT Hub, Singapore 339407</p>
+          <p>Tel: <a href="tel:+6562957155">+65 6295 7155</a></p>
+          <p>Email: <a href="mailto:partners@jondavidsongroup.com">partners@jondavidsongroup.com</a></p>
+          <div class="footer-networks">
+            <a href="https://www.enexsearch.group" target="_blank">ENEX</a>
+            <a href="https://npaworldwide.com" target="_blank">NPA</a>
+            <a href="https://www.elitez.asia" target="_blank">ELITEZ</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; 2025 JonDavidson Pte Ltd. All rights reserved.</p>
+      <p>EA Licence No. 22S1412 | <a href="contact.html">Privacy Policy</a></p>
+    </div>
+  </div>
 </footer>
 
 <script src="js/main.js"></script>
 </body>
 </html>
+
