@@ -606,6 +606,103 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
 }
 
 /* ============================================
+   OUR MEMBERSHIPS
+============================================= */
+.memberships-section {
+  padding: 5rem 0;
+  background: var(--white);
+  border-top: 1px solid var(--gray-mid);
+}
+.memberships-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.memberships-header .eyebrow {
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.memberships-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+.memberships-sub {
+  color: var(--text-light);
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.memberships-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+.member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2.25rem 1.75rem;
+  background: var(--white);
+  border: 1px solid var(--gray-mid);
+  border-radius: 8px;
+  transition: all var(--transition);
+  color: var(--text);
+  cursor: pointer;
+}
+.member-card:hover {
+  border-color: var(--red);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+.member-logo {
+  height: 110px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem;
+}
+.member-logo img {
+  max-height: 100%;
+  max-width: 85%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(20%);
+  transition: filter var(--transition), transform var(--transition);
+}
+.member-card:hover .member-logo img {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+.member-card h3 {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: var(--text);
+}
+.member-card p {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+.member-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--red);
+  transition: gap var(--transition);
+}
+.member-card:hover .member-link { text-decoration: underline; }
+
+/* ============================================
    WHY JONDAVIDSON
 ============================================= */
 .why-section {
@@ -1163,6 +1260,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
   .stat-accent { grid-column: span 2; }
   .jobs-grid { grid-template-columns: 1fr 1fr; }
   .services-grid { grid-template-columns: 1fr 1fr; }
+  .memberships-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
   .news-grid { grid-template-columns: 1fr; }
   .news-featured { display: grid; grid-template-columns: 1fr 1fr; }
   .why-section .container { grid-template-columns: 1fr; }
@@ -1181,6 +1279,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
   .hamburger { display: flex; }
   .jobs-grid { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
+  .memberships-grid { grid-template-columns: 1fr; }
   .search-bar { flex-direction: column; border-radius: 6px; }
   .search-group { border-right: none; border-bottom: 1px solid var(--gray-mid); padding: 0 1rem; }
   .search-group:last-of-type { border-bottom: none; }
