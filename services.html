@@ -4,18 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services | JonDavidson</title>
-  <link rel="icon" type="image/webp" href="assets/logo.webp" />
+  <link rel="icon" type="image/png" href="assets/JonDavidsonLogo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/nav.css" />
 </head>
 <body>
 
 <header class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <img src="assets/logo.webp" alt="JonDavidson" />
+      <img src="assets/JonDavidsonLogo.png" alt="JonDavidson" />
       <span class="tagline">WE GO THE DISTANCE</span>
     </a>
     <nav class="nav-links">
@@ -37,6 +38,9 @@
       <a href="jobs.html" class="nav-item">Browse Jobs</a>
       <a href="news.html" class="nav-item">News &amp; Insights</a>
       <a href="about.html#our-offices" class="nav-item">Offices</a>
+      <a href="login.html" class="btn-login-icon" title="Candidate Login">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </a>
       <a href="contact.html" class="btn-contact">Contact Us</a>
       <a href="contact.html#hire" class="btn-hire">Hire Talent</a>
     </nav>
@@ -47,7 +51,9 @@
     <a href="services.html">Services</a>
     <a href="jobs.html">Browse Jobs</a>
     <a href="news.html">News &amp; Insights</a>
+    <a href="login.html">Candidate Login</a>
     <a href="contact.html">Contact Us</a>
+    <a href="contact.html#hire">Hire Talent</a>
   </div>
 </header>
 
@@ -62,44 +68,9 @@
 <section class="content-section" id="client-solutions">
   <div class="container">
     <p class="eyebrow" style="margin-bottom:1.5rem"><span class="line"></span> CLIENT SOLUTIONS</p>
-    <div class="service-detail" id="executive-search">
-      <div class="service-detail-grid">
-        <div>
-          <div class="svc-num">01</div>
-          <h2>Executive Search</h2>
-        </div>
-        <div>
-          <p>Our core service — a rigorous, confidential search process to identify, assess, and place exceptional leaders at the C-suite and senior management level. We go beyond the active candidate pool to find passive talent who are the right fit for your organisation.</p>
-          <p>Each mandate is handled with absolute discretion. Our consultants leverage their deep networks and industry knowledge to deliver a shortlist of candidates who are both technically qualified and culturally aligned.</p>
-          <a href="contact.html#hire" class="btn-primary" style="display:inline-flex;margin-top:1.25rem">Start a Search Mandate &rarr;</a>
-        </div>
-      </div>
-    </div>
-    <div class="service-detail" id="contingency">
-      <div class="service-detail-grid">
-        <div>
-          <div class="svc-num">02</div>
-          <h2>Contingency Recruitment</h2>
-        </div>
-        <div>
-          <p>For mid-level professional roles, our contingency model offers speed and efficiency. We leverage our extensive candidate database and active sourcing capabilities to fill roles quickly without sacrificing quality.</p>
-          <p>Across finance, technology, HR, sales, operations, and legal — our specialists bring functional expertise to every search.</p>
-          <a href="contact.html" class="btn-primary" style="display:inline-flex;margin-top:1.25rem">Enquire Now &rarr;</a>
-        </div>
-      </div>
-    </div>
-    <div class="service-detail" id="rpo">
-      <div class="service-detail-grid">
-        <div>
-          <div class="svc-num">03</div>
-          <h2>RPO &amp; Consulting</h2>
-        </div>
-        <div>
-          <p>For organisations looking to scale their hiring or build internal capabilities, we offer Recruitment Process Outsourcing (RPO) and HR consulting services. Our embedded consultants work as an extension of your team.</p>
-          <a href="contact.html" class="btn-primary" style="display:inline-flex;margin-top:1.25rem">Discuss Your Needs &rarr;</a>
-        </div>
-      </div>
-    </div>
+    <div class="service-detail" id="executive-search"><div class="service-detail-grid"><div><div class="svc-num">01</div><h2>Executive Search</h2></div><div><p>Our core service — a rigorous, confidential search process to identify, assess, and place exceptional leaders at the C-suite and senior management level.</p><p>Each mandate is handled with absolute discretion. Our consultants leverage their deep networks and industry knowledge to deliver a shortlist of candidates who are both technically qualified and culturally aligned.</p><a href="contact.html#hire" class="btn-primary" style="display:inline-flex;margin-top:1.25rem">Start a Search Mandate &rarr;</a></div></div></div>
+    <div class="service-detail" id="contingency"><div class="service-detail-grid"><div><div class="svc-num">02</div><h2>Contingency Recruitment</h2></div><div><p>For mid-level professional roles, our contingency model offers speed and efficiency. We leverage our extensive candidate database and active sourcing capabilities to fill roles quickly without sacrificing quality.</p><a href="contact.html" class="btn-primary" style="display:inline-flex;margin-top:1.25rem">Enquire Now &rarr;</a></div></div></div>
+    <div class="service-detail" id="rpo"><div class="service-detail-grid"><div><div class="svc-num">03</div><h2>RPO &amp; Consulting</h2></div><div><p>For organisations looking to scale their hiring or build internal capabilities, we offer Recruitment Process Outsourcing (RPO) and HR consulting services.</p><a href="contact.html" class="btn-primary" style="display:inline-flex;margin-top:1.25rem">Discuss Your Needs &rarr;</a></div></div></div>
   </div>
 </section>
 
@@ -109,49 +80,24 @@
     <h2>Science-Backed <em>Assessment</em></h2>
     <p style="max-width:700px;margin-bottom:3rem">We complement our search expertise with validated psychometric and competency assessment tools to ensure every hire is not just technically competent, but a true fit for your culture and leadership requirements.</p>
     <div class="services-grid">
-      <div class="service-card">
-        <div class="svc-num">A</div>
-        <h3>Behavioural Profiling</h3>
-        <p>Understand how candidates think, communicate, and respond to pressure using validated behavioural frameworks.</p>
-        <a href="contact.html">Enquire &rarr;</a>
-      </div>
-      <div class="service-card">
-        <div class="svc-num">B</div>
-        <h3>Leadership Potential Assessment</h3>
-        <p>Identify high-potential leaders with structured evaluation of cognitive ability, emotional intelligence, and leadership competencies.</p>
-        <a href="contact.html">Enquire &rarr;</a>
-      </div>
-      <div class="service-card">
-        <div class="svc-num">C</div>
-        <h3>Cultural Fit Analysis</h3>
-        <p>Map candidate values against your organisational culture to predict retention and performance.</p>
-        <a href="contact.html">Enquire &rarr;</a>
-      </div>
-      <div class="service-card">
-        <div class="svc-num">D</div>
-        <h3>360-Degree Reference Checks</h3>
-        <p>Structured, in-depth reference verification that goes beyond standard employment confirmation.</p>
-        <a href="contact.html">Enquire &rarr;</a>
-      </div>
-    </div>
-    <div style="margin-top:3rem;text-align:center">
-      <p style="color:var(--text-light);margin-bottom:1.5rem">Want to learn more about our assessment methodology?</p>
-      <a href="contact.html" class="btn-primary">Speak to a Consultant &rarr;</a>
+      <div class="service-card"><div class="svc-num">A</div><h3>Behavioural Profiling</h3><p>Understand how candidates think, communicate, and respond to pressure using validated behavioural frameworks.</p><a href="contact.html">Enquire &rarr;</a></div>
+      <div class="service-card"><div class="svc-num">B</div><h3>Leadership Potential Assessment</h3><p>Identify high-potential leaders with structured evaluation of cognitive ability, emotional intelligence, and leadership competencies.</p><a href="contact.html">Enquire &rarr;</a></div>
+      <div class="service-card"><div class="svc-num">C</div><h3>Cultural Fit Analysis</h3><p>Map candidate values against your organisational culture to predict retention and performance.</p><a href="contact.html">Enquire &rarr;</a></div>
+      <div class="service-card"><div class="svc-num">D</div><h3>360-Degree Reference Checks</h3><p>Structured, in-depth reference verification that goes beyond standard employment confirmation.</p><a href="contact.html">Enquire &rarr;</a></div>
     </div>
   </div>
 </section>
 
 <footer class="footer">
   <div class="footer-top"><div class="container"><div class="footer-grid">
-    <div class="footer-brand"><img src="assets/logo.webp" alt="JonDavidson" class="footer-logo" /><p>Executive Search &amp; Staffing across Southeast Asia.</p><p class="licence">EA Licence No. 22S1412 | Member of ELITEZ Group</p></div>
+    <div class="footer-brand"><img src="assets/JonDavidsonLogo.png" alt="JonDavidson" class="footer-logo" /><p>Executive Search &amp; Staffing across Southeast Asia.</p><p class="licence">EA Licence No. 22S1412 | Member of ELITEZ Group</p></div>
     <div class="footer-col"><h5>Company</h5><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a></div>
     <div class="footer-col"><h5>Services</h5><a href="services.html#executive-search">Executive Search</a><a href="services.html#contingency">Contingency</a><a href="services.html#talent-profiling">Talent Profiling</a></div>
-    <div class="footer-col"><h5>Jobs</h5><a href="jobs.html">Browse Jobs</a><a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank">JobStreet</a><a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank">All Jobs</a></div>
-    <div class="footer-col"><h5>Contact</h5><p>2 Kallang Avenue #03-05, Singapore 339407</p><p>Tel: <a href="tel:+6562957155">+65 6295 7155</a></p><p><a href="mailto:partners@jondavidsongroup.com">partners@jondavidsongroup.com</a></p></div>
+    <div class="footer-col"><h5>Candidates</h5><a href="login.html">Candidate Login</a><a href="jobs.html">Browse Jobs</a></div>
+    <div class="footer-col"><h5>Contact</h5><p>2 Kallang Avenue #03-05, Singapore 339407</p><p>Tel: <a href="tel:+6562957155">+65 6295 7155</a></p></div>
   </div></div></div>
   <div class="footer-bottom"><div class="container"><p>&copy; 2025 JonDavidson Pte Ltd.</p><p>EA Licence No. 22S1412</p></div></div>
 </footer>
-
 <script src="js/main.js"></script>
 </body>
 </html>
