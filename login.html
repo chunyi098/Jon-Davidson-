@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candidate Portal | JonDavidson</title>
+  <link rel="icon" type="image/png" href="assets/JonDavidsonLogo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body class="auth-body">
+
+<!-- MINIMAL HEADER -->
+<header class="auth-header">
+  <a href="index.html" class="auth-logo">
+    <img src="assets/JonDavidsonLogo.png" alt="JonDavidson" />
+  </a>
+  <a href="index.html" class="auth-back">← Back to site</a>
+</header>
+
+<div class="auth-layout">
+
+  <!-- LEFT PANEL -->
+  <div class="auth-left">
+    <div class="auth-left-content">
+      <p class="auth-eyebrow"><span class="line"></span> CANDIDATE PORTAL</p>
+      <h1>Your Career,<br/><em>Your Journey.</em></h1>
+      <p>Access exclusive executive roles across Southeast Asia. Save jobs, track applications, and connect with our consultants — all in one place.</p>
+      <div class="auth-perks">
+        <div class="perk">
+          <div class="perk-icon">🔍</div>
+          <div>
+            <h4>Exclusive Roles</h4>
+            <p>Access positions not advertised elsewhere — from C-suite to senior management.</p>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon">📌</div>
+          <div>
+            <h4>Save &amp; Track</h4>
+            <p>Bookmark roles, track your applications, and review past positions.</p>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon">🤝</div>
+          <div>
+            <h4>Direct Consultant Access</h4>
+            <p>Get matched with a JonDavidson consultant who specialises in your field.</p>
+          </div>
+        </div>
+      </div>
+      <div class="auth-trusted">
+        <p>Trusted by professionals from</p>
+        <div class="trusted-logos">
+          <span>DBS</span><span>Grab</span><span>KPMG</span><span>Shell</span><span>UOB</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL (FORM) -->
+  <div class="auth-right">
+    <div class="auth-card">
+
+      <!-- TAB TOGGLE -->
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tabLogin" onclick="switchTab('login')">Log In</button>
+        <button class="auth-tab" id="tabSignup" onclick="switchTab('signup')">Sign Up</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div id="loginForm" class="auth-form active">
+        <h2>Welcome back</h2>
+        <p class="form-sub">Log in to your candidate profile</p>
+
+        <div class="social-btns">
+          <button class="btn-social btn-google" onclick="socialLogin('google')">
+            <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.5 1.2 8.9 3.2l6.6-6.6C35.4 2.5 30 0 24 0 14.7 0 6.8 5.5 3 13.5l7.7 6c1.8-5.4 6.8-10 13.3-10z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4 7.1-10 7.1-17z"/><path fill="#FBBC05" d="M10.7 28.5A14.8 14.8 0 0 1 9.5 24c0-1.6.3-3.1.7-4.5L2.5 13.5A24 24 0 0 0 0 24c0 3.9.9 7.5 2.5 10.7l8.2-6.2z"/><path fill="#34A853" d="M24 48c6 0 11.1-2 14.8-5.4l-7.5-5.8c-2 1.4-4.6 2.2-7.3 2.2-6.5 0-12-4.5-13.9-10.5l-8.1 6.2C6.7 42.5 14.7 48 24 48z"/></svg>
+            Continue with Google
+          </button>
+          <button class="btn-social btn-linkedin" onclick="socialLogin('linkedin')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.982V9h3.085v1.561h.042c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a1.794 1.794 0 1 1 0-3.588 1.794 1.794 0 0 1 0 3.588zm1.543 13.019H3.794V9h3.086v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            Continue with LinkedIn
+          </button>
+        </div>
+
+        <div class="auth-divider"><span>or</span></div>
+
+        <div class="form-group">
+          <label>Email address</label>
+          <input type="email" placeholder="you@example.com" />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="••••••••" />
+        </div>
+        <div class="form-row">
+          <label class="check-label"><input type="checkbox" /> Remember me</label>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </div>
+        <button class="btn-auth" onclick="handleLogin()">Log In</button>
+        <p class="auth-switch">Don't have an account? <a href="#" onclick="switchTab('signup')">Sign up</a></p>
+      </div>
+
+      <!-- SIGNUP FORM -->
+      <div id="signupForm" class="auth-form">
+        <h2>Create your profile</h2>
+        <p class="form-sub">Join thousands of professionals on JonDavidson</p>
+
+        <div class="social-btns">
+          <button class="btn-social btn-google" onclick="socialLogin('google')">
+            <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.5 1.2 8.9 3.2l6.6-6.6C35.4 2.5 30 0 24 0 14.7 0 6.8 5.5 3 13.5l7.7 6c1.8-5.4 6.8-10 13.3-10z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4 7.1-10 7.1-17z"/><path fill="#FBBC05" d="M10.7 28.5A14.8 14.8 0 0 1 9.5 24c0-1.6.3-3.1.7-4.5L2.5 13.5A24 24 0 0 0 0 24c0 3.9.9 7.5 2.5 10.7l8.2-6.2z"/><path fill="#34A853" d="M24 48c6 0 11.1-2 14.8-5.4l-7.5-5.8c-2 1.4-4.6 2.2-7.3 2.2-6.5 0-12-4.5-13.9-10.5l-8.1 6.2C6.7 42.5 14.7 48 24 48z"/></svg>
+            Sign up with Google
+          </button>
+          <button class="btn-social btn-linkedin" onclick="socialLogin('linkedin')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.982V9h3.085v1.561h.042c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a1.794 1.794 0 1 1 0-3.588 1.794 1.794 0 0 1 0 3.588zm1.543 13.019H3.794V9h3.086v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            Sign up with LinkedIn
+          </button>
+        </div>
+
+        <div class="auth-divider"><span>or sign up with email</span></div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Jane" />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Doe" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email address</label>
+          <input type="email" placeholder="you@example.com" />
+        </div>
+        <div class="form-group">
+          <label>Current Job Title</label>
+          <input type="text" placeholder="e.g. Head of Finance" />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" placeholder="Min. 8 characters" />
+        </div>
+
+        <!-- CV UPLOAD -->
+        <div class="form-group">
+          <label>Upload CV / Resume <span class="optional">(optional)</span></label>
+          <div class="upload-zone" id="uploadZone" onclick="document.getElementById('cvFile').click()" ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
+            <div class="upload-icon">📄</div>
+            <p><strong>Click to upload</strong> or drag & drop</p>
+            <p class="upload-hint">PDF, DOCX, DOC — max 5MB</p>
+            <p class="upload-status" id="uploadStatus"></p>
+          </div>
+          <input type="file" id="cvFile" accept=".pdf,.doc,.docx" style="display:none" onchange="handleFileSelect(event)" />
+        </div>
+
+        <!-- PORTFOLIO UPLOAD -->
+        <div class="form-group">
+          <label>Portfolio URL <span class="optional">(optional)</span></label>
+          <input type="url" placeholder="https://yourportfolio.com" />
+        </div>
+
+        <!-- PREFERENCES -->
+        <div class="form-group">
+          <label>Job Preferences</label>
+          <div class="pref-tags" id="prefTags">
+            <button type="button" class="pref-tag" onclick="togglePref(this)">Finance</button>
+            <button type="button" class="pref-tag" onclick="togglePref(this)">Technology</button>
+            <button type="button" class="pref-tag" onclick="togglePref(this)">HR</button>
+            <button type="button" class="pref-tag" onclick="togglePref(this)">Sales & Marketing</button>
+            <button type="button" class="pref-tag" onclick="togglePref(this)">Legal</button>
+            <button type="button" class="pref-tag" onclick="togglePref(this)">Operations</button>
+            <button type="button" class="pref-tag" onclick="togglePref(this)">C-Suite</button>
+            <button type="button" class="pref-tag" onclick="togglePref(this)">Consulting</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="check-label full">
+            <input type="checkbox" />
+            I agree to the <a href="contact.html">Privacy Policy</a> and <a href="contact.html">Terms of Use</a>
+          </label>
+        </div>
+
+        <button class="btn-auth" onclick="handleSignup()">Create My Profile</button>
+        <p class="auth-switch">Already have an account? <a href="#" onclick="switchTab('login')">Log in</a></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  function switchTab(tab) {
+    document.getElementById('loginForm').classList.toggle('active', tab === 'login');
+    document.getElementById('signupForm').classList.toggle('active', tab === 'signup');
+    document.getElementById('tabLogin').classList.toggle('active', tab === 'login');
+    document.getElementById('tabSignup').classList.toggle('active', tab === 'signup');
+  }
+
+  function socialLogin(provider) {
+    // Placeholder — integrate OAuth (Google/LinkedIn) here
+    alert('Social login with ' + provider + ' — coming soon! Please connect OAuth credentials.');
+  }
+
+  function handleLogin() {
+    alert('Login functionality coming soon. Please connect a backend auth service.');
+  }
+
+  function handleSignup() {
+    alert('Account created! This is a demo — connect a backend to enable real signups.');
+  }
+
+  function handleDragOver(e) {
+    e.preventDefault();
+    document.getElementById('uploadZone').classList.add('drag-over');
+  }
+
+  function handleDrop(e) {
+    e.preventDefault();
+    document.getElementById('uploadZone').classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) showFile(file);
+  }
+
+  function handleFileSelect(e) {
+    const file = e.target.files[0];
+    if (file) showFile(file);
+  }
+
+  function showFile(file) {
+    const status = document.getElementById('uploadStatus');
+    status.textContent = '✅ ' + file.name + ' (' + (file.size / 1024).toFixed(0) + ' KB)';
+    document.getElementById('uploadZone').classList.add('uploaded');
+  }
+
+  function togglePref(el) {
+    el.classList.toggle('selected');
+  }
+</script>
+</body>
+</html>

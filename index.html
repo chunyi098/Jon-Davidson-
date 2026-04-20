@@ -9,6 +9,229 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ---- HOMEPAGE ADDITIONS ---- */
+    .hero-intent {
+      background: var(--white);
+      padding: 5rem 0 4rem;
+      text-align: center;
+      border-bottom: 1px solid var(--gray-mid);
+    }
+    .hero-intent .intent-eyebrow {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .hero-intent h2 {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    .hero-intent h2 em { color: var(--red); }
+    .hero-intent .intent-sub {
+      font-size: 1rem;
+      color: var(--text-light);
+      margin-bottom: 3rem;
+    }
+    .intent-cards {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .intent-card {
+      flex: 1;
+      min-width: 280px;
+      max-width: 380px;
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      border: 2px solid var(--gray-mid);
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: var(--text);
+      display: block;
+      position: relative;
+      overflow: hidden;
+    }
+    .intent-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--red);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .intent-card:hover::before { opacity: 1; }
+    .intent-card:hover { border-color: var(--red); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(158,4,3,0.2); }
+    .intent-card > * { position: relative; z-index: 1; }
+    .intent-card:hover .intent-icon,
+    .intent-card:hover .intent-title,
+    .intent-card:hover .intent-desc,
+    .intent-card:hover .intent-cta { color: var(--white); }
+    .intent-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .intent-title {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s;
+    }
+    .intent-desc {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+      transition: color 0.3s;
+    }
+    .intent-cta {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 0.05em;
+      transition: color 0.3s;
+    }
+    .intent-card:hover .intent-cta { color: rgba(255,255,255,0.8); }
+
+    /* MISSION STRIP */
+    .mission-strip {
+      background: var(--black);
+      padding: 2rem 0;
+      overflow: hidden;
+    }
+    .mission-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+    .mission-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .mission-num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--white);
+    }
+    .mission-num span { color: var(--red); }
+    .mission-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      font-weight: 600;
+    }
+    .mission-divider {
+      width: 1px;
+      height: 36px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    /* SEARCH SECTION — candidate focused */
+    .candidate-search {
+      background: var(--red);
+      padding: 5rem 0;
+    }
+    .candidate-search .cs-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    .candidate-search h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .candidate-search h2 em { color: rgba(255,255,255,0.75); font-style: italic; }
+    .candidate-search .cs-sub {
+      color: rgba(255,255,255,0.75);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    .cs-searchbar {
+      display: flex;
+      background: var(--white);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+      margin-bottom: 1.25rem;
+    }
+    .cs-searchbar .sg {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex: 1;
+      padding: 0 1.25rem;
+      border-right: 1px solid var(--gray-mid);
+      color: var(--gray);
+    }
+    .cs-searchbar .sg:last-of-type { border-right: none; }
+    .cs-searchbar input, .cs-searchbar select {
+      border: none;
+      outline: none;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      color: var(--text);
+      width: 100%;
+      padding: 1.1rem 0;
+      background: transparent;
+    }
+    .cs-btn {
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      padding: 0 2.25rem;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .cs-btn:hover { background: #333; }
+    .cs-platforms {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.65);
+    }
+    .cs-pl-link {
+      color: var(--white);
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255,255,255,0.35);
+    }
+    .cs-pl-link:hover { border-color: white; }
+    .cs-login-hint {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+    }
+    .cs-login-hint a {
+      color: var(--white);
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+    }
+  </style>
 </head>
 <body>
 
@@ -39,6 +262,7 @@
       <a href="news.html" class="nav-item">News &amp; Insights</a>
       <a href="about.html#our-offices" class="nav-item">Offices</a>
       <a href="contact.html" class="btn-contact">Contact Us</a>
+      <a href="login.html" class="btn-contact" style="border-color:var(--red);color:var(--red);">Candidate Login</a>
       <a href="contact.html#hire" class="btn-hire">Hire Talent</a>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -55,6 +279,7 @@
     <a href="services.html#talent-profiling">— Talent Profiling Tools</a>
     <a href="jobs.html">Browse Jobs</a>
     <a href="news.html">News &amp; Insights</a>
+    <a href="login.html">Candidate Login</a>
     <a href="contact.html">Contact Us</a>
     <a href="contact.html#hire">Hire Talent</a>
   </div>
@@ -72,7 +297,7 @@
     </h1>
     <p class="hero-sub">An extension of your organisation. We identify, attract and place high-performing professionals across Southeast Asia — built on trust, relationship, and integrity.</p>
     <div class="hero-btns">
-      <a href="jobs.html" class="btn-primary">Browse Latest Jobs &rarr;</a>
+      <a href="#what-today" class="btn-primary">Find Your Role &rarr;</a>
       <a href="contact.html#hire" class="btn-outline">Engage Us</a>
     </div>
   </div>
@@ -102,22 +327,77 @@
   </div>
 </section>
 
-<!-- JOB SEARCH -->
-<section class="job-search-section">
+<!-- WHAT WOULD YOU LIKE TO DO TODAY -->
+<section class="hero-intent" id="what-today">
   <div class="container">
-    <h2>Find Your Next <em>Opportunity</em></h2>
-    <p class="section-sub">Search from our latest roles across Southeast Asia</p>
-    <div class="search-bar">
-      <div class="search-group">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="jobKeyword" placeholder="Job title, keyword or company" />
+    <p class="intent-eyebrow">What would you like to do today?</p>
+    <h2>Find a <em>Job</em> or Find <em>Talent</em></h2>
+    <p class="intent-sub">We work with candidates and employers across Southeast Asia — how can we help?</p>
+    <div class="intent-cards">
+      <a href="#candidate-search" class="intent-card">
+        <span class="intent-icon">🎯</span>
+        <div class="intent-title">Find a Job</div>
+        <p class="intent-desc">Browse exclusive executive and senior roles across Singapore, Malaysia, Indonesia and beyond. Create a free profile to save jobs and get matched.</p>
+        <span class="intent-cta">Search Roles &rarr;</span>
+      </a>
+      <a href="contact.html#hire" class="intent-card">
+        <span class="intent-icon">🏢</span>
+        <div class="intent-title">Find Talent</div>
+        <p class="intent-desc">Looking to hire? Our consultants will source, screen and present high-performing candidates tailored to your brief — fast and confidentially.</p>
+        <span class="intent-cta">Engage Us &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION STATS STRIP -->
+<div class="mission-strip">
+  <div class="container">
+    <div class="mission-inner">
+      <div class="mission-item">
+        <div class="mission-num">40<span>+</span></div>
+        <div class="mission-label">Years of Expertise</div>
       </div>
-      <div class="search-group">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      <div class="mission-divider"></div>
+      <div class="mission-item">
+        <div class="mission-num">50<span>+</span></div>
+        <div class="mission-label">ENEX Offices</div>
+      </div>
+      <div class="mission-divider"></div>
+      <div class="mission-item">
+        <div class="mission-num">6</div>
+        <div class="mission-label">Countries Served</div>
+      </div>
+      <div class="mission-divider"></div>
+      <div class="mission-item">
+        <div class="mission-num">66<span>K+</span></div>
+        <div class="mission-label">Professional Network</div>
+      </div>
+      <div class="mission-divider"></div>
+      <div class="mission-item">
+        <div class="mission-num">40<span>+</span></div>
+        <div class="mission-label">Global Countries via ENEX</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CANDIDATE JOB SEARCH -->
+<section class="candidate-search" id="candidate-search">
+  <div class="cs-inner">
+    <h2>Find Your Next <em>Opportunity</em></h2>
+    <p class="cs-sub">Search exclusive roles across Singapore, Malaysia, Indonesia &amp; beyond</p>
+    <div class="cs-searchbar">
+      <div class="sg">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="jobKeyword" placeholder="Job title or keyword" />
+      </div>
+      <div class="sg">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
         <input type="text" id="jobLocation" placeholder="Location" />
       </div>
-      <div class="search-group">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      <div class="sg">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
         <select id="jobCategory">
           <option value="">All Categories</option>
           <option value="finance">Finance &amp; Accounting</option>
@@ -129,14 +409,17 @@
           <option value="exec">C-Suite / Executive</option>
         </select>
       </div>
-      <button class="btn-search" onclick="searchJobs()">Search Jobs</button>
+      <button class="cs-btn" onclick="searchJobs()">Search</button>
     </div>
-    <div class="search-platforms">
-      <span>Also search on:</span>
-      <a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank" class="platform-link">JobStreet</a>
-      <a href="https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0" target="_blank" class="platform-link">MyCareersFuture</a>
-      <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="platform-link">All Jobs &rarr;</a>
+    <div class="cs-platforms">
+      <span>Also on:</span>
+      <a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank" class="cs-pl-link">JobStreet</a>
+      <a href="https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0" target="_blank" class="cs-pl-link">MyCareersFuture</a>
+      <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="cs-pl-link">All Jobs &rarr;</a>
     </div>
+    <p class="cs-login-hint">
+      <a href="login.html">Log in or create a profile</a> to save jobs, track applications &amp; get matched by our consultants.
+    </p>
   </div>
 </section>
 
@@ -155,8 +438,8 @@
         <p class="job-type">Permanent &middot; SGD 25,000–35,000/mo</p>
         <p class="job-desc">Senior executive role overseeing financial strategy across Southeast Asian operations for a listed MNC.</p>
         <div class="job-actions">
-          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a>
-          <a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank" class="btn-save">View on JobStreet</a>
+          <a href="login.html" class="btn-apply">Apply</a>
+          <a href="login.html" class="btn-save">💾 Save</a>
         </div>
       </div>
       <div class="job-card">
@@ -166,8 +449,8 @@
         <p class="job-type">Permanent &middot; Competitive</p>
         <p class="job-desc">Lead engineering teams for a high-growth fintech startup expanding across ASEAN markets.</p>
         <div class="job-actions">
-          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a>
-          <a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank" class="btn-save">View on JobStreet</a>
+          <a href="login.html" class="btn-apply">Apply</a>
+          <a href="login.html" class="btn-save">💾 Save</a>
         </div>
       </div>
       <div class="job-card">
@@ -177,13 +460,14 @@
         <p class="job-type">Permanent &middot; IDR Package</p>
         <p class="job-desc">P&amp;L ownership for Indonesia market of an established FMCG multinational with regional ambitions.</p>
         <div class="job-actions">
-          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a>
-          <a href="https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0" target="_blank" class="btn-save">View on MCF</a>
+          <a href="login.html" class="btn-apply">Apply</a>
+          <a href="login.html" class="btn-save">💾 Save</a>
         </div>
       </div>
     </div>
     <div class="jobs-cta">
-      <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-primary">Browse All Open Roles</a>
+      <a href="login.html" class="btn-primary" style="margin-right:1rem">Create Profile to Save Jobs</a>
+      <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-outline">Browse All Open Roles</a>
     </div>
   </div>
 </section>
@@ -332,6 +616,41 @@
   </div>
 </section>
 
+<!-- ABOUT / MISSION -->
+<section class="why-section" style="background:var(--white);">
+  <div class="container">
+    <div class="why-text">
+      <p class="eyebrow"><span class="line"></span> WHO WE ARE</p>
+      <h2>Executive Search.<br/><em>Southeast Asia's Trusted Partner.</em></h2>
+      <p>Founded in 1980, JonDavidson Pte Ltd is one of Southeast Asia's longest-standing executive search and recruitment firms. We partner with organisations — from multinationals to high-growth startups — to identify leaders who drive real business outcomes.</p>
+      <p style="margin-top:1rem;">As proud members of ENEX, NPAworldwide and the ELITEZ Group, we bring both local depth and global reach to every mandate.</p>
+      <a href="about.html" class="btn-primary" style="margin-top:2rem;display:inline-block">About JonDavidson &rarr;</a>
+    </div>
+    <div class="why-pillars">
+      <div class="pillar">
+        <div class="pillar-icon">🏛️</div>
+        <h4>Est. 1980</h4>
+        <p>Over four decades placing senior professionals across Southeast Asia.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">📜</div>
+        <h4>EA Licence No. 22S1412</h4>
+        <p>Licensed by the Ministry of Manpower, Singapore — operating with full compliance.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🌐</div>
+        <h4>ELITEZ Group</h4>
+        <p>Part of a comprehensive HR &amp; staffing group with capabilities across Asia.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🔒</div>
+        <h4>Confidential Mandates</h4>
+        <p>We handle sensitive executive searches with discretion and professionalism.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- GLOBAL NETWORK BANNER -->
 <section class="network-banner">
   <div class="container">
@@ -384,7 +703,9 @@
           <a href="services.html#rpo">RPO &amp; Consulting</a>
         </div>
         <div class="footer-col">
-          <h5>Jobs</h5>
+          <h5>Candidates</h5>
+          <a href="login.html">Candidate Login</a>
+          <a href="login.html">Create Profile</a>
           <a href="jobs.html">Browse All Jobs</a>
           <a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank">Jobs on JobStreet</a>
           <a href="https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0" target="_blank">Jobs on MyCareersFuture</a>
@@ -412,5 +733,23 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script>
+  function searchJobs() {
+    const keyword = document.getElementById('jobKeyword').value.trim();
+    const location = document.getElementById('jobLocation').value.trim();
+    const cat = document.getElementById('jobCategory').value;
+    let url = 'jobs.html?';
+    if (keyword) url += 'q=' + encodeURIComponent(keyword) + '&';
+    if (location) url += 'loc=' + encodeURIComponent(location) + '&';
+    if (cat) url += 'cat=' + encodeURIComponent(cat);
+    window.location.href = url;
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      const active = document.activeElement;
+      if (active && (active.id === 'jobKeyword' || active.id === 'jobLocation')) searchJobs();
+    }
+  });
+</script>
 </body>
 </html>
