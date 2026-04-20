@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/nav.css" />
 </head>
 <body>
 
@@ -37,7 +38,9 @@
       <a href="jobs.html" class="nav-item">Browse Jobs</a>
       <a href="news.html" class="nav-item">News &amp; Insights</a>
       <a href="about.html#our-offices" class="nav-item">Offices</a>
-      <a href="login.html" class="nav-item">Candidate Login</a>
+      <a href="login.html" class="btn-login-icon" title="Candidate Login">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </a>
       <a href="contact.html" class="btn-contact">Contact Us</a>
       <a href="contact.html#hire" class="btn-hire">Hire Talent</a>
     </nav>
@@ -59,35 +62,9 @@
     <h2>Browse <em>Open Roles</em></h2>
     <p class="section-sub">Executive and professional positions across Southeast Asia</p>
     <div class="search-bar">
-      <div class="search-group">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="jobKeyword" placeholder="Job title, keyword or company" />
-      </div>
-      <div class="search-group">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        <select id="jobLocation">
-          <option value="">All Locations</option>
-          <option>Singapore</option>
-          <option>Kuala Lumpur</option>
-          <option>Jakarta</option>
-          <option>Bangkok</option>
-          <option>Ho Chi Minh City</option>
-          <option>India</option>
-        </select>
-      </div>
-      <div class="search-group">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-        <select id="jobCategory">
-          <option value="">All Categories</option>
-          <option value="finance">Finance &amp; Accounting</option>
-          <option value="tech">Technology</option>
-          <option value="hr">Human Resources</option>
-          <option value="sales">Sales &amp; Marketing</option>
-          <option value="legal">Legal &amp; Compliance</option>
-          <option value="ops">Operations</option>
-          <option value="exec">C-Suite / Executive</option>
-        </select>
-      </div>
+      <div class="search-group"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" id="jobKeyword" placeholder="Job title, keyword or company" /></div>
+      <div class="search-group"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><select id="jobLocation"><option value="">All Locations</option><option>Singapore</option><option>Kuala Lumpur</option><option>Jakarta</option><option>Bangkok</option><option>Ho Chi Minh City</option><option>India</option></select></div>
+      <div class="search-group"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg><select id="jobCategory"><option value="">All Categories</option><option value="finance">Finance &amp; Accounting</option><option value="tech">Technology</option><option value="hr">Human Resources</option><option value="sales">Sales &amp; Marketing</option><option value="legal">Legal &amp; Compliance</option><option value="ops">Operations</option><option value="exec">C-Suite / Executive</option></select></div>
       <button class="btn-search" onclick="searchJobs()">Search</button>
     </div>
     <div class="search-platforms">
@@ -111,72 +88,12 @@
       <button class="filter-btn" onclick="filterJobs(this,'ops')">Operations</button>
     </div>
     <div class="jobs-grid" id="jobsGrid">
-      <div class="job-card" data-category="exec">
-        <div class="job-tag">C-Suite</div>
-        <h3>CFO — Regional</h3>
-        <p class="job-location">📍 Singapore</p>
-        <p class="job-type">Permanent &middot; SGD 25,000–35,000/mo</p>
-        <p class="job-desc">Senior executive role overseeing financial strategy across Southeast Asian operations for a listed MNC.</p>
-        <div class="job-actions">
-          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a>
-          <a href="login.html" class="btn-save">💾 Save</a>
-        </div>
-      </div>
-      <div class="job-card" data-category="tech">
-        <div class="job-tag">Technology</div>
-        <h3>VP Engineering</h3>
-        <p class="job-location">📍 Kuala Lumpur</p>
-        <p class="job-type">Permanent &middot; Competitive</p>
-        <p class="job-desc">Lead engineering teams for a high-growth fintech startup expanding across ASEAN markets.</p>
-        <div class="job-actions">
-          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a>
-          <a href="login.html" class="btn-save">💾 Save</a>
-        </div>
-      </div>
-      <div class="job-card" data-category="exec">
-        <div class="job-tag">C-Suite</div>
-        <h3>Country Manager</h3>
-        <p class="job-location">📍 Jakarta</p>
-        <p class="job-type">Permanent &middot; IDR Package</p>
-        <p class="job-desc">P&amp;L ownership for Indonesia market of an established FMCG multinational with regional ambitions.</p>
-        <div class="job-actions">
-          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a>
-          <a href="login.html" class="btn-save">💾 Save</a>
-        </div>
-      </div>
-      <div class="job-card" data-category="finance">
-        <div class="job-tag">Finance</div>
-        <h3>Head of Internal Audit</h3>
-        <p class="job-location">📍 Singapore</p>
-        <p class="job-type">Permanent &middot; SGD 15,000–20,000/mo</p>
-        <p class="job-desc">Lead the internal audit function for a regional financial institution with complex cross-border operations.</p>
-        <div class="job-actions">
-          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a>
-          <a href="login.html" class="btn-save">💾 Save</a>
-        </div>
-      </div>
-      <div class="job-card" data-category="hr">
-        <div class="job-tag">Human Resources</div>
-        <h3>HR Director — APAC</h3>
-        <p class="job-location">📍 Singapore</p>
-        <p class="job-type">Permanent &middot; SGD 18,000–24,000/mo</p>
-        <p class="job-desc">Strategic HR leadership role for a global professional services firm scaling rapidly across Asia Pacific.</p>
-        <div class="job-actions">
-          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a>
-          <a href="login.html" class="btn-save">💾 Save</a>
-        </div>
-      </div>
-      <div class="job-card" data-category="sales">
-        <div class="job-tag">Sales</div>
-        <h3>Regional Sales Director</h3>
-        <p class="job-location">📍 Bangkok</p>
-        <p class="job-type">Permanent &middot; THB + Commission</p>
-        <p class="job-desc">Drive revenue growth for a B2B SaaS company expanding into Southeast Asian enterprise markets.</p>
-        <div class="job-actions">
-          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a>
-          <a href="login.html" class="btn-save">💾 Save</a>
-        </div>
-      </div>
+      <div class="job-card" data-category="exec"><div class="job-tag">C-Suite</div><h3>CFO — Regional</h3><p class="job-location">📍 Singapore</p><p class="job-type">Permanent &middot; SGD 25,000–35,000/mo</p><p class="job-desc">Senior executive role overseeing financial strategy across Southeast Asian operations for a listed MNC.</p><div class="job-actions"><a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a><a href="login.html" class="btn-save">💾 Save</a></div></div>
+      <div class="job-card" data-category="tech"><div class="job-tag">Technology</div><h3>VP Engineering</h3><p class="job-location">📍 Kuala Lumpur</p><p class="job-type">Permanent &middot; Competitive</p><p class="job-desc">Lead engineering teams for a high-growth fintech startup expanding across ASEAN markets.</p><div class="job-actions"><a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a><a href="login.html" class="btn-save">💾 Save</a></div></div>
+      <div class="job-card" data-category="exec"><div class="job-tag">C-Suite</div><h3>Country Manager</h3><p class="job-location">📍 Jakarta</p><p class="job-type">Permanent &middot; IDR Package</p><p class="job-desc">P&amp;L ownership for Indonesia market of an established FMCG multinational with regional ambitions.</p><div class="job-actions"><a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a><a href="login.html" class="btn-save">💾 Save</a></div></div>
+      <div class="job-card" data-category="finance"><div class="job-tag">Finance</div><h3>Head of Internal Audit</h3><p class="job-location">📍 Singapore</p><p class="job-type">Permanent &middot; SGD 15,000–20,000/mo</p><p class="job-desc">Lead the internal audit function for a regional financial institution with complex cross-border operations.</p><div class="job-actions"><a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a><a href="login.html" class="btn-save">💾 Save</a></div></div>
+      <div class="job-card" data-category="hr"><div class="job-tag">Human Resources</div><h3>HR Director — APAC</h3><p class="job-location">📍 Singapore</p><p class="job-type">Permanent &middot; SGD 18,000–24,000/mo</p><p class="job-desc">Strategic HR leadership role for a global professional services firm scaling rapidly across Asia Pacific.</p><div class="job-actions"><a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a><a href="login.html" class="btn-save">💾 Save</a></div></div>
+      <div class="job-card" data-category="sales"><div class="job-tag">Sales</div><h3>Regional Sales Director</h3><p class="job-location">📍 Bangkok</p><p class="job-type">Permanent &middot; THB + Commission</p><p class="job-desc">Drive revenue growth for a B2B SaaS company expanding into Southeast Asian enterprise markets.</p><div class="job-actions"><a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-apply">Apply</a><a href="login.html" class="btn-save">💾 Save</a></div></div>
     </div>
     <div class="jobs-cta" style="margin-top:3rem">
       <p style="color:var(--text-light);margin-bottom:1rem">Don't see what you're looking for? View all live roles directly on our job portals.</p>
@@ -194,7 +111,7 @@
     <div class="footer-brand"><img src="assets/JonDavidsonLogo.png" alt="JonDavidson" class="footer-logo" /><p>Executive Search &amp; Staffing across Southeast Asia.</p><p class="licence">EA Licence No. 22S1412 | Member of ELITEZ Group</p></div>
     <div class="footer-col"><h5>Company</h5><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a></div>
     <div class="footer-col"><h5>Services</h5><a href="services.html#executive-search">Executive Search</a><a href="services.html#contingency">Contingency</a><a href="services.html#talent-profiling">Talent Profiling</a></div>
-    <div class="footer-col"><h5>Candidates</h5><a href="login.html">Candidate Login</a><a href="jobs.html">Browse Jobs</a><a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank">JobStreet</a><a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank">All Jobs</a></div>
+    <div class="footer-col"><h5>Candidates</h5><a href="login.html">Candidate Login</a><a href="jobs.html">Browse Jobs</a><a href="https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs" target="_blank">JobStreet</a></div>
     <div class="footer-col"><h5>Contact</h5><p>2 Kallang Avenue #03-05, Singapore 339407</p><p>Tel: <a href="tel:+6562957155">+65 6295 7155</a></p></div>
   </div></div></div>
   <div class="footer-bottom"><div class="container"><p>&copy; 2025 JonDavidson Pte Ltd.</p><p>EA Licence No. 22S1412</p></div></div>
