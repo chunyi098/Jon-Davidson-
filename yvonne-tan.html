@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yvonne Tan | JonDavidson</title>
+  <link rel="icon" type="image/png" href="assets/JonDavidsonLogo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/nav.css"/>
+  <style>
+    .profile-section{padding:5rem 0;}
+    .profile-inner{display:flex;gap:4rem;align-items:flex-start;max-width:960px;margin:0 auto;padding:0 2rem;}
+    .profile-photo-col{flex:0 0 320px;}
+    .profile-photo-col img{width:100%;border-radius:8px;display:block;}
+    .profile-photo-placeholder{width:100%;aspect-ratio:3/4;background:var(--gray-light);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:6rem;color:var(--gray);}
+    .profile-info{flex:1;}
+    .profile-info h1{font-family:var(--serif);font-size:2.2rem;font-weight:700;margin-bottom:0.25rem;}
+    .profile-info .role{font-size:1rem;color:var(--red);font-weight:600;margin-bottom:0.5rem;}
+    .profile-info .email{font-size:0.9rem;margin-bottom:1.5rem;}
+    .profile-info .email a{color:var(--text-light);}
+    .profile-info .bio p{margin-bottom:1rem;line-height:1.8;color:var(--text-light);}
+    .profile-info .edu{margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--gray-mid);font-size:0.88rem;font-style:italic;color:var(--text-light);}
+    .profile-actions{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap;}
+    .btn-linkedin{display:inline-flex;align-items:center;gap:0.5rem;background:#0077B5;color:#fff;padding:0.7rem 1.5rem;border-radius:6px;font-weight:600;font-size:0.9rem;text-decoration:none;transition:background 0.2s;}
+    .btn-linkedin:hover{background:#005f91;}
+    .btn-back{display:inline-flex;align-items:center;gap:0.5rem;background:var(--gray-light);color:var(--text);padding:0.7rem 1.5rem;border-radius:6px;font-weight:600;font-size:0.9rem;text-decoration:none;transition:background 0.2s;}
+    .btn-back:hover{background:var(--gray-mid);}
+    @media(max-width:768px){.profile-inner{flex-direction:column;gap:2rem;}.profile-photo-col{flex:none;width:100%;max-width:300px;}}
+  </style>
+</head>
+<body>
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="assets/JonDavidsonLogo.png" alt="JonDavidson"/><span class="tagline">WE GO THE DISTANCE</span></a>
+    <nav class="nav-links">
+      <div class="nav-item dropdown"><a href="about.html">About Us <span class="caret">&#9660;</span></a><div class="dropdown-menu"><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a></div></div>
+      <div class="nav-item dropdown"><a href="services.html">Services <span class="caret">&#9660;</span></a><div class="dropdown-menu"><a href="services.html#client-solutions">Client Solutions</a><a href="services.html#talent-profiling">Talent Profiling Tools</a></div></div>
+      <a href="jobs.html" class="nav-item">Browse Jobs</a>
+      <a href="news.html" class="nav-item">News &amp; Insights</a>
+      <a href="about.html#our-offices" class="nav-item">Offices</a>
+      <a href="login.html" class="btn-login-icon" title="Candidate Login"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+      <a href="contact.html" class="btn-contact">Contact Us</a>
+      <a href="hire.html" class="btn-hire">Hire Talent</a>
+    </nav>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="about.html">About Us</a><a href="about.html#our-team">&mdash; Our Team</a>
+    <a href="services.html">Services</a><a href="jobs.html">Browse Jobs</a><a href="news.html">News &amp; Insights</a><a href="login.html">Candidate Login</a><a href="contact.html">Contact Us</a><a href="hire.html">Hire Talent</a>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow" style="justify-content:center;margin-bottom:1rem"><span class="line"></span> OUR TEAM <span class="line"></span></p>
+    <h1>Meet <em>Yvonne Tan</em></h1>
+    <p>Group Managing Director &mdash; JonDavidson</p>
+  </div>
+</section>
+
+<section class="profile-section">
+  <div class="profile-inner">
+    <div class="profile-photo-col">
+      <div class="profile-photo-placeholder">&#128100;</div>
+    </div>
+    <div class="profile-info">
+      <h1>Yvonne Tan</h1>
+      <p class="role">Group Managing Director</p>
+      <p class="email">E-mail: <a href="mailto:yv.tan@jondavidsongroup.com">yv.tan@jondavidsongroup.com</a></p>
+      <div class="bio">
+        <p>Yvonne Tan is a highly accomplished Group Managing Director of JonDavidson and Dynamic Human Capital and, known for her strong relationships with clients and candidates in the healthcare and Fast Moving Consumer Goods (FMCG) industries. With a focus on executive search and talent placements, Yvonne thrives in the fast-paced environment and enjoys the ever-changing nature of her work.</p>
+        <p>As a true people&apos;s person, Yvonne takes pride in deeply understanding her clients&apos; needs and carefully selecting candidates who will make a significant impact in their roles. She firmly believes that talented individuals are the foundation of a successful business and aims to be a catalyst for change, helping individuals achieve growth and success in their careers while driving the growth of the companies she serves.</p>
+        <p>With a proven track record of building strong professional connections and a genuine passion for connecting the right talent with the right opportunities, Yvonne is a trusted partner for both clients and candidates. Her commitment to excellence and her dedication to facilitating successful career journeys make her a valuable asset in the executive search industry.</p>
+      </div>
+      <div class="profile-actions">
+        <a href="https://www.linkedin.com/in/yvonnetanhh/" target="_blank" class="btn-linkedin">&#128279; LinkedIn</a>
+        <a href="about.html#our-team" class="btn-back">&larr; Back to Team</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-top"><div class="container"><div class="footer-grid">
+    <div class="footer-brand"><img src="assets/JonDavidsonLogo.png" alt="JonDavidson" class="footer-logo"/><p>Executive Search &amp; Staffing across Southeast Asia &mdash; built on trust, relationship, and integrity.</p><p class="licence">EA Licence No. 22S1412 | Member of ELITEZ Group</p></div>
+    <div class="footer-col"><h5>Company</h5><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a><a href="news.html">News &amp; Insights</a></div>
+    <div class="footer-col"><h5>Services</h5><a href="services.html#executive-search">Executive Search</a><a href="services.html#contingency">Contingency Recruitment</a><a href="services.html#talent-profiling">Talent Profiling</a><a href="services.html#rpo">RPO &amp; Consulting</a></div>
+    <div class="footer-col"><h5>For Employers</h5><a href="hire.html">Hire Talent</a><a href="hire.html#expertise">Our Expertise</a><a href="hire.html#employer-form">Submit a Brief</a></div>
+    <div class="footer-col"><h5>Contact</h5><p>2 Kallang Avenue, #03-05<br/>CT Hub, Singapore 339407</p><p>Tel: <a href="tel:+6562957155">+65 6295 7155</a></p><p>Email: <a href="mailto:partners@jondavidsongroup.com">partners@jondavidsongroup.com</a></p></div>
+  </div></div></div>
+  <div class="footer-bottom"><div class="container"><p>&copy; 2025 JonDavidson Pte Ltd. All rights reserved.</p><p>EA Licence No. 22S1412</p></div></div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>
