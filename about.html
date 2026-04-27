@@ -1,5 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | JonDavidson</title>
+  <link rel="icon" type="image/png" href="assets/JonDavidsonLogo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/nav.css"/>
+  <style>
+    .team-photo {
+      height: 320px;
+      background-repeat: no-repeat;
+    }
     .team-photo.photo-yvonne {
       background-image: url('assets/Yvonne-Tan.jpg');
       background-size: 80%;
       background-position: 40% 15%;
     }
+    .team-photo.photo-desmond {
+      background-image: url('assets/Desmond-Ong.jpg');
+      background-size: cover;
+      background-position: 50% 20%;
+    }
+    .team-photo.photo-kevin {
+      background-image: url('assets/Kevin-Chong.jpg');
+      background-size: cover;
+      background-position: 50% 18%;
+    }
+    .team-photo.photo-liew {
+      background-image: url('assets/Liew-Yuk-Kong.jpg');
+      background-size: cover;
+      background-position: 50% 18%;
+    }
+    .team-photo.photo-sonny {
+      background-image: url('assets/Sonny-Yuen.jpg');
+      background-size: cover;
+      background-position: 50% 20%;
+    }
+  </style>
+</head>
+<body>
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="assets/JonDavidsonLogo.png" alt="JonDavidson"/><span class="tagline">WE GO THE DISTANCE</span></a>
+    <nav class="nav-links">
+      <div class="nav-item dropdown"><a href="about.html">About Us <span class="caret">&#9660;</span></a><div class="dropdown-menu"><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a></div></div>
+      <div class="nav-item dropdown"><a href="services.html">Services <span class="caret">&#9660;</span></a><div class="dropdown-menu"><a href="services.html#client-solutions">Client Solutions</a><a href="services.html#talent-profiling">Talent Profiling Tools</a></div></div>
+      <a href="jobs.html" class="nav-item">Browse Jobs</a>
+      <a href="news.html" class="nav-item">News &amp; Insights</a>
+      <a href="about.html#our-offices" class="nav-item">Offices</a>
+      <a href="login.html" class="btn-login-icon" title="Candidate Login"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+      <a href="contact.html" class="btn-contact">Contact Us</a>
+      <a href="hire.html" class="btn-hire">Hire Talent</a>
+    </nav>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="about.html">About Us</a><a href="about.html#who-we-are">&mdash; Who We Are</a><a href="about.html#our-team">&mdash; Our Team</a><a href="about.html#our-offices">&mdash; Our Offices</a>
+    <a href="services.html">Services</a><a href="jobs.html">Browse Jobs</a><a href="news.html">News &amp; Insights</a><a href="login.html">Candidate Login</a><a href="contact.html">Contact Us</a><a href="hire.html">Hire Talent</a>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow" style="justify-content:center;margin-bottom:1rem"><span class="line"></span> ABOUT US <span class="line"></span></p>
+    <h1>Built on <em>Trust</em>,<br/>Driven by <em>Results</em></h1>
+    <p>Over 40 years of executive search expertise across Southeast Asia and beyond.</p>
+  </div>
+</section>
+
+<section class="content-section" id="who-we-are">
+  <div class="container">
+    <p class="eyebrow" style="margin-bottom:1rem"><span class="line"></span> WHO WE ARE</p>
+    <h2>Our Story</h2>
+    <p>We are a team of industry specialists who share a belief that a Company&apos;s success is fuelled by having the right talents in the right job functions. The talent must also have a good cultural fit and shared core values with the Company, which is pivotal to job satisfaction.</p>
+    <p>Recognizing our collective passion to help businesses develop a competent and effective workforce, we came together in May 2007. Our own diverse talents are synergized to bring an energetic dynamism in fulfilling the recruitment needs of our clients, and the career aspirations of our candidates.</p>
+    <h2 style="margin-top:3rem">Our Values</h2>
+    <p>Our clients are meaningfully engaged with us, whether it is in executive search, consultancy or training. Each person is treated as a unique individual with different motivations and aspirations.</p>
+    <div class="values-grid" style="margin-top:2rem">
+      <div class="value-item"><h4>World Wide Reach</h4><p>We have grown our executive search and consulting network from Singapore to Asia Pacific including China, India and Vietnam. Through the ENEX network, JonDavidson Group is connected globally.</p></div>
+      <div class="value-item"><h4>Local Expertise</h4><p>Deep understanding of Southeast Asian markets, cultures, and talent dynamics &mdash; giving our clients an edge that global generalists cannot replicate.</p></div>
+      <div class="value-item"><h4>True Engagement</h4><p>Every individual we work with receives personalised, thoughtful engagement &mdash; because real relationships are the foundation of lasting success.</p></div>
+    </div>
+    <div style="margin-top:3rem;padding:2.5rem;background:var(--gray-light);border-radius:8px;border-left:4px solid var(--red)">
+      <p class="eyebrow" style="margin-bottom:1rem"><span class="line"></span> GLOBAL NETWORK</p>
+      <h3 style="font-family:var(--serif);font-size:1.4rem;font-weight:700;margin-bottom:0.75rem">Connect to our Global Expertise &mdash; ENEX</h3>
+      <p>We are the South East Asia (SEA) accredited partner of ENEX global executive search organization. The ENEX Partner network has coverage in four continents &amp; is represented in 40 countries.</p>
+      <a href="https://www.enexsearch.group" target="_blank" class="btn-primary" style="margin-top:1.25rem;display:inline-flex">Visit ENEX &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" id="our-team" style="background:var(--gray-light)">
+  <div class="container">
+    <p class="eyebrow" style="margin-bottom:1rem"><span class="line"></span> OUR TEAM</p>
+    <h2>Meet Our <em>Management</em></h2>
+    <p style="margin-bottom:2.5rem">Our leadership team brings decades of combined expertise across Southeast Asia&apos;s most dynamic industries.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-photo photo-yvonne"></div>
+        <div class="team-info"><h3>Yvonne Tan</h3><p class="role">Group Managing Director</p><p class="email"><a href="mailto:yv.tan@jondavidsongroup.com">yv.tan@jondavidsongroup.com</a></p><div class="team-links"><a href="yvonne-tan.html">Read More</a><a href="https://www.linkedin.com/in/yvonnetanhh/" target="_blank">LinkedIn</a></div></div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo photo-desmond"></div>
+        <div class="team-info"><h3>Desmond Ong</h3><p class="role">Senior Associate Director</p><p class="email"><a href="mailto:d.ong@jondavidsongroup.com">d.ong@jondavidsongroup.com</a></p><div class="team-links"><a href="desmond-ong.html">Read More</a><a href="https://www.linkedin.com/in/desmondong1/" target="_blank">LinkedIn</a></div></div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo photo-kevin"></div>
+        <div class="team-info"><h3>Kevin Chong</h3><p class="role">Senior Associate Director</p><p class="email"><a href="mailto:k.chong@jondavidsongroup.com">k.chong@jondavidsongroup.com</a></p><div class="team-links"><a href="kevin-chong.html">Read More</a><a href="https://www.linkedin.com/in/kevinchong/" target="_blank">LinkedIn</a></div></div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo photo-liew"></div>
+        <div class="team-info"><h3>Liew Yuk Kong</h3><p class="role">Senior Associate Director</p><p class="email"><a href="mailto:yk.liew@jondavidsongroup.com">yk.liew@jondavidsongroup.com</a></p><div class="team-links"><a href="liew-yuk-kong.html">Read More</a><a href="https://www.linkedin.com/in/yuk-kong-liew/" target="_blank">LinkedIn</a></div></div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo photo-sonny"></div>
+        <div class="team-info"><h3>Sonny Yuen</h3><p class="role">Senior Advisor</p><p class="email"><a href="mailto:s.yuen@jondavidsongroup.com">s.yuen@jondavidsongroup.com</a></p><div class="team-links"><a href="sonny-yuen.html">Read More</a><a href="https://www.linkedin.com/in/sonnyyuen/" target="_blank">LinkedIn</a></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section" id="our-offices">
+  <div class="container">
+    <p class="eyebrow" style="margin-bottom:1rem"><span class="line"></span> OUR OFFICES</p>
+    <h2>Where We <em>Operate</em></h2>
+    <p style="margin-bottom:2.5rem">Our headquarters in Singapore and associate offices across Southeast Asia allow us to serve clients with true regional coverage.</p>
+    <div class="offices-grid">
+      <div class="office-card main"><p class="office-country" style="color:var(--red)">HEADQUARTERS</p><h3>JonDavidson Pte Ltd</h3><p style="font-size:0.78rem;color:rgba(255,255,255,0.4);margin-bottom:0.75rem">(member of ELITEZ Group)</p><p>2 Kallang Avenue, #03-05 CT Hub<br/>Singapore 339407</p><p>Tel: <a href="tel:+6562957155" style="color:var(--red)">+65 6295 7155</a></p><p>Email: <a href="mailto:partners@jondavidsongroup.com" style="color:var(--red)">partners@jondavidsongroup.com</a></p><p style="margin-top:0.75rem;font-size:0.78rem;color:rgba(255,255,255,0.35)">Licence No. 22S1412</p></div>
+      <div class="office-card"><p class="office-country">THAILAND</p><h3>Bangkok Office</h3><p>408/107 Phahonyothin Place Building, 12th Floor, Bangkok 10400</p></div>
+      <div class="office-card"><p class="office-country">INDONESIA</p><h3>Jakarta Office</h3><p>Luminary Tower, 63rd Floor, Thamrin Nine Complex, Jakarta 10230</p></div>
+      <div class="office-card"><p class="office-country">MALAYSIA</p><h3>Kuala Lumpur Office</h3><p>B1-43A-1, Soho Suites @ KLCC, No. 20 Jalan Perak, 50450 KL</p></div>
+      <div class="office-card"><p class="office-country">VIETNAM</p><h3>Ho Chi Minh City Office</h3><p>VRG Building, 177 Hai Ba Trung Street, Ho Chi Minh City</p></div>
+      <div class="office-card"><p class="office-country">INDIA</p><h3>Coimbatore Office</h3><p>11/4 Pooja Garden, Kalapatti Main Road, Tamil Nadu 641014</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-top"><div class="container"><div class="footer-grid">
+    <div class="footer-brand"><img src="assets/JonDavidsonLogo.png" alt="JonDavidson" class="footer-logo"/><p>Executive Search &amp; Staffing across Southeast Asia &mdash; built on trust, relationship, and integrity.</p><p class="licence">EA Licence No. 22S1412 | Member of ELITEZ Group</p></div>
+    <div class="footer-col"><h5>Company</h5><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a><a href="news.html">News &amp; Insights</a></div>
+    <div class="footer-col"><h5>Services</h5><a href="services.html#executive-search">Executive Search</a><a href="services.html#contingency">Contingency Recruitment</a><a href="services.html#talent-profiling">Talent Profiling</a><a href="services.html#rpo">RPO &amp; Consulting</a></div>
+    <div class="footer-col"><h5>For Employers</h5><a href="hire.html">Hire Talent</a><a href="hire.html#expertise">Our Expertise</a><a href="hire.html#employer-form">Submit a Brief</a></div>
+    <div class="footer-col"><h5>Contact</h5><p>2 Kallang Avenue, #03-05<br/>CT Hub, Singapore 339407</p><p>Tel: <a href="tel:+6562957155">+65 6295 7155</a></p><p>Email: <a href="mailto:partners@jondavidsongroup.com">partners@jondavidsongroup.com</a></p></div>
+  </div></div></div>
+  <div class="footer-bottom"><div class="container"><p>&copy; 2025 JonDavidson Pte Ltd. All rights reserved.</p><p>EA Licence No. 22S1412</p></div></div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>
