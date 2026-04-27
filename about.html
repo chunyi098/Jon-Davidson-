@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/nav.css"/>
   <style>
-    /* Override team photo img to use scale+translate for precise face framing */
     .team-photo { position: relative; overflow: hidden; }
     .team-photo img {
       position: absolute;
@@ -21,12 +20,13 @@
       object-fit: cover;
       border-radius: 0;
     }
-    /* Per-person face positioning — push face down from top border */
-    .team-photo img.photo-yvonne   { object-position: center 18%; }
-    .team-photo img.photo-desmond  { object-position: center 12%; transform: scale(1.15); transform-origin: center 18%; }
-    .team-photo img.photo-kevin    { object-position: center 12%; transform: scale(1.15); transform-origin: center 18%; }
-    .team-photo img.photo-liew     { object-position: center 12%; transform: scale(1.15); transform-origin: center 18%; }
-    .team-photo img.photo-sonny    { object-position: center 14%; transform: scale(1.2);  transform-origin: center 18%; }
+    /* Yvonne is seated — already looks good, light adjustment */
+    .team-photo img.photo-yvonne  { object-position: center 20%; }
+    /* Standing portraits — push head down so it sits in the middle with space above */
+    .team-photo img.photo-desmond { object-position: center 35%; }
+    .team-photo img.photo-kevin   { object-position: center 32%; }
+    .team-photo img.photo-liew    { object-position: center 35%; }
+    .team-photo img.photo-sonny   { object-position: center 38%; }
   </style>
 </head>
 <body>
