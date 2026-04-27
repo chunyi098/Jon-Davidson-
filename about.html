@@ -11,58 +11,50 @@
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/nav.css"/>
   <style>
-    /* All team photo boxes clip their content */
     .team-photo {
       position: relative;
       overflow: hidden;
       height: 300px;
       background: #1a1a1a;
     }
-    /* Base: all images fill the box */
     .team-photo img {
       position: absolute;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       border-radius: 0;
       display: block;
     }
-
-    /*
-      Yvonne: seated portrait, face already sits nicely in upper-middle
-      — just a gentle downward nudge
-    */
+    /* Yvonne: seated, already good */
     .team-photo img.photo-yvonne {
       object-position: center 25%;
     }
-
-    /*
-      Desmond, Kevin, Liew, Sonny: standing full-body shots.
-      Scale up 2x so we zoom into just the head+shoulders,
-      then use object-position to centre the face vertically.
-      50% x-axis = centred horizontally.
-      The vertical % controls where in the FULL image the crop centre sits:
-      ~20% from top = just below the hairline on a full-body standing shot.
-    */
+    /* Standing shots: scale DOWN so more of the body shows,
+       then position so face sits in the centre of the card */
     .team-photo img.photo-desmond {
-      object-position: 50% 22%;
-      transform: scale(2);
-      transform-origin: 50% 22%;
+      object-fit: contain;
+      object-position: center 10%;
+      transform: scale(0.85);
+      transform-origin: center top;
     }
     .team-photo img.photo-kevin {
-      object-position: 50% 20%;
-      transform: scale(2);
-      transform-origin: 50% 20%;
+      object-fit: contain;
+      object-position: center 10%;
+      transform: scale(0.85);
+      transform-origin: center top;
     }
     .team-photo img.photo-liew {
-      object-position: 50% 22%;
-      transform: scale(2);
-      transform-origin: 50% 22%;
+      object-fit: contain;
+      object-position: center 10%;
+      transform: scale(0.85);
+      transform-origin: center top;
     }
     .team-photo img.photo-sonny {
-      object-position: 50% 24%;
-      transform: scale(2);
-      transform-origin: 50% 24%;
+      object-fit: contain;
+      object-position: center 10%;
+      transform: scale(0.85);
+      transform-origin: center top;
     }
   </style>
 </head>
