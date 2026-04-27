@@ -11,22 +11,59 @@
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/nav.css"/>
   <style>
-    .team-photo { position: relative; overflow: hidden; }
+    /* All team photo boxes clip their content */
+    .team-photo {
+      position: relative;
+      overflow: hidden;
+      height: 300px;
+      background: #1a1a1a;
+    }
+    /* Base: all images fill the box */
     .team-photo img {
       position: absolute;
-      top: 0; left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       border-radius: 0;
+      display: block;
     }
-    /* Yvonne is seated — already looks good, light adjustment */
-    .team-photo img.photo-yvonne  { object-position: center 20%; }
-    /* Standing portraits — push head down so it sits in the middle with space above */
-    .team-photo img.photo-desmond { object-position: center 35%; }
-    .team-photo img.photo-kevin   { object-position: center 32%; }
-    .team-photo img.photo-liew    { object-position: center 35%; }
-    .team-photo img.photo-sonny   { object-position: center 38%; }
+
+    /*
+      Yvonne: seated portrait, face already sits nicely in upper-middle
+      — just a gentle downward nudge
+    */
+    .team-photo img.photo-yvonne {
+      object-position: center 25%;
+    }
+
+    /*
+      Desmond, Kevin, Liew, Sonny: standing full-body shots.
+      Scale up 2x so we zoom into just the head+shoulders,
+      then use object-position to centre the face vertically.
+      50% x-axis = centred horizontally.
+      The vertical % controls where in the FULL image the crop centre sits:
+      ~20% from top = just below the hairline on a full-body standing shot.
+    */
+    .team-photo img.photo-desmond {
+      object-position: 50% 22%;
+      transform: scale(2);
+      transform-origin: 50% 22%;
+    }
+    .team-photo img.photo-kevin {
+      object-position: 50% 20%;
+      transform: scale(2);
+      transform-origin: 50% 20%;
+    }
+    .team-photo img.photo-liew {
+      object-position: 50% 22%;
+      transform: scale(2);
+      transform-origin: 50% 22%;
+    }
+    .team-photo img.photo-sonny {
+      object-position: 50% 24%;
+      transform: scale(2);
+      transform-origin: 50% 24%;
+    }
   </style>
 </head>
 <body>
