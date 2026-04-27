@@ -37,7 +37,6 @@
     .chip { padding: 0.38rem 1rem; border-radius: 50px; border: 1.5px solid var(--gray-mid); font-size: 0.82rem; font-weight: 500; background: none; font-family: var(--sans); cursor: pointer; transition: all 0.2s; color: var(--text); }
     .chip.active, .chip:hover { background: var(--red); border-color: var(--red); color: #fff; }
 
-    /* Source badge */
     .src-badge { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.18rem 0.5rem; border-radius: 3px; }
     .src-rcrm  { background: rgba(0,120,212,0.1); color: #0078d4; }
     .src-js    { background: rgba(0,160,80,0.1);  color: #008c44; }
@@ -117,10 +116,6 @@
           <option>Singapore</option>
           <option>Jakarta</option>
           <option>Manila</option>
-          <option>Kuala Lumpur</option>
-          <option>Bangkok</option>
-          <option>Ho Chi Minh City</option>
-          <option>India</option>
         </select>
       </div>
       <div class="sg">
@@ -150,7 +145,6 @@
       <button class="chip" data-cat="Executive">Executive</button>
       <button class="chip" data-cat="Admin">Admin</button>
     </div>
-
     <div class="results-bar">
       <p class="results-count" id="resultsMeta"></p>
       <select class="sort-select" id="sortSel">
@@ -159,9 +153,7 @@
         <option value="location">Location</option>
       </select>
     </div>
-
     <div class="jd-grid" id="jobsGrid"></div>
-
     <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
       <button class="btn-load-more" id="loadMoreBtn">Load More Jobs</button>
     </div>
@@ -198,169 +190,205 @@
   const PAGE_SIZE = 10;
   let filtered = [], shown = 0;
 
-  /* ═══════════════════════════════════════════════════
-     REAL JOBS — scraped live from all 3 sources
-     Sources: R = RecruitCRM | J = JobStreet | M = MyCareersFuture
-  ═══════════════════════════════════════════════════ */
+  /* ─────────────────────────────────────────────────────────
+     JOBS — all with direct apply/view links per listing
+     rcrm links: recruitcrm.io/jobs/JonDavidson_jobs/[ID]
+     mcf links:  mycareersfuture.gov.sg/job/[slug]
+     js links:   sg.jobstreet.com direct listing
+  ───────────────────────────────────────────────────────── */
+  const MCF = 'https://www.mycareersfuture.gov.sg';
+  const RCRM = 'https://recruitcrm.io';
+
   const JOBS = [
-    // ── RecruitCRM ──────────────────────────────────
+    /* ── RecruitCRM ── direct link = /jobs/JonDavidson_jobs/[ID] ── */
     {
-      id: 'r1282', title: 'Operations Director (Restaurant)', location: 'Manila', country: 'Philippines',
-      type: 'Permanent', category: 'Operations', salary: '',
-      desc: 'Senior operations leadership role overseeing restaurant operations across the Philippines market.',
-      url: 'https://recruitcrm.io/jobs/JonDavidson_jobs', ref: 'JD-1282', source: 'rcrm', date: '2026-04-20'
+      id:'r1282', title:'Operations Director (Restaurant)',
+      location:'Manila', country:'Philippines', type:'Permanent', category:'Operations', salary:'',
+      desc:'Senior operations leadership role overseeing restaurant operations across the Philippines market.',
+      url: RCRM+'/jobs/JonDavidson_jobs/1282',
+      ref:'JD-1282', source:'rcrm', date:'2026-04-20'
     },
     {
-      id: 'r1260', title: 'Country General Manager – Indonesia', location: 'Jakarta', country: 'Indonesia',
-      type: 'Permanent', category: 'Executive', salary: '',
-      desc: 'Lead all Indonesia operations with full P&L accountability for an established regional business.',
-      url: 'https://recruitcrm.io/jobs/JonDavidson_jobs', ref: 'JD-1260', source: 'rcrm', date: '2026-04-18'
+      id:'r1260', title:'Country General Manager – Indonesia',
+      location:'Jakarta', country:'Indonesia', type:'Permanent', category:'Executive', salary:'',
+      desc:'Lead all Indonesia operations with full P&L accountability for an established regional business.',
+      url: RCRM+'/jobs/JonDavidson_jobs/1260',
+      ref:'JD-1260', source:'rcrm', date:'2026-04-18'
     },
     {
-      id: 'r1280', title: 'Contracts Performance Manager (OEM) – Aerospace, East', location: 'Singapore', country: 'Singapore',
-      type: 'Permanent', category: 'Consulting', salary: '$7,000–$15,000/mo',
-      desc: 'Manage OEM contracts and performance metrics in an aerospace environment based in the East of Singapore.',
-      url: 'https://recruitcrm.io/jobs/JonDavidson_jobs', ref: 'JD-1280', source: 'rcrm', date: '2026-04-27'
+      id:'r1280', title:'Contracts Performance Manager (OEM) – Aerospace, East',
+      location:'Singapore', country:'Singapore', type:'Permanent', category:'Consulting', salary:'$7,000–$15,000/mo',
+      desc:'Manage OEM contracts and performance metrics in an aerospace environment based in the East of Singapore.',
+      url: RCRM+'/jobs/JonDavidson_jobs/1280',
+      ref:'JD-1280', source:'rcrm', date:'2026-04-27'
     },
     {
-      id: 'r1281', title: 'Marine Manager', location: 'Singapore', country: 'Singapore',
-      type: 'Permanent', category: 'Operations', salary: '',
-      desc: 'Oversee marine operations and compliance for a leading maritime organisation in Singapore.',
-      url: 'https://recruitcrm.io/jobs/JonDavidson_jobs', ref: 'JD-1281', source: 'rcrm', date: '2026-04-22'
+      id:'r1281', title:'Marine Manager',
+      location:'Singapore', country:'Singapore', type:'Permanent', category:'Operations', salary:'',
+      desc:'Oversee marine operations and compliance for a leading maritime organisation in Singapore.',
+      url: RCRM+'/jobs/JonDavidson_jobs/1281',
+      ref:'JD-1281', source:'rcrm', date:'2026-04-22'
     },
     {
-      id: 'r1279', title: 'Continuous Improvement Manager (Aerospace MRO/OEM)', location: 'Singapore', country: 'Singapore',
-      type: 'Permanent', category: 'Operations', salary: '',
-      desc: 'Drive lean and continuous improvement initiatives across aerospace MRO and OEM operations.',
-      url: 'https://recruitcrm.io/jobs/JonDavidson_jobs', ref: 'JD-1279', source: 'rcrm', date: '2026-04-19'
+      id:'r1279', title:'Continuous Improvement Manager (Aerospace MRO/OEM)',
+      location:'Singapore', country:'Singapore', type:'Permanent', category:'Operations', salary:'',
+      desc:'Drive lean and continuous improvement initiatives across aerospace MRO and OEM operations.',
+      url: RCRM+'/jobs/JonDavidson_jobs/1279',
+      ref:'JD-1279', source:'rcrm', date:'2026-04-19'
     },
     {
-      id: 'r1278', title: 'Assistant HR Manager, HR & Administration', location: 'Singapore', country: 'Singapore',
-      type: 'Permanent', category: 'Human Resources', salary: '$5,000–$7,200/mo',
-      desc: 'Support HR and administration functions including recruitment, payroll and employee relations.',
-      url: 'https://recruitcrm.io/jobs/JonDavidson_jobs', ref: 'JD-1278', source: 'rcrm', date: '2026-04-17'
+      id:'r1278', title:'Assistant HR Manager, HR & Administration',
+      location:'Singapore', country:'Singapore', type:'Permanent', category:'Human Resources', salary:'$5,000–$7,200/mo',
+      desc:'Support HR and administration functions including recruitment, payroll and employee relations.',
+      url: RCRM+'/jobs/JonDavidson_jobs/1278',
+      ref:'JD-1278', source:'rcrm', date:'2026-04-17'
     },
     {
-      id: 'r1252', title: 'Head of Corporate Services (Statutory Board)', location: 'Singapore', country: 'Singapore',
-      type: 'Permanent', category: 'Executive', salary: '',
-      desc: 'Lead corporate services functions for a Singapore statutory board, covering HR, finance, IT and facilities.',
-      url: 'https://recruitcrm.io/jobs/JonDavidson_jobs', ref: 'JD-1252', source: 'rcrm', date: '2026-04-10'
+      id:'r1252', title:'Head of Corporate Services (Statutory Board)',
+      location:'Singapore', country:'Singapore', type:'Permanent', category:'Executive', salary:'',
+      desc:'Lead corporate services for a Singapore statutory board, covering HR, finance, IT and facilities.',
+      url: RCRM+'/jobs/JonDavidson_jobs/1252',
+      ref:'JD-1252', source:'rcrm', date:'2026-04-10'
     },
     {
-      id: 'r1277', title: 'Sales Manager – Service Providers, SEA (Telco/VoIP/Network)', location: 'Singapore', country: 'Singapore',
-      type: 'Permanent', category: 'Sales', salary: '$8,000–$15,000/mo',
-      desc: 'Drive sales to telcos, VoIP and network service providers across Southeast Asia.',
-      url: 'https://recruitcrm.io/jobs/JonDavidson_jobs', ref: 'JD-1277', source: 'rcrm', date: '2026-04-16'
+      id:'r1277', title:'Sales Manager – Service Providers, SEA (Telco/VoIP/Network)',
+      location:'Singapore', country:'Singapore', type:'Permanent', category:'Sales', salary:'$8,000–$15,000/mo',
+      desc:'Drive sales to telcos, VoIP and network service providers across Southeast Asia.',
+      url: RCRM+'/jobs/JonDavidson_jobs/1277',
+      ref:'JD-1277', source:'rcrm', date:'2026-04-16'
     },
     {
-      id: 'r1276', title: 'Mentor, Chemical Process Engineering', location: 'Singapore', country: 'Singapore',
-      type: 'Permanent', category: 'Consulting', salary: '',
-      desc: 'Mentor and coach engineering teams in chemical process operations and safety standards.',
-      url: 'https://recruitcrm.io/jobs/JonDavidson_jobs', ref: 'JD-1276', source: 'rcrm', date: '2026-04-14'
+      id:'r1276', title:'Mentor, Chemical Process Engineering',
+      location:'Singapore', country:'Singapore', type:'Permanent', category:'Consulting', salary:'',
+      desc:'Mentor and coach engineering teams in chemical process operations and safety standards.',
+      url: RCRM+'/jobs/JonDavidson_jobs/1276',
+      ref:'JD-1276', source:'rcrm', date:'2026-04-14'
     },
     {
-      id: 'r1272', title: 'Cloud Native Post Sales / Support Engineer (Kubernetes / DevOps)', location: 'Singapore', country: 'Singapore',
-      type: 'Contract', category: 'Technology', salary: '$4,500–$8,000/mo',
-      desc: 'Hands-on Kubernetes support role focused on troubleshooting, incident resolution and enterprise cloud platform stability.',
-      url: 'https://recruitcrm.io/jobs/JonDavidson_jobs', ref: 'JD-1272', source: 'rcrm', date: '2026-03-31'
-    },
-
-    // ── MyCareersFuture (JonDavidson-specific listings) ──
-    {
-      id: 'm1', title: 'Salesforce Developer', location: 'Singapore', country: 'Singapore',
-      type: 'Permanent', category: 'Technology', salary: '$9,000–$11,000/mo',
-      desc: 'Develop and customise Salesforce platforms for enterprise clients across Singapore and the region.',
-      url: 'https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0', ref: '', source: 'mcf', date: '2026-04-17'
-    },
-    {
-      id: 'm2', title: 'DataBricks Engineer', location: 'Singapore', country: 'Singapore',
-      type: 'Full Time', category: 'Technology', salary: '$7,000–$9,000/mo',
-      desc: 'Design and build data pipelines and analytics solutions on the Databricks platform for a leading enterprise client.',
-      url: 'https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0', ref: '', source: 'mcf', date: '2026-04-06'
-    },
-    {
-      id: 'm3', title: 'Presales Solutions Architect', location: 'Singapore', country: 'Singapore',
-      type: 'Full Time', category: 'Technology', salary: '$15,000–$18,000/mo',
-      desc: 'Lead presales technical engagements, solution design and client presentations for a technology solutions firm.',
-      url: 'https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0', ref: '', source: 'mcf', date: '2026-04-06'
-    },
-    {
-      id: 'm4', title: 'Senior Java Developer', location: 'Singapore', country: 'Singapore',
-      type: 'Full Time', category: 'Technology', salary: '$9,000–$12,000/mo',
-      desc: 'Build and maintain enterprise Java applications for a public sector client with regional impact.',
-      url: 'https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0', ref: '', source: 'mcf', date: '2026-04-06'
-    },
-    {
-      id: 'm5', title: 'Temp Exec – Administration & Marketing (11 months, East)', location: 'Singapore', country: 'Singapore',
-      type: 'Temporary', category: 'Admin', salary: '$2,300–$2,800/mo',
-      desc: 'Support administration and marketing activities for a corporate team in the East region. 11-month contract with bonus.',
-      url: 'https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0', ref: '', source: 'mcf', date: '2026-04-01'
-    },
-    {
-      id: 'm6', title: 'DevSecOps SRE & Application Engineer', location: 'Singapore', country: 'Singapore',
-      type: 'Contract', category: 'Technology', salary: '$6,500–$11,000/mo',
-      desc: 'Combine DevSecOps and SRE responsibilities to ensure secure, reliable application delivery in a cloud environment.',
-      url: 'https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0', ref: '', source: 'mcf', date: '2026-04-22'
-    },
-    {
-      id: 'm7', title: 'SEA Service Providers Sales Manager', location: 'Singapore', country: 'Singapore',
-      type: 'Permanent', category: 'Sales', salary: '$8,000–$15,000/mo',
-      desc: 'Manage and grow sales relationships with service providers across Southeast Asia for a technology company.',
-      url: 'https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0', ref: '', source: 'mcf', date: '2026-04-10'
-    },
-    {
-      id: 'm8', title: 'Receptionist cum Administrative Assistant Executive', location: 'Singapore', country: 'Singapore',
-      type: 'Permanent', category: 'Admin', salary: '$2,500–$3,800/mo',
-      desc: 'Front-desk reception and administrative support role for a professional services firm in the Central region.',
-      url: 'https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0', ref: '', source: 'mcf', date: '2026-04-13'
-    },
-    {
-      id: 'm9', title: 'Temp – Digital Transformation & Innovation (6 months, East, Urgent)', location: 'Singapore', country: 'Singapore',
-      type: 'Contract', category: 'Consulting', salary: '$2,800–$4,100/mo',
-      desc: 'Support digital transformation and innovation projects for a government-linked organisation. Urgent 6-month contract.',
-      url: 'https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0', ref: '', source: 'mcf', date: '2026-04-22'
-    },
-    {
-      id: 'm10', title: 'Salesforce Application Development, Senior Manager (Education Cloud)', location: 'Singapore', country: 'Singapore',
-      type: 'Permanent', category: 'Technology', salary: '$8,000–$11,000/mo',
-      desc: 'Lead Salesforce Education Cloud development and business analysis for a large education institution.',
-      url: 'https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0', ref: '', source: 'mcf', date: '2026-04-18'
-    },
-    {
-      id: 'm11', title: 'SAP SuccessFactors Consultant, Senior (HR, East)', location: 'Singapore', country: 'Singapore',
-      type: 'Full Time', category: 'Technology', salary: '$8,000–$9,500/mo',
-      desc: 'Implement and optimise SAP SuccessFactors HR modules for enterprise clients in the East region.',
-      url: 'https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0', ref: '', source: 'mcf', date: '2026-04-16'
-    },
-    {
-      id: 'm12', title: 'Assistant Manager / Senior Exec, Human Resources & Administration', location: 'Singapore', country: 'Singapore',
-      type: 'Permanent', category: 'Human Resources', salary: '$5,000–$7,200/mo',
-      desc: 'Manage HR and administration operations including recruitment, employee engagement and office management.',
-      url: 'https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0', ref: '', source: 'mcf', date: '2026-04-17'
-    },
-    {
-      id: 'm13', title: 'Enterprise Solution Architect (Public Sector | Pre-Sales)', location: 'Singapore', country: 'Singapore',
-      type: 'Permanent', category: 'Technology', salary: '$15,000–$18,000/mo',
-      desc: 'Design enterprise technology solutions for public sector clients in a pre-sales capacity across Singapore and beyond.',
-      url: 'https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0', ref: '', source: 'mcf', date: '2026-04-01'
-    },
-    {
-      id: 'm14', title: 'System Analyst cum Developer', location: 'Singapore', country: 'Singapore',
-      type: 'Contract', category: 'Technology', salary: '$6,500–$8,000/mo',
-      desc: 'Analyse systems requirements and develop software solutions for a major government or enterprise client.',
-      url: 'https://www.mycareersfuture.gov.sg/search?search=Jondavidson%20Pte.%20Ltd.&sortBy=relevancy&page=0', ref: '', source: 'mcf', date: '2026-04-14'
+      id:'r1272', title:'Cloud Native Post Sales / Support Engineer (Kubernetes / DevOps)',
+      location:'Singapore', country:'Singapore', type:'Contract', category:'Technology', salary:'$4,500–$8,000/mo',
+      desc:'Hands-on Kubernetes support role focused on troubleshooting, incident resolution and enterprise cloud platform stability.',
+      url: RCRM+'/jobs/JonDavidson_jobs/1272',
+      ref:'JD-1272', source:'rcrm', date:'2026-03-31'
     },
 
-    // ── JobStreet ─────────────────────────────────
+    /* ── MyCareersFuture — direct slugs scraped from page ── */
     {
-      id: 'j1', title: 'Cloud Native Support Engineer (Kubernetes / DevOps)', location: 'Singapore', country: 'Singapore',
-      type: 'Full Time', category: 'Technology', salary: '$5,000–$6,500/mo',
-      desc: 'Hands-on Kubernetes troubleshooting in real production environments with regional exposure working with enterprise cloud-native platforms.',
-      url: 'https://sg.jobstreet.com/JonDavidson-Pte-Ltd-jobs/at-this-company', ref: '', source: 'js', date: '2026-04-01'
+      id:'m1', title:'Salesforce Developer',
+      location:'Singapore', country:'Singapore', type:'Permanent', category:'Technology', salary:'$9,000–$11,000/mo',
+      desc:'Develop and customise Salesforce platforms for enterprise clients across Singapore and the region.',
+      url: MCF+'/job/information-technology/salesforce-developer-jondavidson-4f0ae266943e382bf69eea0815e2dcc0',
+      ref:'', source:'mcf', date:'2026-04-17'
+    },
+    {
+      id:'m2', title:'DataBricks Engineer',
+      location:'Singapore', country:'Singapore', type:'Full Time', category:'Technology', salary:'$7,000–$9,000/mo',
+      desc:'Design and build data pipelines and analytics solutions on the Databricks platform for a leading enterprise client.',
+      url: MCF+'/job/information-technology/databricks-engineer-jondavidson-934cdb782d4eae53bdf9ee53837b6bd3',
+      ref:'', source:'mcf', date:'2026-04-06'
+    },
+    {
+      id:'m3', title:'Presales Solutions Architect',
+      location:'Singapore', country:'Singapore', type:'Full Time', category:'Technology', salary:'$15,000–$18,000/mo',
+      desc:'Lead presales technical engagements, solution design and client presentations for a technology solutions firm.',
+      url: MCF+'/job/information-technology/presales-solutions-architect-jondavidson-cf7fb12012e93d6fc1e8e3fccb4052c6',
+      ref:'', source:'mcf', date:'2026-04-06'
+    },
+    {
+      id:'m4', title:'Senior Java Developer',
+      location:'Singapore', country:'Singapore', type:'Full Time', category:'Technology', salary:'$9,000–$12,000/mo',
+      desc:'Build and maintain enterprise Java applications for a public sector client with regional impact.',
+      url: MCF+'/job/information-technology/senior-java-developer-jondavidson-72fd5a7ae631928a0d3c6861932c57f0',
+      ref:'', source:'mcf', date:'2026-04-06'
+    },
+    {
+      id:'m5', title:'Temp Exec – Administration & Marketing (11 months, East)',
+      location:'Singapore', country:'Singapore', type:'Temporary', category:'Admin', salary:'$2,300–$2,800/mo',
+      desc:'Support administration and marketing activities for a corporate team in the East region. 11-month contract with bonus.',
+      url: MCF+'/job/admin/temp-execidim-jondavidson-e453e14cfbe53115d1c4c559fd4a8624',
+      ref:'', source:'mcf', date:'2026-04-01'
+    },
+    {
+      id:'m6', title:'DevSecOps SRE & Application Engineer',
+      location:'Singapore', country:'Singapore', type:'Contract', category:'Technology', salary:'$6,500–$11,000/mo',
+      desc:'Combine DevSecOps and SRE responsibilities to ensure secure, reliable application delivery in a cloud environment.',
+      url: MCF+'/job/information-technology/devsecops-sre-application-engineer-jondavidson-87be8ad9ca22f3a1146f971e5b558b43',
+      ref:'', source:'mcf', date:'2026-04-22'
+    },
+    {
+      id:'m7', title:'SEA Service Providers Sales Manager',
+      location:'Singapore', country:'Singapore', type:'Permanent', category:'Sales', salary:'$8,000–$15,000/mo',
+      desc:'Manage and grow sales relationships with service providers across Southeast Asia for a technology company.',
+      url: MCF+'/job/information-technology/sea-service-providers-sales-manager-jondavidson-38042236ba289f49cab962a076794a6b',
+      ref:'', source:'mcf', date:'2026-04-10'
+    },
+    {
+      id:'m8', title:'Receptionist cum Administrative Assistant Executive',
+      location:'Singapore', country:'Singapore', type:'Permanent', category:'Admin', salary:'$2,500–$3,800/mo',
+      desc:'Front-desk reception and administrative support role for a professional services firm in the Central region.',
+      url: MCF+'/job/admin/receptionist-cum-administrative-assistant-executive-jondavidson-d3432b11a1fc6d33f36d69aa2ed23c11',
+      ref:'', source:'mcf', date:'2026-04-13'
+    },
+    {
+      id:'m9', title:'Contracts Performance Manager (OEM) – Aerospace',
+      location:'Singapore', country:'Singapore', type:'Contract', category:'Consulting', salary:'$7,000–$15,000/mo',
+      desc:'Manage OEM contracts and drive performance improvement in an aerospace environment. Central, full time role.',
+      url: MCF+'/job/consulting/contracts-performance-manager-%E2%80%93-jondavidson-7e95aef625c11034f27794361e397db4',
+      ref:'', source:'mcf', date:'2026-04-27'
+    },
+    {
+      id:'m10', title:'Temp – Digital Transformation & Innovation (6 months, East)',
+      location:'Singapore', country:'Singapore', type:'Contract', category:'Consulting', salary:'$2,800–$4,100/mo',
+      desc:'Support digital transformation and innovation projects for a government-linked organisation. Urgent 6-month contract.',
+      url: MCF+'/job/consulting/temp-digital-transformation-innovation-jondavidson-853ded803ee2f6fe0fb88e6643537628',
+      ref:'', source:'mcf', date:'2026-04-22'
+    },
+    {
+      id:'m11', title:'Cloud Native Support Engineer (Kubernetes / DevOps)',
+      location:'Singapore', country:'Singapore', type:'Contract', category:'Technology', salary:'$4,500–$8,000/mo',
+      desc:'Hands-on Kubernetes troubleshooting in real production environments with regional enterprise cloud exposure.',
+      url: MCF+'/job/information-technology/cloud-native-support-engineer-jondavidson-0200edafc57ec6e38c7b3bc89554fc02',
+      ref:'', source:'mcf', date:'2026-03-31'
+    },
+    {
+      id:'m12', title:'Salesforce Application Development, Senior Manager (Education Cloud)',
+      location:'Singapore', country:'Singapore', type:'Permanent', category:'Technology', salary:'$8,000–$11,000/mo',
+      desc:'Lead Salesforce Education Cloud development and business analysis for a large education institution.',
+      url: MCF+'/job/information-technology/salesforce-application-development-senior-manager-jondavidson-13dd2f2872ce984a5d346c86292b2d55',
+      ref:'', source:'mcf', date:'2026-04-18'
+    },
+    {
+      id:'m13', title:'SAP SuccessFactors Consultant, Senior (HR, East)',
+      location:'Singapore', country:'Singapore', type:'Full Time', category:'Technology', salary:'$8,000–$9,500/mo',
+      desc:'Implement and optimise SAP SuccessFactors HR modules for enterprise clients in the East region.',
+      url: MCF+'/job/information-technology/sap-successfactors-consultant-senior-jondavidson-41362aba33f0319b488d6aa0366396bb',
+      ref:'', source:'mcf', date:'2026-04-16'
+    },
+    {
+      id:'m14', title:'Assistant Manager / Senior Exec, Human Resources & Administration',
+      location:'Singapore', country:'Singapore', type:'Permanent', category:'Human Resources', salary:'$5,000–$7,200/mo',
+      desc:'Manage HR and administration operations including recruitment, employee engagement and office management.',
+      url: MCF+'/job/admin/assistant-manager-senior-exec-human-resources-administration-jondavidson-74a158c4c637cb6c112e50d749c08180',
+      ref:'', source:'mcf', date:'2026-04-17'
+    },
+    {
+      id:'m15', title:'Enterprise Solution Architect (Public Sector | Pre-Sales)',
+      location:'Singapore', country:'Singapore', type:'Permanent', category:'Technology', salary:'$15,000–$18,000/mo',
+      desc:'Design enterprise technology solutions for public sector clients in a pre-sales capacity across Singapore and beyond.',
+      url: MCF+'/job/information-technology/enterprise-solution-architect-jondavidson-d51eb8debdc7df51cb3b3e88f596e54d',
+      ref:'', source:'mcf', date:'2026-04-01'
+    },
+
+    /* ── JobStreet ── */
+    {
+      id:'j1', title:'Cloud Native Support Engineer (Kubernetes / DevOps)',
+      location:'Singapore', country:'Singapore', type:'Full Time', category:'Technology', salary:'$5,000–$6,500/mo',
+      desc:'Hands-on Kubernetes troubleshooting in production environments. Regional exposure with enterprise cloud-native platforms. Hybrid work.',
+      url: 'https://sg.jobstreet.com/JonDavidson-Pte-Ltd-jobs/at-this-company',
+      ref:'', source:'js', date:'2026-04-01'
     }
   ];
 
-  /* ── DOM refs ── */
   const grid      = document.getElementById('jobsGrid');
   const meta      = document.getElementById('resultsMeta');
   const loadWrap  = document.getElementById('loadMoreWrap');
@@ -376,7 +404,7 @@
     const kw   = kwInput.value.trim().toLowerCase();
     const loc  = locFilter.value.toLowerCase();
     const type = typeFilter.value.toLowerCase();
-    const cat  = (chipsEl.querySelector('.chip.active') || {}).dataset.cat || '';
+    const cat  = (chipsEl.querySelector('.chip.active')||{}).dataset.cat||'';
     const sort = sortSel.value;
 
     filtered = JOBS.filter(j => {
@@ -387,67 +415,63 @@
       return true;
     });
 
-    if (sort === 'title')    filtered.sort((a,b) => a.title.localeCompare(b.title));
-    else if (sort==='location') filtered.sort((a,b) => a.location.localeCompare(b.location));
-    else filtered.sort((a,b) => (b.date||'').localeCompare(a.date||''));
+    if (sort==='title')    filtered.sort((a,b)=>a.title.localeCompare(b.title));
+    else if (sort==='location') filtered.sort((a,b)=>a.location.localeCompare(b.location));
+    else filtered.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
 
-    shown = 0;
-    grid.innerHTML = '';
-    renderBatch();
-    updateMeta();
+    shown=0; grid.innerHTML='';
+    renderBatch(); updateMeta();
   }
 
   function renderBatch () {
-    if (filtered.length === 0) {
-      grid.innerHTML = `<div class="jd-state"><p style="font-size:1.05rem">No roles match your search.</p><p style="margin-top:0.5rem;font-size:0.88rem">Try different keywords or clear your filters.</p></div>`;
-      loadWrap.style.display = 'none';
-      return;
+    if (!filtered.length) {
+      grid.innerHTML='<div class="jd-state"><p style="font-size:1.05rem">No roles match your search.</p><p style="margin-top:0.5rem;font-size:0.88rem">Try different keywords or clear your filters.</p></div>';
+      loadWrap.style.display='none'; return;
     }
-    filtered.slice(shown, shown + PAGE_SIZE).forEach(j => grid.insertAdjacentHTML('beforeend', cardHTML(j)));
-    shown = Math.min(shown + PAGE_SIZE, filtered.length);
-    loadWrap.style.display = shown < filtered.length ? 'block' : 'none';
+    filtered.slice(shown, shown+PAGE_SIZE).forEach(j=>grid.insertAdjacentHTML('beforeend',cardHTML(j)));
+    shown=Math.min(shown+PAGE_SIZE,filtered.length);
+    loadWrap.style.display=shown<filtered.length?'block':'none';
   }
 
-  const SOURCE_LABEL = { rcrm: 'RecruitCRM', js: 'JobStreet', mcf: 'MyCareersFuture' };
-  const SOURCE_CLASS = { rcrm: 'src-rcrm', js: 'src-js', mcf: 'src-mcf' };
+  const SRC_LBL={rcrm:'RecruitCRM',js:'JobStreet',mcf:'MyCareersFuture'};
+  const SRC_CLS={rcrm:'src-rcrm',js:'src-js',mcf:'src-mcf'};
 
-  function cardHTML (j) {
-    const locHtml  = j.location ? `<span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>${esc(j.location)}</span>` : '';
-    const typeHtml = j.type  ? `<span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>${esc(j.type)}</span>` : '';
-    const salHtml  = j.salary ? `<span class="jd-salary">💰 ${esc(j.salary)}</span>` : '';
-    const srcHtml  = `<span class="src-badge ${SOURCE_CLASS[j.source]||''}">${SOURCE_LABEL[j.source]||j.source}</span>`;
-    const tagHtml  = j.category ? `<span class="jd-tag">${esc(j.category)}</span>` : '';
-    const refHtml  = j.ref ? `<span class="jd-ref">${esc(j.ref)}</span>` : '';
+  function cardHTML(j){
+    const loc  = j.location?`<span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>${esc(j.location)}</span>`:'';
+    const type = j.type?`<span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>${esc(j.type)}</span>`:'';
+    const sal  = j.salary?`<div><span class="jd-salary">&#128176; ${esc(j.salary)}</span></div>`:'';
+    const src  = `<span class="src-badge ${SRC_CLS[j.source]||''}">${SRC_LBL[j.source]||j.source}</span>`;
+    const tag  = j.category?`<span class="jd-tag">${esc(j.category)}</span>`:'';
+    const ref  = j.ref?`<span class="jd-ref">${esc(j.ref)}</span>`:'';
     return `<div class="jd-card">
-      <div class="jd-card-top">${tagHtml}${srcHtml}</div>
+      <div class="jd-card-top">${tag}${src}</div>
       <p class="jd-title">${esc(j.title)}</p>
-      <div class="jd-meta">${locHtml}${typeHtml}</div>
-      ${salHtml ? `<div>${salHtml}</div>` : ''}
+      <div class="jd-meta">${loc}${type}</div>
+      ${sal}
       <p class="jd-desc">${esc(j.desc)}</p>
       <div class="jd-actions">
         <a href="${esc(j.url)}" target="_blank" rel="noopener" class="jd-apply">Apply Now</a>
-        ${refHtml}
+        ${ref}
       </div>
     </div>`;
   }
 
-  function esc (s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-  function updateMeta () { meta.innerHTML = `Showing <strong>${shown}</strong> of <strong>${filtered.length}</strong> role${filtered.length===1?'':'s'}`; }
+  function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function updateMeta(){meta.innerHTML=`Showing <strong>${shown}</strong> of <strong>${filtered.length}</strong> role${filtered.length===1?'':'s'}`;}
 
-  searchBtn.addEventListener('click', applyFilters);
-  kwInput.addEventListener('keydown', e => { if (e.key==='Enter') applyFilters(); });
-  locFilter.addEventListener('change', applyFilters);
-  typeFilter.addEventListener('change', applyFilters);
-  sortSel.addEventListener('change', applyFilters);
-  chipsEl.addEventListener('click', e => {
-    const chip = e.target.closest('.chip');
-    if (!chip) return;
-    chipsEl.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  searchBtn.addEventListener('click',applyFilters);
+  kwInput.addEventListener('keydown',e=>{if(e.key==='Enter')applyFilters();});
+  locFilter.addEventListener('change',applyFilters);
+  typeFilter.addEventListener('change',applyFilters);
+  sortSel.addEventListener('change',applyFilters);
+  chipsEl.addEventListener('click',e=>{
+    const chip=e.target.closest('.chip');
+    if(!chip)return;
+    chipsEl.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
     chip.classList.add('active');
     applyFilters();
   });
-  loadBtn.addEventListener('click', () => { renderBatch(); updateMeta(); });
-
+  loadBtn.addEventListener('click',()=>{renderBatch();updateMeta();});
   applyFilters();
 })();
 </script>
