@@ -12,16 +12,43 @@
   <link rel="stylesheet" href="css/nav.css"/>
   <style>
     .team-photo {
-      height: 300px;
-      background-size: cover;
+      height: 320px;
       background-repeat: no-repeat;
     }
-    /* Yvonne: zoomed out so full upper body shows, head sits lower like others */
-    .team-photo.photo-yvonne  { background-image: url('assets/Yvonne-Tan.jpg');    background-position: 50% 38%; background-size: 160%; }
-    .team-photo.photo-desmond { background-image: url('assets/Desmond-Ong.jpg');   background-position: 50% 48%; }
-    .team-photo.photo-kevin   { background-image: url('assets/Kevin-Chong.jpg');   background-position: 50% 45%; }
-    .team-photo.photo-liew    { background-image: url('assets/Liew-Yuk-Kong.jpg'); background-position: 50% 45%; }
-    .team-photo.photo-sonny   { background-image: url('assets/Sonny-Yuen.jpg');    background-position: 50% 48%; }
+    /*
+      Goal: head centred in card, clear gap above head, body shown to mid-chest.
+      background-size controls zoom — smaller % = more zoomed out = more body visible.
+      background-position X Y — Y controls vertical alignment:
+        lower Y % = image sits lower in box = more background above head
+        higher Y % = image sits higher = less background above head
+      Yvonne: tight portrait photo — zoom out to 130% so more shows
+      Others: wide landscape photos — cover fills box, position centres the face
+    */
+    .team-photo.photo-yvonne {
+      background-image: url('assets/Yvonne-Tan.jpg');
+      background-size: 130%;
+      background-position: 40% 20%;
+    }
+    .team-photo.photo-desmond {
+      background-image: url('assets/Desmond-Ong.jpg');
+      background-size: cover;
+      background-position: 50% 20%;
+    }
+    .team-photo.photo-kevin {
+      background-image: url('assets/Kevin-Chong.jpg');
+      background-size: cover;
+      background-position: 50% 18%;
+    }
+    .team-photo.photo-liew {
+      background-image: url('assets/Liew-Yuk-Kong.jpg');
+      background-size: cover;
+      background-position: 50% 18%;
+    }
+    .team-photo.photo-sonny {
+      background-image: url('assets/Sonny-Yuen.jpg');
+      background-size: cover;
+      background-position: 50% 20%;
+    }
   </style>
 </head>
 <body>
