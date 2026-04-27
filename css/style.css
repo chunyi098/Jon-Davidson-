@@ -1157,13 +1157,13 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
   border-radius: 8px;
 }
 .office-card.main {
-  background: var(--black);
-  color: var(--white);
-  border-color: var(--black);
+  background: #e8e6e3;
+  color: var(--text);
+  border-color: #d6d3cf;
   grid-column: span 2;
 }
-.office-card.main h3 { color: var(--white); }
-.office-card.main p { color: rgba(255,255,255,0.6); }
+.office-card.main h3 { color: var(--text); }
+.office-card.main p { color: var(--text-light); }
 .office-card h3 {
   font-family: var(--serif);
   font-size: 1.1rem;
