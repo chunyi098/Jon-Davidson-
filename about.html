@@ -11,148 +11,230 @@
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/nav.css"/>
   <style>
-    .team-photo {
-      height: 320px;
-      background-repeat: no-repeat;
-    }
-    .team-photo.photo-yvonne {
-      background-image: url('assets/Yvonne-Tan.jpg');
-      background-size: cover;
-      background-position: 45% 20%;
-    }
-    .team-photo.photo-desmond {
-      background-image: url('assets/Desmond-Ong.jpg');
-      background-size: cover;
-      background-position: 50% 20%;
-    }
-    .team-photo.photo-kevin {
-      background-image: url('assets/Kevin-Chong.jpg');
-      background-size: cover;
-      background-position: 50% 18%;
-    }
-    .team-photo.photo-liew {
-      background-image: url('assets/Liew-Yuk-Kong.jpg');
-      background-size: cover;
-      background-position: 50% 18%;
-    }
-    .team-photo.photo-sonny {
-      background-image: url('assets/Sonny-Yuen.jpg');
-      background-size: cover;
-      background-position: 50% 20%;
-    }
+    /* ── Team photos ── */
+    .team-photo { height: 320px; background-repeat: no-repeat; }
+    .team-photo.photo-yvonne  { background-image: url('assets/Yvonne-Tan.jpg');    background-size: cover; background-position: 45% 20%; }
+    .team-photo.photo-desmond { background-image: url('assets/Desmond-Ong.jpg');   background-size: cover; background-position: 50% 20%; }
+    .team-photo.photo-kevin   { background-image: url('assets/Kevin-Chong.jpg');   background-size: cover; background-position: 50% 18%; }
+    .team-photo.photo-liew    { background-image: url('assets/Liew-Yuk-Kong.jpg'); background-size: cover; background-position: 50% 18%; }
+    .team-photo.photo-sonny   { background-image: url('assets/Sonny-Yuen.jpg');    background-size: cover; background-position: 50% 20%; }
 
-    /* ── HQ card overrides ── */
+    /* ══════════════════════════════════════
+       HQ CARD — full redesign
+    ══════════════════════════════════════ */
     .office-card.main {
-      background: #2a2d32 !important;
-      border-color: #2a2d32 !important;
-    }
-    .office-card.main p {
-      color: rgba(255,255,255,0.75) !important;
-    }
-    .office-card.main h3 {
-      color: #ffffff !important;
+      background: #1c1f24 !important;
+      border-color: #1c1f24 !important;
+      padding: 0 !important;
+      overflow: hidden;
+      display: flex !important;
+      flex-direction: row !important;
+      min-height: 280px;
     }
 
-    /* ── Futuristic map button ── */
-    .map-btn-wrap {
-      margin-top: 1.25rem;
+    /* Left: info panel */
+    .hq-info {
+      flex: 1 1 0;
+      padding: 2.2rem 2.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
     }
-    .btn-map {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      position: relative;
-      padding: 0.7rem 1.4rem;
-      font-family: var(--sans);
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #00e5ff;
-      background: transparent;
-      border: 1px solid rgba(0,229,255,0.45);
-      border-radius: 3px;
-      cursor: pointer;
+    .hq-info .office-country {
+      color: var(--red) !important;
+      margin-bottom: 0.5rem;
+    }
+    .hq-info h3 {
+      color: #ffffff !important;
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .hq-info .hq-member {
+      font-size: 0.76rem;
+      color: rgba(255,255,255,0.38);
+      margin-bottom: 1rem;
+    }
+    .hq-info .hq-detail {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.82) !important;
+      line-height: 1.7;
+      margin-bottom: 0.2rem;
+    }
+    .hq-info .hq-detail a {
+      color: #ff6b6b;
       text-decoration: none;
-      overflow: hidden;
-      transition: color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
-    .btn-map::before {
+    .hq-info .hq-detail a:hover { text-decoration: underline; }
+    .hq-info .hq-licence {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.28);
+      margin-top: 0.6rem;
+    }
+
+    /* Right: map panel */
+    .hq-map-panel {
+      flex: 0 0 340px;
+      position: relative;
+      background: #0d1117;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .hq-map-panel:hover .hq-map-overlay { opacity: 1; }
+
+    /* SVG map canvas */
+    .hq-map-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Scanline grid overlay */
+    .hq-map-panel::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(0,229,255,0.08) 0%, rgba(0,229,255,0.02) 100%);
+      background-image:
+        linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Vignette edges */
+    .hq-map-panel::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(13,17,23,0.75) 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Hover overlay: "Open in Maps" */
+    .hq-map-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: rgba(0,229,255,0.08);
       opacity: 0;
       transition: opacity 0.3s ease;
+      z-index: 10;
     }
-    .btn-map:hover {
-      color: #ffffff;
-      border-color: rgba(0,229,255,0.9);
-      box-shadow: 0 0 14px rgba(0,229,255,0.35), inset 0 0 10px rgba(0,229,255,0.08);
+    .hq-map-overlay-icon {
+      width: 44px; height: 44px;
+      border: 1.5px solid rgba(0,229,255,0.7);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #00e5ff;
+      box-shadow: 0 0 18px rgba(0,229,255,0.4);
     }
-    .btn-map:hover::before { opacity: 1; }
-
-    /* corner accents */
-    .btn-map::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 8px; height: 8px;
-      border-top: 1.5px solid #00e5ff;
-      border-left: 1.5px solid #00e5ff;
-    }
-    .btn-map .corner-br {
-      position: absolute;
-      bottom: 0; right: 0;
-      width: 8px; height: 8px;
-      border-bottom: 1.5px solid #00e5ff;
-      border-right: 1.5px solid #00e5ff;
-      pointer-events: none;
+    .hq-map-overlay-label {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #00e5ff;
+      text-shadow: 0 0 12px rgba(0,229,255,0.6);
     }
 
-    /* ping dot */
-    .btn-map .ping {
-      position: relative;
-      width: 8px; height: 8px;
-      flex-shrink: 0;
+    /* Location pin on map */
+    .hq-pin-wrap {
+      position: absolute;
+      z-index: 5;
+      /* Kallang, SG — roughly centre-right of our SE-Asia minimap */
+      top: 44%; left: 54%;
+      transform: translate(-50%, -100%);
     }
-    .btn-map .ping-dot {
-      display: block;
-      width: 8px; height: 8px;
+    .hq-pin {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .hq-pin-dot {
+      width: 12px; height: 12px;
       border-radius: 50%;
       background: #00e5ff;
+      box-shadow: 0 0 0 3px rgba(0,229,255,0.25), 0 0 14px rgba(0,229,255,0.6);
     }
-    .btn-map .ping-ring {
+    .hq-pin-stem {
+      width: 2px; height: 14px;
+      background: linear-gradient(to bottom, #00e5ff, transparent);
+    }
+    .hq-pin-ring {
       position: absolute;
-      inset: 0;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 32px; height: 32px;
       border-radius: 50%;
-      border: 1.5px solid #00e5ff;
-      animation: hq-ping 1.8s ease-out infinite;
+      border: 1.5px solid rgba(0,229,255,0.5);
+      animation: hq-ripple 2s ease-out infinite;
     }
-    @keyframes hq-ping {
-      0%   { transform: scale(1);   opacity: 0.8; }
-      100% { transform: scale(2.8); opacity: 0; }
+    .hq-pin-ring2 {
+      animation-delay: 0.7s;
+      width: 50px; height: 50px;
+    }
+    @keyframes hq-ripple {
+      0%   { transform: translate(-50%,-50%) scale(0.6); opacity: 0.9; }
+      100% { transform: translate(-50%,-50%) scale(1.6); opacity: 0; }
     }
 
-    /* scan-line sweep on hover */
-    .btn-map .scan {
+    /* Label above pin */
+    .hq-pin-label {
       position: absolute;
-      top: 0; left: -60%;
-      width: 40%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(0,229,255,0.18), transparent);
-      transform: skewX(-20deg);
-      pointer-events: none;
-      opacity: 0;
-      transition: none;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      background: rgba(0,229,255,0.12);
+      border: 1px solid rgba(0,229,255,0.35);
+      border-radius: 3px;
+      padding: 0.18rem 0.55rem;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #00e5ff;
+      text-transform: uppercase;
     }
-    .btn-map:hover .scan {
-      opacity: 1;
-      animation: scan-sweep 0.6s ease-out forwards;
+
+    /* Corner decorations */
+    .hq-corner {
+      position: absolute;
+      width: 16px; height: 16px;
+      z-index: 6;
     }
-    @keyframes scan-sweep {
-      from { left: -60%; }
-      to   { left: 130%; }
+    .hq-corner.tl { top: 10px; left: 10px; border-top: 1.5px solid rgba(0,229,255,0.6); border-left: 1.5px solid rgba(0,229,255,0.6); }
+    .hq-corner.tr { top: 10px; right: 10px; border-top: 1.5px solid rgba(0,229,255,0.6); border-right: 1.5px solid rgba(0,229,255,0.6); }
+    .hq-corner.bl { bottom: 10px; left: 10px; border-bottom: 1.5px solid rgba(0,229,255,0.6); border-left: 1.5px solid rgba(0,229,255,0.6); }
+    .hq-corner.br { bottom: 10px; right: 10px; border-bottom: 1.5px solid rgba(0,229,255,0.6); border-right: 1.5px solid rgba(0,229,255,0.6); }
+
+    /* Coordinate readout */
+    .hq-coords {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      z-index: 6;
+      font-family: 'Courier New', monospace;
+      font-size: 0.6rem;
+      color: rgba(0,229,255,0.5);
+      letter-spacing: 0.05em;
+      line-height: 1.5;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .office-card.main { flex-direction: column !important; }
+      .hq-map-panel { flex: 0 0 220px; }
     }
   </style>
 </head>
@@ -244,27 +326,99 @@
     <h2>Where We <em>Operate</em></h2>
     <p style="margin-bottom:2.5rem">Our headquarters in Singapore and associate offices across Southeast Asia allow us to serve clients with true regional coverage.</p>
     <div class="offices-grid">
+
+      <!-- ── HEADQUARTERS CARD ── -->
       <div class="office-card main">
-        <p class="office-country" style="color:var(--red)">HEADQUARTERS</p>
-        <h3>JonDavidson Pte Ltd</h3>
-        <p style="font-size:0.78rem;color:rgba(255,255,255,0.4);margin-bottom:0.75rem">(member of ELITEZ Group)</p>
-        <p>2 Kallang Avenue, #03-05 CT Hub<br/>Singapore 339407</p>
-        <p>Tel: <a href="tel:+6562957155" style="color:var(--red)">+65 6295 7155</a></p>
-        <p>Email: <a href="mailto:partners@jondavidsongroup.com" style="color:var(--red)">partners@jondavidsongroup.com</a></p>
-        <p style="margin-top:0.75rem;font-size:0.78rem;color:rgba(255,255,255,0.35)">Licence No. 22S1412</p>
-        <div class="map-btn-wrap">
-          <a class="btn-map"
-             href="https://www.google.com/maps/search/?api=1&query=2+Kallang+Avenue+CT+Hub+Singapore+339407"
-             target="_blank"
-             rel="noopener noreferrer">
-            <span class="ping"><span class="ping-dot"></span><span class="ping-ring"></span></span>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            View on Google Maps
-            <span class="corner-br"></span>
-            <span class="scan"></span>
-          </a>
+
+        <!-- Left: contact info -->
+        <div class="hq-info">
+          <p class="office-country">HEADQUARTERS</p>
+          <h3>JonDavidson Pte Ltd</h3>
+          <p class="hq-member">(member of ELITEZ Group)</p>
+          <p class="hq-detail">2 Kallang Avenue, #03-05 CT Hub<br/>Singapore 339407</p>
+          <p class="hq-detail">Tel: <a href="tel:+6562957155">+65 6295 7155</a></p>
+          <p class="hq-detail">Email: <a href="mailto:partners@jondavidsongroup.com">partners@jondavidsongroup.com</a></p>
+          <p class="hq-licence">EA Licence No. 22S1412</p>
         </div>
-      </div>
+
+        <!-- Right: futuristic map -->
+        <a class="hq-map-panel"
+           href="https://www.google.com/maps/search/?api=1&query=2+Kallang+Avenue+CT+Hub+Singapore+339407"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Open office location in Google Maps">
+
+          <!-- SE-Asia simplified SVG map -->
+          <svg class="hq-map-svg" viewBox="0 0 340 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Ocean base -->
+            <rect width="340" height="280" fill="#0d1117"/>
+            <!-- Malay Peninsula -->
+            <path d="M155,40 L162,55 L168,75 L170,100 L168,125 L165,148 L162,162 L158,172 L155,178 L152,172 L150,162 L148,148 L146,130 L145,110 L146,90 L150,70 L153,55 Z"
+                  fill="#161b22" stroke="rgba(0,229,255,0.25)" stroke-width="0.8"/>
+            <!-- Singapore island -->
+            <ellipse cx="163" cy="188" rx="7" ry="4" fill="#1a2332" stroke="rgba(0,229,255,0.5)" stroke-width="1"/>
+            <!-- Sumatra -->
+            <path d="M80,120 L100,108 L130,105 L155,110 L160,125 L155,140 L130,148 L100,152 L78,148 L68,138 L70,128 Z"
+                  fill="#161b22" stroke="rgba(0,229,255,0.2)" stroke-width="0.8"/>
+            <!-- Java -->
+            <path d="M115,210 L140,205 L175,207 L200,210 L210,216 L205,222 L175,224 L140,222 L112,218 Z"
+                  fill="#161b22" stroke="rgba(0,229,255,0.2)" stroke-width="0.8"/>
+            <!-- Borneo -->
+            <path d="M195,90 L225,80 L255,82 L270,95 L272,120 L265,148 L248,162 L225,168 L205,162 L192,145 L188,120 L190,100 Z"
+                  fill="#161b22" stroke="rgba(0,229,255,0.2)" stroke-width="0.8"/>
+            <!-- Thailand (south) -->
+            <path d="M140,20 L148,30 L152,45 L150,60 L145,50 L138,38 L134,28 Z"
+                  fill="#161b22" stroke="rgba(0,229,255,0.15)" stroke-width="0.8"/>
+            <!-- Vietnam coast hint -->
+            <path d="M210,25 L215,40 L218,60 L215,80 L210,95 L205,80 L204,60 L206,40 Z"
+                  fill="#161b22" stroke="rgba(0,229,255,0.15)" stroke-width="0.8"/>
+            <!-- Philippines hints -->
+            <ellipse cx="270" cy="55"  rx="9"  ry="16" fill="#161b22" stroke="rgba(0,229,255,0.15)" stroke-width="0.7"/>
+            <ellipse cx="282" cy="80"  rx="7"  ry="12" fill="#161b22" stroke="rgba(0,229,255,0.15)" stroke-width="0.7"/>
+            <!-- Glow around Singapore -->
+            <circle cx="163" cy="188" r="22" fill="none" stroke="rgba(0,229,255,0.08)" stroke-width="18"/>
+            <circle cx="163" cy="188" r="28" fill="none" stroke="rgba(0,229,255,0.04)" stroke-width="12"/>
+            <!-- Route lines (thin dashed from SG to region) -->
+            <line x1="163" y1="188" x2="200" y2="210" stroke="rgba(0,229,255,0.12)" stroke-width="0.8" stroke-dasharray="3,4"/>
+            <line x1="163" y1="188" x2="155" y2="110" stroke="rgba(0,229,255,0.10)" stroke-width="0.8" stroke-dasharray="3,4"/>
+            <line x1="163" y1="188" x2="270" y2="120" stroke="rgba(0,229,255,0.10)" stroke-width="0.8" stroke-dasharray="3,4"/>
+          </svg>
+
+          <!-- Corner brackets -->
+          <span class="hq-corner tl"></span>
+          <span class="hq-corner tr"></span>
+          <span class="hq-corner bl"></span>
+          <span class="hq-corner br"></span>
+
+          <!-- Coordinate label -->
+          <div class="hq-coords">
+            1.3521° N<br/>103.8198° E
+          </div>
+
+          <!-- Pin -->
+          <div class="hq-pin-wrap">
+            <div class="hq-pin">
+              <div style="position:relative; display:flex; flex-direction:column; align-items:center;">
+                <span class="hq-pin-ring"></span>
+                <span class="hq-pin-ring hq-pin-ring2"></span>
+                <span class="hq-pin-label">CT Hub · SG</span>
+                <span class="hq-pin-dot"></span>
+                <span class="hq-pin-stem"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hover overlay -->
+          <div class="hq-map-overlay">
+            <div class="hq-map-overlay-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <span class="hq-map-overlay-label">Open in Google Maps</span>
+          </div>
+
+        </a><!-- end .hq-map-panel -->
+      </div><!-- end .office-card.main -->
+
       <div class="office-card"><p class="office-country">THAILAND</p><h3>Bangkok Office</h3><p>408/107 Phahonyothin Place Building, 12th Floor, Bangkok 10400</p></div>
       <div class="office-card"><p class="office-country">INDONESIA</p><h3>Jakarta Office</h3><p>Luminary Tower, 63rd Floor, Thamrin Nine Complex, Jakarta 10230</p></div>
       <div class="office-card"><p class="office-country">MALAYSIA</p><h3>Kuala Lumpur Office</h3><p>B1-43A-1, Soho Suites @ KLCC, No. 20 Jalan Perak, 50450 KL</p></div>
