@@ -11,20 +11,27 @@
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/nav.css"/>
   <style>
+    /*
+      All photos: wide/landscape shots with person centred in frame.
+      background-size: cover fills the box edge to edge (no black borders).
+      background-position x% y%:
+        x = horizontal alignment (50% = centred)
+        y = which vertical point of the IMAGE sits at the centre of the BOX.
+              Lower % = shows more of the top (head higher)
+              Higher % = shows more of the bottom (head lower / more space above)
+      For each person, y is tuned so the head sits comfortably in the middle
+      of the card with clear space above.
+    */
     .team-photo {
       height: 300px;
       background-size: cover;
       background-repeat: no-repeat;
     }
-    /* Yvonne: seated, face naturally lower — position upper-centre */
-    .team-photo.photo-yvonne  { background-image: url('assets/Yvonne-Tan.jpg');   background-position: center 20%; }
-    /* Standing shots: face is in top ~30% of image.
-       Push background DOWN so more space appears above the head.
-       center 40% means the 40%-from-top of the image maps to the centre of the box. */
-    .team-photo.photo-desmond { background-image: url('assets/Desmond-Ong.jpg');  background-position: center 40%; }
-    .team-photo.photo-kevin   { background-image: url('assets/Kevin-Chong.jpg');  background-position: center 38%; }
-    .team-photo.photo-liew    { background-image: url('assets/Liew-Yuk-Kong.jpg');background-position: center 40%; }
-    .team-photo.photo-sonny   { background-image: url('assets/Sonny-Yuen.jpg');   background-position: center 42%; }
+    .team-photo.photo-yvonne  { background-image: url('assets/Yvonne-Tan.jpg');    background-position: 50% 22%; }
+    .team-photo.photo-desmond { background-image: url('assets/Desmond-Ong.jpg');   background-position: 50% 28%; }
+    .team-photo.photo-kevin   { background-image: url('assets/Kevin-Chong.jpg');   background-position: 50% 28%; }
+    .team-photo.photo-liew    { background-image: url('assets/Liew-Yuk-Kong.jpg'); background-position: 50% 28%; }
+    .team-photo.photo-sonny   { background-image: url('assets/Sonny-Yuen.jpg');    background-position: 50% 30%; }
   </style>
 </head>
 <body>
