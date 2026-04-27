@@ -10,6 +10,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/nav.css"/>
+  <style>
+    /* Override team photo img to use scale+translate for precise face framing */
+    .team-photo { position: relative; overflow: hidden; }
+    .team-photo img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0;
+    }
+    /* Per-person face positioning — push face down from top border */
+    .team-photo img.photo-yvonne   { object-position: center 18%; }
+    .team-photo img.photo-desmond  { object-position: center 12%; transform: scale(1.15); transform-origin: center 18%; }
+    .team-photo img.photo-kevin    { object-position: center 12%; transform: scale(1.15); transform-origin: center 18%; }
+    .team-photo img.photo-liew     { object-position: center 12%; transform: scale(1.15); transform-origin: center 18%; }
+    .team-photo img.photo-sonny    { object-position: center 14%; transform: scale(1.2);  transform-origin: center 18%; }
+  </style>
 </head>
 <body>
 <header class="navbar" id="navbar">
@@ -69,11 +87,36 @@
     <h2>Meet Our <em>Management</em></h2>
     <p style="margin-bottom:2.5rem">Our leadership team brings decades of combined expertise across Southeast Asia&apos;s most dynamic industries.</p>
     <div class="team-grid">
-      <div class="team-card"><div class="team-photo"><img src="assets/Yvonne-Tan.jpg" alt="Yvonne Tan" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"/></div><div class="team-info"><h3>Yvonne Tan</h3><p class="role">Group Managing Director</p><p class="email"><a href="mailto:yv.tan@jondavidsongroup.com">yv.tan@jondavidsongroup.com</a></p><div class="team-links"><a href="yvonne-tan.html">Read More</a><a href="https://www.linkedin.com/in/yvonnetanhh/" target="_blank">LinkedIn</a></div></div></div>
-      <div class="team-card"><div class="team-photo"><img src="assets/Desmond-Ong.jpg" alt="Desmond Ong" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"/></div><div class="team-info"><h3>Desmond Ong</h3><p class="role">Senior Associate Director</p><p class="email"><a href="mailto:d.ong@jondavidsongroup.com">d.ong@jondavidsongroup.com</a></p><div class="team-links"><a href="desmond-ong.html">Read More</a><a href="https://www.linkedin.com/in/desmondong1/" target="_blank">LinkedIn</a></div></div></div>
-      <div class="team-card"><div class="team-photo"><img src="assets/Kevin-Chong.jpg" alt="Kevin Chong" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"/></div><div class="team-info"><h3>Kevin Chong</h3><p class="role">Senior Associate Director</p><p class="email"><a href="mailto:k.chong@jondavidsongroup.com">k.chong@jondavidsongroup.com</a></p><div class="team-links"><a href="kevin-chong.html">Read More</a><a href="https://www.linkedin.com/in/kevinchong/" target="_blank">LinkedIn</a></div></div></div>
-      <div class="team-card"><div class="team-photo"><img src="assets/Liew-Yuk-Kong.jpg" alt="Liew Yuk Kong" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"/></div><div class="team-info"><h3>Liew Yuk Kong</h3><p class="role">Senior Associate Director</p><p class="email"><a href="mailto:yk.liew@jondavidsongroup.com">yk.liew@jondavidsongroup.com</a></p><div class="team-links"><a href="liew-yuk-kong.html">Read More</a><a href="https://www.linkedin.com/in/yuk-kong-liew/" target="_blank">LinkedIn</a></div></div></div>
-      <div class="team-card"><div class="team-photo"><img src="assets/Sonny-Yuen.jpg" alt="Sonny Yuen" style="width:100%;height:100%;object-fit:cover;border-radius:8px;"/></div><div class="team-info"><h3>Sonny Yuen</h3><p class="role">Senior Advisor</p><p class="email"><a href="mailto:s.yuen@jondavidsongroup.com">s.yuen@jondavidsongroup.com</a></p><div class="team-links"><a href="sonny-yuen.html">Read More</a><a href="https://www.linkedin.com/in/sonnyyuen/" target="_blank">LinkedIn</a></div></div></div>
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="assets/Yvonne-Tan.jpg" alt="Yvonne Tan" class="photo-yvonne"/>
+        </div>
+        <div class="team-info"><h3>Yvonne Tan</h3><p class="role">Group Managing Director</p><p class="email"><a href="mailto:yv.tan@jondavidsongroup.com">yv.tan@jondavidsongroup.com</a></p><div class="team-links"><a href="yvonne-tan.html">Read More</a><a href="https://www.linkedin.com/in/yvonnetanhh/" target="_blank">LinkedIn</a></div></div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="assets/Desmond-Ong.jpg" alt="Desmond Ong" class="photo-desmond"/>
+        </div>
+        <div class="team-info"><h3>Desmond Ong</h3><p class="role">Senior Associate Director</p><p class="email"><a href="mailto:d.ong@jondavidsongroup.com">d.ong@jondavidsongroup.com</a></p><div class="team-links"><a href="desmond-ong.html">Read More</a><a href="https://www.linkedin.com/in/desmondong1/" target="_blank">LinkedIn</a></div></div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="assets/Kevin-Chong.jpg" alt="Kevin Chong" class="photo-kevin"/>
+        </div>
+        <div class="team-info"><h3>Kevin Chong</h3><p class="role">Senior Associate Director</p><p class="email"><a href="mailto:k.chong@jondavidsongroup.com">k.chong@jondavidsongroup.com</a></p><div class="team-links"><a href="kevin-chong.html">Read More</a><a href="https://www.linkedin.com/in/kevinchong/" target="_blank">LinkedIn</a></div></div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="assets/Liew-Yuk-Kong.jpg" alt="Liew Yuk Kong" class="photo-liew"/>
+        </div>
+        <div class="team-info"><h3>Liew Yuk Kong</h3><p class="role">Senior Associate Director</p><p class="email"><a href="mailto:yk.liew@jondavidsongroup.com">yk.liew@jondavidsongroup.com</a></p><div class="team-links"><a href="liew-yuk-kong.html">Read More</a><a href="https://www.linkedin.com/in/yuk-kong-liew/" target="_blank">LinkedIn</a></div></div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo">
+          <img src="assets/Sonny-Yuen.jpg" alt="Sonny Yuen" class="photo-sonny"/>
+        </div>
+        <div class="team-info"><h3>Sonny Yuen</h3><p class="role">Senior Advisor</p><p class="email"><a href="mailto:s.yuen@jondavidsongroup.com">s.yuen@jondavidsongroup.com</a></p><div class="team-links"><a href="sonny-yuen.html">Read More</a><a href="https://www.linkedin.com/in/sonnyyuen/" target="_blank">LinkedIn</a></div></div>
+      </div>
     </div>
   </div>
 </section>
