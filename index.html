@@ -51,7 +51,6 @@
     .cs-pl-link:hover{border-color:white}
     .cs-login-hint{margin-top:1.5rem;font-size:.85rem;color:rgba(255,255,255,.6)}
     .cs-login-hint a{color:var(--white);font-weight:600;border-bottom:1px solid rgba(255,255,255,.4)}
-    /* Save button */
     .btn-save {
       display:inline-flex; align-items:center; gap:0.4rem;
       padding:0.5rem 1rem; border-radius:var(--radius,4px);
@@ -62,7 +61,6 @@
     }
     .btn-save:hover { border-color:var(--red); color:var(--red); }
     .btn-save.saved { background:var(--red); border-color:var(--red); color:#fff; }
-    /* toast */
     #save-toast {
       position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(20px);
       background:#1a1a1a; color:#fff; padding:0.65rem 1.5rem;
@@ -153,7 +151,7 @@
 
 <section class="featured-jobs">
   <div class="container">
-    <div class="section-header"><h2>Featured <em>Roles</em></h2><a href="jobs.html" class="see-all">See all jobs &rarr;</a></div>
+    <div class="section-header"><h2>Featured <em>Roles</em></h2></div>
     <div class="jobs-grid">
 
       <!-- JD-1275 -->
@@ -197,8 +195,7 @@
 
     </div>
     <div class="jobs-cta">
-      <a href="jobs.html" class="btn-primary" style="margin-right:1rem">Browse All Jobs</a>
-      <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-outline">Browse All Open Roles</a>
+      <a href="jobs.html" class="btn-primary">Browse All Jobs</a>
     </div>
   </div>
 </section>
@@ -276,34 +273,24 @@
 <script>
 function searchJobs(){const k=document.getElementById('jobKeyword').value.trim(),l=document.getElementById('jobLocation').value.trim(),c=document.getElementById('jobCategory').value;let u='jobs.html?';if(k)u+='q='+encodeURIComponent(k)+'&';if(l)u+='loc='+encodeURIComponent(l)+'&';if(c)u+='cat='+encodeURIComponent(c);window.location.href=u;}
 document.addEventListener('keydown',function(e){if(e.key==='Enter'){const a=document.activeElement;if(a&&(a.id==='jobKeyword'||a.id==='jobLocation'))searchJobs();}});
-
-/* ── Auth helpers (shared across pages) ── */
 function isLoggedIn(){return!!localStorage.getItem('jd_user');}
-
-/* ── Save: requires login ── */
 function getSaved(){try{return JSON.parse(localStorage.getItem('jd_saved_jobs')||'{}');}catch(e){return{};}}
 function setSaved(obj){try{localStorage.setItem('jd_saved_jobs',JSON.stringify(obj));}catch(e){}}
-
 function handleSave(btn,id,title){
   if(!isLoggedIn()){
-    /* Not logged in — send to login page, remember which job they wanted to save */
     sessionStorage.setItem('jd_save_pending',JSON.stringify({id,title}));
     showToast('Please log in to save jobs');
     setTimeout(()=>{ window.location.href='login.html?from=save&job='+encodeURIComponent(title); },900);
     return;
   }
-  /* Logged in — toggle save */
   const saved=getSaved(),isSaved=!!saved[id];
   if(isSaved){delete saved[id];btn.classList.remove('saved');btn.textContent='\u{1F4BE} Save';showToast('Removed from saved jobs');}
   else{saved[id]={id,title,savedAt:Date.now()};btn.classList.add('saved');btn.textContent='\u2713 Saved';showToast('Job saved!');}
   setSaved(saved);
 }
-
 function showToast(msg){const t=document.getElementById('save-toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._tid);t._tid=setTimeout(()=>t.classList.remove('show'),2800);}
-
-/* Restore saved state on page load */
 document.addEventListener('DOMContentLoaded',function(){
-  if(!isLoggedIn()) return; /* not logged in — no saved state to show */
+  if(!isLoggedIn()) return;
   const saved=getSaved();
   document.querySelectorAll('.btn-save').forEach(btn=>{
     const m=(btn.getAttribute('onclick')||'').match(/handleSave\(this,'([^']+)'/);
