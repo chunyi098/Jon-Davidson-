@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/nav.css"/>
   <style>
-    .jobs-hero { background: linear-gradient(135deg,#0f0f0f 0%,#1a1a1a 100%); padding: 9rem 0 4rem; color:#fff; }
+    .jobs-hero { background:linear-gradient(135deg,#0f0f0f 0%,#1a1a1a 100%); padding:9rem 0 4rem; color:#fff; }
     .jobs-hero h1 { font-family:var(--serif); font-size:clamp(2.2rem,4vw,3.2rem); font-weight:900; color:#fff; margin-bottom:0.4rem; }
     .jobs-hero h1 em { color:var(--red); font-style:italic; }
     .jobs-hero .hero-sub { color:rgba(255,255,255,0.6); margin-bottom:2.2rem; font-size:1rem; }
@@ -31,8 +31,8 @@
     .chip.active,.chip:hover { background:var(--red); border-color:var(--red); color:#fff; }
     .src-badge { display:inline-flex; align-items:center; gap:0.25rem; font-size:0.65rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; padding:0.18rem 0.5rem; border-radius:3px; }
     .src-rcrm { background:rgba(0,120,212,0.1); color:#0078d4; }
-    .src-js   { background:rgba(0,160,80,0.1);  color:#008c44; }
-    .src-mcf  { background:rgba(100,60,200,0.1);color:#6433c8; }
+    .src-js   { background:rgba(0,160,80,0.1); color:#008c44; }
+    .src-mcf  { background:rgba(100,60,200,0.1); color:#6433c8; }
     .jd-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; }
     @media(max-width:820px){ .jd-grid{ grid-template-columns:1fr; } }
     .jd-card { border:1px solid var(--gray-mid); border-radius:8px; padding:1.6rem 1.75rem; display:flex; flex-direction:column; gap:0.45rem; position:relative; overflow:hidden; transition:box-shadow 0.25s,transform 0.25s,border-color 0.25s; background:#fff; }
@@ -46,10 +46,41 @@
     .jd-meta span { display:flex; align-items:center; gap:0.28rem; }
     .jd-salary { font-size:0.82rem; font-weight:600; color:#1a6b2f; }
     .jd-desc { font-size:0.86rem; color:var(--text-light); line-height:1.65; flex:1; }
-    .jd-actions { display:flex; align-items:center; gap:0.65rem; margin-top:0.2rem; }
+    .jd-actions { display:flex; align-items:center; gap:0.65rem; margin-top:0.2rem; flex-wrap:wrap; }
     .jd-apply { background:var(--red); color:#fff; padding:0.48rem 1.15rem; border-radius:var(--radius); font-size:0.84rem; font-weight:600; transition:background 0.2s; text-decoration:none; }
     .jd-apply:hover { background:var(--red-dark); }
     .jd-ref { font-size:0.7rem; color:rgba(0,0,0,0.22); margin-left:auto; }
+
+    /* ── Save button ── */
+    .jd-save {
+      display:inline-flex; align-items:center; gap:0.35rem;
+      padding:0.46rem 1rem; border-radius:var(--radius);
+      border:1.5px solid var(--gray-mid);
+      font-family:var(--sans); font-size:0.84rem; font-weight:600;
+      background:#fff; color:var(--text);
+      cursor:pointer; transition:all 0.2s;
+    }
+    .jd-save:hover { border-color:var(--red); color:var(--red); }
+    .jd-save.saved { background:var(--red); border-color:var(--red); color:#fff; }
+
+    /* ── Toast ── */
+    #jd-toast {
+      position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(20px);
+      background:#1a1a1a; color:#fff; padding:0.65rem 1.5rem;
+      border-radius:50px; font-size:0.85rem; font-weight:500;
+      opacity:0; pointer-events:none; transition:all 0.3s ease;
+      z-index:9999; white-space:nowrap;
+    }
+    #jd-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+    /* ── Saved count badge in results bar ── */
+    .saved-count-link {
+      font-size:0.82rem; font-weight:600; color:var(--red);
+      display:inline-flex; align-items:center; gap:0.3rem;
+      text-decoration:none;
+    }
+    .saved-count-link:hover { text-decoration:underline; }
+
     .jd-state { grid-column:1/-1; text-align:center; padding:4rem 0; color:var(--text-light); }
     .load-more-wrap { text-align:center; margin-top:2.5rem; }
     .btn-load-more { border:1.5px solid var(--gray-mid); background:none; font-family:var(--sans); font-size:0.9rem; font-weight:600; padding:0.75rem 2.5rem; border-radius:var(--radius); cursor:pointer; transition:all 0.2s; color:var(--text); }
@@ -65,6 +96,8 @@
   </style>
 </head>
 <body>
+<div id="jd-toast"></div>
+
 <header class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo"><img src="assets/JonDavidsonLogo.png" alt="JonDavidson"/><span class="tagline">WE GO THE DISTANCE</span></a>
@@ -135,11 +168,20 @@
     </div>
     <div class="results-bar">
       <p class="results-count" id="resultsMeta"></p>
-      <select class="sort-select" id="sortSel">
-        <option value="date">Newest First</option>
-        <option value="title">Title A–Z</option>
-        <option value="location">Location</option>
-      </select>
+      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <span id="savedCountWrap" style="display:none">
+          <a href="#" class="saved-count-link" id="savedCountLink" onclick="showSavedOnly(event)">
+            &#10084; <span id="savedCountNum">0</span> saved
+          </a>
+          &nbsp;·&nbsp;
+          <a href="#" class="saved-count-link" style="color:var(--gray)" onclick="showAllJobs(event)">Show all</a>
+        </span>
+        <select class="sort-select" id="sortSel">
+          <option value="date">Newest First</option>
+          <option value="title">Title A–Z</option>
+          <option value="location">Location</option>
+        </select>
+      </div>
     </div>
     <div class="jd-grid" id="jobsGrid"></div>
     <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
@@ -176,22 +218,14 @@
 <script>
 (function(){
   const PAGE_SIZE = 10;
-  let filtered = [], shown = 0;
+  let filtered = [], shown = 0, showingSavedOnly = false;
 
-  /* Base URLs */
   const R = 'https://recruitcrm.io/apply/';
   const S = '?source=Jobspage&new=yes';
   const MCF = 'https://www.mycareersfuture.gov.sg';
+  const rc = t => R + t + S;
 
-  /* Helper — builds a full RecruitCRM apply URL from token */
-  const rc = token => R + token + S;
-
-  /* ═══════════════════════════════════════════════════════════
-     ALL JOBS — RecruitCRM apply tokens scraped directly from
-     recruitcrm.io/jobs/JonDavidson_jobs (matched by DOM order)
-  ═══════════════════════════════════════════════════════════ */
   const JOBS = [
-    /* ── RecruitCRM — each has its own direct apply link ── */
     { id:'r1275', title:'Enterprise Solution Architect (Public Sector | Pre-Sales)',        location:'Singapore',   country:'Singapore',   type:'Permanent',  category:'Technology',     salary:'$15,000–$18,000/mo', desc:'Design enterprise technology solutions for public sector clients in a pre-sales capacity.',                                              url:rc('17749795927740007886ZXM'), ref:'JD-1275', source:'rcrm', date:'2026-04-28' },
     { id:'r1282', title:'Operations Director (Restaurant)',                                  location:'Manila',      country:'Philippines', type:'Permanent',  category:'Operations',     salary:'',                   desc:'Senior operations leadership role overseeing restaurant operations across the Philippines.',                                          url:rc('17770909077390007886ZTd'), ref:'JD-1282', source:'rcrm', date:'2026-04-20' },
     { id:'r1260', title:'Country General Manager – Indonesia',                              location:'Jakarta',     country:'Indonesia',   type:'Permanent',  category:'Executive',      salary:'',                   desc:'Lead all Indonesia operations with full P&L accountability for an established regional business.',                                     url:rc('17670650940260007886REJ'), ref:'JD-1260', source:'rcrm', date:'2026-04-18' },
@@ -223,7 +257,6 @@
     { id:'r1256', title:'Executive Research & Growth Associate (2)',                        location:'Singapore',   country:'Singapore',   type:'Permanent',  category:'Executive',      salary:'',                   desc:'Support executive research and business growth initiatives for a professional services firm.',                                         url:rc('17660411991720007886QjY'), ref:'JD-1256', source:'rcrm', date:'2026-03-15' },
     { id:'r1255', title:'Legal Counsel, Senior (East)',                                     location:'Singapore',   country:'Singapore',   type:'Permanent',  category:'Legal',          salary:'',                   desc:'Provide senior legal counsel and manage contracts for an organisation in the East of Singapore.',                                     url:rc('17658008513510007886nCG'), ref:'JD-1255', source:'rcrm', date:'2026-03-14' },
 
-    /* ── MyCareersFuture — direct slugs ── */
     { id:'m1',  title:'Salesforce Developer',                                               location:'Singapore',   country:'Singapore',   type:'Permanent',  category:'Technology',     salary:'$9,000–$11,000/mo',  desc:'Develop and customise Salesforce platforms for enterprise clients across Singapore and the region.',                                   url:MCF+'/job/information-technology/salesforce-developer-jondavidson-4f0ae266943e382bf69eea0815e2dcc0',                  ref:'', source:'mcf', date:'2026-04-17' },
     { id:'m2',  title:'DataBricks Engineer',                                                location:'Singapore',   country:'Singapore',   type:'Full Time',  category:'Technology',     salary:'$7,000–$9,000/mo',   desc:'Design and build data pipelines and analytics solutions on the Databricks platform for a leading enterprise client.',                  url:MCF+'/job/information-technology/databricks-engineer-jondavidson-934cdb782d4eae53bdf9ee53837b6bd3',                   ref:'', source:'mcf', date:'2026-04-06' },
     { id:'m3',  title:'Presales Solutions Architect',                                       location:'Singapore',   country:'Singapore',   type:'Full Time',  category:'Technology',     salary:'$15,000–$18,000/mo', desc:'Lead presales technical engagements, solution design and client presentations for a technology firm.',                               url:MCF+'/job/information-technology/presales-solutions-architect-jondavidson-cf7fb12012e93d6fc1e8e3fccb4052c6',          ref:'', source:'mcf', date:'2026-04-06' },
@@ -237,11 +270,59 @@
     { id:'m11', title:'Salesforce Application Development, Senior Manager (Education Cloud)', location:'Singapore', country:'Singapore',  type:'Permanent',  category:'Technology',     salary:'$8,000–$11,000/mo',  desc:'Lead Salesforce Education Cloud development and business analysis for a large education institution.',                              url:MCF+'/job/information-technology/salesforce-application-development-senior-manager-jondavidson-13dd2f2872ce984a5d346c86292b2d55', ref:'', source:'mcf', date:'2026-04-18' },
     { id:'m12', title:'SAP SuccessFactors Consultant, Senior (HR, East)',                  location:'Singapore',   country:'Singapore',   type:'Full Time',  category:'Technology',     salary:'$8,000–$9,500/mo',   desc:'Implement and optimise SAP SuccessFactors HR modules for enterprise clients in the East region.',                                  url:MCF+'/job/information-technology/sap-successfactors-consultant-senior-jondavidson-41362aba33f0319b488d6aa0366396bb',  ref:'', source:'mcf', date:'2026-04-16' },
     { id:'m13', title:'Assistant Manager / Senior Exec, Human Resources & Administration',location:'Singapore',   country:'Singapore',   type:'Permanent',  category:'Human Resources',salary:'$5,000–$7,200/mo',   desc:'Manage HR and administration operations including recruitment, employee engagement and office management.',                         url:MCF+'/job/admin/assistant-manager-senior-exec-human-resources-administration-jondavidson-74a158c4c637cb6c112e50d749c08180', ref:'', source:'mcf', date:'2026-04-17' },
-
-    /* ── JobStreet ── */
     { id:'j1', title:'Cloud Native Support Engineer (Kubernetes / DevOps)', location:'Singapore', country:'Singapore', type:'Full Time', category:'Technology', salary:'$5,000–$6,500/mo', desc:'Hands-on Kubernetes troubleshooting in production environments. Regional exposure with enterprise cloud-native platforms. Hybrid work.', url:'https://sg.jobstreet.com/JonDavidson-Pte-Ltd-jobs/at-this-company', ref:'', source:'js', date:'2026-04-01' }
   ];
 
+  /* ── localStorage save helpers ── */
+  function getSaved(){ try{ return JSON.parse(localStorage.getItem('jd_saved_jobs')||'{}'); }catch(e){ return {}; } }
+  function setSaved(obj){ try{ localStorage.setItem('jd_saved_jobs',JSON.stringify(obj)); }catch(e){} }
+
+  window.toggleSave = function(btn, id, title) {
+    const saved = getSaved();
+    const isSaved = !!saved[id];
+    if(isSaved){
+      delete saved[id];
+      btn.classList.remove('saved');
+      btn.innerHTML = '&#9825; Save';
+      showToast('Removed from saved jobs');
+    } else {
+      saved[id] = { id, title, savedAt: Date.now() };
+      btn.classList.add('saved');
+      btn.innerHTML = '&#10084; Saved';
+      showToast('Job saved!');
+    }
+    setSaved(saved);
+    updateSavedCount();
+  };
+
+  function showToast(msg){
+    const t = document.getElementById('jd-toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(t._tid);
+    t._tid = setTimeout(()=>t.classList.remove('show'), 2800);
+  }
+
+  function updateSavedCount(){
+    const n = Object.keys(getSaved()).length;
+    const wrap = document.getElementById('savedCountWrap');
+    const num  = document.getElementById('savedCountNum');
+    if(n > 0){ wrap.style.display='inline-flex'; num.textContent=n; }
+    else{ wrap.style.display='none'; showingSavedOnly=false; }
+  }
+
+  window.showSavedOnly = function(e){
+    e.preventDefault();
+    showingSavedOnly = true;
+    applyFilters();
+  };
+  window.showAllJobs = function(e){
+    e.preventDefault();
+    showingSavedOnly = false;
+    applyFilters();
+  };
+
+  /* ── DOM refs ── */
   const grid=document.getElementById('jobsGrid'), meta=document.getElementById('resultsMeta'),
         loadWrap=document.getElementById('loadMoreWrap'), loadBtn=document.getElementById('loadMoreBtn'),
         kwInput=document.getElementById('kwInput'), locFilter=document.getElementById('locFilter'),
@@ -253,7 +334,10 @@
           type=typeFilter.value.toLowerCase(),
           cat=(chipsEl.querySelector('.chip.active')||{}).dataset.cat||'',
           sort=sortSel.value;
+    const saved = getSaved();
+
     filtered=JOBS.filter(j=>{
+      if(showingSavedOnly && !saved[j.id]) return false;
       if(kw&&!j.title.toLowerCase().includes(kw)&&!j.desc.toLowerCase().includes(kw)&&!j.category.toLowerCase().includes(kw))return false;
       if(loc&&!j.location.toLowerCase().includes(loc)&&!j.country.toLowerCase().includes(loc))return false;
       if(type&&!j.type.toLowerCase().includes(type))return false;
@@ -268,10 +352,11 @@
 
   function renderBatch(){
     if(!filtered.length){
-      grid.innerHTML='<div class="jd-state"><p style="font-size:1.05rem">No roles match your search.</p><p style="margin-top:0.5rem;font-size:0.88rem">Try different keywords or clear your filters.</p></div>';
+      grid.innerHTML='<div class="jd-state"><p style="font-size:1.05rem">'+(showingSavedOnly?'No saved jobs yet. Hit the &#9825; Save button on any role!':'No roles match your search.')+'</p></div>';
       loadWrap.style.display='none'; return;
     }
-    filtered.slice(shown,shown+PAGE_SIZE).forEach(j=>grid.insertAdjacentHTML('beforeend',cardHTML(j)));
+    const saved = getSaved();
+    filtered.slice(shown,shown+PAGE_SIZE).forEach(j=>grid.insertAdjacentHTML('beforeend',cardHTML(j, saved)));
     shown=Math.min(shown+PAGE_SIZE,filtered.length);
     loadWrap.style.display=shown<filtered.length?'block':'none';
   }
@@ -279,14 +364,16 @@
   const SL={rcrm:'RecruitCRM',js:'JobStreet',mcf:'MyCareersFuture'};
   const SC={rcrm:'src-rcrm',js:'src-js',mcf:'src-mcf'};
 
-  function cardHTML(j){
+  function cardHTML(j, saved){
+    const isSaved = !!saved[j.id];
     const loc=j.location?`<span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>${esc(j.location)}</span>`:'';
     const type=j.type?`<span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>${esc(j.type)}</span>`:'';
     const sal=j.salary?`<div><span class="jd-salary">&#128176; ${esc(j.salary)}</span></div>`:'';
     const src=`<span class="src-badge ${SC[j.source]||''}">${SL[j.source]||j.source}</span>`;
     const tag=j.category?`<span class="jd-tag">${esc(j.category)}</span>`:'';
     const ref=j.ref?`<span class="jd-ref">${esc(j.ref)}</span>`:'';
-    return `<div class="jd-card"><div class="jd-card-top">${tag}${src}</div><p class="jd-title">${esc(j.title)}</p><div class="jd-meta">${loc}${type}</div>${sal}<p class="jd-desc">${esc(j.desc)}</p><div class="jd-actions"><a href="${esc(j.url)}" target="_blank" rel="noopener" class="jd-apply">Apply Now</a>${ref}</div></div>`;
+    const saveBtn=`<button class="jd-save${isSaved?' saved':''}" onclick="toggleSave(this,'${esc(j.id)}','${esc(j.title)}')">${isSaved?'&#10084; Saved':'&#9825; Save'}</button>`;
+    return `<div class="jd-card"><div class="jd-card-top">${tag}${src}</div><p class="jd-title">${esc(j.title)}</p><div class="jd-meta">${loc}${type}</div>${sal}<p class="jd-desc">${esc(j.desc)}</p><div class="jd-actions"><a href="${esc(j.url)}" target="_blank" rel="noopener" class="jd-apply">Apply Now</a>${saveBtn}${ref}</div></div>`;
   }
 
   function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
@@ -303,6 +390,8 @@
     chip.classList.add('active'); applyFilters();
   });
   loadBtn.addEventListener('click',()=>{renderBatch();updateMeta();});
+
+  updateSavedCount();
   applyFilters();
 })();
 </script>
