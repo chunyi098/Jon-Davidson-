@@ -21,6 +21,11 @@
   <a href="index.html" class="auth-back">← Back to site</a>
 </header>
 
+<!-- Banner shown when redirected from Save button -->
+<div id="saveBanner" style="display:none;background:#fff8e1;border-bottom:1px solid #ffe082;padding:0.85rem 2rem;text-align:center;font-size:0.9rem;color:#5a4000">
+  &#128190; <strong>Log in or sign up</strong> to save this job and track your applications.
+</div>
+
 <div class="auth-layout">
 
   <!-- LEFT PANEL -->
@@ -91,11 +96,11 @@
 
         <div class="form-group">
           <label>Email address</label>
-          <input type="email" placeholder="you@example.com" />
+          <input type="email" id="loginEmail" placeholder="you@example.com" />
         </div>
         <div class="form-group">
           <label>Password</label>
-          <input type="password" placeholder="••••••••" />
+          <input type="password" id="loginPassword" placeholder="••••••••" />
         </div>
         <div class="form-row">
           <label class="check-label"><input type="checkbox" /> Remember me</label>
@@ -126,16 +131,16 @@
         <div class="form-row-2">
           <div class="form-group">
             <label>First Name</label>
-            <input type="text" placeholder="Jane" />
+            <input type="text" id="signupFirst" placeholder="Jane" />
           </div>
           <div class="form-group">
             <label>Last Name</label>
-            <input type="text" placeholder="Doe" />
+            <input type="text" id="signupLast" placeholder="Doe" />
           </div>
         </div>
         <div class="form-group">
           <label>Email address</label>
-          <input type="email" placeholder="you@example.com" />
+          <input type="email" id="signupEmail" placeholder="you@example.com" />
         </div>
         <div class="form-group">
           <label>Current Job Title</label>
@@ -143,35 +148,32 @@
         </div>
         <div class="form-group">
           <label>Password</label>
-          <input type="password" placeholder="Min. 8 characters" />
+          <input type="password" id="signupPassword" placeholder="Min. 8 characters" />
         </div>
 
-        <!-- CV UPLOAD -->
         <div class="form-group">
           <label>Upload CV / Resume <span class="optional">(optional)</span></label>
           <div class="upload-zone" id="uploadZone" onclick="document.getElementById('cvFile').click()" ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
             <div class="upload-icon">📄</div>
-            <p><strong>Click to upload</strong> or drag & drop</p>
+            <p><strong>Click to upload</strong> or drag &amp; drop</p>
             <p class="upload-hint">PDF, DOCX, DOC — max 5MB</p>
             <p class="upload-status" id="uploadStatus"></p>
           </div>
           <input type="file" id="cvFile" accept=".pdf,.doc,.docx" style="display:none" onchange="handleFileSelect(event)" />
         </div>
 
-        <!-- PORTFOLIO UPLOAD -->
         <div class="form-group">
           <label>Portfolio URL <span class="optional">(optional)</span></label>
           <input type="url" placeholder="https://yourportfolio.com" />
         </div>
 
-        <!-- PREFERENCES -->
         <div class="form-group">
           <label>Job Preferences</label>
           <div class="pref-tags" id="prefTags">
             <button type="button" class="pref-tag" onclick="togglePref(this)">Finance</button>
             <button type="button" class="pref-tag" onclick="togglePref(this)">Technology</button>
             <button type="button" class="pref-tag" onclick="togglePref(this)">HR</button>
-            <button type="button" class="pref-tag" onclick="togglePref(this)">Sales & Marketing</button>
+            <button type="button" class="pref-tag" onclick="togglePref(this)">Sales &amp; Marketing</button>
             <button type="button" class="pref-tag" onclick="togglePref(this)">Legal</button>
             <button type="button" class="pref-tag" onclick="togglePref(this)">Operations</button>
             <button type="button" class="pref-tag" onclick="togglePref(this)">C-Suite</button>
@@ -195,52 +197,94 @@
 </div>
 
 <script>
-  function switchTab(tab) {
-    document.getElementById('loginForm').classList.toggle('active', tab === 'login');
-    document.getElementById('signupForm').classList.toggle('active', tab === 'signup');
-    document.getElementById('tabLogin').classList.toggle('active', tab === 'login');
-    document.getElementById('tabSignup').classList.toggle('active', tab === 'signup');
+  /* ── Show save-redirect banner if user came from Save button ── */
+  (function(){
+    const p = new URLSearchParams(window.location.search);
+    if(p.get('from')==='save'){
+      document.getElementById('saveBanner').style.display='block';
+    }
+  })();
+
+  function switchTab(tab){
+    document.getElementById('loginForm').classList.toggle('active',tab==='login');
+    document.getElementById('signupForm').classList.toggle('active',tab==='signup');
+    document.getElementById('tabLogin').classList.toggle('active',tab==='login');
+    document.getElementById('tabSignup').classList.toggle('active',tab==='signup');
   }
 
-  function socialLogin(provider) {
-    // Placeholder — integrate OAuth (Google/LinkedIn) here
-    alert('Social login with ' + provider + ' — coming soon! Please connect OAuth credentials.');
+  function socialLogin(provider){
+    alert('Social login with '+provider+' — coming soon! Please connect OAuth credentials.');
   }
 
-  function handleLogin() {
-    alert('Login functionality coming soon. Please connect a backend auth service.');
+  function handleLogin(){
+    const email = document.getElementById('loginEmail').value.trim();
+    const pass  = document.getElementById('loginPassword').value;
+    if(!email||!pass){ alert('Please enter your email and password.'); return; }
+    /* Demo login — store user session so Save works across pages */
+    localStorage.setItem('jd_user', JSON.stringify({email, name: email.split('@')[0]}));
+    /* If they came from a Save redirect, go back to jobs and auto-save */
+    const pending = sessionStorage.getItem('jd_save_pending');
+    if(pending){
+      sessionStorage.removeItem('jd_save_pending');
+      const job = JSON.parse(pending);
+      try{
+        const saved = JSON.parse(localStorage.getItem('jd_saved_jobs')||'{}');
+        saved[job.id] = {id:job.id,title:job.title,savedAt:Date.now()};
+        localStorage.setItem('jd_saved_jobs',JSON.stringify(saved));
+      }catch(e){}
+      window.location.href = 'jobs.html';
+    } else {
+      window.location.href = 'jobs.html';
+    }
   }
 
-  function handleSignup() {
-    alert('Account created! This is a demo — connect a backend to enable real signups.');
+  function handleSignup(){
+    const first = document.getElementById('signupFirst').value.trim();
+    const last  = document.getElementById('signupLast').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
+    const pass  = document.getElementById('signupPassword').value;
+    if(!first||!email||!pass){ alert('Please fill in the required fields.'); return; }
+    /* Demo signup */
+    localStorage.setItem('jd_user', JSON.stringify({email, name: first+' '+last}));
+    const pending = sessionStorage.getItem('jd_save_pending');
+    if(pending){
+      sessionStorage.removeItem('jd_save_pending');
+      const job = JSON.parse(pending);
+      try{
+        const saved = JSON.parse(localStorage.getItem('jd_saved_jobs')||'{}');
+        saved[job.id] = {id:job.id,title:job.title,savedAt:Date.now()};
+        localStorage.setItem('jd_saved_jobs',JSON.stringify(saved));
+      }catch(e){}
+      window.location.href = 'jobs.html';
+    } else {
+      window.location.href = 'jobs.html';
+    }
   }
 
-  function handleDragOver(e) {
+  function handleDragOver(e){
     e.preventDefault();
     document.getElementById('uploadZone').classList.add('drag-over');
   }
 
-  function handleDrop(e) {
+  function handleDrop(e){
     e.preventDefault();
     document.getElementById('uploadZone').classList.remove('drag-over');
-    const file = e.dataTransfer.files[0];
-    if (file) showFile(file);
+    const file=e.dataTransfer.files[0];
+    if(file)showFile(file);
   }
 
-  function handleFileSelect(e) {
-    const file = e.target.files[0];
-    if (file) showFile(file);
+  function handleFileSelect(e){
+    const file=e.target.files[0];
+    if(file)showFile(file);
   }
 
-  function showFile(file) {
-    const status = document.getElementById('uploadStatus');
-    status.textContent = '✅ ' + file.name + ' (' + (file.size / 1024).toFixed(0) + ' KB)';
+  function showFile(file){
+    const status=document.getElementById('uploadStatus');
+    status.textContent='✅ '+file.name+' ('+(file.size/1024).toFixed(0)+' KB)';
     document.getElementById('uploadZone').classList.add('uploaded');
   }
 
-  function togglePref(el) {
-    el.classList.toggle('selected');
-  }
+  function togglePref(el){ el.classList.toggle('selected'); }
 </script>
 </body>
 </html>
