@@ -29,10 +29,7 @@ function searchJobs() {
   if (location) query += ' ' + location;
   if (category) query += ' ' + category;
 
-  const jobstreetUrl = `https://sg.jobstreet.com/companies/jondavidson-pte-ltd-168555410477312/jobs`;
   const recruitUrl = `https://recruitcrm.io/jobs/JonDavidson_jobs`;
-
-  // Open the recruitment portal
   window.open(recruitUrl, '_blank');
 }
 
@@ -42,6 +39,28 @@ document.addEventListener('DOMContentLoaded', () => {
   inputs.forEach(input => {
     input.addEventListener('keypress', e => {
       if (e.key === 'Enter') searchJobs();
+    });
+  });
+
+  // News filter buttons
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const newsCards = document.querySelectorAll('.news-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Update active button
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-filter');
+
+      newsCards.forEach(card => {
+        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
     });
   });
 });
