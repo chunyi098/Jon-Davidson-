@@ -51,30 +51,23 @@
     .cs-pl-link:hover{border-color:white}
     .cs-login-hint{margin-top:1.5rem;font-size:.85rem;color:rgba(255,255,255,.6)}
     .cs-login-hint a{color:var(--white);font-weight:600;border-bottom:1px solid rgba(255,255,255,.4)}
-
-    /* ── Save button ── */
+    /* Save button — floppy disk style matching screenshot */
     .btn-save {
-      display:inline-flex; align-items:center; gap:0.35rem;
+      display:inline-flex; align-items:center; gap:0.4rem;
       padding:0.5rem 1rem; border-radius:var(--radius,4px);
       border:1.5px solid var(--gray-mid,#e8e6e3);
-      font-family:var(--sans); font-size:0.84rem; font-weight:600;
+      font-family:var(--sans); font-size:0.84rem; font-weight:500;
       background:#fff; color:var(--text,#1a1a1a);
       cursor:pointer; transition:all 0.2s; text-decoration:none;
     }
     .btn-save:hover { border-color:var(--red); color:var(--red); }
-    .btn-save.saved {
-      background:var(--red); border-color:var(--red);
-      color:#fff;
-    }
-    .btn-save .save-icon { font-size:0.9rem; }
-
+    .btn-save.saved { background:var(--red); border-color:var(--red); color:#fff; }
     /* toast */
     #save-toast {
       position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(20px);
       background:#1a1a1a; color:#fff; padding:0.65rem 1.5rem;
       border-radius:50px; font-size:0.85rem; font-weight:500;
-      opacity:0; pointer-events:none;
-      transition:all 0.3s ease; z-index:9999; white-space:nowrap;
+      opacity:0; pointer-events:none; transition:all 0.3s ease; z-index:9999; white-space:nowrap;
     }
     #save-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
   </style>
@@ -163,7 +156,7 @@
     <div class="section-header"><h2>Featured <em>Roles</em></h2><a href="jobs.html" class="see-all">See all jobs &rarr;</a></div>
     <div class="jobs-grid">
 
-      <!-- CFO Regional -->
+      <!-- CFO Regional — direct apply token from RecruitCRM -->
       <div class="job-card">
         <div class="job-tag">Finance</div>
         <h3>CFO &mdash; Regional</h3>
@@ -172,9 +165,7 @@
         <p class="job-desc">Senior executive role overseeing financial strategy across Southeast Asian operations for a listed MNC.</p>
         <div class="job-actions">
           <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" rel="noopener" class="btn-apply">Apply</a>
-          <button class="btn-save" onclick="toggleSave(this,'cfo-regional','CFO &mdash; Regional')">
-            <span class="save-icon">&#9825;</span> Save
-          </button>
+          <button class="btn-save" onclick="toggleSave(this,'cfo-regional','CFO &mdash; Regional')">&#128190; Save</button>
         </div>
       </div>
 
@@ -187,13 +178,11 @@
         <p class="job-desc">Lead engineering teams for a high-growth fintech startup expanding across ASEAN markets.</p>
         <div class="job-actions">
           <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" rel="noopener" class="btn-apply">Apply</a>
-          <button class="btn-save" onclick="toggleSave(this,'vp-engineering','VP Engineering')">
-            <span class="save-icon">&#9825;</span> Save
-          </button>
+          <button class="btn-save" onclick="toggleSave(this,'vp-engineering','VP Engineering')">&#128190; Save</button>
         </div>
       </div>
 
-      <!-- Country Manager -->
+      <!-- Country Manager — JD-1260 direct apply token -->
       <div class="job-card">
         <div class="job-tag">C-Suite</div>
         <h3>Country Manager</h3>
@@ -201,10 +190,8 @@
         <p class="job-type">Permanent &middot; IDR Package</p>
         <p class="job-desc">P&amp;L ownership for Indonesia market of an established FMCG multinational.</p>
         <div class="job-actions">
-          <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" rel="noopener" class="btn-apply">Apply</a>
-          <button class="btn-save" onclick="toggleSave(this,'country-manager-jakarta','Country Manager')">
-            <span class="save-icon">&#9825;</span> Save
-          </button>
+          <a href="https://recruitcrm.io/apply/17670650940260007886REJ?source=Jobspage&new=yes" target="_blank" rel="noopener" class="btn-apply">Apply</a>
+          <button class="btn-save" onclick="toggleSave(this,'country-manager-jakarta','Country Manager')">&#128190; Save</button>
         </div>
       </div>
 
@@ -289,45 +276,20 @@
 <script>
 function searchJobs(){const k=document.getElementById('jobKeyword').value.trim(),l=document.getElementById('jobLocation').value.trim(),c=document.getElementById('jobCategory').value;let u='jobs.html?';if(k)u+='q='+encodeURIComponent(k)+'&';if(l)u+='loc='+encodeURIComponent(l)+'&';if(c)u+='cat='+encodeURIComponent(c);window.location.href=u;}
 document.addEventListener('keydown',function(e){if(e.key==='Enter'){const a=document.activeElement;if(a&&(a.id==='jobKeyword'||a.id==='jobLocation'))searchJobs();}});
-
-/* ── Save job (localStorage, no login needed) ── */
 function getSaved(){try{return JSON.parse(localStorage.getItem('jd_saved_jobs')||'{}');}catch(e){return{};}}
 function setSaved(obj){try{localStorage.setItem('jd_saved_jobs',JSON.stringify(obj));}catch(e){}}
-
-function toggleSave(btn, id, title){
-  const saved = getSaved();
-  const isSaved = !!saved[id];
-  if(isSaved){
-    delete saved[id];
-    btn.classList.remove('saved');
-    btn.innerHTML = '<span class="save-icon">&#9825;</span> Save';
-    showToast('Removed from saved jobs');
-  } else {
-    saved[id] = { id, title, savedAt: Date.now() };
-    btn.classList.add('saved');
-    btn.innerHTML = '<span class="save-icon">&#10084;</span> Saved';
-    showToast('Job saved! View on the Jobs page.');
-  }
+function toggleSave(btn,id,title){
+  const saved=getSaved(),isSaved=!!saved[id];
+  if(isSaved){delete saved[id];btn.classList.remove('saved');btn.textContent='\u{1F4BE} Save';showToast('Removed from saved jobs');}
+  else{saved[id]={id,title,savedAt:Date.now()};btn.classList.add('saved');btn.textContent='\u2713 Saved';showToast('Job saved!');}
   setSaved(saved);
 }
-
-function showToast(msg){
-  const t = document.getElementById('save-toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 2800);
-}
-
-/* Restore saved state on page load */
-document.addEventListener('DOMContentLoaded', function(){
-  const saved = getSaved();
+function showToast(msg){const t=document.getElementById('save-toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._tid);t._tid=setTimeout(()=>t.classList.remove('show'),2800);}
+document.addEventListener('DOMContentLoaded',function(){
+  const saved=getSaved();
   document.querySelectorAll('.btn-save').forEach(btn=>{
-    const onclick = btn.getAttribute('onclick')||'';
-    const match = onclick.match(/toggleSave\(this,'([^']+)'/);
-    if(match && saved[match[1]]){
-      btn.classList.add('saved');
-      btn.innerHTML = '<span class="save-icon">&#10084;</span> Saved';
-    }
+    const m=(btn.getAttribute('onclick')||'').match(/toggleSave\(this,'([^']+)'/);
+    if(m&&saved[m[1]]){btn.classList.add('saved');btn.textContent='\u2713 Saved';}
   });
 });
 </script>
