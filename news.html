@@ -11,17 +11,10 @@
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/nav.css"/>
   <style>
-    .news-img {
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-    .news-card {
-      transition: opacity 0.3s, transform 0.3s;
-    }
-    .news-card.hidden {
-      display: none;
-    }
+    .news-img{background-size:cover;background-position:center;background-repeat:no-repeat;}
+    .news-card{transition:opacity 0.3s,transform 0.3s;}
+    .news-card.hidden{display:none;}
+    .news-date{font-size:0.78rem;color:var(--gray);margin-bottom:0.4rem;font-weight:500;}
   </style>
 </head>
 <body>
@@ -64,12 +57,61 @@
       <button class="filter-btn" data-filter="sea-economy">SEA Economy</button>
     </div>
     <div class="news-grid" style="grid-template-columns:repeat(3,1fr)">
-      <div class="news-card" data-category="market-insights"><div class="news-img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5acb1194620b85a6e2909b61/1573831518593-Z54IVIEU6RBLVC6WBZHV/chess.jpg')"></div><div class="news-body"><span class="news-tag">Market Insights</span><h3>Southeast Asia Talent Trends 2025: What Leaders Need to Know</h3><p>The evolving expectations of C-suite candidates and how organisations are adapting.</p><a href="article-sea-talent-trends.html" class="read-more">Read More &rarr;</a></div></div>
-      <div class="news-card" data-category="career-advice"><div class="news-img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5acb1194620b85a6e2909b61/1527421977304-DCILHSRDHPDR278K1AU3/Jondavidson-_2018May27-82.jpg')"></div><div class="news-body"><span class="news-tag">Career Advice</span><h3>How to Position Yourself for an Executive Role in 2025</h3><p>Practical strategies for senior professionals looking to make the move into leadership.</p><a href="article-executive-role.html" class="read-more">Read More &rarr;</a></div></div>
-      <div class="news-card" data-category="employer-insights"><div class="news-img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5acb1194620b85a6e2909b61/1527211748805-J9P2F28X52CU7A9EBA4W/Jondavidson-recruitment-black-and-white-child-connected-265702.jpg')"></div><div class="news-body"><span class="news-tag">Employer Insights</span><h3>Why Cultural Fit Matters More Than Ever in Hiring</h3><p>Research shows cultural misalignment is the top reason for early executive departures.</p><a href="article-cultural-fit.html" class="read-more">Read More &rarr;</a></div></div>
-      <div class="news-card" data-category="leadership"><div class="news-img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5acb1194620b85a6e2909b61/1534823161406-ZMPUWXFDK08KQ0DCQZQB/jondavidson_20120614_120038.jpg')"></div><div class="news-body"><span class="news-tag">Leadership</span><h3>The New CFO: Financial Steward Meets Strategic Partner</h3><p>The CFO role has transformed dramatically &mdash; here&apos;s what boards are now looking for.</p><a href="article-new-cfo.html" class="read-more">Read More &rarr;</a></div></div>
-      <div class="news-card" data-category="sea-economy"><div class="news-img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5acb1194620b85a6e2909b61/1539383484106-HAGD9XT9XOGK2LA1V0B3/jondavidson-20180927_095506.jpg')"></div><div class="news-body"><span class="news-tag">SEA Economy</span><h3>ASEAN&apos;s Digital Economy: Talent Implications for 2025</h3><p>As ASEAN&apos;s digital economy accelerates, the war for tech-savvy executives intensifies.</p><a href="article-asean-digital.html" class="read-more">Read More &rarr;</a></div></div>
-      <div class="news-card" data-category="market-insights"><div class="news-img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5acb1194620b85a6e2909b61/1581578585336-T33WD749RO8ECTUED31V/STPic1.jpg')"></div><div class="news-body"><span class="news-tag">Market Insights</span><h3>Salary Benchmarking: Mid-to-Senior Finance Roles in Singapore</h3><p>Our latest data on compensation expectations for finance professionals.</p><a href="article-salary-benchmarking.html" class="read-more">Read More &rarr;</a></div></div>
+
+      <!-- NEW: Jan 2025 -->
+      <div class="news-card" data-category="market-insights">
+        <div class="news-img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5acb1194620b85a6e2909b61/1573831518593-Z54IVIEU6RBLVC6WBZHV/chess.jpg')"></div>
+        <div class="news-body"><p class="news-date">January 2025</p><span class="news-tag">Market Insights</span><h3>Southeast Asia Talent Trends 2025: What Leaders Need to Know</h3><p>The evolving expectations of C-suite candidates and how organisations are adapting.</p><a href="article-sea-talent-trends.html" class="read-more">Read More &rarr;</a></div>
+      </div>
+
+      <!-- NEW: Feb 2025 -->
+      <div class="news-card" data-category="career-advice">
+        <div class="news-img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5acb1194620b85a6e2909b61/1527421977304-DCILHSRDHPDR278K1AU3/Jondavidson-_2018May27-82.jpg')"></div>
+        <div class="news-body"><p class="news-date">February 2025</p><span class="news-tag">Career Advice</span><h3>How to Position Yourself for an Executive Role in 2025</h3><p>Practical strategies for senior professionals looking to make the move into leadership.</p><a href="article-executive-role.html" class="read-more">Read More &rarr;</a></div>
+      </div>
+
+      <!-- NEW: Mar 2025 -->
+      <div class="news-card" data-category="employer-insights">
+        <div class="news-img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5acb1194620b85a6e2909b61/1527211748805-J9P2F28X52CU7A9EBA4W/Jondavidson-recruitment-black-and-white-child-connected-265702.jpg')"></div>
+        <div class="news-body"><p class="news-date">March 2025</p><span class="news-tag">Employer Insights</span><h3>Why Cultural Fit Matters More Than Ever in Hiring</h3><p>Research shows cultural misalignment is the top reason for early executive departures.</p><a href="article-cultural-fit.html" class="read-more">Read More &rarr;</a></div>
+      </div>
+
+      <!-- NEW: Mar 2025 -->
+      <div class="news-card" data-category="leadership">
+        <div class="news-img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5acb1194620b85a6e2909b61/1534823161406-ZMPUWXFDK08KQ0DCQZQB/jondavidson_20120614_120038.jpg')"></div>
+        <div class="news-body"><p class="news-date">March 2025</p><span class="news-tag">Leadership</span><h3>The New CFO: Financial Steward Meets Strategic Partner</h3><p>The CFO role has transformed dramatically &mdash; here&apos;s what boards are now looking for.</p><a href="article-new-cfo.html" class="read-more">Read More &rarr;</a></div>
+      </div>
+
+      <!-- NEW: Apr 2025 -->
+      <div class="news-card" data-category="sea-economy">
+        <div class="news-img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5acb1194620b85a6e2909b61/1539383484106-HAGD9XT9XOGK2LA1V0B3/jondavidson-20180927_095506.jpg')"></div>
+        <div class="news-body"><p class="news-date">April 2025</p><span class="news-tag">SEA Economy</span><h3>ASEAN&apos;s Digital Economy: Talent Implications for 2025</h3><p>As ASEAN&apos;s digital economy accelerates, the war for tech-savvy executives intensifies.</p><a href="article-asean-digital.html" class="read-more">Read More &rarr;</a></div>
+      </div>
+
+      <!-- NEW: Apr 2025 -->
+      <div class="news-card" data-category="market-insights">
+        <div class="news-img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5acb1194620b85a6e2909b61/1581578585336-T33WD749RO8ECTUED31V/STPic1.jpg')"></div>
+        <div class="news-body"><p class="news-date">April 2025</p><span class="news-tag">Market Insights</span><h3>Salary Benchmarking: Mid-to-Senior Finance Roles in Singapore</h3><p>Our latest data on compensation expectations for finance professionals.</p><a href="article-salary-benchmarking.html" class="read-more">Read More &rarr;</a></div>
+      </div>
+
+      <!-- OLD: Feb 2020 -->
+      <div class="news-card" data-category="career-advice">
+        <div class="news-img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5acb1194620b85a6e2909b61/1581578585336-T33WD749RO8ECTUED31V/STPic1.jpg')"></div>
+        <div class="news-body"><p class="news-date">13 February 2020</p><span class="news-tag">Career Advice</span><h3>Career Starts to Stagnate at Age 48, Singapore Survey on Ageism at Work Shows</h3><p>A Randstad survey reveals that Singaporeans expect their careers to peak well before retirement age.</p><a href="article-ageism-singapore.html" class="read-more">Read More &rarr;</a></div>
+      </div>
+
+      <!-- OLD: Nov 2019 -->
+      <div class="news-card" data-category="employer-insights">
+        <div class="news-img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5acb1194620b85a6e2909b61/1573831518593-Z54IVIEU6RBLVC6WBZHV/chess.jpg')"></div>
+        <div class="news-body"><p class="news-date">4 November 2019</p><span class="news-tag">Employer Insights</span><h3>Talent Management &ndash; Hiring the Best</h3><p>A methodology for hiring, keeping and evolving the best employees while focusing on organisational objectives.</p><a href="article-talent-management.html" class="read-more">Read More &rarr;</a></div>
+      </div>
+
+      <!-- OLD: Sep 2019 -->
+      <div class="news-card" data-category="leadership">
+        <div class="news-img" style="background-image:url('https://images.squarespace-cdn.com/content/v1/5acb1194620b85a6e2909b61/1568883574077-DQHLDRW5WDZNN33T1N01/Managing-HR-in-Universities.jpeg')"></div>
+        <div class="news-body"><p class="news-date">19 September 2019</p><span class="news-tag">Leadership</span><h3>Get to Know About HR Office Politics &mdash; Learn How to Play It?</h3><p>Understanding office politics and how to navigate them positively for your career.</p><a href="article-hr-office-politics.html" class="read-more">Read More &rarr;</a></div>
+      </div>
+
     </div>
   </div>
 </section>
