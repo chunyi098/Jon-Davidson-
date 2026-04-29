@@ -1,35 +1,9 @@
 /* =============================================
-   JONDAVIDSON — Futuristic Hero Overrides
-   Dark cinematic hero with animated canvas,
-   glassmorphism stats & glowing accents
+   JONDAVIDSON — Hero Enhancement
+   Original warm colour scheme preserved.
+   Adds: animated SVG bg, floating orbs,
+   subtle grid, enhanced stat cards.
 ============================================= */
-
-/* ---- Navbar: transparent/dark over the hero ---- */
-.navbar-dark {
-  background: rgba(5, 5, 10, 0.55) !important;
-  border-bottom-color: rgba(255,255,255,0.06) !important;
-  backdrop-filter: blur(18px) !important;
-}
-.navbar-dark .nav-item,
-.navbar-dark .nav-item a,
-.navbar-dark .nav-logo .tagline {
-  color: rgba(255,255,255,0.82) !important;
-}
-.navbar-dark .nav-item:hover,
-.navbar-dark .nav-item a:hover { color: #ff3333 !important; }
-.navbar-dark .btn-contact {
-  border-color: rgba(255,255,255,0.25) !important;
-  color: rgba(255,255,255,0.82) !important;
-}
-.navbar-dark .btn-contact:hover {
-  border-color: #ff3333 !important;
-  color: #ff3333 !important;
-}
-.navbar-dark .btn-login-icon {
-  border-color: rgba(255,255,255,0.35) !important;
-}
-.navbar-dark .btn-login-icon svg { stroke: rgba(255,255,255,0.75) !important; }
-.navbar-dark .hamburger span { background: #fff !important; }
 
 /* ---- Hero wrapper ---- */
 .hero {
@@ -47,60 +21,54 @@
   overflow: hidden;
 }
 
-/* ---- Background image + overlays ---- */
+/* ---- Background: warm cream gradient base ---- */
 .hero-bg {
   position: absolute !important;
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  background-image: url('https://images.unsplash.com/photo-1538708591342-2dcd6706e3b4?w=1800&q=80&auto=format&fit=crop') !important;
-  background-size: cover !important;
-  background-position: center 60% !important;
+  background: linear-gradient(135deg, #fdf9f4 0%, #f5ede0 40%, #ede0d0 70%, #f8f3ec 100%) !important;
   z-index: 0 !important;
   pointer-events: none !important;
 }
-/* Deep colour grade over the photo */
-.hero-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(110deg,
-      rgba(2,2,8,0.92) 0%,
-      rgba(5,5,18,0.80) 45%,
-      rgba(10,0,3,0.65) 100%);
-}
-/* Subtle scan-line grain */
+
+/* Soft radial glow — warm amber top-left */
 .hero-bg::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0,0,0,0.06) 2px,
-    rgba(0,0,0,0.06) 4px
-  );
-  z-index: 1;
-  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 60% at 15% 20%, rgba(158,4,3,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 80% 80%, rgba(200,130,60,0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 60% 10%, rgba(158,4,3,0.04) 0%, transparent 60%);
+  z-index: 0;
 }
 
-/* ---- Canvas for particle grid ---- */
+/* Fine dot-grid texture */
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(158,4,3,0.12) 1px, transparent 1px);
+  background-size: 32px 32px;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+/* ---- Canvas for animated floating shapes ---- */
 #hero-canvas {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
-  opacity: 0.45;
 }
 
 /* ---- Inner layout wrapper ---- */
 .hero-inner {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -111,89 +79,43 @@
   width: 100%;
 }
 
-/* ---- Content side ---- */
-.hero-content { position: relative; }
+/* ---- Keep all original text colours ---- */
+.hero-eyebrow { color: var(--red) !important; }
+.hero-eyebrow .line { background: var(--red) !important; }
+.hero-title { color: var(--text) !important; }
+.hero-title em { color: var(--red) !important; text-shadow: none !important; }
+.hero-sub { color: var(--text-light) !important; }
 
-.hero-eyebrow {
-  color: #e03030 !important;
-  letter-spacing: 0.2em !important;
-  font-size: 0.7rem !important;
-  margin-bottom: 1.75rem !important;
-}
-.hero-eyebrow .line { background: #e03030 !important; }
-
-.hero-title {
-  font-size: clamp(3.2rem, 5.5vw, 5.2rem) !important;
-  color: #f0ece8 !important;
-  line-height: 1.04 !important;
-  text-shadow: 0 0 60px rgba(220,30,30,0.12);
-}
-.hero-title em {
-  color: #e03030 !important;
-  font-style: italic;
-  text-shadow: 0 0 40px rgba(224,48,48,0.5), 0 0 80px rgba(224,48,48,0.2);
-}
-
-.hero-sub {
-  color: rgba(240,236,232,0.68) !important;
-  font-size: 1rem !important;
-  line-height: 1.8 !important;
-}
-
-/* Override button outlines for dark hero */
-.hero-btns .btn-outline {
-  color: rgba(240,236,232,0.88) !important;
-  border-color: rgba(240,236,232,0.35) !important;
-}
-.hero-btns .btn-outline:hover {
-  background: rgba(240,236,232,0.12) !important;
-  color: #fff !important;
-  border-color: rgba(255,255,255,0.65) !important;
-}
-.hero-btns .btn-primary {
-  background: #c0160f !important;
-  border-color: #c0160f !important;
-  box-shadow: 0 0 24px rgba(192,22,15,0.45);
-}
-.hero-btns .btn-primary:hover {
-  background: #e02020 !important;
-  box-shadow: 0 0 40px rgba(224,32,32,0.6);
-}
-
-/* ---- Stat cards: glassmorphism ---- */
+/* ---- Stat cards: lifted with soft shadow & accent border ---- */
 .hero-stats { display: flex; flex-direction: column; gap: 1rem; }
 
 .stat-card {
-  background: rgba(255,255,255,0.04) !important;
-  border: 1px solid rgba(255,255,255,0.10) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06) !important;
+  background: rgba(255,255,255,0.80) !important;
+  border: 1px solid rgba(232,220,208,0.9) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 24px rgba(158,4,3,0.06), 0 1px 4px rgba(0,0,0,0.04) !important;
   border-radius: 10px !important;
   transition: transform 0.3s ease, box-shadow 0.3s ease !important;
 }
 .stat-card:hover {
   transform: translateY(-4px) !important;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(224,48,48,0.25), inset 0 1px 0 rgba(255,255,255,0.1) !important;
+  box-shadow: 0 12px 40px rgba(158,4,3,0.12), 0 2px 8px rgba(0,0,0,0.06) !important;
+  border-color: rgba(158,4,3,0.18) !important;
 }
 
-.stat-num { color: #f0ece8 !important; }
-.stat-large p { color: rgba(240,236,232,0.55) !important; }
-.stat-label { color: rgba(240,236,232,0.4) !important; }
+.stat-num { color: var(--text) !important; }
+.stat-large p { color: var(--text-light) !important; }
+.stat-label { color: var(--gray) !important; }
 
 .stat-accent {
-  background: rgba(192,22,15,0.18) !important;
-  border-color: rgba(224,48,48,0.30) !important;
-  box-shadow: 0 8px 32px rgba(192,22,15,0.20), inset 0 1px 0 rgba(255,100,100,0.1) !important;
+  background: var(--text) !important;
+  border-color: var(--text) !important;
 }
-.stat-accent .stat-num-sm { color: #f8dada !important; }
-.stat-accent .stat-label { color: rgba(248,218,218,0.55) !important; }
-.dot {
-  background: #e03030 !important;
-  box-shadow: 0 0 0 4px rgba(224,48,48,0.25), 0 0 12px rgba(224,48,48,0.6) !important;
-}
+.stat-accent .stat-num-sm { color: var(--white) !important; }
+.stat-accent .stat-label { color: rgba(255,255,255,0.6) !important; }
 
-/* ---- Glowing corner accent lines ---- */
+/* ---- Decorative corner lines (brand red) ---- */
 .hero-inner::before,
 .hero-inner::after {
   content: '';
@@ -201,16 +123,16 @@
   pointer-events: none;
 }
 .hero-inner::before {
-  top: 5rem; left: 2rem;
-  width: 120px; height: 120px;
-  border-top: 1px solid rgba(224,48,48,0.4);
-  border-left: 1px solid rgba(224,48,48,0.4);
+  top: 4rem; left: 2rem;
+  width: 100px; height: 100px;
+  border-top: 1.5px solid rgba(158,4,3,0.2);
+  border-left: 1.5px solid rgba(158,4,3,0.2);
 }
 .hero-inner::after {
-  bottom: 5rem; right: 2rem;
-  width: 80px; height: 80px;
-  border-bottom: 1px solid rgba(224,48,48,0.25);
-  border-right: 1px solid rgba(224,48,48,0.25);
+  bottom: 4rem; right: 2rem;
+  width: 70px; height: 70px;
+  border-bottom: 1.5px solid rgba(158,4,3,0.15);
+  border-right: 1.5px solid rgba(158,4,3,0.15);
 }
 
 /* ---- Responsive ---- */
