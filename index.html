@@ -52,28 +52,12 @@
     .cs-pl-link:hover{border-color:white}
     .cs-login-hint{margin-top:1.5rem;font-size:.85rem;color:rgba(255,255,255,.6)}
     .cs-login-hint a{color:var(--white);font-weight:600;border-bottom:1px solid rgba(255,255,255,.4)}
-    .btn-save {
-      display:inline-flex; align-items:center; gap:0.4rem;
-      padding:0.5rem 1rem; border-radius:var(--radius,4px);
-      border:1.5px solid var(--gray-mid,#e8e6e3);
-      font-family:var(--sans); font-size:0.84rem; font-weight:500;
-      background:#fff; color:var(--text,#1a1a1a);
-      cursor:pointer; transition:all 0.2s; text-decoration:none;
-    }
-    .btn-save:hover { border-color:var(--red); color:var(--red); }
-    .btn-save.saved { background:var(--red); border-color:var(--red); color:#fff; }
-    #save-toast {
-      position:fixed; bottom:1.5rem; left:50%; transform:translateX(-50%) translateY(20px);
-      background:#1a1a1a; color:#fff; padding:0.65rem 1.5rem;
-      border-radius:50px; font-size:0.85rem; font-weight:500;
-      opacity:0; pointer-events:none; transition:all 0.3s ease; z-index:9999; white-space:nowrap;
-    }
-    #save-toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
-    .news-img {
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
+    .btn-save{display:inline-flex;align-items:center;gap:0.4rem;padding:0.5rem 1rem;border-radius:var(--radius,4px);border:1.5px solid var(--gray-mid,#e8e6e3);font-family:var(--sans);font-size:0.84rem;font-weight:500;background:#fff;color:var(--text,#1a1a1a);cursor:pointer;transition:all 0.2s;text-decoration:none}
+    .btn-save:hover{border-color:var(--red);color:var(--red)}
+    .btn-save.saved{background:var(--red);border-color:var(--red);color:#fff}
+    #save-toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(20px);background:#1a1a1a;color:#fff;padding:0.65rem 1.5rem;border-radius:50px;font-size:0.85rem;font-weight:500;opacity:0;pointer-events:none;transition:all 0.3s ease;z-index:9999;white-space:nowrap}
+    #save-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    .news-img{background-size:cover;background-position:center;background-repeat:no-repeat}
   </style>
 </head>
 <body>
@@ -109,7 +93,7 @@
       <p class="hero-eyebrow"><span class="line"></span> EXECUTIVE SEARCH &amp; STAFFING &middot; SOUTHEAST ASIA</p>
       <h1 class="hero-title">Connecting<br/><em>Talent</em><br/>With Opportunity</h1>
       <p class="hero-sub">An extension of your organisation. We identify, attract and place high-performing professionals across Southeast Asia &mdash; built on trust, relationship, and integrity.</p>
-      <div class="hero-btns"><a href="#what-today" class="btn-primary">Find Your Role &rarr;</a><a href="hire.html" class="btn-outline">Engage Us</a></div>
+      <div class="hero-btns" style="margin-top:2.5rem;"><a href="jobs.html" class="btn-primary">Browse Latest Jobs &rarr;</a><a href="hire.html" class="btn-outline">Engage Us</a></div>
     </div>
     <div class="hero-stats">
       <div class="stat-card stat-large"><div class="stat-num">40<span class="plus">+</span></div><div class="stat-label">YEARS OF EXPERTISE</div><p>Established focus on middle to C-suite recruitment since 1980 &mdash; depth that generalists can&apos;t match.</p></div>
@@ -162,39 +146,9 @@
   <div class="container">
     <div class="section-header"><h2>Featured <em>Roles</em></h2></div>
     <div class="jobs-grid">
-      <div class="job-card">
-        <div class="job-tag">Technology</div>
-        <h3>Enterprise Solution Architect</h3>
-        <p class="job-location">&#128205; Singapore</p>
-        <p class="job-type">Permanent &middot; $15,000&ndash;18,000/mo</p>
-        <p class="job-desc">Design enterprise technology solutions for public sector clients in a pre-sales capacity. High-impact, client-facing role.</p>
-        <div class="job-actions">
-          <a href="https://recruitcrm.io/apply/17749795927740007886ZXM?source=Jobspage&new=yes" target="_blank" rel="noopener" class="btn-apply">Apply</a>
-          <button class="btn-save" onclick="handleSave(this,'r1275','Enterprise Solution Architect')">&#128190; Save</button>
-        </div>
-      </div>
-      <div class="job-card">
-        <div class="job-tag">Sales</div>
-        <h3>Sales Manager &mdash; SEA Service Providers</h3>
-        <p class="job-location">&#128205; Singapore</p>
-        <p class="job-type">Permanent &middot; $8,000&ndash;15,000/mo</p>
-        <p class="job-desc">Drive sales to telcos, VoIP and network service providers across Southeast Asia for a leading technology company.</p>
-        <div class="job-actions">
-          <a href="https://recruitcrm.io/apply/17757873443980007886iQc?source=Jobspage&new=yes" target="_blank" rel="noopener" class="btn-apply">Apply</a>
-          <button class="btn-save" onclick="handleSave(this,'r1277','Sales Manager SEA')">&#128190; Save</button>
-        </div>
-      </div>
-      <div class="job-card">
-        <div class="job-tag">C-Suite</div>
-        <h3>Country General Manager &mdash; Indonesia</h3>
-        <p class="job-location">&#128205; Jakarta</p>
-        <p class="job-type">Permanent &middot; Competitive Package</p>
-        <p class="job-desc">Lead all Indonesia operations with full P&amp;L accountability for an established regional business.</p>
-        <div class="job-actions">
-          <a href="https://recruitcrm.io/apply/17670650940260007886REJ?source=Jobspage&new=yes" target="_blank" rel="noopener" class="btn-apply">Apply</a>
-          <button class="btn-save" onclick="handleSave(this,'r1260','Country General Manager Indonesia')">&#128190; Save</button>
-        </div>
-      </div>
+      <div class="job-card"><div class="job-tag">Technology</div><h3>Enterprise Solution Architect</h3><p class="job-location">&#128205; Singapore</p><p class="job-type">Permanent &middot; $15,000&ndash;18,000/mo</p><p class="job-desc">Design enterprise technology solutions for public sector clients in a pre-sales capacity. High-impact, client-facing role.</p><div class="job-actions"><a href="https://recruitcrm.io/apply/17749795927740007886ZXM?source=Jobspage&new=yes" target="_blank" rel="noopener" class="btn-apply">Apply</a><button class="btn-save" onclick="handleSave(this,'r1275','Enterprise Solution Architect')">&#128190; Save</button></div></div>
+      <div class="job-card"><div class="job-tag">Sales</div><h3>Sales Manager &mdash; SEA Service Providers</h3><p class="job-location">&#128205; Singapore</p><p class="job-type">Permanent &middot; $8,000&ndash;15,000/mo</p><p class="job-desc">Drive sales to telcos, VoIP and network service providers across Southeast Asia for a leading technology company.</p><div class="job-actions"><a href="https://recruitcrm.io/apply/17757873443980007886iQc?source=Jobspage&new=yes" target="_blank" rel="noopener" class="btn-apply">Apply</a><button class="btn-save" onclick="handleSave(this,'r1277','Sales Manager SEA')">&#128190; Save</button></div></div>
+      <div class="job-card"><div class="job-tag">C-Suite</div><h3>Country General Manager &mdash; Indonesia</h3><p class="job-location">&#128205; Jakarta</p><p class="job-type">Permanent &middot; Competitive Package</p><p class="job-desc">Lead all Indonesia operations with full P&amp;L accountability for an established regional business.</p><div class="job-actions"><a href="https://recruitcrm.io/apply/17670650940260007886REJ?source=Jobspage&new=yes" target="_blank" rel="noopener" class="btn-apply">Apply</a><button class="btn-save" onclick="handleSave(this,'r1260','Country General Manager Indonesia')">&#128190; Save</button></div></div>
     </div>
     <div class="jobs-cta"><a href="jobs.html" class="btn-primary">Browse All Jobs</a></div>
   </div>
@@ -271,19 +225,13 @@
 
 <script src="js/main.js"></script>
 <script>
-/* ---- Job search ---- */
 function searchJobs(){const k=document.getElementById('jobKeyword').value.trim(),l=document.getElementById('jobLocation').value.trim(),c=document.getElementById('jobCategory').value;let u='jobs.html?';if(k)u+='q='+encodeURIComponent(k)+'&';if(l)u+='loc='+encodeURIComponent(l)+'&';if(c)u+='cat='+encodeURIComponent(c);window.location.href=u;}
 document.addEventListener('keydown',function(e){if(e.key==='Enter'){const a=document.activeElement;if(a&&(a.id==='jobKeyword'||a.id==='jobLocation'))searchJobs();}});
 function isLoggedIn(){return!!localStorage.getItem('jd_user');}
 function getSaved(){try{return JSON.parse(localStorage.getItem('jd_saved_jobs')||'{}');}catch(e){return{};}}
 function setSaved(obj){try{localStorage.setItem('jd_saved_jobs',JSON.stringify(obj));}catch(e){}}
 function handleSave(btn,id,title){
-  if(!isLoggedIn()){
-    sessionStorage.setItem('jd_save_pending',JSON.stringify({id,title}));
-    showToast('Please log in to save jobs');
-    setTimeout(()=>{ window.location.href='login.html?from=save&job='+encodeURIComponent(title); },900);
-    return;
-  }
+  if(!isLoggedIn()){sessionStorage.setItem('jd_save_pending',JSON.stringify({id,title}));showToast('Please log in to save jobs');setTimeout(()=>{window.location.href='login.html?from=save&job='+encodeURIComponent(title);},900);return;}
   const saved=getSaved(),isSaved=!!saved[id];
   if(isSaved){delete saved[id];btn.classList.remove('saved');btn.textContent='\u{1F4BE} Save';showToast('Removed from saved jobs');}
   else{saved[id]={id,title,savedAt:Date.now()};btn.classList.add('saved');btn.textContent='\u2713 Saved';showToast('Job saved!');}
@@ -293,104 +241,8 @@ function showToast(msg){const t=document.getElementById('save-toast');t.textCont
 document.addEventListener('DOMContentLoaded',function(){
   if(!isLoggedIn()) return;
   const saved=getSaved();
-  document.querySelectorAll('.btn-save').forEach(btn=>{
-    const m=(btn.getAttribute('onclick')||'').match(/handleSave\(this,'([^']+)'/);
-    if(m&&saved[m[1]]){btn.classList.add('saved');btn.textContent='\u2713 Saved';}
-  });
+  document.querySelectorAll('.btn-save').forEach(btn=>{const m=(btn.getAttribute('onclick')||'').match(/handleSave\(this,'([^']+)'/);if(m&&saved[m[1]]){btn.classList.add('saved');btn.textContent='\u2713 Saved';}});
 });
-
-/* ---- Warm floating shapes canvas ---- */
-(function(){
-  const canvas = document.getElementById('hero-canvas');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-
-  function resize(){
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize, {passive:true});
-
-  // Gentle floating circles
-  const circles = Array.from({length:18}, () => ({
-    x: Math.random(),
-    y: Math.random(),
-    r: 40 + Math.random() * 120,
-    vx: (Math.random()-0.5) * 0.00008,
-    vy: (Math.random()-0.5) * 0.00008,
-    phase: Math.random() * Math.PI * 2,
-    speed: 0.003 + Math.random() * 0.004,
-    // alternate between warm red and golden tones
-    hue: Math.random() < 0.4 ? 'red' : 'gold'
-  }));
-
-  // Fine connecting lines between nearby nodes
-  const nodes = Array.from({length:30}, () => ({
-    x: Math.random(),
-    y: Math.random(),
-    vx: (Math.random()-0.5) * 0.00012,
-    vy: (Math.random()-0.5) * 0.00012,
-  }));
-
-  function draw(){
-    const W = canvas.width, H = canvas.height;
-    ctx.clearRect(0,0,W,H);
-
-    // Floating soft orbs
-    circles.forEach(c => {
-      c.x += c.vx; c.y += c.vy; c.phase += c.speed;
-      if(c.x < -0.2) c.x = 1.2; if(c.x > 1.2) c.x = -0.2;
-      if(c.y < -0.2) c.y = 1.2; if(c.y > 1.2) c.y = -0.2;
-      const alpha = 0.04 + 0.025 * Math.sin(c.phase);
-      const grad = ctx.createRadialGradient(c.x*W, c.y*H, 0, c.x*W, c.y*H, c.r);
-      if(c.hue === 'red'){
-        grad.addColorStop(0, `rgba(158,4,3,${alpha * 2.5})`);
-        grad.addColorStop(1, 'rgba(158,4,3,0)');
-      } else {
-        grad.addColorStop(0, `rgba(200,130,50,${alpha * 2})`);
-        grad.addColorStop(1, 'rgba(200,130,50,0)');
-      }
-      ctx.beginPath();
-      ctx.arc(c.x*W, c.y*H, c.r, 0, Math.PI*2);
-      ctx.fillStyle = grad;
-      ctx.fill();
-    });
-
-    // Subtle node network
-    nodes.forEach(n => {
-      n.x += n.vx; n.y += n.vy;
-      if(n.x<0||n.x>1) n.vx*=-1;
-      if(n.y<0||n.y>1) n.vy*=-1;
-    });
-    for(let i=0;i<nodes.length;i++){
-      for(let j=i+1;j<nodes.length;j++){
-        const a=nodes[i],b=nodes[j];
-        const dx=a.x-b.x, dy=a.y-b.y;
-        const dist=Math.sqrt(dx*dx+dy*dy);
-        if(dist<0.16){
-          const alpha=(1-dist/0.16)*0.07;
-          ctx.beginPath();
-          ctx.moveTo(a.x*W,a.y*H);
-          ctx.lineTo(b.x*W,b.y*H);
-          ctx.strokeStyle=`rgba(158,4,3,${alpha})`;
-          ctx.lineWidth=0.6;
-          ctx.stroke();
-        }
-      }
-    }
-    // Tiny node dots
-    nodes.forEach((n,i) => {
-      ctx.beginPath();
-      ctx.arc(n.x*W,n.y*H,1.2,0,Math.PI*2);
-      ctx.fillStyle=i%5===0?'rgba(158,4,3,0.18)':'rgba(158,4,3,0.08)';
-      ctx.fill();
-    });
-
-    requestAnimationFrame(draw);
-  }
-  requestAnimationFrame(draw);
-})();
 </script>
 </body>
 </html>
