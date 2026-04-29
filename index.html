@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/hero-futuristic.css" />
   <style>
     .hero-intent{background:var(--white);padding:5rem 0 4rem;text-align:center;border-bottom:1px solid var(--gray-mid)}
     .hero-intent .intent-eyebrow{font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);font-weight:600;margin-bottom:1rem}
@@ -102,16 +103,19 @@
 
 <section class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-content">
-    <p class="hero-eyebrow"><span class="line"></span> EXECUTIVE SEARCH &amp; STAFFING &middot; SOUTHEAST ASIA</p>
-    <h1 class="hero-title">Connecting<br/><em>Talent</em><br/>With Opportunity</h1>
-    <p class="hero-sub">An extension of your organisation. We identify, attract and place high-performing professionals across Southeast Asia &mdash; built on trust, relationship, and integrity.</p>
-    <div class="hero-btns"><a href="#what-today" class="btn-primary">Find Your Role &rarr;</a><a href="hire.html" class="btn-outline">Engage Us</a></div>
-  </div>
-  <div class="hero-stats">
-    <div class="stat-card stat-large"><div class="stat-num">40<span class="plus">+</span></div><div class="stat-label">YEARS OF EXPERTISE</div><p>Established focus on middle to C-suite recruitment since 1980 &mdash; depth that generalists can&apos;t match.</p></div>
-    <div class="stat-row"><div class="stat-card"><div class="stat-num">50<span class="plus">+</span></div><div class="stat-label">ENEX OFFICES</div></div><div class="stat-card"><div class="stat-num">6</div><div class="stat-label">COUNTRIES SERVED</div></div></div>
-    <div class="stat-card stat-accent"><span class="dot"></span><div><div class="stat-num-sm">66,000+ Network</div><div class="stat-label">Active professionals across Southeast Asia</div></div></div>
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <p class="hero-eyebrow"><span class="line"></span> EXECUTIVE SEARCH &amp; STAFFING &middot; SOUTHEAST ASIA</p>
+      <h1 class="hero-title">Connecting<br/><em>Talent</em><br/>With Opportunity</h1>
+      <p class="hero-sub">An extension of your organisation. We identify, attract and place high-performing professionals across Southeast Asia &mdash; built on trust, relationship, and integrity.</p>
+      <div class="hero-btns"><a href="#what-today" class="btn-primary">Find Your Role &rarr;</a><a href="hire.html" class="btn-outline">Engage Us</a></div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card stat-large"><div class="stat-num">40<span class="plus">+</span></div><div class="stat-label">YEARS OF EXPERTISE</div><p>Established focus on middle to C-suite recruitment since 1980 &mdash; depth that generalists can&apos;t match.</p></div>
+      <div class="stat-row"><div class="stat-card"><div class="stat-num">50<span class="plus">+</span></div><div class="stat-label">ENEX OFFICES</div></div><div class="stat-card"><div class="stat-num">6</div><div class="stat-label">COUNTRIES SERVED</div></div></div>
+      <div class="stat-card stat-accent"><span class="dot"></span><div><div class="stat-num-sm">66,000+ Network</div><div class="stat-label">Active professionals across Southeast Asia</div></div></div>
+    </div>
   </div>
 </section>
 
@@ -276,6 +280,7 @@
 
 <script src="js/main.js"></script>
 <script>
+/* ---- Job search ---- */
 function searchJobs(){const k=document.getElementById('jobKeyword').value.trim(),l=document.getElementById('jobLocation').value.trim(),c=document.getElementById('jobCategory').value;let u='jobs.html?';if(k)u+='q='+encodeURIComponent(k)+'&';if(l)u+='loc='+encodeURIComponent(l)+'&';if(c)u+='cat='+encodeURIComponent(c);window.location.href=u;}
 document.addEventListener('keydown',function(e){if(e.key==='Enter'){const a=document.activeElement;if(a&&(a.id==='jobKeyword'||a.id==='jobLocation'))searchJobs();}});
 function isLoggedIn(){return!!localStorage.getItem('jd_user');}
@@ -302,6 +307,112 @@ document.addEventListener('DOMContentLoaded',function(){
     if(m&&saved[m[1]]){btn.classList.add('saved');btn.textContent='\u2713 Saved';}
   });
 });
+
+/* ---- Navbar dark mode over hero ---- */
+(function(){
+  const nav = document.getElementById('navbar');
+  const hero = document.querySelector('.hero');
+  function update(){
+    if(!hero) return;
+    const bottom = hero.getBoundingClientRect().bottom;
+    if(bottom > 0){
+      nav.classList.add('navbar-dark');
+    } else {
+      nav.classList.remove('navbar-dark');
+    }
+  }
+  update();
+  window.addEventListener('scroll', update, {passive:true});
+})();
+
+/* ---- Particle / grid canvas ---- */
+(function(){
+  const canvas = document.getElementById('hero-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize(){
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, {passive:true});
+
+  // Nodes
+  const NODE_COUNT = 60;
+  const nodes = [];
+  for(let i=0;i<NODE_COUNT;i++){
+    nodes.push({
+      x: Math.random(),
+      y: Math.random(),
+      vx: (Math.random()-0.5)*0.00015,
+      vy: (Math.random()-0.5)*0.00015,
+      r: Math.random()*1.5+0.5,
+      pulse: Math.random()*Math.PI*2
+    });
+  }
+
+  const CONNECT_DIST = 0.18; // as fraction of canvas width
+  const RED = '224,48,48';
+  const WHITE = '200,210,230';
+
+  function draw(ts){
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0,0,W,H);
+
+    // Update
+    nodes.forEach(n=>{
+      n.x += n.vx;
+      n.y += n.vy;
+      n.pulse += 0.018;
+      if(n.x<0||n.x>1) n.vx*=-1;
+      if(n.y<0||n.y>1) n.vy*=-1;
+    });
+
+    // Edges
+    for(let i=0;i<nodes.length;i++){
+      for(let j=i+1;j<nodes.length;j++){
+        const a=nodes[i], b=nodes[j];
+        const dx=(a.x-b.x), dy=(a.y-b.y);
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<CONNECT_DIST){
+          const alpha=(1-dist/CONNECT_DIST)*0.25;
+          // Occasionally glow red
+          const isRed = (i+j)%7===0;
+          ctx.beginPath();
+          ctx.moveTo(a.x*W, a.y*H);
+          ctx.lineTo(b.x*W, b.y*H);
+          ctx.strokeStyle = isRed
+            ? `rgba(${RED},${alpha*1.6})`
+            : `rgba(${WHITE},${alpha})`;
+          ctx.lineWidth = isRed ? 0.8 : 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Nodes
+    nodes.forEach((n,i)=>{
+      const glow = 0.5+0.5*Math.sin(n.pulse);
+      const isRed = i%8===0;
+      const color = isRed ? RED : WHITE;
+      const alpha = isRed ? 0.55+0.35*glow : 0.3+0.2*glow;
+      ctx.beginPath();
+      ctx.arc(n.x*W, n.y*H, n.r*(isRed?1.6:1), 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${color},${alpha})`;
+      ctx.fill();
+      if(isRed && glow > 0.7){
+        ctx.beginPath();
+        ctx.arc(n.x*W, n.y*H, n.r*4, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(${RED},${0.06*glow})`;
+        ctx.fill();
+      }
+    });
+
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+})();
 </script>
 </body>
 </html>
