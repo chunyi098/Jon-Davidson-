@@ -1,7 +1,6 @@
 /* =============================================
    JONDAVIDSON — Hero: White + Red Grid
    3-col layout: text | photo | stats
-   Photo: 499x661 ratio (3:4), slanted clip
 ============================================= */
 
 /* ---- Hero wrapper ---- */
@@ -59,13 +58,12 @@
   position: relative;
   z-index: 3;
   display: grid;
-  /* photo col: ~500px wide to match Canva 499px */
-  grid-template-columns: 1fr 500px 360px;
+  grid-template-columns: 1fr 480px 360px;
   align-items: center;
   gap: 0;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 3rem 2rem;
+  padding: 2rem 2rem;
   width: 100%;
   min-height: calc(90vh - 68px);
 }
@@ -102,46 +100,36 @@
 }
 
 /* ---- Col 2: Photo ---- */
-/*
-  Wrapper = the slanted rectangle.
-  Canva size: 499 × 661 → aspect ratio 1:1.324
-  We set an explicit height to match that ratio.
-  Generous padding inside keeps ears away from slanted edges.
-*/
+/* The image ALREADY has the slanted shape built-in (white bg, PNG).
+   No clip-path, no grey bg — just display it cleanly. */
 .hero-photo {
   position: relative;
   align-self: center;
-  /* fixed height matching Canva's 661px at a comfortable screen scale */
-  width: 100%;
-  height: 620px;
-  /* slanted parallelogram clip on the wrapper */
-  clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
-  background: #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  background: transparent;
+  overflow: visible;
+  padding: 0;
 }
 
-/* Image inside — padded so ears/sides never touch the slanted wall */
-.hero-photo-img {
-  /* width slightly less than full so horizontal ears clear the slant */
-  width: 74%;
-  height: auto;
-  max-height: 88%;
-  object-fit: contain;
-  object-position: center center;
-  display: block;
-  filter: saturate(0.92) contrast(1.03);
-}
-
-/* No decorative strip */
 .hero-photo::before { display: none; }
+
+.hero-photo-img {
+  /* Show the full image as-is — the slant is already in the photo */
+  width: 100%;
+  height: auto;
+  max-height: 680px;
+  object-fit: contain;
+  display: block;
+  background: transparent;
+  /* no clip-path — shape is baked into the image itself */
+}
 
 /* Floating stat badge */
 .hero-photo-badge {
   position: absolute;
-  bottom: 2.5rem;
+  bottom: 2rem;
   left: 2rem;
   background: #ffffff;
   border: 1px solid #e8e6e3;
@@ -215,44 +203,31 @@
   animation: pulse 2s infinite !important;
 }
 
-/* ---- Responsive: tablet ---- */
+/* ---- Responsive ---- */
 @media (max-width: 1200px) {
-  .hero-inner {
-    grid-template-columns: 1fr 420px 320px;
-    padding: 3rem 1.5rem;
-  }
-  .hero-photo { height: 540px; }
-  .hero-photo-img { width: 72%; }
+  .hero-inner { grid-template-columns: 1fr 400px 320px; }
   .hero-title { font-size: clamp(2.4rem, 4vw, 3.6rem) !important; }
   .hero-content { padding-right: 2rem; }
   .hero-stats { padding-left: 1.5rem; }
 }
 
 @media (max-width: 1000px) {
-  .hero-inner {
-    grid-template-columns: 1fr 360px 300px;
-    padding: 3rem 1.5rem;
-  }
-  .hero-photo { height: 480px; }
-  .hero-photo-img { width: 70%; }
+  .hero-inner { grid-template-columns: 1fr 340px 300px; }
 }
 
 @media (max-width: 900px) {
   .hero-inner {
     grid-template-columns: 1fr 300px;
     grid-template-rows: auto auto;
-    padding: 3rem 1.5rem;
+    padding: 2rem 1.5rem;
   }
   .hero-content { grid-column: 1; grid-row: 1; padding-right: 1.5rem; padding-bottom: 2rem; }
-  .hero-photo { grid-column: 2; grid-row: 1 / 3; height: 100%; min-height: 420px; align-self: stretch; }
-  .hero-photo-img { width: 68%; }
+  .hero-photo { grid-column: 2; grid-row: 1 / 3; align-self: stretch; }
   .hero-stats {
-    grid-column: 1;
-    grid-row: 2;
+    grid-column: 1; grid-row: 2;
     display: grid !important;
     grid-template-columns: 1fr 1fr;
-    padding-left: 0;
-    padding-bottom: 2rem;
+    padding-left: 0; padding-bottom: 2rem;
   }
   .stat-row { display: contents !important; }
   .stat-large { grid-column: span 2; }
@@ -260,24 +235,12 @@
 }
 
 @media (max-width: 640px) {
-  .hero-inner {
-    grid-template-columns: 1fr;
-    padding: 2.5rem 1.25rem;
-  }
+  .hero-inner { grid-template-columns: 1fr; padding: 2rem 1.25rem; }
   .hero-content { grid-column: 1; grid-row: 1; padding-right: 0; }
-  .hero-photo {
-    grid-column: 1; grid-row: 2;
-    height: 380px;
-    clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
-  }
-  .hero-photo-img { width: 76%; }
+  .hero-photo { grid-column: 1; grid-row: 2; }
+  .hero-photo-img { max-height: 400px; }
   .hero-photo-badge { bottom: 1rem; left: 1rem; }
-  .hero-stats {
-    grid-column: 1;
-    grid-row: 3;
-    grid-template-columns: 1fr !important;
-    padding-bottom: 2rem;
-  }
+  .hero-stats { grid-column: 1; grid-row: 3; grid-template-columns: 1fr !important; padding-bottom: 2rem; }
   .stat-large { grid-column: span 1 !important; }
   .stat-accent { grid-column: span 1 !important; }
   .hero-title { font-size: clamp(2.2rem, 8vw, 3.2rem) !important; }
