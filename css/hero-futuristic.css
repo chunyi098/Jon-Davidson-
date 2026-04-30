@@ -59,7 +59,6 @@
   z-index: 3;
   display: grid;
   grid-template-columns: 1fr 340px 360px;
-  /* photo col starts at top of hero section */
   align-items: center;
   gap: 0;
   max-width: 1300px;
@@ -100,43 +99,44 @@
   max-width: 440px;
 }
 
-/* ---- Col 2: Photo — full height, breaks out from top ---- */
+/* ---- Col 2: Photo ---- */
+/* Wrapper carries the slanted clip shape with a light grey background */
 .hero-photo {
   position: relative;
-  /* stretch to fill the full hero height from top */
   align-self: stretch;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  overflow: visible;
-  /* pull up to cover the padding above */
+  /* pull up/down so the shape fills the full hero height */
   margin-top: -3rem;
   margin-bottom: -3rem;
+  /* slanted parallelogram on the WRAPPER so we can pad inside freely */
+  clip-path: polygon(12% 0%, 100% 0%, 88% 100%, 0% 100%);
+  background: #f3f3f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
+/* Image sits INSIDE the clipped wrapper — no second clip needed */
 .hero-photo-img {
-  width: 100%;
-  height: 100%;
-  /* tall enough to show from head to waist like inspo */
-  min-height: calc(90vh - 68px);
-  max-height: calc(90vh - 68px);
-  object-fit: cover;
-  /* show face from top, centred horizontally */
-  object-position: 55% 8%;
+  /* zoom out: show the full person (ears + laptop) */
+  width: 82%;
+  height: 92%;
+  object-fit: contain;
+  object-position: center center;
   display: block;
-  /* slanted parallelogram — matches inspo image 2 exactly */
-  clip-path: polygon(14% 0%, 100% 0%, 86% 100%, 0% 100%);
   filter: saturate(0.92) contrast(1.03);
+  /* small top offset so the person sits slightly above centre */
+  margin-top: -2%;
 }
 
 /* No decorative strip */
 .hero-photo::before { display: none; }
 
-/* Floating stat badge */
+/* Floating stat badge — sits outside the clip via z-index trick */
 .hero-photo-badge {
   position: absolute;
-  bottom: 3rem;
-  left: 2rem;
+  bottom: 3.5rem;
+  left: 2.5rem;
   background: #ffffff;
   border: 1px solid #e8e6e3;
   border-radius: 10px;
@@ -252,12 +252,9 @@
     grid-column: 1; grid-row: 2;
     margin-top: 0; margin-bottom: 0;
     height: 360px;
-  }
-  .hero-photo-img {
-    min-height: 360px;
-    max-height: 360px;
     clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
   }
+  .hero-photo-img { width: 90%; height: 90%; }
   .hero-photo-badge { bottom: 1rem; left: 1rem; }
   .hero-stats {
     grid-column: 1;
