@@ -1,6 +1,7 @@
 /* =============================================
    JONDAVIDSON — Hero: White + Red Grid
    3-col layout: text | photo | stats
+   Photo: 499x661 ratio (3:4), slanted clip
 ============================================= */
 
 /* ---- Hero wrapper ---- */
@@ -58,12 +59,13 @@
   position: relative;
   z-index: 3;
   display: grid;
-  grid-template-columns: 1fr 340px 360px;
+  /* photo col: ~500px wide to match Canva 499px */
+  grid-template-columns: 1fr 500px 360px;
   align-items: center;
   gap: 0;
-  max-width: 1300px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 3rem 2rem 3rem;
+  padding: 3rem 2rem;
   width: 100%;
   min-height: calc(90vh - 68px);
 }
@@ -100,43 +102,47 @@
 }
 
 /* ---- Col 2: Photo ---- */
-/* Wrapper carries the slanted clip shape with a light grey background */
+/*
+  Wrapper = the slanted rectangle.
+  Canva size: 499 × 661 → aspect ratio 1:1.324
+  We set an explicit height to match that ratio.
+  Generous padding inside keeps ears away from slanted edges.
+*/
 .hero-photo {
   position: relative;
-  align-self: stretch;
-  /* pull up/down so the shape fills the full hero height */
-  margin-top: -3rem;
-  margin-bottom: -3rem;
-  /* slanted parallelogram on the WRAPPER so we can pad inside freely */
-  clip-path: polygon(12% 0%, 100% 0%, 88% 100%, 0% 100%);
-  background: #f3f3f3;
+  align-self: center;
+  /* fixed height matching Canva's 661px at a comfortable screen scale */
+  width: 100%;
+  height: 620px;
+  /* slanted parallelogram clip on the wrapper */
+  clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+  background: #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
 
-/* Image sits INSIDE the clipped wrapper — no second clip needed */
+/* Image inside — padded so ears/sides never touch the slanted wall */
 .hero-photo-img {
-  /* zoom out: show the full person (ears + laptop) */
-  width: 82%;
-  height: 92%;
+  /* width slightly less than full so horizontal ears clear the slant */
+  width: 74%;
+  height: auto;
+  max-height: 88%;
   object-fit: contain;
   object-position: center center;
   display: block;
   filter: saturate(0.92) contrast(1.03);
-  /* small top offset so the person sits slightly above centre */
-  margin-top: -2%;
 }
 
 /* No decorative strip */
 .hero-photo::before { display: none; }
 
-/* Floating stat badge — sits outside the clip via z-index trick */
+/* Floating stat badge */
 .hero-photo-badge {
   position: absolute;
-  bottom: 3.5rem;
-  left: 2.5rem;
+  bottom: 2.5rem;
+  left: 2rem;
   background: #ffffff;
   border: 1px solid #e8e6e3;
   border-radius: 10px;
@@ -210,25 +216,36 @@
 }
 
 /* ---- Responsive: tablet ---- */
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
   .hero-inner {
-    grid-template-columns: 1fr 280px 300px;
+    grid-template-columns: 1fr 420px 320px;
     padding: 3rem 1.5rem;
   }
-  .hero-photo { margin-top: -3rem; margin-bottom: -3rem; }
+  .hero-photo { height: 540px; }
+  .hero-photo-img { width: 72%; }
   .hero-title { font-size: clamp(2.4rem, 4vw, 3.6rem) !important; }
   .hero-content { padding-right: 2rem; }
   .hero-stats { padding-left: 1.5rem; }
 }
 
+@media (max-width: 1000px) {
+  .hero-inner {
+    grid-template-columns: 1fr 360px 300px;
+    padding: 3rem 1.5rem;
+  }
+  .hero-photo { height: 480px; }
+  .hero-photo-img { width: 70%; }
+}
+
 @media (max-width: 900px) {
   .hero-inner {
-    grid-template-columns: 1fr 240px;
+    grid-template-columns: 1fr 300px;
     grid-template-rows: auto auto;
     padding: 3rem 1.5rem;
   }
   .hero-content { grid-column: 1; grid-row: 1; padding-right: 1.5rem; padding-bottom: 2rem; }
-  .hero-photo { grid-column: 2; grid-row: 1 / 3; margin-top: -3rem; margin-bottom: -3rem; }
+  .hero-photo { grid-column: 2; grid-row: 1 / 3; height: 100%; min-height: 420px; align-self: stretch; }
+  .hero-photo-img { width: 68%; }
   .hero-stats {
     grid-column: 1;
     grid-row: 2;
@@ -250,11 +267,10 @@
   .hero-content { grid-column: 1; grid-row: 1; padding-right: 0; }
   .hero-photo {
     grid-column: 1; grid-row: 2;
-    margin-top: 0; margin-bottom: 0;
-    height: 360px;
+    height: 380px;
     clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
   }
-  .hero-photo-img { width: 90%; height: 90%; }
+  .hero-photo-img { width: 76%; }
   .hero-photo-badge { bottom: 1rem; left: 1rem; }
   .hero-stats {
     grid-column: 1;
