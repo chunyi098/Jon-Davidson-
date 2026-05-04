@@ -100,30 +100,28 @@
 }
 
 /* ---- Col 2: Photo ---- */
-/* The image ALREADY has the slanted shape built-in (white bg, PNG).
-   No clip-path, no grey bg — just display it cleanly. */
 .hero-photo {
   position: relative;
-  align-self: center;
+  align-self: stretch;
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  background: transparent;
-  overflow: visible;
+  background: #ffffff;
+  overflow: hidden;
   padding: 0;
+  min-height: 480px;
 }
 
 .hero-photo::before { display: none; }
 
 .hero-photo-img {
-  /* Show the full image as-is — the slant is already in the photo */
   width: 100%;
-  height: auto;
-  max-height: 680px;
-  object-fit: contain;
+  height: 100%;
+  min-height: 480px;
+  object-fit: cover;
+  object-position: center top;
   display: block;
-  background: transparent;
-  /* no clip-path — shape is baked into the image itself */
+  background: #ffffff;
 }
 
 /* Floating stat badge */
@@ -237,8 +235,8 @@
 @media (max-width: 640px) {
   .hero-inner { grid-template-columns: 1fr; padding: 2rem 1.25rem; }
   .hero-content { grid-column: 1; grid-row: 1; padding-right: 0; }
-  .hero-photo { grid-column: 1; grid-row: 2; }
-  .hero-photo-img { max-height: 400px; }
+  .hero-photo { grid-column: 1; grid-row: 2; min-height: 320px; }
+  .hero-photo-img { min-height: 320px; }
   .hero-photo-badge { bottom: 1rem; left: 1rem; }
   .hero-stats { grid-column: 1; grid-row: 3; grid-template-columns: 1fr !important; padding-bottom: 2rem; }
   .stat-large { grid-column: span 1 !important; }
