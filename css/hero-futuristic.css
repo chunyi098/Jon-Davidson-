@@ -1,64 +1,72 @@
-/* =============================================
-   JONDAVIDSON — Hero (overrides style.css)
-============================================= */
+/* ==============================================
+   JONDAVIDSON — HERO  (fully overrides style.css)
+   Layout: [text+whitebox | photo rect | stats]
+   Matches reference Image 2 exactly
+============================================== */
 
-/* Reset the style.css hero completely */
+/* 1. FULL RESET of style.css .hero */
 .hero {
   position: relative !important;
+  display: block !important;
   min-height: calc(100vh - 68px) !important;
   padding-top: 68px !important;
-  display: block !important;
-  max-width: 100% !important;
-  margin: 0 !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
   padding-bottom: 0 !important;
+  max-width: 100% !important;
+  margin: 0 !important;
   background: #ffffff !important;
   overflow: hidden !important;
+  grid-template-columns: unset !important;
+  gap: unset !important;
+  align-items: unset !important;
 }
 
-/* faint red dot-grid background */
+/* 2. RED GRID BACKGROUND */
 .hero-bg {
   position: absolute !important;
   inset: 0 !important;
-  background: #ffffff !important;
   z-index: 0 !important;
   pointer-events: none !important;
+  background: transparent !important;
 }
+.hero-bg::before { display: none !important; }
 .hero-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
   background-image:
-    linear-gradient(rgba(158,4,3,0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(158,4,3,0.055) 1px, transparent 1px);
-  background-size: 48px 48px;
+    linear-gradient(rgba(158,4,3,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(158,4,3,0.06) 1px, transparent 1px) !important;
+  background-size: 48px 48px !important;
 }
+#hero-canvas { display: none !important; }
 
-#hero-canvas { display: none; }
-
-/* ---- 3-col grid ---- */
+/* 3. THREE-COLUMN INNER GRID */
 .hero-inner {
-  position: relative;
-  z-index: 2;
+  position: relative !important;
+  z-index: 2 !important;
   display: grid !important;
-  grid-template-columns: 1fr 260px 340px !important;
+  grid-template-columns: 1fr 260px 320px !important;
   align-items: center !important;
   gap: 0 !important;
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 3rem 3rem;
-  min-height: calc(100vh - 68px);
-  box-sizing: border-box;
+  max-width: 1300px !important;
+  margin: 0 auto !important;
+  padding: 3rem 3rem !important;
+  min-height: calc(100vh - 68px) !important;
+  box-sizing: border-box !important;
 }
 
-/* ---- Col 1: Text with red left border ---- */
+/* 4. COL 1: TEXT  —  white card + red right border */
 .hero-content {
-  align-self: center;
-  padding-right: 3rem;
-  padding-left: 1rem;
-  border-left: 3px solid var(--red);
-  margin-left: 1rem;
+  align-self: center !important;
+  background: #ffffff !important;
+  padding: 2.5rem 2rem 2.5rem 2rem !important;
+  border-right: 3px solid var(--red) !important;
+  position: relative !important;
+  z-index: 1 !important;
+  margin: 0 !important;
+  border-left: none !important;
 }
 
 .hero-eyebrow {
@@ -77,12 +85,12 @@
   width: 28px !important;
   height: 2px !important;
   background: var(--red) !important;
-  flex-shrink: 0;
+  flex-shrink: 0 !important;
 }
 
 .hero-title {
   font-family: var(--serif) !important;
-  font-size: clamp(2.6rem, 3.8vw, 4.4rem) !important;
+  font-size: clamp(2.6rem, 3.8vw, 4.2rem) !important;
   font-weight: 900 !important;
   color: var(--text) !important;
   line-height: 1.04 !important;
@@ -100,7 +108,7 @@
   font-size: 0.9rem !important;
   color: var(--text-light) !important;
   line-height: 1.75 !important;
-  max-width: 400px !important;
+  max-width: 420px !important;
   margin-bottom: 2rem !important;
 }
 
@@ -109,52 +117,51 @@
   flex-direction: row !important;
   gap: 1rem !important;
   flex-wrap: nowrap !important;
+  align-items: center !important;
 }
 
-/* ---- Col 2: Photo with slanted clip ---- */
+/* 5. COL 2: PHOTO — plain rectangle, bottom-aligned, badge below */
 .hero-photo {
   position: relative !important;
-  align-self: stretch !important;
+  align-self: end !important;
   display: flex !important;
-  align-items: flex-end !important;
-  justify-content: center !important;
-  overflow: hidden !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: flex-end !important;
   padding: 0 !important;
   background: transparent !important;
+  overflow: visible !important;
 }
-
 .hero-photo::before { display: none !important; }
-
-/* slanted photo box */
-.hero-photo-inner {
-  position: relative;
-  width: 300px;
-  height: 100%;
-  min-height: 500px;
-  overflow: hidden;
-  /* parallelogram slant — matches reference */
-  clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
-  background: #c8c5c0;
-  flex-shrink: 0;
-}
-
-.hero-photo-inner img {
-  width: 130%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-  margin-left: -15%;
-}
-
 .hero-photo > img,
 .hero-photo-img { display: none !important; }
 
-/* badge — bottom left */
+/* the photo rectangle */
+.hero-photo-inner {
+  width: 260px !important;
+  height: 400px !important;
+  overflow: hidden !important;
+  border-radius: 0 !important;
+  clip-path: none !important;
+  background: #bbb !important;
+  flex-shrink: 0 !important;
+  display: block !important;
+}
+.hero-photo-inner img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+  display: block !important;
+  margin: 0 !important;
+}
+
+/* badge sits below the photo, outside */
 .hero-photo-badge {
-  position: absolute !important;
-  bottom: 1.5rem !important;
-  left: 0.5rem !important;
+  position: relative !important;
+  bottom: auto !important;
+  left: auto !important;
+  margin-top: 0 !important;
   background: #ffffff !important;
   border: 1px solid #e8e6e3 !important;
   border-radius: 10px !important;
@@ -165,32 +172,32 @@
   gap: 0.6rem !important;
   white-space: nowrap !important;
   z-index: 4 !important;
+  width: fit-content !important;
 }
 .hero-photo-badge .badge-num {
-  font-family: var(--serif);
-  font-size: 1.3rem;
-  font-weight: 900;
-  color: var(--text);
-  line-height: 1;
+  font-family: var(--serif) !important;
+  font-size: 1.3rem !important;
+  font-weight: 900 !important;
+  color: var(--text) !important;
+  line-height: 1 !important;
 }
-.hero-photo-badge .badge-num span { color: var(--red); }
+.hero-photo-badge .badge-num span { color: var(--red) !important; }
 .hero-photo-badge .badge-label {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gray);
-  line-height: 1.3;
+  font-size: 0.65rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--gray) !important;
+  line-height: 1.3 !important;
 }
 
-/* ---- Col 3: Stats ---- */
+/* 6. COL 3: STATS */
 .hero-stats {
   display: flex !important;
   flex-direction: column !important;
   gap: 0.85rem !important;
   align-self: center !important;
-  padding-left: 2rem !important;
-  padding-right: 1rem !important;
+  padding: 0 1rem 0 2rem !important;
 }
 
 .stat-card {
@@ -200,6 +207,7 @@
   padding: 1.2rem 1.4rem !important;
   box-shadow: 0 2px 10px rgba(0,0,0,0.04) !important;
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s !important;
+  backdrop-filter: none !important;
 }
 .stat-card:hover {
   transform: translateY(-3px) !important;
@@ -243,15 +251,14 @@
 }
 .stat-accent:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.16) !important; }
 .stat-accent .stat-num-sm {
-  font-family: var(--serif);
-  font-size: 0.95rem;
-  font-weight: 700;
+  font-family: var(--serif) !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
   color: #ffffff !important;
 }
 .stat-accent .stat-label { color: rgba(255,255,255,0.48) !important; }
 .dot {
-  width: 9px !important;
-  height: 9px !important;
+  width: 9px !important; height: 9px !important;
   border-radius: 50% !important;
   flex-shrink: 0 !important;
   background: var(--red) !important;
@@ -263,39 +270,38 @@
   50%      { box-shadow: 0 0 0 7px rgba(158,4,3,0.08); }
 }
 
-/* ---- Responsive ---- */
+/* 7. RESPONSIVE */
 @media (max-width: 1100px) {
-  .hero-inner { grid-template-columns: 1fr 230px 300px !important; padding: 2rem 1.5rem !important; }
-  .hero-photo-inner { width: 260px; }
+  .hero-inner { grid-template-columns: 1fr 230px 290px !important; padding: 2rem 1.5rem !important; }
+  .hero-photo-inner { width: 230px !important; height: 360px !important; }
 }
 @media (max-width: 860px) {
   .hero-inner {
-    grid-template-columns: 1fr 200px !important;
+    grid-template-columns: 1fr 210px !important;
     grid-template-rows: auto auto !important;
     gap: 1.5rem 1rem !important;
-    padding: 2rem 1.5rem !important;
     min-height: auto !important;
+    padding: 2rem 1.5rem !important;
   }
-  .hero-content { grid-column: 1; grid-row: 1; padding-right: 1rem; }
-  .hero-photo { grid-column: 2; grid-row: 1 / 3; }
-  .hero-photo-inner { width: 220px; min-height: 400px; }
+  .hero-content { grid-column: 1; grid-row: 1; }
+  .hero-photo   { grid-column: 2; grid-row: 1 / 3; align-self: stretch !important; justify-content: center !important; }
+  .hero-photo-inner { width: 210px !important; height: 320px !important; }
   .hero-stats {
     grid-column: 1 !important; grid-row: 2 !important;
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
-    padding-left: 0 !important;
+    padding: 0 !important;
   }
-  .stat-row { display: contents !important; }
+  .stat-row   { display: contents !important; }
   .stat-large { grid-column: span 2 !important; }
-  .stat-accent { grid-column: span 2 !important; }
+  .stat-accent{ grid-column: span 2 !important; }
 }
 @media (max-width: 580px) {
-  .hero-inner { grid-template-columns: 1fr !important; padding: 2rem 1.25rem !important; }
-  .hero-content { border-left: none; padding-left: 0; margin-left: 0; }
-  .hero-photo { grid-column: 1 !important; grid-row: 2 !important; height: 320px; }
-  .hero-photo-inner { width: 100%; min-height: 300px; clip-path: none; }
-  .hero-photo-inner img { width: 100%; margin-left: 0; }
-  .hero-stats { grid-column: 1 !important; grid-row: 3 !important; grid-template-columns: 1fr !important; padding-left: 0 !important; }
+  .hero-inner { grid-template-columns: 1fr !important; padding: 2rem 1.25rem !important; min-height: auto !important; }
+  .hero-content { border-right: none !important; grid-column: 1; grid-row: 1; }
+  .hero-photo   { grid-column: 1 !important; grid-row: 2 !important; align-self: auto !important; }
+  .hero-photo-inner { width: 100% !important; max-width: 300px !important; height: 300px !important; }
+  .hero-stats   { grid-column: 1 !important; grid-row: 3 !important; grid-template-columns: 1fr !important; }
   .stat-large, .stat-accent { grid-column: span 1 !important; }
   .hero-btns { flex-wrap: wrap !important; }
   .hero-title { font-size: clamp(2rem, 8vw, 3rem) !important; }
