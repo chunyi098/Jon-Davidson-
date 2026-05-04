@@ -1,18 +1,19 @@
 /* ==============================================
-   JONDAVIDSON — HERO  (fully overrides style.css)
-   Layout: [text | photo rect | stats]
+   JONDAVIDSON — HERO
+   Clean rewrite matching screenshot exactly:
+   White bg + red grid | text | photo | stats
 ============================================== */
 
-/* 0. FULL PAGE RED GRID — covers every section */
+/* ── FULL-PAGE RED GRID ── */
 body {
+  background-color: #ffffff;
   background-image:
-    linear-gradient(rgba(158,4,3,0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(158,4,3,0.055) 1px, transparent 1px) !important;
-  background-size: 48px 48px !important;
-  background-attachment: local !important;
+    linear-gradient(rgba(158,4,3,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(158,4,3,0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
-/* 1. FULL RESET of style.css .hero */
+/* ── HERO SECTION RESET ── */
 .hero {
   position: relative !important;
   display: block !important;
@@ -24,25 +25,17 @@ body {
   max-width: 100% !important;
   margin: 0 !important;
   background: transparent !important;
-  overflow: hidden !important;
+  overflow: visible !important;
   grid-template-columns: unset !important;
   gap: unset !important;
-  align-items: unset !important;
 }
 
-/* 2. Hero bg — transparent so body grid shows through */
-.hero-bg {
-  position: absolute !important;
-  inset: 0 !important;
-  z-index: 0 !important;
-  pointer-events: none !important;
-  background: transparent !important;
-}
-.hero-bg::before { display: none !important; }
+.hero-bg,
+.hero-bg::before,
 .hero-bg::after { display: none !important; }
 #hero-canvas { display: none !important; }
 
-/* 3. THREE-COLUMN INNER GRID */
+/* ── THREE-COLUMN GRID ── */
 .hero-inner {
   position: relative !important;
   z-index: 2 !important;
@@ -57,24 +50,29 @@ body {
   box-sizing: border-box !important;
 }
 
-/* 4. COL 1: TEXT */
+/* ── COL 1: TEXT ── */
 .hero-content {
   align-self: center !important;
-  padding: 2rem 3rem 2rem 0 !important;
+  padding: 2rem 2.5rem 2rem 0 !important;
   position: relative !important;
-  z-index: 1 !important;
 }
 
-/* Thin white-to-red gradient accent line — right edge of text col */
+/* Thin white→red→white gradient divider line */
 .hero-content::after {
-  content: '' !important;
-  position: absolute !important;
-  right: 1.5rem !important;
-  top: 10% !important;
-  width: 2px !important;
-  height: 80% !important;
-  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(158,4,3,0.7) 50%, rgba(255,255,255,0) 100%) !important;
-  border-radius: 2px !important;
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 8%;
+  width: 2px;
+  height: 84%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0) 0%,
+    rgba(158,4,3,0.65) 45%,
+    rgba(158,4,3,0.65) 55%,
+    rgba(255,255,255,0) 100%
+  );
+  border-radius: 1px;
 }
 
 .hero-eyebrow {
@@ -109,7 +107,6 @@ body {
 .hero-title em {
   color: var(--red) !important;
   font-style: italic !important;
-  text-shadow: none !important;
 }
 
 .hero-sub {
@@ -122,54 +119,51 @@ body {
 
 .hero-btns {
   display: flex !important;
-  flex-direction: row !important;
   gap: 1rem !important;
   flex-wrap: nowrap !important;
   align-items: center !important;
 }
 
-/* 5. COL 2: PHOTO — plain portrait rectangle, girl shifted up */
+/* ── COL 2: PHOTO ── */
 .hero-photo {
   position: relative !important;
   align-self: end !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
-  justify-content: flex-end !important;
   padding: 0 !important;
   background: transparent !important;
   overflow: visible !important;
 }
-.hero-photo::before { display: none !important; }
+.hero-photo::before,
+.hero-photo::after { display: none !important; }
+/* hide any legacy img tag */
 .hero-photo > img,
 .hero-photo-img { display: none !important; }
 
-/* the photo rectangle */
+/* portrait rectangle */
 .hero-photo-inner {
   width: 280px !important;
-  height: 460px !important;
+  height: 440px !important;
   overflow: hidden !important;
   clip-path: none !important;
-  background: #e8e6e3 !important;
-  flex-shrink: 0 !important;
+  background: #ddd !important;
   display: block !important;
+  flex-shrink: 0 !important;
 }
 .hero-photo-inner img {
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  /* shifted up so more of the head/face area is visible */
-  object-position: center 15% !important;
+  object-position: center 20% !important;
   display: block !important;
 }
 
-/* badge sits below the photo rectangle */
+/* badge below rectangle */
 .hero-photo-badge {
   position: relative !important;
-  bottom: auto !important;
-  left: auto !important;
   margin-top: 0.75rem !important;
-  background: #ffffff !important;
+  background: #fff !important;
   border: 1px solid #e8e6e3 !important;
   border-radius: 10px !important;
   padding: 0.7rem 1rem !important;
@@ -178,8 +172,8 @@ body {
   align-items: center !important;
   gap: 0.6rem !important;
   white-space: nowrap !important;
-  z-index: 4 !important;
   width: fit-content !important;
+  z-index: 4 !important;
 }
 .hero-photo-badge .badge-num {
   font-family: var(--serif) !important;
@@ -198,7 +192,7 @@ body {
   line-height: 1.3 !important;
 }
 
-/* 6. COL 3: STATS */
+/* ── COL 3: STATS ── */
 .hero-stats {
   display: flex !important;
   flex-direction: column !important;
@@ -208,7 +202,7 @@ body {
 }
 
 .stat-card {
-  background: #ffffff !important;
+  background: #fff !important;
   border: 1px solid #e8e6e3 !important;
   border-radius: 8px !important;
   padding: 1.2rem 1.4rem !important;
@@ -219,7 +213,7 @@ body {
 .stat-card:hover {
   transform: translateY(-3px) !important;
   box-shadow: 0 8px 28px rgba(158,4,3,0.09) !important;
-  border-color: rgba(158,4,3,0.20) !important;
+  border-color: rgba(158,4,3,0.2) !important;
 }
 .stat-num {
   font-family: var(--serif) !important;
@@ -261,11 +255,12 @@ body {
   font-family: var(--serif) !important;
   font-size: 0.95rem !important;
   font-weight: 700 !important;
-  color: #ffffff !important;
+  color: #fff !important;
 }
 .stat-accent .stat-label { color: rgba(255,255,255,0.48) !important; }
 .dot {
-  width: 9px !important; height: 9px !important;
+  width: 9px !important;
+  height: 9px !important;
   border-radius: 50% !important;
   flex-shrink: 0 !important;
   background: var(--red) !important;
@@ -277,10 +272,10 @@ body {
   50%      { box-shadow: 0 0 0 7px rgba(158,4,3,0.08); }
 }
 
-/* 7. RESPONSIVE */
+/* ── RESPONSIVE ── */
 @media (max-width: 1100px) {
   .hero-inner { grid-template-columns: 1fr 250px 300px !important; padding: 2rem 1.5rem !important; }
-  .hero-photo-inner { width: 250px !important; height: 400px !important; }
+  .hero-photo-inner { width: 250px !important; height: 380px !important; }
   .hero-title { font-size: clamp(2.4rem, 3.5vw, 3.8rem) !important; }
 }
 @media (max-width: 860px) {
@@ -292,9 +287,8 @@ body {
     padding: 2rem 1.5rem !important;
   }
   .hero-content { grid-column: 1; grid-row: 1; padding-right: 1rem !important; }
-  .hero-content::after { right: 0.5rem !important; }
-  .hero-photo   { grid-column: 2; grid-row: 1 / 3; align-self: stretch !important; justify-content: center !important; }
-  .hero-photo-inner { width: 220px !important; height: 360px !important; }
+  .hero-photo   { grid-column: 2; grid-row: 1 / 3; align-self: stretch !important; }
+  .hero-photo-inner { width: 220px !important; height: 350px !important; }
   .hero-stats {
     grid-column: 1 !important; grid-row: 2 !important;
     display: grid !important;
@@ -307,7 +301,7 @@ body {
 }
 @media (max-width: 580px) {
   .hero-inner { grid-template-columns: 1fr !important; padding: 2rem 1.25rem !important; min-height: auto !important; }
-  .hero-content { grid-column: 1; grid-row: 1; padding-right: 0 !important; }
+  .hero-content { grid-column: 1 !important; grid-row: 1 !important; padding-right: 0 !important; }
   .hero-content::after { display: none !important; }
   .hero-photo   { grid-column: 1 !important; grid-row: 2 !important; align-self: auto !important; }
   .hero-photo-inner { width: 100% !important; max-width: 320px !important; height: 320px !important; }
