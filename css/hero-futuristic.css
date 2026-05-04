@@ -1,7 +1,7 @@
 /* ==============================================
    JONDAVIDSON — HERO
-   Clean rewrite matching screenshot exactly:
-   White bg + red grid | text | photo | stats
+   White bg + red grid everywhere, grid shows
+   through all white sections and cards.
 ============================================== */
 
 /* ── FULL-PAGE RED GRID ── */
@@ -11,6 +11,17 @@ body {
     linear-gradient(rgba(158,4,3,0.06) 1px, transparent 1px),
     linear-gradient(90deg, rgba(158,4,3,0.06) 1px, transparent 1px);
   background-size: 48px 48px;
+}
+
+/* Make ALL white section backgrounds transparent so grid shows through */
+.hero-intent,
+.featured-jobs,
+.memberships-section,
+.services-strip,
+.why-section,
+.news-section,
+.candidate-search + section {
+  background: transparent !important;
 }
 
 /* ── HERO SECTION RESET ── */
@@ -40,7 +51,6 @@ body {
   position: relative !important;
   z-index: 2 !important;
   display: grid !important;
-  /* photo col widened to 340px */
   grid-template-columns: 1fr 340px 340px !important;
   align-items: center !important;
   gap: 0 !important;
@@ -141,7 +151,7 @@ body {
 .hero-photo > img,
 .hero-photo-img { display: none !important; }
 
-/* portrait rectangle — bigger */
+/* portrait rectangle */
 .hero-photo-inner {
   width: 340px !important;
   height: 540px !important;
@@ -159,11 +169,11 @@ body {
   display: block !important;
 }
 
-/* badge below rectangle */
+/* badge below rectangle — slight transparency so grid peeks through */
 .hero-photo-badge {
   position: relative !important;
   margin-top: 0.75rem !important;
-  background: #fff !important;
+  background: rgba(255,255,255,0.92) !important;
   border: 1px solid #e8e6e3 !important;
   border-radius: 10px !important;
   padding: 0.7rem 1rem !important;
@@ -192,7 +202,7 @@ body {
   line-height: 1.3 !important;
 }
 
-/* ── COL 3: STATS ── */
+/* ── COL 3: STATS — transparent bg so grid shows ── */
 .hero-stats {
   display: flex !important;
   flex-direction: column !important;
@@ -201,8 +211,9 @@ body {
   padding: 0 1rem 0 2.5rem !important;
 }
 
+/* Stat cards: semi-transparent white so grid lines show through */
 .stat-card {
-  background: #fff !important;
+  background: rgba(255,255,255,0.82) !important;
   border: 1px solid #e8e6e3 !important;
   border-radius: 8px !important;
   padding: 1.2rem 1.4rem !important;
