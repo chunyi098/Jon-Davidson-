@@ -501,7 +501,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
 ============================================= */
 .featured-jobs {
   padding: 6rem 0;
-  background: var(--white);
+  background: transparent;
 }
 
 .section-header {
@@ -534,6 +534,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
   border: 1px solid var(--gray-mid);
   border-radius: 8px;
   padding: 1.75rem;
+  background: rgba(255,255,255,0.85);
   transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
   position: relative;
   overflow: hidden;
@@ -618,7 +619,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
 ============================================= */
 .memberships-section {
   padding: 5rem 0;
-  background: var(--white);
+  background: transparent;
   border-top: 1px solid var(--gray-mid);
 }
 .memberships-header {
@@ -654,7 +655,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
   align-items: center;
   text-align: center;
   padding: 2.25rem 1.75rem;
-  background: var(--white);
+  background: rgba(255,255,255,0.85);
   border: 1px solid var(--gray-mid);
   border-radius: 8px;
   transition: all var(--transition);
@@ -715,7 +716,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
 ============================================= */
 .why-section {
   padding: 6rem 0;
-  background: var(--gray-light);
+  background: transparent;
 }
 .why-section .container {
   display: grid;
@@ -752,7 +753,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
   gap: 1.5rem;
 }
 .pillar {
-  background: var(--white);
+  background: rgba(255,255,255,0.85);
   border-radius: 8px;
   padding: 1.5rem;
   box-shadow: var(--shadow);
@@ -772,7 +773,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
 ============================================= */
 .services-strip {
   padding: 6rem 0;
-  background: var(--white);
+  background: transparent;
 }
 .services-grid {
   display: grid;
@@ -783,6 +784,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
   padding: 2rem 1.5rem;
   border: 1px solid var(--gray-mid);
   border-radius: 8px;
+  background: rgba(255,255,255,0.85);
   transition: all var(--transition);
   position: relative;
   overflow: hidden;
@@ -824,7 +826,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
 ============================================= */
 .news-section {
   padding: 6rem 0;
-  background: var(--gray-light);
+  background: transparent;
 }
 .news-grid {
   display: grid;
@@ -834,7 +836,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
 .news-card {
   border-radius: 8px;
   overflow: hidden;
-  background: var(--white);
+  background: rgba(255,255,255,0.85);
   border: 1px solid var(--gray-mid);
   transition: box-shadow var(--transition), transform var(--transition);
 }
@@ -1046,8 +1048,8 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
 .page-hero h1 em { color: var(--red); }
 .page-hero p { font-size: 1.1rem; color: rgba(255,255,255,0.65); max-width: 600px; margin: 0 auto; }
 
-.content-section { padding: 6rem 0; }
-.content-section:nth-child(even) { background: var(--gray-light); }
+.content-section { padding: 6rem 0; background: transparent; }
+.content-section:nth-child(even) { background: transparent; }
 
 .content-section h2 {
   font-family: var(--serif);
@@ -1071,7 +1073,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
 .value-item {
   padding: 2rem;
   border-left: 3px solid var(--red);
-  background: var(--white);
+  background: rgba(255,255,255,0.85);
 }
 .value-item h4 {
   font-family: var(--serif);
@@ -1092,6 +1094,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
   border-radius: 8px;
   overflow: hidden;
   transition: all var(--transition);
+  background: rgba(255,255,255,0.85);
 }
 .team-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
 .team-photo {
@@ -1105,7 +1108,6 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
   overflow: hidden;
   position: relative;
 }
-/* Wrapper scales the image up so only the face+shoulder area is visible */
 .team-photo img {
   position: absolute;
   width: 100%;
@@ -1155,9 +1157,10 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
   padding: 2rem;
   border: 1px solid var(--gray-mid);
   border-radius: 8px;
+  background: rgba(255,255,255,0.85);
 }
 .office-card.main {
-  background: #e8e6e3;
+  background: rgba(232,230,227,0.9);
   color: var(--text);
   border-color: #d6d3cf;
   grid-column: span 2;
@@ -1216,7 +1219,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
   font-family: var(--sans);
   font-size: 0.9rem;
   color: var(--text);
-  background: var(--white);
+  background: rgba(255,255,255,0.9);
   transition: border-color var(--transition);
   outline: none;
 }
@@ -1239,7 +1242,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
-  background: none;
+  background: rgba(255,255,255,0.8);
   font-family: var(--sans);
   transition: all var(--transition);
 }
