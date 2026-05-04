@@ -12,13 +12,14 @@
   <link rel="stylesheet" href="css/nav.css" />
   <link rel="stylesheet" href="css/hero-futuristic.css" />
   <style>
-    .hero-intent{background:var(--white);padding:5rem 0 4rem;text-align:center;border-bottom:1px solid var(--gray-mid)}
+    /* ── HERO INTENT: fully solid white section ── */
+    .hero-intent{background:#ffffff !important;padding:5rem 0 4rem;text-align:center;border-bottom:1px solid var(--gray-mid)}
     .hero-intent .intent-eyebrow{font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);font-weight:600;margin-bottom:1rem}
     .hero-intent h2{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:700;color:var(--text);margin-bottom:.5rem;line-height:1.2}
     .hero-intent h2 em{color:var(--red)}
     .hero-intent .intent-sub{font-size:1rem;color:var(--text-light);margin-bottom:3rem}
     .intent-cards{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;max-width:820px;margin:0 auto}
-    .intent-card{flex:1;min-width:280px;max-width:380px;padding:2.5rem 2rem;border-radius:12px;border:2px solid var(--gray-mid);cursor:pointer;transition:all .3s;text-decoration:none;color:var(--text);display:block;position:relative;overflow:hidden}
+    .intent-card{flex:1;min-width:280px;max-width:380px;padding:2.5rem 2rem;border-radius:12px;border:2px solid var(--gray-mid);cursor:pointer;transition:all .3s;text-decoration:none;color:var(--text);display:block;position:relative;overflow:hidden;background:#ffffff !important}
     .intent-card::before{content:'';position:absolute;inset:0;background:var(--red);opacity:0;transition:opacity .3s}
     .intent-card:hover::before{opacity:1}
     .intent-card:hover{border-color:var(--red);transform:translateY(-6px);box-shadow:0 20px 60px rgba(158,4,3,.2)}
@@ -101,7 +102,7 @@
       </div>
     </div>
 
-    <!-- Col 2: Photo — plain rectangle with badge below -->
+    <!-- Col 2: Photo -->
     <div class="hero-photo">
       <div class="hero-photo-inner">
         <img src="assets/Header2.jpg" alt="Professional executive" loading="eager" />
