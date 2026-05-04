@@ -1,28 +1,8 @@
 /* ==============================================
    JONDAVIDSON — HERO
-   White bg + red grid everywhere, grid shows
-   through all white sections and cards.
+   Red grid only on the hero intro section.
+   Rest of page is plain white.
 ============================================== */
-
-/* ── FULL-PAGE RED GRID ── */
-body {
-  background-color: #ffffff;
-  background-image:
-    linear-gradient(rgba(158,4,3,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(158,4,3,0.06) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-
-/* Make ALL white section backgrounds transparent so grid shows through */
-.hero-intent,
-.featured-jobs,
-.memberships-section,
-.services-strip,
-.why-section,
-.news-section,
-.candidate-search + section {
-  background: transparent !important;
-}
 
 /* ── HERO SECTION RESET ── */
 .hero {
@@ -35,10 +15,23 @@ body {
   padding-bottom: 0 !important;
   max-width: 100% !important;
   margin: 0 !important;
-  background: transparent !important;
+  background: #ffffff !important;
   overflow: visible !important;
   grid-template-columns: unset !important;
   gap: unset !important;
+}
+
+/* Red grid only on the hero section */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(158,4,3,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(158,4,3,0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
 }
 
 .hero-bg,
@@ -169,11 +162,11 @@ body {
   display: block !important;
 }
 
-/* badge below rectangle — slight transparency so grid peeks through */
+/* badge below rectangle */
 .hero-photo-badge {
   position: relative !important;
   margin-top: 0.75rem !important;
-  background: rgba(255,255,255,0.92) !important;
+  background: #ffffff !important;
   border: 1px solid #e8e6e3 !important;
   border-radius: 10px !important;
   padding: 0.7rem 1rem !important;
@@ -202,7 +195,7 @@ body {
   line-height: 1.3 !important;
 }
 
-/* ── COL 3: STATS — transparent bg so grid shows ── */
+/* ── COL 3: STATS ── */
 .hero-stats {
   display: flex !important;
   flex-direction: column !important;
@@ -211,9 +204,8 @@ body {
   padding: 0 1rem 0 2.5rem !important;
 }
 
-/* Stat cards: semi-transparent white so grid lines show through */
 .stat-card {
-  background: rgba(255,255,255,0.82) !important;
+  background: #ffffff !important;
   border: 1px solid #e8e6e3 !important;
   border-radius: 8px !important;
   padding: 1.2rem 1.4rem !important;
