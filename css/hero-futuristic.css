@@ -3,6 +3,15 @@
    Layout: [text | photo rect | stats]
 ============================================== */
 
+/* 0. FULL PAGE RED GRID — covers every section */
+body {
+  background-image:
+    linear-gradient(rgba(158,4,3,0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(158,4,3,0.055) 1px, transparent 1px) !important;
+  background-size: 48px 48px !important;
+  background-attachment: local !important;
+}
+
 /* 1. FULL RESET of style.css .hero */
 .hero {
   position: relative !important;
@@ -14,14 +23,14 @@
   padding-bottom: 0 !important;
   max-width: 100% !important;
   margin: 0 !important;
-  background: #ffffff !important;
+  background: transparent !important;
   overflow: hidden !important;
   grid-template-columns: unset !important;
   gap: unset !important;
   align-items: unset !important;
 }
 
-/* 2. RED GRID BACKGROUND */
+/* 2. Hero bg — transparent so body grid shows through */
 .hero-bg {
   position: absolute !important;
   inset: 0 !important;
@@ -30,15 +39,7 @@
   background: transparent !important;
 }
 .hero-bg::before { display: none !important; }
-.hero-bg::after {
-  content: '' !important;
-  position: absolute !important;
-  inset: 0 !important;
-  background-image:
-    linear-gradient(rgba(158,4,3,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(158,4,3,0.06) 1px, transparent 1px) !important;
-  background-size: 48px 48px !important;
-}
+.hero-bg::after { display: none !important; }
 #hero-canvas { display: none !important; }
 
 /* 3. THREE-COLUMN INNER GRID */
@@ -62,6 +63,18 @@
   padding: 2rem 3rem 2rem 0 !important;
   position: relative !important;
   z-index: 1 !important;
+}
+
+/* Thin white-to-red gradient accent line — right edge of text col */
+.hero-content::after {
+  content: '' !important;
+  position: absolute !important;
+  right: 1.5rem !important;
+  top: 10% !important;
+  width: 2px !important;
+  height: 80% !important;
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(158,4,3,0.7) 50%, rgba(255,255,255,0) 100%) !important;
+  border-radius: 2px !important;
 }
 
 .hero-eyebrow {
@@ -115,7 +128,7 @@
   align-items: center !important;
 }
 
-/* 5. COL 2: PHOTO — plain portrait rectangle, bottom-aligned */
+/* 5. COL 2: PHOTO — plain portrait rectangle, girl shifted up */
 .hero-photo {
   position: relative !important;
   align-self: end !important;
@@ -128,14 +141,13 @@
   overflow: visible !important;
 }
 .hero-photo::before { display: none !important; }
-/* hide the old .hero-photo-img tag (not used in this layout) */
 .hero-photo > img,
 .hero-photo-img { display: none !important; }
 
 /* the photo rectangle */
 .hero-photo-inner {
   width: 280px !important;
-  height: 430px !important;
+  height: 460px !important;
   overflow: hidden !important;
   clip-path: none !important;
   background: #e8e6e3 !important;
@@ -146,7 +158,8 @@
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  object-position: center top !important;
+  /* shifted up so more of the head/face area is visible */
+  object-position: center 15% !important;
   display: block !important;
 }
 
@@ -267,7 +280,7 @@
 /* 7. RESPONSIVE */
 @media (max-width: 1100px) {
   .hero-inner { grid-template-columns: 1fr 250px 300px !important; padding: 2rem 1.5rem !important; }
-  .hero-photo-inner { width: 250px !important; height: 380px !important; }
+  .hero-photo-inner { width: 250px !important; height: 400px !important; }
   .hero-title { font-size: clamp(2.4rem, 3.5vw, 3.8rem) !important; }
 }
 @media (max-width: 860px) {
@@ -279,8 +292,9 @@
     padding: 2rem 1.5rem !important;
   }
   .hero-content { grid-column: 1; grid-row: 1; padding-right: 1rem !important; }
+  .hero-content::after { right: 0.5rem !important; }
   .hero-photo   { grid-column: 2; grid-row: 1 / 3; align-self: stretch !important; justify-content: center !important; }
-  .hero-photo-inner { width: 220px !important; height: 340px !important; }
+  .hero-photo-inner { width: 220px !important; height: 360px !important; }
   .hero-stats {
     grid-column: 1 !important; grid-row: 2 !important;
     display: grid !important;
@@ -294,6 +308,7 @@
 @media (max-width: 580px) {
   .hero-inner { grid-template-columns: 1fr !important; padding: 2rem 1.25rem !important; min-height: auto !important; }
   .hero-content { grid-column: 1; grid-row: 1; padding-right: 0 !important; }
+  .hero-content::after { display: none !important; }
   .hero-photo   { grid-column: 1 !important; grid-row: 2 !important; align-self: auto !important; }
   .hero-photo-inner { width: 100% !important; max-width: 320px !important; height: 320px !important; }
   .hero-stats   { grid-column: 1 !important; grid-row: 3 !important; grid-template-columns: 1fr !important; padding: 0 !important; }
