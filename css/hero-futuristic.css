@@ -1,7 +1,6 @@
 /* ==============================================
    JONDAVIDSON — HERO  (fully overrides style.css)
-   Layout: [text+whitebox | photo rect | stats]
-   Matches reference Image 2 exactly
+   Layout: [text | photo rect | stats]
 ============================================== */
 
 /* 1. FULL RESET of style.css .hero */
@@ -47,26 +46,22 @@
   position: relative !important;
   z-index: 2 !important;
   display: grid !important;
-  grid-template-columns: 1fr 260px 320px !important;
+  grid-template-columns: 1fr 280px 340px !important;
   align-items: center !important;
   gap: 0 !important;
   max-width: 1300px !important;
   margin: 0 auto !important;
-  padding: 3rem 3rem !important;
+  padding: 3rem !important;
   min-height: calc(100vh - 68px) !important;
   box-sizing: border-box !important;
 }
 
-/* 4. COL 1: TEXT  —  white card + red right border */
+/* 4. COL 1: TEXT */
 .hero-content {
   align-self: center !important;
-  background: #ffffff !important;
-  padding: 2.5rem 2rem 2.5rem 2rem !important;
-  border-right: 3px solid var(--red) !important;
+  padding: 2rem 3rem 2rem 0 !important;
   position: relative !important;
   z-index: 1 !important;
-  margin: 0 !important;
-  border-left: none !important;
 }
 
 .hero-eyebrow {
@@ -90,7 +85,7 @@
 
 .hero-title {
   font-family: var(--serif) !important;
-  font-size: clamp(2.6rem, 3.8vw, 4.2rem) !important;
+  font-size: clamp(2.8rem, 4vw, 4.5rem) !important;
   font-weight: 900 !important;
   color: var(--text) !important;
   line-height: 1.04 !important;
@@ -120,7 +115,7 @@
   align-items: center !important;
 }
 
-/* 5. COL 2: PHOTO — plain rectangle, bottom-aligned, badge below */
+/* 5. COL 2: PHOTO — plain portrait rectangle, bottom-aligned */
 .hero-photo {
   position: relative !important;
   align-self: end !important;
@@ -133,17 +128,17 @@
   overflow: visible !important;
 }
 .hero-photo::before { display: none !important; }
+/* hide the old .hero-photo-img tag (not used in this layout) */
 .hero-photo > img,
 .hero-photo-img { display: none !important; }
 
 /* the photo rectangle */
 .hero-photo-inner {
-  width: 260px !important;
-  height: 400px !important;
+  width: 280px !important;
+  height: 430px !important;
   overflow: hidden !important;
-  border-radius: 0 !important;
   clip-path: none !important;
-  background: #bbb !important;
+  background: #e8e6e3 !important;
   flex-shrink: 0 !important;
   display: block !important;
 }
@@ -153,15 +148,14 @@
   object-fit: cover !important;
   object-position: center top !important;
   display: block !important;
-  margin: 0 !important;
 }
 
-/* badge sits below the photo, outside */
+/* badge sits below the photo rectangle */
 .hero-photo-badge {
   position: relative !important;
   bottom: auto !important;
   left: auto !important;
-  margin-top: 0 !important;
+  margin-top: 0.75rem !important;
   background: #ffffff !important;
   border: 1px solid #e8e6e3 !important;
   border-radius: 10px !important;
@@ -197,7 +191,7 @@
   flex-direction: column !important;
   gap: 0.85rem !important;
   align-self: center !important;
-  padding: 0 1rem 0 2rem !important;
+  padding: 0 1rem 0 2.5rem !important;
 }
 
 .stat-card {
@@ -272,20 +266,21 @@
 
 /* 7. RESPONSIVE */
 @media (max-width: 1100px) {
-  .hero-inner { grid-template-columns: 1fr 230px 290px !important; padding: 2rem 1.5rem !important; }
-  .hero-photo-inner { width: 230px !important; height: 360px !important; }
+  .hero-inner { grid-template-columns: 1fr 250px 300px !important; padding: 2rem 1.5rem !important; }
+  .hero-photo-inner { width: 250px !important; height: 380px !important; }
+  .hero-title { font-size: clamp(2.4rem, 3.5vw, 3.8rem) !important; }
 }
 @media (max-width: 860px) {
   .hero-inner {
-    grid-template-columns: 1fr 210px !important;
+    grid-template-columns: 1fr 220px !important;
     grid-template-rows: auto auto !important;
     gap: 1.5rem 1rem !important;
     min-height: auto !important;
     padding: 2rem 1.5rem !important;
   }
-  .hero-content { grid-column: 1; grid-row: 1; }
+  .hero-content { grid-column: 1; grid-row: 1; padding-right: 1rem !important; }
   .hero-photo   { grid-column: 2; grid-row: 1 / 3; align-self: stretch !important; justify-content: center !important; }
-  .hero-photo-inner { width: 210px !important; height: 320px !important; }
+  .hero-photo-inner { width: 220px !important; height: 340px !important; }
   .hero-stats {
     grid-column: 1 !important; grid-row: 2 !important;
     display: grid !important;
@@ -298,10 +293,10 @@
 }
 @media (max-width: 580px) {
   .hero-inner { grid-template-columns: 1fr !important; padding: 2rem 1.25rem !important; min-height: auto !important; }
-  .hero-content { border-right: none !important; grid-column: 1; grid-row: 1; }
+  .hero-content { grid-column: 1; grid-row: 1; padding-right: 0 !important; }
   .hero-photo   { grid-column: 1 !important; grid-row: 2 !important; align-self: auto !important; }
-  .hero-photo-inner { width: 100% !important; max-width: 300px !important; height: 300px !important; }
-  .hero-stats   { grid-column: 1 !important; grid-row: 3 !important; grid-template-columns: 1fr !important; }
+  .hero-photo-inner { width: 100% !important; max-width: 320px !important; height: 320px !important; }
+  .hero-stats   { grid-column: 1 !important; grid-row: 3 !important; grid-template-columns: 1fr !important; padding: 0 !important; }
   .stat-large, .stat-accent { grid-column: span 1 !important; }
   .hero-btns { flex-wrap: wrap !important; }
   .hero-title { font-size: clamp(2rem, 8vw, 3rem) !important; }
