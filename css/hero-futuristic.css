@@ -8,8 +8,8 @@
 .hero {
   position: relative !important;
   display: block !important;
-  min-height: calc(100vh - 72px) !important;
-  padding-top: 72px !important;
+  min-height: calc(100vh - 85px) !important;
+  padding-top: 85px !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
   padding-bottom: 0 !important;
@@ -50,7 +50,7 @@
   max-width: 1300px !important;
   margin: 0 auto !important;
   padding: 0 3rem 3rem !important;
-  min-height: calc(100vh - 72px) !important;
+  min-height: calc(100vh - 85px) !important;
   box-sizing: border-box !important;
 }
 
