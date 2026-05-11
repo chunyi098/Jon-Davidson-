@@ -5,7 +5,6 @@
 /* ── Favicon set (inject once, works on every page) ── */
 (function injectFavicons() {
   const head = document.head;
-  // Remove existing bare icon link if present
   document.querySelectorAll('link[rel="icon"]').forEach(el => el.remove());
 
   const tags = [
@@ -22,7 +21,6 @@
     head.appendChild(link);
   });
 
-  // Theme colour for mobile browser chrome
   if (!document.querySelector('meta[name="theme-color"]')) {
     const meta = document.createElement('meta');
     meta.name = 'theme-color';
@@ -49,9 +47,11 @@ if (hamburger && mobileMenu) {
 /* ── Active nav highlight ── */
 (function markActiveNav() {
   const page = window.location.pathname.split('/').pop() || 'index.html';
-  // Match nav-item links and standalone nav-item anchors
   document.querySelectorAll('.nav-links .nav-item a, .nav-links a.nav-item').forEach(link => {
-    const href = (link.getAttribute('href') || '').split('#')[0].split('/').pop();
+    const raw = link.getAttribute('href') || '';
+    // Skip hash links — e.g. about.html#our-offices must never be treated as the active page
+    if (raw.includes('#')) return;
+    const href = raw.split('/').pop();
     if (href && href === page) {
       link.classList.add('nav-active');
       link.closest('.nav-item')?.classList.add('nav-active');
@@ -170,12 +170,10 @@ function searchJobs() {
 /* ── DOMContentLoaded ── */
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Enter key in search inputs
   document.querySelectorAll('#jobKeyword, #jobLocation').forEach(input => {
     input.addEventListener('keydown', e => { if (e.key === 'Enter') searchJobs(); });
   });
 
-  // News / jobs filter buttons
   const filterBtns = document.querySelectorAll('.filter-btn');
   const filterCards = document.querySelectorAll('.news-card, .job-card[data-category]');
   filterBtns.forEach(btn => {
@@ -189,13 +187,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Fade-up intersection observer
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  // Smooth anchor scroll
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const target = document.querySelector(this.getAttribute('href'));
