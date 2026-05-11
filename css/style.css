@@ -41,7 +41,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
 /* ============================================
    NAVBAR
 ============================================= */
-.navbar { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-mid); transition: box-shadow var(--transition); overflow: hidden; }
+.navbar { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-mid); transition: box-shadow var(--transition); }
 .navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
 
 .nav-inner {
@@ -74,7 +74,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
 .caret { font-size: 0.55rem; }
 
 .dropdown { position: relative; }
-.dropdown-menu { position: absolute; top: calc(100% + 8px); left: 0; min-width: 190px; background: var(--white); border: 1px solid var(--gray-mid); border-radius: 6px; box-shadow: var(--shadow-lg); padding: 0.5rem 0; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: all var(--transition); }
+.dropdown-menu { position: absolute; top: calc(100% + 8px); left: 0; min-width: 190px; background: var(--white); border: 1px solid var(--gray-mid); border-radius: 6px; box-shadow: var(--shadow-lg); padding: 0.5rem 0; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: all var(--transition); z-index: 1001; }
 .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
 .dropdown-menu a { display: block; padding: 0.55rem 1.1rem; font-size: 0.82rem; color: var(--text); transition: background var(--transition), color var(--transition); }
 .dropdown-menu a:hover { background: var(--gray-light); color: var(--red); }
