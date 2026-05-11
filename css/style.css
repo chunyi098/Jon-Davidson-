@@ -127,7 +127,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
   flex-shrink: 0;
 }
 .nav-logo img {
-  height: 72px;
+  height: 79px;
   width: auto;
 }
 .nav-logo .tagline {
