@@ -59,6 +59,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
 .nav-logo img {
   height: 100%;
   width: auto;
+  max-width: 160px;
   object-fit: contain;
   transform: scale(1.6);
   transform-origin: center center;
