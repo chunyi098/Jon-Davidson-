@@ -268,7 +268,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
   padding-top: 68px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: center;
+  align-items: start;
   gap: 4rem;
   max-width: 1240px;
   margin: 0 auto;
