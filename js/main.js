@@ -29,6 +29,16 @@
   }
 })();
 
+/* ── Normalize logo: all pages use the large padded webp ── */
+(function normalizeLogo() {
+  document.querySelectorAll('.nav-logo img').forEach(img => {
+    const src = img.getAttribute('src') || '';
+    if (!src.includes('webp')) {
+      img.setAttribute('src', 'assets/JonDavidsonLogo.webp .png');
+    }
+  });
+})();
+
 /* ── Navbar scroll shadow ── */
 const navbar = document.getElementById('navbar');
 if (navbar) {
