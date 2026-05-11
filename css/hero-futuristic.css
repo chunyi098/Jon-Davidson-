@@ -8,8 +8,8 @@
 .hero {
   position: relative !important;
   display: block !important;
-  min-height: calc(100vh - 80px) !important;
-  padding-top: 80px !important;
+  min-height: calc(100vh - 96px) !important;
+  padding-top: 96px !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
   padding-bottom: 0 !important;
@@ -49,9 +49,8 @@
   gap: 0 !important;
   max-width: 1300px !important;
   margin: 0 auto !important;
-  /* Removed top padding — content sits right under the navbar */
   padding: 0 3rem 3rem !important;
-  min-height: calc(100vh - 80px) !important;
+  min-height: calc(100vh - 96px) !important;
   box-sizing: border-box !important;
 }
 
@@ -62,7 +61,6 @@
   position: relative !important;
 }
 
-/* Thin white→red→white gradient divider line */
 .hero-content::after {
   content: '';
   position: absolute;
@@ -145,7 +143,6 @@
 .hero-photo > img,
 .hero-photo-img { display: none !important; }
 
-/* portrait rectangle */
 .hero-photo-inner {
   width: 340px !important;
   height: 540px !important;
@@ -163,7 +160,6 @@
   display: block !important;
 }
 
-/* badge below rectangle */
 .hero-photo-badge {
   position: relative !important;
   margin-top: 0.75rem !important;
