@@ -41,24 +41,25 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
 /* ============================================
    NAVBAR
 ============================================= */
-.navbar { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-mid); transition: box-shadow var(--transition); }
+.navbar { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-mid); transition: box-shadow var(--transition); overflow: hidden; }
 .navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
 
 .nav-inner {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
   max-width: 1340px;
   margin: 0 auto;
   padding: 0 1.5rem;
-  height: 72px;
+  height: 85px;
   gap: 1rem;
 }
 
-.nav-logo { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+.nav-logo { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; align-self: stretch; padding: 4px 0; }
 .nav-logo img {
-  height: 72px;
+  height: 100%;
   width: auto;
+  object-fit: contain;
 }
 .nav-logo .tagline { font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.12em; color: var(--gray); font-weight: 500; border-left: 1px solid var(--gray-mid); padding-left: 0.75rem; white-space: nowrap; }
 
@@ -91,7 +92,7 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
 ============================================= */
 .hero {
   min-height: 100vh;
-  padding-top: 72px;
+  padding-top: 85px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: start;
