@@ -66,7 +66,7 @@
 
 <header class="navbar" id="navbar">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo"><img src="assets/JonDavidsonLogo.png" alt="JonDavidson"/><span class="tagline">WE GO THE DISTANCE</span></a>
+    <a href="index.html" class="nav-logo"><img src="assets/JonDavidsonLogo.webp" alt="JonDavidson"/><span class="tagline">WE GO THE DISTANCE</span></a>
     <nav class="nav-links">
       <div class="nav-item dropdown"><a href="about.html">About Us <span class="caret">&#9660;</span></a><div class="dropdown-menu"><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a></div></div>
       <div class="nav-item dropdown"><a href="services.html">Services <span class="caret">&#9660;</span></a><div class="dropdown-menu"><a href="services.html#client-solutions">Client Solutions</a><a href="services.html#talent-profiling">Talent Profiling Tools</a></div></div>
@@ -253,7 +253,7 @@
 
 <footer class="footer">
   <div class="footer-top"><div class="container"><div class="footer-grid">
-    <div class="footer-brand"><img src="assets/JonDavidsonLogo.png" alt="JonDavidson" class="footer-logo"/><p>Executive Search &amp; Staffing across Southeast Asia &mdash; built on trust, relationship, and integrity.</p><p class="licence">EA Licence No. 22S1412<br/>Member of ELITEZ Group</p></div>
+    <div class="footer-brand"><img src="assets/JonDavidsonLogo.webp" alt="JonDavidson" class="footer-logo"/><p>Executive Search &amp; Staffing across Southeast Asia &mdash; built on trust, relationship, and integrity.</p><p class="licence">EA Licence No. 22S1412<br/>Member of ELITEZ Group</p></div>
     <div class="footer-col"><h5>Company</h5><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a><a href="news.html">News &amp; Insights</a></div>
     <div class="footer-col"><h5>Services</h5><a href="services.html#executive-search">Executive Search</a><a href="services.html#contingency">Contingency Recruitment</a><a href="services.html#talent-profiling">Talent Profiling</a><a href="services.html#rpo">RPO &amp; Consulting</a></div>
     <div class="footer-col"><h5>For Employers</h5><a href="hire.html">Hire Talent</a><a href="hire.html#expertise">Our Expertise</a><a href="hire.html#employer-form">Submit a Brief</a></div>
@@ -273,14 +273,14 @@ function handleSave(btn,id,title){
   if(!isLoggedIn()){sessionStorage.setItem('jd_save_pending',JSON.stringify({id,title}));showToast('Please log in to save jobs');setTimeout(()=>{window.location.href='login.html?from=save&job='+encodeURIComponent(title);},900);return;}
   const saved=getSaved(),isSaved=!!saved[id];
   if(isSaved){delete saved[id];btn.classList.remove('saved');btn.textContent='\u{1F4BE} Save';showToast('Removed from saved jobs');}
-  else{saved[id]={id,title,savedAt:Date.now()};btn.classList.add('saved');btn.textContent='\u2713 Saved';showToast('Job saved!');}
+  else{saved[id]={id,title,savedAt:Date.now()};btn.classList.add('saved');btn.textContent='✓ Saved';showToast('Job saved!');}
   setSaved(saved);
 }
 function showToast(msg){const t=document.getElementById('save-toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._tid);t._tid=setTimeout(()=>t.classList.remove('show'),2800);}
 document.addEventListener('DOMContentLoaded',function(){
   if(!isLoggedIn()) return;
   const saved=getSaved();
-  document.querySelectorAll('.btn-save').forEach(btn=>{const m=(btn.getAttribute('onclick')||'').match(/handleSave\(this,'([^']+)'/);if(m&&saved[m[1]]){btn.classList.add('saved');btn.textContent='\u2713 Saved';}});
+  document.querySelectorAll('.btn-save').forEach(btn=>{const m=(btn.getAttribute('onclick')||'').match(/handleSave\(this,'([^']+)'/);if(m&&saved[m[1]]){btn.classList.add('saved');btn.textContent='✓ Saved';}});
 });
 </script>
 </body>
