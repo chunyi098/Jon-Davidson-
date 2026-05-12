@@ -19,6 +19,39 @@
     .team-photo.photo-liew    { background-image: url('assets/Liew-Yuk-Kong.jpg'); background-size: cover; background-position: 50% 18%; }
     .team-photo.photo-sonny   { background-image: url('assets/Sonny-Yuen.jpg');    background-size: cover; background-position: 50% 20%; }
 
+    /* ── ABOUT TABS ── */
+    .about-tabs-bar {
+      background: #ffffff;
+      border-bottom: 2px solid var(--gray-mid);
+      position: sticky;
+      top: 85px;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .about-tabs-bar .container {
+      display: flex;
+      gap: 0;
+    }
+    .tab-btn {
+      padding: 1.15rem 2.25rem;
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--gray);
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      cursor: pointer;
+      transition: color 0.2s ease, border-color 0.2s ease;
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active { color: var(--red); border-bottom-color: var(--red); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
     /* ══════════════════════════════════════
        HQ CARD
     ══════════════════════════════════════ */
@@ -31,8 +64,6 @@
       flex-direction: row !important;
       min-height: 300px;
     }
-
-    /* ── Left: info panel (fixed comfortable width) ── */
     .hq-info {
       flex: 0 0 360px;
       padding: 2.4rem 2.6rem;
@@ -41,43 +72,15 @@
       justify-content: center;
       border-right: 1px solid rgba(255,255,255,0.06);
     }
-    .hq-info .office-country {
-      color: var(--red) !important;
-      margin-bottom: 0.55rem;
-    }
-    .hq-info h3 {
-      color: #ffffff !important;
-      font-family: var(--serif);
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.25rem;
-    }
-    .hq-info .hq-member {
-      font-size: 0.76rem;
-      color: rgba(255,255,255,0.35);
-      margin-bottom: 1.1rem;
-    }
-    .hq-info .hq-detail {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.85) !important;
-      line-height: 1.75;
-      margin-bottom: 0.15rem;
-      max-width: none;
-    }
-    .hq-info .hq-detail a {
-      color: #ff7070;
-      text-decoration: none;
-    }
+    .hq-info .office-country { color: var(--red) !important; margin-bottom: 0.55rem; }
+    .hq-info h3 { color: #ffffff !important; font-family: var(--serif); font-size: 1.3rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .hq-info .hq-member { font-size: 0.76rem; color: rgba(255,255,255,0.35); margin-bottom: 1.1rem; }
+    .hq-info .hq-detail { font-size: 0.9rem; color: rgba(255,255,255,0.85) !important; line-height: 1.75; margin-bottom: 0.15rem; max-width: none; }
+    .hq-info .hq-detail a { color: #ff7070; text-decoration: none; }
     .hq-info .hq-detail a:hover { text-decoration: underline; }
-    .hq-info .hq-licence {
-      font-size: 0.72rem;
-      color: rgba(255,255,255,0.25);
-      margin-top: 0.75rem;
-    }
-
-    /* ── Right: map panel — takes the remaining space, centred content ── */
+    .hq-info .hq-licence { font-size: 0.72rem; color: rgba(255,255,255,0.25); margin-top: 0.75rem; }
     .hq-map-panel {
-      flex: 1 1 0;          /* fills all remaining width equally */
+      flex: 1 1 0;
       position: relative;
       background: #0d1117;
       overflow: hidden;
@@ -86,31 +89,16 @@
       min-height: 300px;
     }
     .hq-map-panel:hover .hq-map-overlay { opacity: 1; }
-
-    /* SVG fills the panel, centred */
-    .hq-map-svg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 110%;        /* slight overscan so land fills the frame */
-      height: 110%;
-    }
-
-    /* Scanline grid */
+    .hq-map-svg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 110%; height: 110%; }
     .hq-map-panel::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(0,229,255,0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,229,255,0.045) 1px, transparent 1px);
+      background-image: linear-gradient(rgba(0,229,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,0.045) 1px, transparent 1px);
       background-size: 26px 26px;
       pointer-events: none;
       z-index: 1;
     }
-
-    /* Soft vignette */
     .hq-map-panel::after {
       content: '';
       position: absolute;
@@ -119,8 +107,6 @@
       pointer-events: none;
       z-index: 2;
     }
-
-    /* Hover overlay */
     .hq-map-overlay {
       position: absolute;
       inset: 0;
@@ -134,112 +120,28 @@
       transition: opacity 0.3s ease;
       z-index: 10;
     }
-    .hq-map-overlay-icon {
-      width: 46px; height: 46px;
-      border: 1.5px solid rgba(0,229,255,0.75);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: #00e5ff;
-      box-shadow: 0 0 20px rgba(0,229,255,0.45);
-    }
-    .hq-map-overlay-label {
-      font-family: var(--sans);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #00e5ff;
-      text-shadow: 0 0 12px rgba(0,229,255,0.7);
-    }
-
-    /* ── Pin — centred over Singapore (50% 50% of the SVG viewBox) ── */
-    .hq-pin-wrap {
-      position: absolute;
-      z-index: 5;
-      /* Singapore is at centre of the new viewBox */
-      top: 50%; left: 50%;
-      transform: translate(-50%, -100%);
-    }
-    .hq-pin-dot {
-      display: block;
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      background: #00e5ff;
-      box-shadow: 0 0 0 3px rgba(0,229,255,0.2), 0 0 16px rgba(0,229,255,0.65);
-      margin: 0 auto;
-    }
-    .hq-pin-stem {
-      display: block;
-      width: 2px; height: 16px;
-      background: linear-gradient(to bottom, #00e5ff, transparent);
-      margin: 0 auto;
-    }
-    .hq-pin-ring {
-      position: absolute;
-      top: 6px; left: 50%;          /* centred on the dot */
-      transform: translateX(-50%);
-      width: 34px; height: 34px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(0,229,255,0.55);
-      animation: hq-ripple 2.2s ease-out infinite;
-      pointer-events: none;
-    }
-    .hq-pin-ring2 {
-      width: 54px; height: 54px;
-      top: -3px;
-      animation-delay: 0.8s;
-    }
-    @keyframes hq-ripple {
-      0%   { opacity: 0.85; transform: translateX(-50%) scale(0.5); }
-      100% { opacity: 0;    transform: translateX(-50%) scale(1.5); }
-    }
-    .hq-pin-label {
-      position: absolute;
-      bottom: calc(100% + 8px);
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      background: rgba(0,229,255,0.12);
-      border: 1px solid rgba(0,229,255,0.38);
-      border-radius: 3px;
-      padding: 0.2rem 0.6rem;
-      font-family: var(--sans);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: #00e5ff;
-      text-transform: uppercase;
-    }
-
-    /* Corner brackets */
-    .hq-corner {
-      position: absolute;
-      width: 16px; height: 16px;
-      z-index: 6;
-    }
-    .hq-corner.tl { top: 12px; left: 12px;   border-top: 1.5px solid rgba(0,229,255,0.55); border-left: 1.5px solid rgba(0,229,255,0.55); }
-    .hq-corner.tr { top: 12px; right: 12px;  border-top: 1.5px solid rgba(0,229,255,0.55); border-right: 1.5px solid rgba(0,229,255,0.55); }
-    .hq-corner.bl { bottom: 12px; left: 12px;  border-bottom: 1.5px solid rgba(0,229,255,0.55); border-left: 1.5px solid rgba(0,229,255,0.55); }
+    .hq-map-overlay-icon { width: 46px; height: 46px; border: 1.5px solid rgba(0,229,255,0.75); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #00e5ff; box-shadow: 0 0 20px rgba(0,229,255,0.45); }
+    .hq-map-overlay-label { font-family: var(--sans); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #00e5ff; text-shadow: 0 0 12px rgba(0,229,255,0.7); }
+    .hq-pin-wrap { position: absolute; z-index: 5; top: 50%; left: 50%; transform: translate(-50%, -100%); }
+    .hq-pin-dot { display: block; width: 12px; height: 12px; border-radius: 50%; background: #00e5ff; box-shadow: 0 0 0 3px rgba(0,229,255,0.2), 0 0 16px rgba(0,229,255,0.65); margin: 0 auto; }
+    .hq-pin-stem { display: block; width: 2px; height: 16px; background: linear-gradient(to bottom, #00e5ff, transparent); margin: 0 auto; }
+    .hq-pin-ring { position: absolute; top: 6px; left: 50%; transform: translateX(-50%); width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid rgba(0,229,255,0.55); animation: hq-ripple 2.2s ease-out infinite; pointer-events: none; }
+    .hq-pin-ring2 { width: 54px; height: 54px; top: -3px; animation-delay: 0.8s; }
+    @keyframes hq-ripple { 0% { opacity: 0.85; transform: translateX(-50%) scale(0.5); } 100% { opacity: 0; transform: translateX(-50%) scale(1.5); } }
+    .hq-pin-label { position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); white-space: nowrap; background: rgba(0,229,255,0.12); border: 1px solid rgba(0,229,255,0.38); border-radius: 3px; padding: 0.2rem 0.6rem; font-family: var(--sans); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; color: #00e5ff; text-transform: uppercase; }
+    .hq-corner { position: absolute; width: 16px; height: 16px; z-index: 6; }
+    .hq-corner.tl { top: 12px; left: 12px; border-top: 1.5px solid rgba(0,229,255,0.55); border-left: 1.5px solid rgba(0,229,255,0.55); }
+    .hq-corner.tr { top: 12px; right: 12px; border-top: 1.5px solid rgba(0,229,255,0.55); border-right: 1.5px solid rgba(0,229,255,0.55); }
+    .hq-corner.bl { bottom: 12px; left: 12px; border-bottom: 1.5px solid rgba(0,229,255,0.55); border-left: 1.5px solid rgba(0,229,255,0.55); }
     .hq-corner.br { bottom: 12px; right: 12px; border-bottom: 1.5px solid rgba(0,229,255,0.55); border-right: 1.5px solid rgba(0,229,255,0.55); }
-
-    /* Coordinates readout */
-    .hq-coords {
-      position: absolute;
-      bottom: 14px; right: 16px;
-      z-index: 6;
-      font-family: 'Courier New', monospace;
-      font-size: 0.6rem;
-      color: rgba(0,229,255,0.45);
-      letter-spacing: 0.06em;
-      line-height: 1.6;
-      text-align: right;
-    }
-
-    /* Responsive: stack vertically on small screens */
+    .hq-coords { position: absolute; bottom: 14px; right: 16px; z-index: 6; font-family: 'Courier New', monospace; font-size: 0.6rem; color: rgba(0,229,255,0.45); letter-spacing: 0.06em; line-height: 1.6; text-align: right; }
     @media (max-width: 860px) {
       .office-card.main { flex-direction: column !important; }
       .hq-info { flex: none; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
       .hq-map-panel { min-height: 240px; }
+    }
+    @media (max-width: 600px) {
+      .tab-btn { padding: 0.9rem 1.1rem; font-size: 0.8rem; }
     }
   </style>
 </head>
@@ -273,172 +175,148 @@
   </div>
 </section>
 
-<section class="content-section" id="who-we-are">
+<!-- ── TAB BAR ── -->
+<div class="about-tabs-bar">
   <div class="container">
-    <p class="eyebrow" style="margin-bottom:1rem"><span class="line"></span> WHO WE ARE</p>
-    <h2>Our Story</h2>
-    <p>We are a team of industry specialists who share a belief that a Company&apos;s success is fuelled by having the right talents in the right job functions. The talent must also have a good cultural fit and shared core values with the Company, which is pivotal to job satisfaction.</p>
-    <p>Recognizing our collective passion to help businesses develop a competent and effective workforce, we came together in May 2007. Our own diverse talents are synergized to bring an energetic dynamism in fulfilling the recruitment needs of our clients, and the career aspirations of our candidates.</p>
-    <h2 style="margin-top:3rem">Our Values</h2>
-    <p>Our clients are meaningfully engaged with us, whether it is in executive search, consultancy or training. Each person is treated as a unique individual with different motivations and aspirations.</p>
-    <div class="values-grid" style="margin-top:2rem">
-      <div class="value-item"><h4>World Wide Reach</h4><p>We have grown our executive search and consulting network from Singapore to Asia Pacific including China, India and Vietnam. Through the ENEX network, JonDavidson Group is connected globally.</p></div>
-      <div class="value-item"><h4>Local Expertise</h4><p>Deep understanding of Southeast Asian markets, cultures, and talent dynamics &mdash; giving our clients an edge that global generalists cannot replicate.</p></div>
-      <div class="value-item"><h4>True Engagement</h4><p>Every individual we work with receives personalised, thoughtful engagement &mdash; because real relationships are the foundation of lasting success.</p></div>
-    </div>
-    <div style="margin-top:3rem;padding:2.5rem;background:var(--gray-light);border-radius:8px;border-left:4px solid var(--red)">
-      <p class="eyebrow" style="margin-bottom:1rem"><span class="line"></span> GLOBAL NETWORK</p>
-      <h3 style="font-family:var(--serif);font-size:1.4rem;font-weight:700;margin-bottom:0.75rem">Connect to our Global Expertise &mdash; ENEX</h3>
-      <p>We are the South East Asia (SEA) accredited partner of ENEX global executive search organization. The ENEX Partner network has coverage in four continents &amp; is represented in 40 countries.</p>
-      <a href="https://www.enexsearch.group" target="_blank" class="btn-primary" style="margin-top:1.25rem;display:inline-flex">Visit ENEX &rarr;</a>
-    </div>
+    <button class="tab-btn active" data-tab="who-we-are">Who We Are</button>
+    <button class="tab-btn" data-tab="our-team">Our Team</button>
+    <button class="tab-btn" data-tab="our-offices">Our Offices</button>
   </div>
-</section>
+</div>
 
-<section class="content-section" id="our-team" style="background:var(--gray-light)">
-  <div class="container">
-    <p class="eyebrow" style="margin-bottom:1rem"><span class="line"></span> OUR TEAM</p>
-    <h2>Meet Our <em>Management</em></h2>
-    <p style="margin-bottom:2.5rem">Our leadership team brings decades of combined expertise across Southeast Asia&apos;s most dynamic industries.</p>
-    <div class="team-grid">
-      <div class="team-card">
-        <div class="team-photo photo-yvonne"></div>
-        <div class="team-info"><h3>Yvonne Tan</h3><p class="role">Group Managing Director</p><p class="email"><a href="mailto:yv.tan@jondavidsongroup.com">yv.tan@jondavidsongroup.com</a></p><div class="team-links"><a href="yvonne-tan.html">Read More</a><a href="https://www.linkedin.com/in/yvonnetanhh/" target="_blank">LinkedIn</a></div></div>
+<!-- ── TAB: WHO WE ARE ── -->
+<div id="who-we-are" class="tab-panel active">
+  <section class="content-section" style="background:#ffffff">
+    <div class="container">
+      <p class="eyebrow" style="margin-bottom:1rem"><span class="line"></span> WHO WE ARE</p>
+      <h2>Our Story</h2>
+      <p>We are a team of industry specialists who share a belief that a Company&apos;s success is fuelled by having the right talents in the right job functions. The talent must also have a good cultural fit and shared core values with the Company, which is pivotal to job satisfaction.</p>
+      <p>Recognizing our collective passion to help businesses develop a competent and effective workforce, we came together in May 2007. Our own diverse talents are synergized to bring an energetic dynamism in fulfilling the recruitment needs of our clients, and the career aspirations of our candidates.</p>
+      <h2 style="margin-top:3rem">Our Values</h2>
+      <p>Our clients are meaningfully engaged with us, whether it is in executive search, consultancy or training. Each person is treated as a unique individual with different motivations and aspirations.</p>
+      <div class="values-grid" style="margin-top:2rem">
+        <div class="value-item"><h4>World Wide Reach</h4><p>We have grown our executive search and consulting network from Singapore to Asia Pacific including China, India and Vietnam. Through the ENEX network, JonDavidson Group is connected globally.</p></div>
+        <div class="value-item"><h4>Local Expertise</h4><p>Deep understanding of Southeast Asian markets, cultures, and talent dynamics &mdash; giving our clients an edge that global generalists cannot replicate.</p></div>
+        <div class="value-item"><h4>True Engagement</h4><p>Every individual we work with receives personalised, thoughtful engagement &mdash; because real relationships are the foundation of lasting success.</p></div>
       </div>
-      <div class="team-card">
-        <div class="team-photo photo-desmond"></div>
-        <div class="team-info"><h3>Desmond Ong</h3><p class="role">Senior Associate Director</p><p class="email"><a href="mailto:d.ong@jondavidsongroup.com">d.ong@jondavidsongroup.com</a></p><div class="team-links"><a href="desmond-ong.html">Read More</a><a href="https://www.linkedin.com/in/desmondong1/" target="_blank">LinkedIn</a></div></div>
-      </div>
-      <div class="team-card">
-        <div class="team-photo photo-kevin"></div>
-        <div class="team-info"><h3>Kevin Chong</h3><p class="role">Senior Associate Director</p><p class="email"><a href="mailto:k.chong@jondavidsongroup.com">k.chong@jondavidsongroup.com</a></p><div class="team-links"><a href="kevin-chong.html">Read More</a><a href="https://www.linkedin.com/in/kevinchong/" target="_blank">LinkedIn</a></div></div>
-      </div>
-      <div class="team-card">
-        <div class="team-photo photo-liew"></div>
-        <div class="team-info"><h3>Liew Yuk Kong</h3><p class="role">Senior Associate Director</p><p class="email"><a href="mailto:yk.liew@jondavidsongroup.com">yk.liew@jondavidsongroup.com</a></p><div class="team-links"><a href="liew-yuk-kong.html">Read More</a><a href="https://www.linkedin.com/in/yuk-kong-liew/" target="_blank">LinkedIn</a></div></div>
-      </div>
-      <div class="team-card">
-        <div class="team-photo photo-sonny"></div>
-        <div class="team-info"><h3>Sonny Yuen</h3><p class="role">Senior Advisor</p><p class="email"><a href="mailto:s.yuen@jondavidsongroup.com">s.yuen@jondavidsongroup.com</a></p><div class="team-links"><a href="sonny-yuen.html">Read More</a><a href="https://www.linkedin.com/in/sonnyyuen/" target="_blank">LinkedIn</a></div></div>
+      <div style="margin-top:3rem;padding:2.5rem;background:var(--gray-light);border-radius:8px;border-left:4px solid var(--red)">
+        <p class="eyebrow" style="margin-bottom:1rem"><span class="line"></span> GLOBAL NETWORK</p>
+        <h3 style="font-family:var(--serif);font-size:1.4rem;font-weight:700;margin-bottom:0.75rem">Connect to our Global Expertise &mdash; ENEX</h3>
+        <p>We are the South East Asia (SEA) accredited partner of ENEX global executive search organization. The ENEX Partner network has coverage in four continents &amp; is represented in 40 countries.</p>
+        <a href="https://www.enexsearch.group" target="_blank" class="btn-primary" style="margin-top:1.25rem;display:inline-flex">Visit ENEX &rarr;</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
 
-<section class="content-section" id="our-offices">
-  <div class="container">
-    <p class="eyebrow" style="margin-bottom:1rem"><span class="line"></span> OUR OFFICES</p>
-    <h2>Where We <em>Operate</em></h2>
-    <p style="margin-bottom:2.5rem">Our headquarters in Singapore and associate offices across Southeast Asia allow us to serve clients with true regional coverage.</p>
-    <div class="offices-grid">
+<!-- ── TAB: OUR TEAM ── -->
+<div id="our-team" class="tab-panel">
+  <section class="content-section" style="background:var(--gray-light)">
+    <div class="container">
+      <p class="eyebrow" style="margin-bottom:1rem"><span class="line"></span> OUR TEAM</p>
+      <h2>Meet Our <em>Management</em></h2>
+      <p style="margin-bottom:2.5rem">Our leadership team brings decades of combined expertise across Southeast Asia&apos;s most dynamic industries.</p>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-photo photo-yvonne"></div>
+          <div class="team-info"><h3>Yvonne Tan</h3><p class="role">Group Managing Director</p><p class="email"><a href="mailto:yv.tan@jondavidsongroup.com">yv.tan@jondavidsongroup.com</a></p><div class="team-links"><a href="yvonne-tan.html">Read More</a><a href="https://www.linkedin.com/in/yvonnetanhh/" target="_blank">LinkedIn</a></div></div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo photo-desmond"></div>
+          <div class="team-info"><h3>Desmond Ong</h3><p class="role">Senior Associate Director</p><p class="email"><a href="mailto:d.ong@jondavidsongroup.com">d.ong@jondavidsongroup.com</a></p><div class="team-links"><a href="desmond-ong.html">Read More</a><a href="https://www.linkedin.com/in/desmondong1/" target="_blank">LinkedIn</a></div></div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo photo-kevin"></div>
+          <div class="team-info"><h3>Kevin Chong</h3><p class="role">Senior Associate Director</p><p class="email"><a href="mailto:k.chong@jondavidsongroup.com">k.chong@jondavidsongroup.com</a></p><div class="team-links"><a href="kevin-chong.html">Read More</a><a href="https://www.linkedin.com/in/kevinchong/" target="_blank">LinkedIn</a></div></div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo photo-liew"></div>
+          <div class="team-info"><h3>Liew Yuk Kong</h3><p class="role">Senior Associate Director</p><p class="email"><a href="mailto:yk.liew@jondavidsongroup.com">yk.liew@jondavidsongroup.com</a></p><div class="team-links"><a href="liew-yuk-kong.html">Read More</a><a href="https://www.linkedin.com/in/yuk-kong-liew/" target="_blank">LinkedIn</a></div></div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo photo-sonny"></div>
+          <div class="team-info"><h3>Sonny Yuen</h3><p class="role">Senior Advisor</p><p class="email"><a href="mailto:s.yuen@jondavidsongroup.com">s.yuen@jondavidsongroup.com</a></p><div class="team-links"><a href="sonny-yuen.html">Read More</a><a href="https://www.linkedin.com/in/sonnyyuen/" target="_blank">LinkedIn</a></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 
-      <!-- ── HEADQUARTERS CARD ── -->
-      <div class="office-card main">
+<!-- ── TAB: OUR OFFICES ── -->
+<div id="our-offices" class="tab-panel">
+  <section class="content-section" style="background:#ffffff">
+    <div class="container">
+      <p class="eyebrow" style="margin-bottom:1rem"><span class="line"></span> OUR OFFICES</p>
+      <h2>Where We <em>Operate</em></h2>
+      <p style="margin-bottom:2.5rem">Our headquarters in Singapore and associate offices across Southeast Asia allow us to serve clients with true regional coverage.</p>
+      <div class="offices-grid">
 
-        <!-- Left: contact info -->
-        <div class="hq-info">
-          <p class="office-country">HEADQUARTERS</p>
-          <h3>JonDavidson Pte Ltd</h3>
-          <p class="hq-member">(member of ELITEZ Group)</p>
-          <p class="hq-detail">2 Kallang Avenue, #03-05 CT Hub<br/>Singapore 339407</p>
-          <p class="hq-detail">Tel: <a href="tel:+6562957155">+65 6295 7155</a></p>
-          <p class="hq-detail">Email: <a href="mailto:partners@jondavidsongroup.com">partners@jondavidsongroup.com</a></p>
-          <p class="hq-licence">EA Licence No. 22S1412</p>
+        <!-- HEADQUARTERS CARD -->
+        <div class="office-card main">
+          <div class="hq-info">
+            <p class="office-country">HEADQUARTERS</p>
+            <h3>JonDavidson Pte Ltd</h3>
+            <p class="hq-member">(member of ELITEZ Group)</p>
+            <p class="hq-detail">2 Kallang Avenue, #03-05 CT Hub<br/>Singapore 339407</p>
+            <p class="hq-detail">Tel: <a href="tel:+6562957155">+65 6295 7155</a></p>
+            <p class="hq-detail">Email: <a href="mailto:partners@jondavidsongroup.com">partners@jondavidsongroup.com</a></p>
+            <p class="hq-licence">EA Licence No. 22S1412</p>
+          </div>
+          <a class="hq-map-panel"
+             href="https://www.google.com/maps/search/?api=1&query=2+Kallang+Avenue+CT+Hub+Singapore+339407"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Open office location in Google Maps">
+            <svg class="hq-map-svg" viewBox="0 50 340 280" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+              <rect x="0" y="0" width="340" height="500" fill="#0d1117"/>
+              <path d="M155,40 L162,55 L168,75 L170,100 L168,125 L165,148 L162,162 L158,172 L155,178 L152,172 L150,162 L148,148 L146,130 L145,110 L146,90 L150,70 L153,55 Z" fill="#161b22" stroke="rgba(0,229,255,0.28)" stroke-width="0.9"/>
+              <ellipse cx="163" cy="188" rx="7" ry="4" fill="#1a2332" stroke="rgba(0,229,255,0.6)" stroke-width="1.2"/>
+              <path d="M80,120 L100,108 L130,105 L155,110 L160,125 L155,140 L130,148 L100,152 L78,148 L68,138 L70,128 Z" fill="#161b22" stroke="rgba(0,229,255,0.22)" stroke-width="0.9"/>
+              <path d="M115,210 L140,205 L175,207 L200,210 L210,216 L205,222 L175,224 L140,222 L112,218 Z" fill="#161b22" stroke="rgba(0,229,255,0.22)" stroke-width="0.9"/>
+              <path d="M195,90 L225,80 L255,82 L270,95 L272,120 L265,148 L248,162 L225,168 L205,162 L192,145 L188,120 L190,100 Z" fill="#161b22" stroke="rgba(0,229,255,0.22)" stroke-width="0.9"/>
+              <path d="M140,20 L148,30 L152,45 L150,60 L145,50 L138,38 L134,28 Z" fill="#161b22" stroke="rgba(0,229,255,0.15)" stroke-width="0.8"/>
+              <path d="M210,25 L215,40 L218,60 L215,80 L210,95 L205,80 L204,60 L206,40 Z" fill="#161b22" stroke="rgba(0,229,255,0.15)" stroke-width="0.8"/>
+              <ellipse cx="270" cy="55" rx="9" ry="16" fill="#161b22" stroke="rgba(0,229,255,0.15)" stroke-width="0.7"/>
+              <ellipse cx="282" cy="80" rx="7" ry="12" fill="#161b22" stroke="rgba(0,229,255,0.15)" stroke-width="0.7"/>
+              <path d="M270,170 L278,160 L285,165 L288,178 L280,185 L272,180 Z" fill="#161b22" stroke="rgba(0,229,255,0.13)" stroke-width="0.7"/>
+              <circle cx="163" cy="188" r="24" fill="none" stroke="rgba(0,229,255,0.07)" stroke-width="20"/>
+              <circle cx="163" cy="188" r="36" fill="none" stroke="rgba(0,229,255,0.03)" stroke-width="14"/>
+              <line x1="163" y1="188" x2="200" y2="212" stroke="rgba(0,229,255,0.13)" stroke-width="0.8" stroke-dasharray="3,5"/>
+              <line x1="163" y1="188" x2="155" y2="115" stroke="rgba(0,229,255,0.11)" stroke-width="0.8" stroke-dasharray="3,5"/>
+              <line x1="163" y1="188" x2="230" y2="130" stroke="rgba(0,229,255,0.10)" stroke-width="0.8" stroke-dasharray="3,5"/>
+            </svg>
+            <span class="hq-corner tl"></span>
+            <span class="hq-corner tr"></span>
+            <span class="hq-corner bl"></span>
+            <span class="hq-corner br"></span>
+            <div class="hq-coords">1.3521° N<br/>103.8198° E</div>
+            <div class="hq-pin-wrap">
+              <span class="hq-pin-ring"></span>
+              <span class="hq-pin-ring hq-pin-ring2"></span>
+              <span class="hq-pin-label">CT Hub · SG</span>
+              <span class="hq-pin-dot"></span>
+              <span class="hq-pin-stem"></span>
+            </div>
+            <div class="hq-map-overlay">
+              <div class="hq-map-overlay-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <span class="hq-map-overlay-label">Open in Google Maps</span>
+            </div>
+          </a>
         </div>
 
-        <!-- Right: futuristic map — flex:1 so it fills remaining space, Singapore centred -->
-        <a class="hq-map-panel"
-           href="https://www.google.com/maps/search/?api=1&query=2+Kallang+Avenue+CT+Hub+Singapore+339407"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="Open office location in Google Maps">
-
-          <svg class="hq-map-svg"
-               viewBox="0 50 340 280"
-               xmlns="http://www.w3.org/2000/svg"
-               aria-hidden="true"
-               preserveAspectRatio="xMidYMid slice">
-            <rect x="0" y="0" width="340" height="500" fill="#0d1117"/>
-
-            <!-- Malay Peninsula -->
-            <path d="M155,40 L162,55 L168,75 L170,100 L168,125 L165,148 L162,162 L158,172 L155,178 L152,172 L150,162 L148,148 L146,130 L145,110 L146,90 L150,70 L153,55 Z"
-                  fill="#161b22" stroke="rgba(0,229,255,0.28)" stroke-width="0.9"/>
-            <!-- Singapore island -->
-            <ellipse cx="163" cy="188" rx="7" ry="4"
-                     fill="#1a2332" stroke="rgba(0,229,255,0.6)" stroke-width="1.2"/>
-            <!-- Sumatra -->
-            <path d="M80,120 L100,108 L130,105 L155,110 L160,125 L155,140 L130,148 L100,152 L78,148 L68,138 L70,128 Z"
-                  fill="#161b22" stroke="rgba(0,229,255,0.22)" stroke-width="0.9"/>
-            <!-- Java -->
-            <path d="M115,210 L140,205 L175,207 L200,210 L210,216 L205,222 L175,224 L140,222 L112,218 Z"
-                  fill="#161b22" stroke="rgba(0,229,255,0.22)" stroke-width="0.9"/>
-            <!-- Borneo -->
-            <path d="M195,90 L225,80 L255,82 L270,95 L272,120 L265,148 L248,162 L225,168 L205,162 L192,145 L188,120 L190,100 Z"
-                  fill="#161b22" stroke="rgba(0,229,255,0.22)" stroke-width="0.9"/>
-            <!-- Thailand south -->
-            <path d="M140,20 L148,30 L152,45 L150,60 L145,50 L138,38 L134,28 Z"
-                  fill="#161b22" stroke="rgba(0,229,255,0.15)" stroke-width="0.8"/>
-            <!-- Vietnam coast -->
-            <path d="M210,25 L215,40 L218,60 L215,80 L210,95 L205,80 L204,60 L206,40 Z"
-                  fill="#161b22" stroke="rgba(0,229,255,0.15)" stroke-width="0.8"/>
-            <!-- Philippines -->
-            <ellipse cx="270" cy="55" rx="9"  ry="16" fill="#161b22" stroke="rgba(0,229,255,0.15)" stroke-width="0.7"/>
-            <ellipse cx="282" cy="80" rx="7"  ry="12" fill="#161b22" stroke="rgba(0,229,255,0.15)" stroke-width="0.7"/>
-            <!-- Sulawesi hint -->
-            <path d="M270,170 L278,160 L285,165 L288,178 L280,185 L272,180 Z"
-                  fill="#161b22" stroke="rgba(0,229,255,0.13)" stroke-width="0.7"/>
-
-            <!-- Ambient glow around Singapore -->
-            <circle cx="163" cy="188" r="24" fill="none" stroke="rgba(0,229,255,0.07)" stroke-width="20"/>
-            <circle cx="163" cy="188" r="36" fill="none" stroke="rgba(0,229,255,0.03)" stroke-width="14"/>
-
-            <!-- Dashed connection lines from SG to neighbours -->
-            <line x1="163" y1="188" x2="200" y2="212" stroke="rgba(0,229,255,0.13)" stroke-width="0.8" stroke-dasharray="3,5"/>
-            <line x1="163" y1="188" x2="155" y2="115" stroke="rgba(0,229,255,0.11)" stroke-width="0.8" stroke-dasharray="3,5"/>
-            <line x1="163" y1="188" x2="230" y2="130" stroke="rgba(0,229,255,0.10)" stroke-width="0.8" stroke-dasharray="3,5"/>
-          </svg>
-
-          <!-- Corner brackets -->
-          <span class="hq-corner tl"></span>
-          <span class="hq-corner tr"></span>
-          <span class="hq-corner bl"></span>
-          <span class="hq-corner br"></span>
-
-          <!-- Coordinates (bottom-right) -->
-          <div class="hq-coords">1.3521° N<br/>103.8198° E</div>
-
-          <!-- Pin — CSS positions it at 50%/50% of the panel -->
-          <div class="hq-pin-wrap">
-            <span class="hq-pin-ring"></span>
-            <span class="hq-pin-ring hq-pin-ring2"></span>
-            <span class="hq-pin-label">CT Hub · SG</span>
-            <span class="hq-pin-dot"></span>
-            <span class="hq-pin-stem"></span>
-          </div>
-
-          <!-- Hover: open maps -->
-          <div class="hq-map-overlay">
-            <div class="hq-map-overlay-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                   stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
-                <circle cx="12" cy="10" r="3"/>
-              </svg>
-            </div>
-            <span class="hq-map-overlay-label">Open in Google Maps</span>
-          </div>
-
-        </a>
-      </div><!-- end .office-card.main -->
-
-      <div class="office-card"><p class="office-country">THAILAND</p><h3>Bangkok Office</h3><p>408/107 Phahonyothin Place Building, 12th Floor, Bangkok 10400</p></div>
-      <div class="office-card"><p class="office-country">INDONESIA</p><h3>Jakarta Office</h3><p>Luminary Tower, 63rd Floor, Thamrin Nine Complex, Jakarta 10230</p></div>
-      <div class="office-card"><p class="office-country">MALAYSIA</p><h3>Kuala Lumpur Office</h3><p>B1-43A-1, Soho Suites @ KLCC, No. 20 Jalan Perak, 50450 KL</p></div>
-      <div class="office-card"><p class="office-country">VIETNAM</p><h3>Ho Chi Minh City Office</h3><p>VRG Building, 177 Hai Ba Trung Street, Ho Chi Minh City</p></div>
-      <div class="office-card"><p class="office-country">INDIA</p><h3>Coimbatore Office</h3><p>11/4 Pooja Garden, Kalapatti Main Road, Tamil Nadu 641014</p></div>
+        <div class="office-card"><p class="office-country">THAILAND</p><h3>Bangkok Office</h3><p>408/107 Phahonyothin Place Building, 12th Floor, Bangkok 10400</p></div>
+        <div class="office-card"><p class="office-country">INDONESIA</p><h3>Jakarta Office</h3><p>Luminary Tower, 63rd Floor, Thamrin Nine Complex, Jakarta 10230</p></div>
+        <div class="office-card"><p class="office-country">MALAYSIA</p><h3>Kuala Lumpur Office</h3><p>B1-43A-1, Soho Suites @ KLCC, No. 20 Jalan Perak, 50450 KL</p></div>
+        <div class="office-card"><p class="office-country">VIETNAM</p><h3>Ho Chi Minh City Office</h3><p>VRG Building, 177 Hai Ba Trung Street, Ho Chi Minh City</p></div>
+        <div class="office-card"><p class="office-country">INDIA</p><h3>Coimbatore Office</h3><p>11/4 Pooja Garden, Kalapatti Main Road, Tamil Nadu 641014</p></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
 
 <footer class="footer">
   <div class="footer-top"><div class="container"><div class="footer-grid">
@@ -450,6 +328,28 @@
   </div></div></div>
   <div class="footer-bottom"><div class="container"><p>&copy; 2025 JonDavidson Pte Ltd. All rights reserved.</p><p>EA Licence No. 22S1412</p></div></div>
 </footer>
+
+<script>
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+
+  function showTab(id) {
+    tabBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === id));
+    tabPanels.forEach(p => p.classList.toggle('active', p.id === id));
+    window.scrollTo({ top: document.querySelector('.about-tabs-bar').offsetTop - 90, behavior: 'smooth' });
+  }
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      history.pushState(null, '', '#' + btn.dataset.tab);
+      showTab(btn.dataset.tab);
+    });
+  });
+
+  const validTabs = ['who-we-are', 'our-team', 'our-offices'];
+  const hash = location.hash.slice(1);
+  if (validTabs.includes(hash)) showTab(hash);
+</script>
 <script src="js/main.js"></script>
 </body>
 </html>
