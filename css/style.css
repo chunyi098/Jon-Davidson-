@@ -261,7 +261,16 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
 .footer { background: var(--black); color: var(--white); }
 .footer-top { padding: 5rem 0 3rem; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr; gap: 2.5rem; }
-.footer-brand .footer-logo { height: 52px; margin-bottom: 1.25rem; }
+.footer-brand .footer-logo {
+  height: 64px;
+  width: auto;
+  margin-bottom: 1.25rem;
+  /* Invert dark logo to white so it's visible on black footer */
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+  transition: opacity var(--transition);
+}
+.footer-brand .footer-logo:hover { opacity: 1; }
 .footer-brand p { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 0.75rem; }
 .footer-brand .licence { font-size: 0.78rem; color: rgba(255,255,255,0.35); }
 .footer-col h5 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 1.25rem; }
