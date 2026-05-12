@@ -10,8 +10,62 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/nav.css"/>
+  <style>
+    /* ── Asia Coverage Banner ── */
+    .asia-banner{background:var(--black);color:var(--white);padding:3rem 0;text-align:center}
+    .asia-banner h3{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:0.5rem}
+    .asia-banner p{color:rgba(255,255,255,0.6);font-size:0.95rem;max-width:640px;margin:0 auto 1.75rem}
+    .asia-tags{display:flex;flex-wrap:wrap;gap:0.6rem;justify-content:center}
+    .asia-tag{padding:0.4rem 1rem;border:1px solid rgba(255,255,255,0.2);border-radius:30px;font-size:0.8rem;color:rgba(255,255,255,0.75);font-weight:500;letter-spacing:0.04em}
+    .asia-tag.highlight{border-color:var(--red);color:var(--white);background:rgba(158,4,3,0.15)}
+
+    /* ── Methodology Steps ── */
+    .methodology-section{padding:5rem 0;background:var(--gray-light)}
+    .methodology-section h2{font-family:var(--serif);font-size:clamp(1.8rem,2.5vw,2.4rem);font-weight:700;margin-bottom:0.5rem}
+    .methodology-section h2 em{color:var(--red)}
+    .methodology-section>div>p{color:var(--text-light);max-width:640px;line-height:1.75;margin-bottom:3rem}
+    .steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
+    .step-card{background:var(--white);border-radius:10px;padding:1.75rem;box-shadow:var(--shadow);position:relative;border-top:3px solid transparent;transition:border-color 0.2s,transform 0.2s}
+    .step-card:hover{border-top-color:var(--red);transform:translateY(-3px)}
+    .step-num{font-family:var(--serif);font-size:2rem;font-weight:900;color:var(--red);opacity:0.25;line-height:1;margin-bottom:0.5rem}
+    .step-card h4{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.5rem}
+    .step-card p{font-size:0.85rem;color:var(--text-light);line-height:1.65;margin:0}
+
+    /* ── Other Services grid ── */
+    .other-services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-top:3rem}
+    .other-svc{background:var(--white);border-radius:10px;padding:1.5rem 1.75rem;box-shadow:var(--shadow);border-left:4px solid var(--red)}
+    .other-svc h4{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.4rem}
+    .other-svc p{font-size:0.83rem;color:var(--text-light);line-height:1.6;margin:0}
+
+    /* ── Talent Profiling Tool Cards ── */
+    .tool-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.75rem;margin-top:3rem}
+    .tool-card{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform 0.2s,box-shadow 0.2s}
+    .tool-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.12)}
+    .tool-card-header{background:var(--black);padding:1.5rem 1.75rem;display:flex;align-items:flex-start;gap:1rem}
+    .tool-abbr{font-family:var(--serif);font-size:2rem;font-weight:900;color:var(--red);line-height:1}
+    .tool-card-header-text h3{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--white);margin:0 0 0.2rem}
+    .tool-card-header-text p{font-size:0.75rem;color:rgba(255,255,255,0.5);margin:0;letter-spacing:0.04em;text-transform:uppercase}
+    .tool-card-body{padding:1.75rem;flex:1;display:flex;flex-direction:column}
+    .tool-card-body>p{font-size:0.9rem;color:var(--text-light);line-height:1.7;margin-bottom:1.25rem}
+    .tool-factors{list-style:none;padding:0;margin:0 0 1.5rem;display:flex;flex-direction:column;gap:0.5rem}
+    .tool-factors li{display:flex;align-items:flex-start;gap:0.6rem;font-size:0.85rem;color:var(--text);line-height:1.5}
+    .tool-factors li::before{content:'';display:block;width:8px;height:8px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:5px}
+    .tool-card-body a{margin-top:auto;display:inline-flex;align-items:center;gap:0.4rem;font-size:0.85rem;font-weight:600;color:var(--red);text-decoration:none;transition:gap 0.2s}
+    .tool-card-body a:hover{gap:0.75rem}
+
+    /* ── CCV Demo card ── */
+    .ccv-demo{background:linear-gradient(135deg,var(--red) 0%,#6b0000 100%);border-radius:12px;padding:2.5rem;color:var(--white);display:flex;flex-direction:column;gap:1rem}
+    .ccv-demo h3{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--white);margin:0}
+    .ccv-demo p{font-size:0.88rem;color:rgba(255,255,255,0.8);line-height:1.7;margin:0}
+    .ccv-demo a{display:inline-flex;align-items:center;gap:0.5rem;background:var(--white);color:var(--red);padding:0.7rem 1.4rem;border-radius:6px;font-size:0.85rem;font-weight:700;text-decoration:none;margin-top:0.5rem;width:fit-content;transition:transform 0.2s}
+    .ccv-demo a:hover{transform:translateY(-2px)}
+
+    @media(max-width:768px){.steps-grid{grid-template-columns:1fr}.tool-cards{grid-template-columns:1fr}.other-services{grid-template-columns:1fr 1fr}}
+    @media(max-width:480px){.other-services{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
+
 <header class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo"><img src="assets/JonDavidsonLogo.png" alt="JonDavidson"/><span class="tagline">WE GO THE DISTANCE</span></a>
@@ -32,33 +86,229 @@
   </div>
 </header>
 
+<!-- HERO -->
 <section class="page-hero">
   <div class="container">
     <p class="eyebrow" style="justify-content:center;margin-bottom:1rem"><span class="line"></span> SERVICES <span class="line"></span></p>
     <h1>How We <em>Serve</em> You</h1>
-    <p>Comprehensive talent solutions tailored to the needs of organisations across Southeast Asia.</p>
+    <p>Comprehensive talent solutions tailored to the needs of organisations across Southeast Asia &mdash; built on trust, partnership, and a methodology refined over four decades.</p>
   </div>
 </section>
 
+<!-- ════════════════════════════════════
+     CLIENT SOLUTIONS
+════════════════════════════════════ -->
 <section class="content-section" id="client-solutions">
   <div class="container">
     <p class="eyebrow" style="margin-bottom:1.5rem"><span class="line"></span> CLIENT SOLUTIONS</p>
-    <div class="service-detail" id="executive-search"><div class="service-detail-grid"><div><div class="svc-num">01</div><h2>Executive Search</h2></div><div><p>Our core service &mdash; a rigorous, confidential search process to identify, assess, and place exceptional leaders at the C-suite and senior management level.</p><p>Each mandate is handled with absolute discretion. Our consultants leverage their deep networks and industry knowledge to deliver a shortlist of candidates who are both technically qualified and culturally aligned.</p><a href="hire.html#employer-form" class="btn-primary" style="display:inline-flex;margin-top:1.25rem">Start a Search Mandate &rarr;</a></div></div></div>
-    <div class="service-detail" id="contingency"><div class="service-detail-grid"><div><div class="svc-num">02</div><h2>Contingency Recruitment</h2></div><div><p>For mid-level professional roles, our contingency model offers speed and efficiency. We leverage our extensive candidate database and active sourcing capabilities to fill roles quickly without sacrificing quality.</p><a href="hire.html#employer-form" class="btn-primary" style="display:inline-flex;margin-top:1.25rem">Enquire Now &rarr;</a></div></div></div>
-    <div class="service-detail" id="rpo"><div class="service-detail-grid"><div><div class="svc-num">03</div><h2>RPO &amp; Consulting</h2></div><div><p>For organisations looking to scale their hiring or build internal capabilities, we offer Recruitment Process Outsourcing (RPO) and HR consulting services.</p><a href="hire.html#employer-form" class="btn-primary" style="display:inline-flex;margin-top:1.25rem">Discuss Your Needs &rarr;</a></div></div></div>
+    <h2 style="font-family:var(--serif);font-size:clamp(2rem,3vw,2.6rem);font-weight:700;margin-bottom:1rem">It&rsquo;s Not Just About Filling a Role &mdash; It&rsquo;s About <em>You</em></h2>
+    <p style="max-width:720px;color:var(--text-light);line-height:1.85;margin-bottom:2.5rem">When you engage us to be your executive search partner, it will be about YOU. Our methodology allows us to find not only a personality who is qualified to do the work, but one whose beliefs and behaviour are in alignment with your company&rsquo;s core values and culture. You will come to see us as partners investing in your success. When we go on the search for your right executive candidate, we are an extension of you.</p>
+
+    <!-- Executive Search -->
+    <div class="service-detail" id="executive-search">
+      <div class="service-detail-grid">
+        <div>
+          <div class="svc-num">01</div>
+          <h2>Executive Search</h2>
+        </div>
+        <div>
+          <p>Our core service &mdash; a rigorous, confidential search process to identify, assess, and place exceptional leaders at the C-suite and senior management level. Each mandate is handled with absolute discretion, leveraging deep networks and industry knowledge to deliver a shortlist of candidates who are both technically qualified and culturally aligned.</p>
+          <p>A trusted relationship is built with you. You share with us your company&rsquo;s business challenges, its mission, and its values &mdash; we don&rsquo;t engage you by merely &ldquo;ticking off a list.&rdquo;</p>
+          <a href="hire.html#employer-form" class="btn-primary" style="display:inline-flex;margin-top:1.25rem">Start a Search Mandate &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Other Services -->
+    <div class="other-services">
+      <div class="other-svc">
+        <h4>Interim Management</h4>
+        <p>Experienced executives placed on a short-term or project basis to bridge leadership gaps, drive transformation, or provide specialist expertise when you need it most.</p>
+      </div>
+      <div class="other-svc">
+        <h4>Career Transition &amp; Outplacement</h4>
+        <p>We support transitioning employees with structured outplacement services, helping them navigate career change with confidence and dignity.</p>
+      </div>
+      <div class="other-svc">
+        <h4>Human Capital Outsourcing</h4>
+        <p>Flexible contract staffing solutions that give your business the agility to scale your workforce in response to project demands and market conditions.</p>
+      </div>
+      <div class="other-svc">
+        <h4>Payroll Outsourcing</h4>
+        <p>End-to-end payroll management services, ensuring compliance and accuracy so your HR team can focus on what matters most &mdash; your people.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="content-section" id="talent-profiling" style="background:var(--gray-light)">
+<!-- ════════════════════════════════════
+     ASIA COVERAGE BANNER
+════════════════════════════════════ -->
+<div class="asia-banner">
+  <div class="container">
+    <p class="eyebrow" style="justify-content:center;color:var(--red);margin-bottom:0.75rem"><span class="line" style="background:var(--red)"></span> REGIONAL REACH <span class="line" style="background:var(--red)"></span></p>
+    <h3>Benefit From Asia Coverage</h3>
+    <p>Our search coverage extends from Singapore to Asia Pacific, including China, India, Vietnam, Malaysia and Hong Kong. We have made noteworthy breakthroughs and continual successes in China, even though it is well-known to be one of the toughest markets for talent search.</p>
+    <div class="asia-tags">
+      <span class="asia-tag highlight">Singapore</span>
+      <span class="asia-tag">Malaysia</span>
+      <span class="asia-tag">Indonesia</span>
+      <span class="asia-tag">Vietnam</span>
+      <span class="asia-tag">Thailand</span>
+      <span class="asia-tag">China</span>
+      <span class="asia-tag">India</span>
+      <span class="asia-tag">Hong Kong</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     OUR METHODOLOGY
+════════════════════════════════════ -->
+<section class="methodology-section">
+  <div class="container">
+    <p class="eyebrow" style="margin-bottom:1rem"><span class="line"></span> OUR METHODOLOGY</p>
+    <h2>A Series of Well-Managed <em>Processes</em></h2>
+    <p>A candidate&rsquo;s commencement of work with you is never considered an event to be taken lightly &mdash; it is the outcome of a disciplined, thorough process developed and refined over more than four decades.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h4>Position Specifications</h4>
+        <p>The key to each successful placement is a thorough understanding of your needs. A detailed briefing session establishes an exact picture of your organisation, the role, and the culture we must match.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h4>Search Strategy</h4>
+        <p>Operating in an ever-changing environment, most placed candidates come not just from our database. Our extensive network of sources is accessed to identify prospective candidates for opportunity evaluation.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h4>Candidate Assessment</h4>
+        <p>Candidates are interviewed and evaluated to ascertain they fit with your organisation&rsquo;s culture &mdash; beyond technical qualifications, we assess values, behaviour, and leadership style.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <h4>Shortlist Presentation</h4>
+        <p>The finest choices of talent are shortlisted for presentation after a stringent filtering process. You receive a concise, high-quality slate &mdash; not a long list of maybes.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">05</div>
+        <h4>Interview &amp; Evaluation</h4>
+        <p>Interviews are arranged between you and the candidates. Their responses are evaluated after each interview, and we provide guidance throughout the selection process.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">06</div>
+        <h4>Reference Checks</h4>
+        <p>Thorough reference checks are conducted and you are advised of the outcome &mdash; our structured process goes beyond standard employment confirmation to give you real intelligence.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">07</div>
+        <h4>Negotiation &amp; Offer</h4>
+        <p>We handle negotiation of the appropriate compensation package for the selected candidate, and ensure they resign and do not accept a counter-offer from their current employer.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">08</div>
+        <h4>Onboarding Follow-Up</h4>
+        <p>Though the search assignment concludes, we maintain contact with both the candidate and employer to pave the way for a comfortable, compatible, and lasting relationship.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     TALENT PROFILING TOOLS
+════════════════════════════════════ -->
+<section class="content-section" id="talent-profiling" style="background:var(--white)">
   <div class="container">
     <p class="eyebrow" style="margin-bottom:1.5rem"><span class="line"></span> TALENT PROFILING TOOLS</p>
-    <h2>Science-Backed <em>Assessment</em></h2>
-    <p style="max-width:700px;margin-bottom:3rem">We complement our search expertise with validated psychometric and competency assessment tools to ensure every hire is not just technically competent, but a true fit for your culture and leadership requirements.</p>
-    <div class="services-grid">
-      <div class="service-card"><div class="svc-num">A</div><h3>Behavioural Profiling</h3><p>Understand how candidates think, communicate, and respond to pressure using validated behavioural frameworks.</p><a href="contact.html">Enquire &rarr;</a></div>
-      <div class="service-card"><div class="svc-num">B</div><h3>Leadership Potential Assessment</h3><p>Identify high-potential leaders with structured evaluation of cognitive ability, emotional intelligence, and leadership competencies.</p><a href="contact.html">Enquire &rarr;</a></div>
-      <div class="service-card"><div class="svc-num">C</div><h3>Cultural Fit Analysis</h3><p>Map candidate values against your organisational culture to predict retention and performance.</p><a href="contact.html">Enquire &rarr;</a></div>
-      <div class="service-card"><div class="svc-num">D</div><h3>360-Degree Reference Checks</h3><p>Structured, in-depth reference verification that goes beyond standard employment confirmation.</p><a href="contact.html">Enquire &rarr;</a></div>
+    <h2 style="font-family:var(--serif);font-size:clamp(2rem,3vw,2.6rem);font-weight:700;margin-bottom:1rem">Science-Backed <em>Candidate Assessment</em></h2>
+    <p style="max-width:720px;color:var(--text-light);line-height:1.85">Besides searching for the right candidate, our unique talent recruiting methodology provides the most timely, accurate, and effective executive search solutions to our clients. We use validated psychometric and competency tools to ensure every hire is not just technically competent &mdash; but a true fit for your culture and leadership requirements.</p>
+
+    <div class="tool-cards">
+
+      <!-- WPI -->
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-abbr">WPI</div>
+          <div class="tool-card-header-text">
+            <h3>Work Personality Index</h3>
+            <p>Personality &amp; Work Performance</p>
+          </div>
+        </div>
+        <div class="tool-card-body">
+          <p>The Work Personality Index is designed to measure personality traits that relate directly to work performance and work environment. Useful in both selection and development, it focuses on the normal adult population and answers three critical hiring questions:</p>
+          <ul class="tool-factors">
+            <li>Which skills is this individual naturally good at?</li>
+            <li>What does the individual genuinely enjoy doing at work?</li>
+            <li>How does the individual typically behave in a professional setting?</li>
+          </ul>
+          <p style="font-size:0.85rem;color:var(--text-light);line-height:1.65">It helps you identify key motivators and behaviours &mdash; essential for hiring the right people, developing employees, and supporting great leaders.</p>
+          <a href="contact.html">Enquire About WPI &rarr;</a>
+        </div>
+      </div>
+
+      <!-- ERI -->
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-abbr">ERI</div>
+          <div class="tool-card-header-text">
+            <h3>Employee Reliability Inventory</h3>
+            <p>Behavioural Reliability &amp; Risk</p>
+          </div>
+        </div>
+        <div class="tool-card-body">
+          <p>Created by Harvard specialists, the Employee Reliability Inventory measures whether a candidate&rsquo;s future behaviour is likely to be affected by any of six critical reliability factors:</p>
+          <ul class="tool-factors">
+            <li><strong>Employment Stability</strong> &mdash; Long-term commitment potential</li>
+            <li><strong>Courtesy</strong> &mdash; Commitment to service with internal and external stakeholders</li>
+            <li><strong>Productivity</strong> &mdash; Consistent contribution to results</li>
+            <li><strong>Emotional Maturity</strong> &mdash; Responsibility, good judgement, teamwork, and tolerance for frustration</li>
+            <li><strong>Trustworthiness</strong> &mdash; Reliability and integrity</li>
+            <li><strong>Safe Behaviour</strong> &mdash; Awareness and accident prevention</li>
+          </ul>
+          <a href="contact.html">Enquire About ERI &rarr;</a>
+        </div>
+      </div>
+
+      <!-- CCV -->
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <div class="tool-abbr">CCV</div>
+          <div class="tool-card-header-text">
+            <h3>Sales Competence Coefficient</h3>
+            <p>Sales Aptitude &amp; Effectiveness</p>
+          </div>
+        </div>
+        <div class="tool-card-body">
+          <p>The Sales Competence Coefficient (CCV) is a specialised assessment designed to measure the core competencies that predict sales performance and effectiveness. It is validated through real-world company trials and provides a data-driven picture of a candidate&rsquo;s commercial aptitude.</p>
+          <p style="font-size:0.85rem;color:var(--text-light);line-height:1.65">Ideal for businesses hiring sales professionals, business development leaders, and commercial executives. Request a demo to discover how the CCV can sharpen your hiring decisions.</p>
+          <a href="contact.html">Request a CCV Demo &rarr;</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CCV Demo CTA -->
+    <div class="ccv-demo" style="margin-top:2.5rem">
+      <p style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.6);font-weight:700;margin:0">TALENT PROFILING</p>
+      <h3>Want to See These Tools in Action?</h3>
+      <p>Our consultants will walk you through each assessment tool and how it integrates with the executive search process &mdash; helping you make better, more confident hiring decisions.</p>
+      <a href="contact.html">Get in Touch &rarr;</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding:5rem 0;background:var(--gray-light);text-align:center">
+  <div class="container">
+    <p style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:1rem">READY TO GET STARTED?</p>
+    <h2 style="font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;margin-bottom:0.75rem">Find the Right <em>Talent</em> For Your Organisation</h2>
+    <p style="color:var(--text-light);max-width:560px;margin:0 auto 2rem;line-height:1.75">Tell us your hiring needs and one of our specialist consultants will be in touch within one business day.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="hire.html#employer-form" class="btn-primary">Submit a Hiring Brief &rarr;</a>
+      <a href="about.html" class="btn-outline">About JonDavidson</a>
+      <a href="contact.html" class="btn-outline">Contact Us Directly</a>
     </div>
   </div>
 </section>
@@ -67,7 +317,7 @@
   <div class="footer-top"><div class="container"><div class="footer-grid">
     <div class="footer-brand"><img src="assets/JonDavidsonLogo.png" alt="JonDavidson" class="footer-logo"/><p>Executive Search &amp; Staffing across Southeast Asia.</p><p class="licence">EA Licence No. 22S1412 | Member of ELITEZ Group</p></div>
     <div class="footer-col"><h5>Company</h5><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a></div>
-    <div class="footer-col"><h5>Services</h5><a href="services.html#executive-search">Executive Search</a><a href="services.html#contingency">Contingency</a><a href="services.html#talent-profiling">Talent Profiling</a></div>
+    <div class="footer-col"><h5>Services</h5><a href="services.html#executive-search">Executive Search</a><a href="services.html#client-solutions">Client Solutions</a><a href="services.html#talent-profiling">Talent Profiling</a></div>
     <div class="footer-col"><h5>For Employers</h5><a href="hire.html">Hire Talent</a><a href="hire.html#expertise">Our Expertise</a><a href="hire.html#employer-form">Submit a Brief</a></div>
     <div class="footer-col"><h5>Contact</h5><p>2 Kallang Avenue #03-05, Singapore 339407</p><p>Tel: <a href="tel:+6562957155">+65 6295 7155</a></p></div>
   </div></div></div>
