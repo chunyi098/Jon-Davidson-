@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Client Solutions | JonDavidson</title>
+  <link rel="icon" type="image/png" href="assets/JonDavidsonLogo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/nav.css"/>
+  <style>
+    /* ── Other Services grid ── */
+    .other-services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-top:3rem}
+    .other-svc{background:var(--white);border-radius:10px;padding:1.5rem 1.75rem;box-shadow:var(--shadow);border-left:4px solid var(--red)}
+    .other-svc h4{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.4rem}
+    .other-svc p{font-size:0.83rem;color:var(--text-light);line-height:1.6;margin:0}
+
+    /* ── Asia Coverage Banner ── */
+    .asia-banner{background:var(--black);color:var(--white);padding:3.5rem 0;text-align:center}
+    .asia-banner h3{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--white);margin-bottom:0.6rem}
+    .asia-banner p{color:rgba(255,255,255,0.6);font-size:0.95rem;max-width:640px;margin:0 auto 1.75rem;line-height:1.75}
+    .asia-tags{display:flex;flex-wrap:wrap;gap:0.6rem;justify-content:center}
+    .asia-tag{padding:0.4rem 1rem;border:1px solid rgba(255,255,255,0.2);border-radius:30px;font-size:0.8rem;color:rgba(255,255,255,0.75);font-weight:500;letter-spacing:0.04em}
+    .asia-tag.highlight{border-color:var(--red);color:var(--white);background:rgba(158,4,3,0.2)}
+
+    /* ── Methodology Steps ── */
+    .methodology-section{padding:5rem 0;background:var(--gray-light)}
+    .methodology-section h2{font-family:var(--serif);font-size:clamp(1.8rem,2.5vw,2.4rem);font-weight:700;margin-bottom:0.5rem}
+    .methodology-section h2 em{color:var(--red)}
+    .steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1.5rem;margin-top:2.5rem}
+    .step-card{background:var(--white);border-radius:10px;padding:1.75rem;box-shadow:var(--shadow);border-top:3px solid transparent;transition:border-color 0.2s,transform 0.2s}
+    .step-card:hover{border-top-color:var(--red);transform:translateY(-3px)}
+    .step-num{font-family:var(--serif);font-size:2.2rem;font-weight:900;color:var(--red);opacity:0.2;line-height:1;margin-bottom:0.4rem}
+    .step-card h4{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.5rem}
+    .step-card p{font-size:0.85rem;color:var(--text-light);line-height:1.65;margin:0}
+
+    /* ── Breadcrumb ── */
+    .breadcrumb{display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;color:var(--gray);margin-bottom:1.5rem;flex-wrap:wrap}
+    .breadcrumb a{color:var(--red);text-decoration:none;font-weight:500}
+    .breadcrumb span{color:var(--gray)}
+
+    @media(max-width:768px){.steps-grid{grid-template-columns:1fr}.other-services{grid-template-columns:1fr 1fr}}
+    @media(max-width:480px){.other-services{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="assets/JonDavidsonLogo.png" alt="JonDavidson"/><span class="tagline">WE GO THE DISTANCE</span></a>
+    <nav class="nav-links">
+      <div class="nav-item dropdown"><a href="about.html">About Us <span class="caret">&#9660;</span></a><div class="dropdown-menu"><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a></div></div>
+      <div class="nav-item dropdown"><a href="services.html">Services <span class="caret">&#9660;</span></a><div class="dropdown-menu"><a href="client-solutions.html">Client Solutions</a><a href="talent-profiling.html">Talent Profiling Tools</a></div></div>
+      <a href="jobs.html" class="nav-item">Browse Jobs</a>
+      <a href="news.html" class="nav-item">News &amp; Insights</a>
+      <a href="about.html#our-offices" class="nav-item">Offices</a>
+      <a href="login.html" class="btn-login-icon" title="Candidate Login"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+      <a href="contact.html" class="btn-contact">Contact Us</a>
+      <a href="hire.html" class="btn-hire">Hire Talent</a>
+    </nav>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="about.html">About Us</a><a href="services.html">Services</a><a href="jobs.html">Browse Jobs</a><a href="news.html">News &amp; Insights</a><a href="login.html">Candidate Login</a><a href="contact.html">Contact Us</a><a href="hire.html">Hire Talent</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="services.html">Services</a><span>&#8250;</span><span>Client Solutions</span></div>
+    <p class="eyebrow" style="justify-content:center;margin-bottom:1rem"><span class="line"></span> CLIENT SOLUTIONS <span class="line"></span></p>
+    <h1>It&rsquo;s Not Just About Filling a Role &mdash; It&rsquo;s About <em>You</em></h1>
+    <p>When you engage us to be your executive search partner, we invest in a trusted relationship built on understanding your business challenges, mission, and values. We are an extension of you.</p>
+  </div>
+</section>
+
+<!-- EXECUTIVE SEARCH DETAIL -->
+<section class="content-section">
+  <div class="container">
+    <p class="eyebrow" style="margin-bottom:1.5rem"><span class="line"></span> OUR SERVICES</p>
+
+    <div class="service-detail" id="executive-search">
+      <div class="service-detail-grid">
+        <div>
+          <div class="svc-num">01</div>
+          <h2>Executive Search</h2>
+        </div>
+        <div>
+          <p>Our core service &mdash; a rigorous, confidential search process to identify, assess, and place exceptional leaders at the C-suite and senior management level. Each mandate is handled with absolute discretion, leveraging deep networks and industry knowledge to deliver a shortlist of candidates who are both technically qualified and culturally aligned.</p>
+          <p>You will not be engaged by merely &ldquo;ticking off a list&rdquo; of what you require. Instead, a trusted relationship is built with you. You share with us your company&rsquo;s business challenges, its mission, and its values &mdash; and we go on the search as an extension of you.</p>
+          <a href="hire.html#employer-form" class="btn-primary" style="display:inline-flex;margin-top:1.25rem">Start a Search Mandate &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Other Services -->
+    <p class="eyebrow" style="margin-top:4rem;margin-bottom:1rem"><span class="line"></span> MORE SOLUTIONS</p>
+    <h2 style="font-family:var(--serif);font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:700;margin-bottom:0.5rem">A Full Range of <em>Talent Services</em></h2>
+    <p style="color:var(--text-light);max-width:620px;line-height:1.75">Beyond executive search, we offer a comprehensive suite of talent and HR solutions to support your organisation at every stage.</p>
+    <div class="other-services">
+      <div class="other-svc">
+        <h4>Interim Management</h4>
+        <p>Experienced executives placed on a short-term or project basis to bridge leadership gaps, drive transformation, or provide specialist expertise exactly when you need it.</p>
+      </div>
+      <div class="other-svc">
+        <h4>Career Transition &amp; Outplacement</h4>
+        <p>Structured outplacement services that help transitioning employees navigate career change with confidence, dignity, and practical support.</p>
+      </div>
+      <div class="other-svc">
+        <h4>Human Capital Outsourcing</h4>
+        <p>Flexible contract staffing solutions that give your business the agility to scale your workforce in response to project demands and changing market conditions.</p>
+      </div>
+      <div class="other-svc">
+        <h4>Payroll Outsourcing</h4>
+        <p>End-to-end payroll management services ensuring compliance and accuracy, freeing your HR team to focus on your people &mdash; not administration.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASIA COVERAGE -->
+<div class="asia-banner">
+  <div class="container">
+    <p class="eyebrow" style="justify-content:center;color:var(--red);margin-bottom:0.75rem"><span class="line" style="background:var(--red)"></span> REGIONAL REACH <span class="line" style="background:var(--red)"></span></p>
+    <h3>Benefit From Asia Coverage</h3>
+    <p>Our search coverage extends from Singapore across Asia Pacific &mdash; including China, India, Vietnam, Malaysia, and Hong Kong. We have made noteworthy breakthroughs and continual successes in China, one of the toughest talent markets in the region.</p>
+    <div class="asia-tags">
+      <span class="asia-tag highlight">Singapore</span>
+      <span class="asia-tag">Malaysia</span>
+      <span class="asia-tag">Indonesia</span>
+      <span class="asia-tag">Vietnam</span>
+      <span class="asia-tag">Thailand</span>
+      <span class="asia-tag">China</span>
+      <span class="asia-tag">India</span>
+      <span class="asia-tag">Hong Kong</span>
+    </div>
+  </div>
+</div>
+
+<!-- METHODOLOGY -->
+<section class="methodology-section">
+  <div class="container">
+    <p class="eyebrow" style="margin-bottom:1rem"><span class="line"></span> OUR METHODOLOGY</p>
+    <h2>A Series of Well-Managed <em>Processes</em></h2>
+    <p style="color:var(--text-light);max-width:640px;line-height:1.75;margin-top:0.75rem">A candidate&rsquo;s commencement of work with you is never considered an event to be taken lightly &mdash; it is the outcome of a disciplined, thorough process developed and refined over more than four decades.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h4>Position Specifications</h4>
+        <p>The key to each successful placement is a thorough understanding of your needs. A detailed briefing session establishes an exact picture of your organisation, the role, and the culture we must match.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h4>Search Strategy</h4>
+        <p>Operating in an ever-changing environment, most placed candidates come not just from our database. Our extensive network of sources is accessed to identify prospective candidates for opportunity evaluation.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h4>Candidate Assessment</h4>
+        <p>Candidates are interviewed and evaluated to ascertain they fit with your organisation&rsquo;s culture &mdash; beyond technical qualifications, we assess values, behaviour, and leadership style.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <h4>Shortlist Presentation</h4>
+        <p>The finest choices of talent are shortlisted for presentation after a stringent filtering process. You receive a concise, high-quality slate &mdash; not a long list of maybes.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">05</div>
+        <h4>Interview &amp; Evaluation</h4>
+        <p>Interviews are arranged between you and the candidates. Their responses are evaluated after each interview, and we provide guidance throughout the selection process.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">06</div>
+        <h4>Reference Checks</h4>
+        <p>Thorough reference checks are conducted and you are advised of the outcome &mdash; our structured process goes beyond standard employment confirmation to give you real intelligence.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">07</div>
+        <h4>Negotiation &amp; Offer</h4>
+        <p>We handle negotiation of the appropriate compensation package and ensure the selected candidate resigns without accepting a counter-offer from their current employer.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">08</div>
+        <h4>Onboarding Follow-Up</h4>
+        <p>Though the search assignment concludes, we maintain contact with both the candidate and employer to pave the way for a comfortable, compatible, and lasting relationship.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALSO SEE: TALENT PROFILING -->
+<section style="padding:4rem 0;background:var(--white)">
+  <div class="container" style="display:flex;gap:2rem;align-items:center;flex-wrap:wrap">
+    <div style="flex:1;min-width:260px">
+      <p class="eyebrow" style="margin-bottom:0.75rem"><span class="line"></span> ALSO FROM JONDAVIDSON</p>
+      <h2 style="font-family:var(--serif);font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:700;margin-bottom:0.75rem">Complement Your Search With <em>Science</em></h2>
+      <p style="color:var(--text-light);line-height:1.75;margin-bottom:1.5rem">Our Talent Profiling Tools &mdash; WPI, ERI, and CCV &mdash; add a validated psychometric layer to the hiring process, giving you deeper insight into every shortlisted candidate.</p>
+      <a href="talent-profiling.html" class="btn-primary">Explore Talent Profiling Tools &rarr;</a>
+    </div>
+    <div style="flex:1;min-width:260px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem">
+      <div style="background:var(--gray-light);border-radius:10px;padding:1.5rem;text-align:center">
+        <div style="font-family:var(--serif);font-size:1.6rem;font-weight:900;color:var(--red)">WPI</div>
+        <p style="font-size:0.78rem;color:var(--text-light);margin:0.4rem 0 0;line-height:1.4">Work Personality Index</p>
+      </div>
+      <div style="background:var(--gray-light);border-radius:10px;padding:1.5rem;text-align:center">
+        <div style="font-family:var(--serif);font-size:1.6rem;font-weight:900;color:var(--red)">ERI</div>
+        <p style="font-size:0.78rem;color:var(--text-light);margin:0.4rem 0 0;line-height:1.4">Employee Reliability Inventory</p>
+      </div>
+      <div style="background:var(--gray-light);border-radius:10px;padding:1.5rem;text-align:center">
+        <div style="font-family:var(--serif);font-size:1.6rem;font-weight:900;color:var(--red)">CCV</div>
+        <p style="font-size:0.78rem;color:var(--text-light);margin:0.4rem 0 0;line-height:1.4">Sales Competence Coefficient</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding:5rem 0;background:var(--gray-light);text-align:center">
+  <div class="container">
+    <p style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:1rem">READY TO GET STARTED?</p>
+    <h2 style="font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;margin-bottom:0.75rem">Tell Us About Your <em>Hiring Need</em></h2>
+    <p style="color:var(--text-light);max-width:560px;margin:0 auto 2rem;line-height:1.75">One of our specialist consultants will be in touch within one business day to discuss your mandate in detail.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="hire.html#employer-form" class="btn-primary">Submit a Hiring Brief &rarr;</a>
+      <a href="contact.html" class="btn-outline">Contact Us Directly</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-top"><div class="container"><div class="footer-grid">
+    <div class="footer-brand"><img src="assets/JonDavidsonLogo.png" alt="JonDavidson" class="footer-logo"/><p>Executive Search &amp; Staffing across Southeast Asia.</p><p class="licence">EA Licence No. 22S1412 | Member of ELITEZ Group</p></div>
+    <div class="footer-col"><h5>Company</h5><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a></div>
+    <div class="footer-col"><h5>Services</h5><a href="client-solutions.html">Client Solutions</a><a href="talent-profiling.html">Talent Profiling</a></div>
+    <div class="footer-col"><h5>For Employers</h5><a href="hire.html">Hire Talent</a><a href="hire.html#expertise">Our Expertise</a><a href="hire.html#employer-form">Submit a Brief</a></div>
+    <div class="footer-col"><h5>Contact</h5><p>2 Kallang Avenue #03-05, Singapore 339407</p><p>Tel: <a href="tel:+6562957155">+65 6295 7155</a></p></div>
+  </div></div></div>
+  <div class="footer-bottom"><div class="container"><p>&copy; 2025 JonDavidson Pte Ltd.</p><p>EA Licence No. 22S1412</p></div></div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>
