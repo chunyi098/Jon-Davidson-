@@ -262,10 +262,9 @@ em { font-style: italic; color: var(--red); font-family: var(--serif); }
 .footer-top { padding: 5rem 0 3rem; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr; gap: 2.5rem; }
 .footer-brand .footer-logo {
-  height: 64px;
+  height: 110px;
   width: auto;
-  margin-bottom: 1.25rem;
-  /* Invert dark logo to white so it's visible on black footer */
+  margin-bottom: 1.5rem;
   filter: brightness(0) invert(1);
   opacity: 0.9;
   transition: opacity var(--transition);
