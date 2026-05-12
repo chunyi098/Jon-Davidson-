@@ -3,6 +3,74 @@
    Login icon, active nav, user avatar/dropdown
 ============================================= */
 
+/* ── SCAM ALERT BANNER ── */
+.scam-alert-banner {
+  background: #9e0403;
+  color: #ffffff;
+  text-align: center;
+  padding: 0.55rem 1rem;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  position: relative;
+  z-index: 1100;
+}
+.scam-alert-banner a {
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.scam-alert-banner a:hover { opacity: 0.85; }
+
+/* ── WhatsApp Float Button ── */
+.wa-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+  z-index: 9990;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+.wa-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+}
+.wa-float svg {
+  width: 30px;
+  height: 30px;
+  fill: #ffffff;
+}
+.wa-float-tooltip {
+  position: absolute;
+  right: 66px;
+  background: #1a1a1a;
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.wa-float:hover .wa-float-tooltip { opacity: 1; }
+@media (max-width: 480px) {
+  .wa-float { bottom: 1.25rem; right: 1.25rem; width: 50px; height: 50px; }
+  .wa-float-tooltip { display: none; }
+}
+
 /* ── Candidate login icon ── */
 .btn-login-icon {
   display: inline-flex;

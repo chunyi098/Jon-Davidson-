@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Browse Jobs | JonDavidson</title>
+  <title>Browse Jobs in Singapore &amp; Southeast Asia | JonDavidson</title>
+  <meta name="description" content="Browse the latest executive and senior professional jobs in Singapore, Malaysia, Indonesia and across Southeast Asia. Roles in technology, finance, HR, sales, operations and C-suite leadership."/>
+  <meta property="og:title" content="Browse Jobs | JonDavidson Executive Search"/>
+  <meta property="og:description" content="Executive and senior roles across Southeast Asia — sourced from RecruitCRM, JobStreet and MyCareersFuture."/>
+  <meta property="og:url" content="https://chunyi098.github.io/Jon-Davidson-/jobs.html"/>
+  <link rel="canonical" href="https://chunyi098.github.io/Jon-Davidson-/jobs.html"/>
   <link rel="icon" type="image/png" href="assets/JonDavidsonLogo.png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -73,6 +78,11 @@
 <body>
 <div id="jd-toast"></div>
 
+<!-- SCAM ALERT BANNER -->
+<div class="scam-alert-banner" role="alert">
+  &#9888;&nbsp; Beware of scammers impersonating JonDavidson. We will never ask for payment or personal banking details. <a href="contact.html">Report a scam &rarr;</a>
+</div>
+
 <header class="navbar" id="navbar">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo"><img src="assets/JonDavidsonLogo.webp%20.png" alt="JonDavidson"/><span class="tagline">WE GO THE DISTANCE</span></a>
@@ -109,11 +119,9 @@
 
 <section style="padding:3.5rem 0 5rem">
   <div class="container">
-
     <div class="login-nudge" id="loginNudge" style="display:none">
       &#128190; <span><a href="login.html">Log in or create a free account</a> to save jobs and track your applications.</span>
     </div>
-
     <div class="filter-chips" id="chips">
       <button class="chip active" data-cat="">All Jobs</button>
       <button class="chip" data-cat="Technology">Technology</button>
@@ -128,11 +136,7 @@
     <div class="results-bar">
       <p class="results-count" id="resultsMeta"></p>
       <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
-        <span id="savedCountWrap" style="display:none">
-          <a href="#" class="saved-count-link" onclick="showSavedOnly(event)">&#128190; <span id="savedCountNum">0</span> saved</a>
-          &nbsp;&middot;&nbsp;
-          <a href="#" class="saved-count-link" style="color:var(--gray)" onclick="showAllJobs(event)">Show all</a>
-        </span>
+        <span id="savedCountWrap" style="display:none"><a href="#" class="saved-count-link" onclick="showSavedOnly(event)">&#128190; <span id="savedCountNum">0</span> saved</a> &nbsp;&middot;&nbsp; <a href="#" class="saved-count-link" style="color:var(--gray)" onclick="showAllJobs(event)">Show all</a></span>
         <select class="sort-select" id="sortSel"><option value="date">Newest First</option><option value="title">Title A–Z</option><option value="location">Location</option></select>
       </div>
     </div>
@@ -165,6 +169,12 @@
   <div class="footer-bottom"><div class="container"><p>&copy; 2025 JonDavidson Pte Ltd. All rights reserved.</p><p>EA Licence No. 22S1412</p></div></div>
 </footer>
 
+<!-- WhatsApp Float Button -->
+<a href="https://wa.me/6562957155?text=Hi%20JonDavidson%2C%20I%20am%20looking%20for%20job%20opportunities." target="_blank" rel="noopener" class="wa-float" aria-label="Chat with us on WhatsApp">
+  <span class="wa-float-tooltip">Chat with us</span>
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 2C8.28 2 2 8.28 2 16c0 2.46.67 4.76 1.84 6.74L2 30l7.52-1.97A13.93 13.93 0 0 0 16 30c7.72 0 14-6.28 14-14S23.72 2 16 2zm7.26 19.64c-.3.85-1.77 1.62-2.44 1.72-.63.09-1.43.13-2.31-.14a21.2 21.2 0 0 1-2.09-.77C13.12 21.3 10.9 18.7 10.72 18.49c-.17-.2-1.45-1.93-1.45-3.68s.92-2.61 1.24-2.97c.33-.36.72-.45.96-.45.24 0 .48.01.69.01.22.01.52-.08.81.62.3.72 1.03 2.51 1.12 2.69.09.18.15.4.03.64-.12.24-.18.39-.36.6-.18.21-.38.47-.54.63-.18.18-.37.37-.16.73.21.36.95 1.57 2.04 2.54 1.4 1.25 2.58 1.64 2.95 1.82.36.18.58.15.79-.09.21-.24.9-1.05 1.14-1.41.24-.36.48-.3.81-.18.33.12 2.1 1 2.46 1.18.36.18.6.27.69.42.09.15.09.87-.21 1.72z"/></svg>
+</a>
+
 <script src="js/main.js"></script>
 <script>
 (function(){
@@ -172,16 +182,10 @@
   let filtered=[],shown=0,showingSavedOnly=false;
   const R='https://recruitcrm.io/apply/',S='?source=Jobspage&new=yes',MCF='https://www.mycareersfuture.gov.sg';
   const rc=t=>R+t+S;
-
   function isLoggedIn(){return!!localStorage.getItem('jd_user');}
   function getSaved(){try{return JSON.parse(localStorage.getItem('jd_saved_jobs')||'{}');}catch(e){return{};}}
   function setSaved(obj){try{localStorage.setItem('jd_saved_jobs',JSON.stringify(obj));}catch(e){}}
-
-  document.addEventListener('DOMContentLoaded',function(){
-    if(!isLoggedIn()) document.getElementById('loginNudge').style.display='flex';
-    updateSavedCount();
-  });
-
+  document.addEventListener('DOMContentLoaded',function(){if(!isLoggedIn()) document.getElementById('loginNudge').style.display='flex';updateSavedCount();});
   const JOBS=[
     {id:'r1275',title:'Enterprise Solution Architect (Public Sector | Pre-Sales)',location:'Singapore',country:'Singapore',type:'Permanent',category:'Technology',salary:'$15,000–$18,000/mo',desc:'Design enterprise technology solutions for public sector clients in a pre-sales capacity.',url:rc('17749795927740007886ZXM'),ref:'JD-1275',source:'rcrm',date:'2026-04-28'},
     {id:'r1282',title:'Operations Director (Restaurant)',location:'Manila',country:'Philippines',type:'Permanent',category:'Operations',salary:'',desc:'Senior operations leadership role overseeing restaurant operations across the Philippines.',url:rc('17770909077390007886ZTd'),ref:'JD-1282',source:'rcrm',date:'2026-04-20'},
@@ -228,48 +232,18 @@
     {id:'m13',title:'Assistant Manager / Senior Exec, Human Resources & Administration',location:'Singapore',country:'Singapore',type:'Permanent',category:'Human Resources',salary:'$5,000–$7,200/mo',desc:'Manage HR and administration operations including recruitment, employee engagement and office management.',url:MCF+'/job/admin/assistant-manager-senior-exec-human-resources-administration-jondavidson-74a158c4c637cb6c112e50d749c08180',ref:'',source:'mcf',date:'2026-04-17'},
     {id:'j1',title:'Cloud Native Support Engineer (Kubernetes / DevOps)',location:'Singapore',country:'Singapore',type:'Full Time',category:'Technology',salary:'$5,000–$6,500/mo',desc:'Hands-on Kubernetes troubleshooting in production environments. Regional exposure with enterprise cloud-native platforms. Hybrid work.',url:'https://sg.jobstreet.com/JonDavidson-Pte-Ltd-jobs/at-this-company',ref:'',source:'js',date:'2026-04-01'}
   ];
-
-  window.toggleSave=function(btn,id,title){
-    if(!isLoggedIn()){
-      sessionStorage.setItem('jd_save_pending',JSON.stringify({id,title}));
-      showToast('Please log in to save jobs');
-      setTimeout(()=>{window.location.href='login.html?from=save&job='+encodeURIComponent(title);},900);
-      return;
-    }
-    const saved=getSaved(),isSaved=!!saved[id];
-    if(isSaved){delete saved[id];btn.classList.remove('saved');btn.textContent='\u{1F4BE} Save';showToast('Removed from saved jobs');}
-    else{saved[id]={id,title,savedAt:Date.now()};btn.classList.add('saved');btn.textContent='✓ Saved';showToast('Job saved!');}
-    setSaved(saved);updateSavedCount();
-  };
-
+  window.toggleSave=function(btn,id,title){if(!isLoggedIn()){sessionStorage.setItem('jd_save_pending',JSON.stringify({id,title}));showToast('Please log in to save jobs');setTimeout(()=>{window.location.href='login.html?from=save&job='+encodeURIComponent(title);},900);return;}const saved=getSaved(),isSaved=!!saved[id];if(isSaved){delete saved[id];btn.classList.remove('saved');btn.textContent='\u{1F4BE} Save';showToast('Removed from saved jobs');}else{saved[id]={id,title,savedAt:Date.now()};btn.classList.add('saved');btn.textContent='\u2713 Saved';showToast('Job saved!');}setSaved(saved);updateSavedCount();};
   function showToast(msg){const t=document.getElementById('jd-toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._tid);t._tid=setTimeout(()=>t.classList.remove('show'),2800);}
-
-  function updateSavedCount(){
-    if(!isLoggedIn()){document.getElementById('savedCountWrap').style.display='none';return;}
-    const n=Object.keys(getSaved()).length,wrap=document.getElementById('savedCountWrap'),num=document.getElementById('savedCountNum');
-    if(n>0){wrap.style.display='inline-flex';num.textContent=n;}else{wrap.style.display='none';showingSavedOnly=false;}
-  }
-
+  function updateSavedCount(){if(!isLoggedIn()){document.getElementById('savedCountWrap').style.display='none';return;}const n=Object.keys(getSaved()).length,wrap=document.getElementById('savedCountWrap'),num=document.getElementById('savedCountNum');if(n>0){wrap.style.display='inline-flex';num.textContent=n;}else{wrap.style.display='none';showingSavedOnly=false;}}
   window.showSavedOnly=function(e){e.preventDefault();showingSavedOnly=true;applyFilters();};
   window.showAllJobs=function(e){e.preventDefault();showingSavedOnly=false;applyFilters();};
-
-  const grid=document.getElementById('jobsGrid'),meta=document.getElementById('resultsMeta'),
-        loadWrap=document.getElementById('loadMoreWrap'),loadBtn=document.getElementById('loadMoreBtn'),
-        kwInput=document.getElementById('kwInput'),locFilter=document.getElementById('locFilter'),
-        typeFilter=document.getElementById('typeFilter'),searchBtn=document.getElementById('searchBtn'),
-        sortSel=document.getElementById('sortSel'),chipsEl=document.getElementById('chips');
-
+  const grid=document.getElementById('jobsGrid'),meta=document.getElementById('resultsMeta'),loadWrap=document.getElementById('loadMoreWrap'),loadBtn=document.getElementById('loadMoreBtn'),kwInput=document.getElementById('kwInput'),locFilter=document.getElementById('locFilter'),typeFilter=document.getElementById('typeFilter'),searchBtn=document.getElementById('searchBtn'),sortSel=document.getElementById('sortSel'),chipsEl=document.getElementById('chips');
   function applyFilters(){const kw=kwInput.value.trim().toLowerCase(),loc=locFilter.value.toLowerCase(),type=typeFilter.value.toLowerCase(),cat=(chipsEl.querySelector('.chip.active')||{}).dataset.cat||'',sort=sortSel.value,saved=getSaved();filtered=JOBS.filter(j=>{if(showingSavedOnly&&!saved[j.id])return false;if(kw&&!j.title.toLowerCase().includes(kw)&&!j.desc.toLowerCase().includes(kw)&&!j.category.toLowerCase().includes(kw))return false;if(loc&&!j.location.toLowerCase().includes(loc)&&!j.country.toLowerCase().includes(loc))return false;if(type&&!j.type.toLowerCase().includes(type))return false;if(cat&&!j.category.toLowerCase().includes(cat.toLowerCase()))return false;return true;});if(sort==='title')filtered.sort((a,b)=>a.title.localeCompare(b.title));else if(sort==='location')filtered.sort((a,b)=>a.location.localeCompare(b.location));else filtered.sort((a,b)=>(b.date||'').localeCompare(a.date||''));shown=0;grid.innerHTML='';renderBatch();updateMeta();}
-
   function renderBatch(){if(!filtered.length){grid.innerHTML='<div class="jd-state"><p style="font-size:1.05rem">'+(showingSavedOnly?'No saved jobs yet.':'No roles match your search.')+'</p></div>';loadWrap.style.display='none';return;}const saved=getSaved();filtered.slice(shown,shown+PAGE_SIZE).forEach(j=>grid.insertAdjacentHTML('beforeend',cardHTML(j,saved)));shown=Math.min(shown+PAGE_SIZE,filtered.length);loadWrap.style.display=shown<filtered.length?'block':'none';}
-
   const SL={rcrm:'RecruitCRM',js:'JobStreet',mcf:'MyCareersFuture'},SC={rcrm:'src-rcrm',js:'src-js',mcf:'src-mcf'};
-
-  function cardHTML(j,saved){const isSaved=isLoggedIn()&&!!saved[j.id];const loc=j.location?`<span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>${esc(j.location)}</span>`:'';const type=j.type?`<span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>${esc(j.type)}</span>`:'';const sal=j.salary?`<div><span class="jd-salary">&#128176; ${esc(j.salary)}</span></div>`:'';const src=`<span class="src-badge ${SC[j.source]||''}">${SL[j.source]||j.source}</span>`;const tag=j.category?`<span class="jd-tag">${esc(j.category)}</span>`:'';const ref=j.ref?`<span class="jd-ref">${esc(j.ref)}</span>`:'';const saveBtn=`<button class="jd-save${isSaved?' saved':''}" onclick="toggleSave(this,'${esc(j.id)}','${esc(j.title)}')" title="${isLoggedIn()?'Save job':'Log in to save'}">${isSaved?'✓ Saved':'\u{1F4BE} Save'}</button>`;return `<div class="jd-card"><div class="jd-card-top">${tag}${src}</div><p class="jd-title">${esc(j.title)}</p><div class="jd-meta">${loc}${type}</div>${sal}<p class="jd-desc">${esc(j.desc)}</p><div class="jd-actions"><a href="${esc(j.url)}" target="_blank" rel="noopener" class="jd-apply">Apply Now</a>${saveBtn}${ref}</div></div>`;}
-
+  function cardHTML(j,saved){const isSaved=isLoggedIn()&&!!saved[j.id];const loc=j.location?`<span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>${esc(j.location)}</span>`:'';const type=j.type?`<span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>${esc(j.type)}</span>`:'';const sal=j.salary?`<div><span class="jd-salary">&#128176; ${esc(j.salary)}</span></div>`:'';const src=`<span class="src-badge ${SC[j.source]||''}">${SL[j.source]||j.source}</span>`;const tag=j.category?`<span class="jd-tag">${esc(j.category)}</span>`:'';const ref=j.ref?`<span class="jd-ref">${esc(j.ref)}</span>`:'';const saveBtn=`<button class="jd-save${isSaved?' saved':''}" onclick="toggleSave(this,'${esc(j.id)}','${esc(j.title)}')" title="${isLoggedIn()?'Save job':'Log in to save'}">${isSaved?'\u2713 Saved':'\u{1F4BE} Save'}</button>`;return `<div class="jd-card"><div class="jd-card-top">${tag}${src}</div><p class="jd-title">${esc(j.title)}</p><div class="jd-meta">${loc}${type}</div>${sal}<p class="jd-desc">${esc(j.desc)}</p><div class="jd-actions"><a href="${esc(j.url)}" target="_blank" rel="noopener" class="jd-apply">Apply Now</a>${saveBtn}${ref}</div></div>`;}
   function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
   function updateMeta(){meta.innerHTML=`Showing <strong>${shown}</strong> of <strong>${filtered.length}</strong> role${filtered.length===1?'':'s'}`;}
-
   searchBtn.addEventListener('click',applyFilters);
   kwInput.addEventListener('keydown',e=>{if(e.key==='Enter')applyFilters();});
   locFilter.addEventListener('change',applyFilters);
@@ -278,6 +252,11 @@
   chipsEl.addEventListener('click',e=>{const chip=e.target.closest('.chip');if(!chip)return;chipsEl.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));chip.classList.add('active');applyFilters();});
   loadBtn.addEventListener('click',()=>{renderBatch();updateMeta();});
   updateSavedCount();applyFilters();
+  const params=new URLSearchParams(location.search);
+  if(params.get('q'))kwInput.value=params.get('q');
+  if(params.get('loc'))locFilter.value=params.get('loc');
+  if(params.get('cat')){const chip=chipsEl.querySelector(`[data-cat="${params.get('cat')}"]`);if(chip){chipsEl.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));chip.classList.add('active');}}
+  applyFilters();
 })();
 </script>
 </body>
