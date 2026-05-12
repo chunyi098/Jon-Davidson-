@@ -50,14 +50,11 @@
     .jd-apply{background:var(--red);color:#fff;padding:0.48rem 1.15rem;border-radius:var(--radius);font-size:0.84rem;font-weight:600;transition:background 0.2s;text-decoration:none}
     .jd-apply:hover{background:var(--red-dark)}
     .jd-ref{font-size:0.7rem;color:rgba(0,0,0,0.22);margin-left:auto}
-    /* Save button */
     .jd-save{display:inline-flex;align-items:center;gap:0.4rem;padding:0.46rem 1rem;border-radius:var(--radius);border:1.5px solid var(--gray-mid);font-family:var(--sans);font-size:0.84rem;font-weight:500;background:#fff;color:var(--text);cursor:pointer;transition:all 0.2s}
     .jd-save:hover{border-color:var(--red);color:var(--red)}
     .jd-save.saved{background:var(--red);border-color:var(--red);color:#fff}
-    /* Toast */
     #jd-toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(20px);background:#1a1a1a;color:#fff;padding:0.65rem 1.5rem;border-radius:50px;font-size:0.85rem;font-weight:500;opacity:0;pointer-events:none;transition:all 0.3s ease;z-index:9999;white-space:nowrap}
     #jd-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-    /* Saved count */
     .saved-count-link{font-size:0.82rem;font-weight:600;color:var(--red);display:inline-flex;align-items:center;gap:0.3rem;text-decoration:none}
     .saved-count-link:hover{text-decoration:underline}
     .jd-state{grid-column:1/-1;text-align:center;padding:4rem 0;color:var(--text-light)}
@@ -68,7 +65,6 @@
     .jobs-cta-strip h3{font-family:var(--serif);font-size:1.5rem;font-weight:700;margin-bottom:0.5rem}
     .jobs-cta-strip p{color:var(--text-light);margin-bottom:1.5rem;font-size:0.95rem}
     .jobs-cta-strip .btn-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-    /* Login nudge banner */
     .login-nudge{background:#fff8e1;border:1px solid #ffe082;border-radius:8px;padding:0.85rem 1.25rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem;font-size:0.88rem;color:#5a4000}
     .login-nudge a{color:var(--red);font-weight:600}
     @media(max-width:640px){.jobs-search-wrap .sg{border-right:none;border-bottom:1px solid var(--gray-mid)}.btn-jobs-search{width:100%;padding:1rem}}
@@ -79,10 +75,10 @@
 
 <header class="navbar" id="navbar">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo"><img src="assets/JonDavidsonLogo.png" alt="JonDavidson"/><span class="tagline">WE GO THE DISTANCE</span></a>
+    <a href="index.html" class="nav-logo"><img src="assets/JonDavidsonLogo.webp" alt="JonDavidson"/><span class="tagline">WE GO THE DISTANCE</span></a>
     <nav class="nav-links">
       <div class="nav-item dropdown"><a href="about.html">About Us <span class="caret">&#9660;</span></a><div class="dropdown-menu"><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a></div></div>
-      <div class="nav-item dropdown"><a href="services.html">Services <span class="caret">&#9660;</span></a><div class="dropdown-menu"><a href="services.html#client-solutions">Client Solutions</a><a href="services.html#talent-profiling">Talent Profiling Tools</a></div></div>
+      <div class="nav-item dropdown"><a href="services.html">Services <span class="caret">&#9660;</span></a><div class="dropdown-menu"><a href="client-solutions.html">Client Solutions</a><a href="talent-profiling.html">Talent Profiling Tools</a></div></div>
       <a href="jobs.html" class="nav-item">Browse Jobs</a>
       <a href="news.html" class="nav-item">News &amp; Insights</a>
       <a href="about.html#our-offices" class="nav-item">Offices</a>
@@ -114,7 +110,6 @@
 <section style="padding:3.5rem 0 5rem">
   <div class="container">
 
-    <!-- Login nudge shown only when NOT logged in -->
     <div class="login-nudge" id="loginNudge" style="display:none">
       &#128190; <span><a href="login.html">Log in or create a free account</a> to save jobs and track your applications.</span>
     </div>
@@ -148,7 +143,7 @@
 
 <section class="jobs-cta-strip">
   <div class="container">
-    <h3>Don’t see the right role?</h3>
+    <h3>Don't see the right role?</h3>
     <p>New positions are added regularly. View the full listing on our partner platforms or register your interest.</p>
     <div class="btn-row">
       <a href="https://recruitcrm.io/jobs/JonDavidson_jobs" target="_blank" class="btn-primary">RecruitCRM &rarr;</a>
@@ -161,9 +156,9 @@
 
 <footer class="footer">
   <div class="footer-top"><div class="container"><div class="footer-grid">
-    <div class="footer-brand"><img src="assets/JonDavidsonLogo.png" alt="JonDavidson" class="footer-logo"/><p>Executive Search &amp; Staffing across Southeast Asia &mdash; built on trust, relationship, and integrity.</p><p class="licence">EA Licence No. 22S1412 | Member of ELITEZ Group</p></div>
+    <div class="footer-brand"><img src="assets/JonDavidsonLogo.webp" alt="JonDavidson" class="footer-logo"/><p>Executive Search &amp; Staffing across Southeast Asia &mdash; built on trust, relationship, and integrity.</p><p class="licence">EA Licence No. 22S1412 | Member of ELITEZ Group</p></div>
     <div class="footer-col"><h5>Company</h5><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a><a href="news.html">News &amp; Insights</a></div>
-    <div class="footer-col"><h5>Services</h5><a href="services.html#executive-search">Executive Search</a><a href="services.html#contingency">Contingency Recruitment</a><a href="services.html#talent-profiling">Talent Profiling</a><a href="services.html#rpo">RPO &amp; Consulting</a></div>
+    <div class="footer-col"><h5>Services</h5><a href="client-solutions.html">Client Solutions</a><a href="talent-profiling.html">Talent Profiling Tools</a></div>
     <div class="footer-col"><h5>For Employers</h5><a href="hire.html">Hire Talent</a><a href="hire.html#expertise">Our Expertise</a><a href="hire.html#employer-form">Submit a Brief</a></div>
     <div class="footer-col"><h5>Contact</h5><p>2 Kallang Avenue, #03-05<br/>CT Hub, Singapore 339407</p><p>Tel: <a href="tel:+6562957155">+65 6295 7155</a></p><p>Email: <a href="mailto:partners@jondavidsongroup.com">partners@jondavidsongroup.com</a></p></div>
   </div></div></div>
@@ -178,12 +173,10 @@
   const R='https://recruitcrm.io/apply/',S='?source=Jobspage&new=yes',MCF='https://www.mycareersfuture.gov.sg';
   const rc=t=>R+t+S;
 
-  /* ── Auth ── */
   function isLoggedIn(){return!!localStorage.getItem('jd_user');}
   function getSaved(){try{return JSON.parse(localStorage.getItem('jd_saved_jobs')||'{}');}catch(e){return{};}}
   function setSaved(obj){try{localStorage.setItem('jd_saved_jobs',JSON.stringify(obj));}catch(e){}}
 
-  /* Show login nudge if not logged in */
   document.addEventListener('DOMContentLoaded',function(){
     if(!isLoggedIn()) document.getElementById('loginNudge').style.display='flex';
     updateSavedCount();
@@ -236,7 +229,6 @@
     {id:'j1',title:'Cloud Native Support Engineer (Kubernetes / DevOps)',location:'Singapore',country:'Singapore',type:'Full Time',category:'Technology',salary:'$5,000–$6,500/mo',desc:'Hands-on Kubernetes troubleshooting in production environments. Regional exposure with enterprise cloud-native platforms. Hybrid work.',url:'https://sg.jobstreet.com/JonDavidson-Pte-Ltd-jobs/at-this-company',ref:'',source:'js',date:'2026-04-01'}
   ];
 
-  /* ── Save: requires login ── */
   window.toggleSave=function(btn,id,title){
     if(!isLoggedIn()){
       sessionStorage.setItem('jd_save_pending',JSON.stringify({id,title}));
@@ -246,7 +238,7 @@
     }
     const saved=getSaved(),isSaved=!!saved[id];
     if(isSaved){delete saved[id];btn.classList.remove('saved');btn.textContent='\u{1F4BE} Save';showToast('Removed from saved jobs');}
-    else{saved[id]={id,title,savedAt:Date.now()};btn.classList.add('saved');btn.textContent='\u2713 Saved';showToast('Job saved!');}
+    else{saved[id]={id,title,savedAt:Date.now()};btn.classList.add('saved');btn.textContent='✓ Saved';showToast('Job saved!');}
     setSaved(saved);updateSavedCount();
   };
 
@@ -273,7 +265,7 @@
 
   const SL={rcrm:'RecruitCRM',js:'JobStreet',mcf:'MyCareersFuture'},SC={rcrm:'src-rcrm',js:'src-js',mcf:'src-mcf'};
 
-  function cardHTML(j,saved){const isSaved=isLoggedIn()&&!!saved[j.id];const loc=j.location?`<span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>${esc(j.location)}</span>`:'';const type=j.type?`<span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>${esc(j.type)}</span>`:'';const sal=j.salary?`<div><span class="jd-salary">&#128176; ${esc(j.salary)}</span></div>`:'';const src=`<span class="src-badge ${SC[j.source]||''}">${SL[j.source]||j.source}</span>`;const tag=j.category?`<span class="jd-tag">${esc(j.category)}</span>`:'';const ref=j.ref?`<span class="jd-ref">${esc(j.ref)}</span>`:'';const saveBtn=`<button class="jd-save${isSaved?' saved':''}" onclick="toggleSave(this,'${esc(j.id)}','${esc(j.title)}')" title="${isLoggedIn()?'Save job':'Log in to save'}">${isSaved?'\u2713 Saved':'\u{1F4BE} Save'}</button>`;return `<div class="jd-card"><div class="jd-card-top">${tag}${src}</div><p class="jd-title">${esc(j.title)}</p><div class="jd-meta">${loc}${type}</div>${sal}<p class="jd-desc">${esc(j.desc)}</p><div class="jd-actions"><a href="${esc(j.url)}" target="_blank" rel="noopener" class="jd-apply">Apply Now</a>${saveBtn}${ref}</div></div>`;}
+  function cardHTML(j,saved){const isSaved=isLoggedIn()&&!!saved[j.id];const loc=j.location?`<span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>${esc(j.location)}</span>`:'';const type=j.type?`<span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>${esc(j.type)}</span>`:'';const sal=j.salary?`<div><span class="jd-salary">&#128176; ${esc(j.salary)}</span></div>`:'';const src=`<span class="src-badge ${SC[j.source]||''}">${SL[j.source]||j.source}</span>`;const tag=j.category?`<span class="jd-tag">${esc(j.category)}</span>`:'';const ref=j.ref?`<span class="jd-ref">${esc(j.ref)}</span>`:'';const saveBtn=`<button class="jd-save${isSaved?' saved':''}" onclick="toggleSave(this,'${esc(j.id)}','${esc(j.title)}')" title="${isLoggedIn()?'Save job':'Log in to save'}">${isSaved?'✓ Saved':'\u{1F4BE} Save'}</button>`;return `<div class="jd-card"><div class="jd-card-top">${tag}${src}</div><p class="jd-title">${esc(j.title)}</p><div class="jd-meta">${loc}${type}</div>${sal}<p class="jd-desc">${esc(j.desc)}</p><div class="jd-actions"><a href="${esc(j.url)}" target="_blank" rel="noopener" class="jd-apply">Apply Now</a>${saveBtn}${ref}</div></div>`;}
 
   function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
   function updateMeta(){meta.innerHTML=`Showing <strong>${shown}</strong> of <strong>${filtered.length}</strong> role${filtered.length===1?'':'s'}`;}
