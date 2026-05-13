@@ -35,183 +35,47 @@
       border-radius: 50px;
       margin-bottom: 1.5rem;
     }
-    .scam-hero h1 {
-      font-family: var(--serif);
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
-      font-weight: 900;
-      color: #fff;
-      margin-bottom: 1rem;
-      line-height: 1.15;
-    }
+    .scam-hero h1 { font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 900; color: #fff; margin-bottom: 1rem; line-height: 1.15; }
     .scam-hero h1 em { color: var(--red); font-style: italic; }
-    .scam-hero p {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.65);
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.75;
-    }
+    .scam-hero p { font-size: 1rem; color: rgba(255,255,255,0.65); max-width: 600px; margin: 0 auto; line-height: 1.75; }
 
-    /* ── CONTENT ── */
     .scam-body { padding: 5rem 0; }
     .scam-body .container { max-width: 860px; }
 
-    .scam-alert-box {
-      background: #fff8f8;
-      border: 2px solid var(--red);
-      border-radius: 10px;
-      padding: 2rem 2.25rem;
-      margin-bottom: 3rem;
-      display: flex;
-      gap: 1.25rem;
-      align-items: flex-start;
-    }
-    .scam-alert-box .alert-icon {
-      font-size: 2rem;
-      flex-shrink: 0;
-      line-height: 1;
-    }
-    .scam-alert-box h3 {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--red);
-      margin-bottom: 0.5rem;
-    }
-    .scam-alert-box p {
-      font-size: 0.9rem;
-      color: var(--text-light);
-      line-height: 1.7;
-      margin: 0;
-    }
+    .scam-alert-box { background: #fff8f8; border: 2px solid var(--red); border-radius: 10px; padding: 2rem 2.25rem; margin-bottom: 3rem; display: flex; gap: 1.25rem; align-items: flex-start; }
+    .scam-alert-box .alert-icon { font-size: 2rem; flex-shrink: 0; line-height: 1; }
+    .scam-alert-box h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; color: var(--red); margin-bottom: 0.5rem; }
+    .scam-alert-box p { font-size: 0.9rem; color: var(--text-light); line-height: 1.7; margin: 0; }
 
     .scam-section { margin-bottom: 3.5rem; }
-    .scam-section h2 {
-      font-family: var(--serif);
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 2px solid var(--gray-mid);
-    }
+    .scam-section h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--gray-mid); }
     .scam-section h2 em { color: var(--red); font-style: italic; }
-    .scam-section p {
-      font-size: 0.95rem;
-      color: var(--text-light);
-      line-height: 1.8;
-      margin-top: 1rem;
-    }
+    .scam-section p { font-size: 0.95rem; color: var(--text-light); line-height: 1.8; margin-top: 1rem; }
 
-    /* Warning signs list */
-    .warning-list {
-      list-style: none;
-      padding: 0;
-      margin: 1.5rem 0 0;
-      display: grid;
-      gap: 0.85rem;
-    }
-    .warning-list li {
-      display: flex;
-      gap: 0.85rem;
-      align-items: flex-start;
-      background: #fff;
-      border: 1px solid var(--gray-mid);
-      border-radius: 8px;
-      padding: 1rem 1.25rem;
-      font-size: 0.9rem;
-      color: var(--text);
-      line-height: 1.65;
-    }
-    .warning-list li .wi {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: rgba(158,4,3,0.1);
-      color: var(--red);
-      font-size: 0.8rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
+    .warning-list { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; gap: 0.85rem; }
+    .warning-list li { display: flex; gap: 0.85rem; align-items: flex-start; background: #fff; border: 1px solid var(--gray-mid); border-radius: 8px; padding: 1rem 1.25rem; font-size: 0.9rem; color: var(--text); line-height: 1.65; }
+    .warning-list li .wi { width: 22px; height: 22px; border-radius: 50%; background: rgba(158,4,3,0.1); color: var(--red); font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .warning-list li strong { white-space: nowrap; }
 
-    /* How we communicate */
-    .comms-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
+    .comms-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
     @media(max-width:640px){ .comms-grid { grid-template-columns: 1fr; } }
-    .comm-card {
-      border-radius: 8px;
-      padding: 1.25rem 1.5rem;
-      border: 1px solid var(--gray-mid);
-    }
+    .comm-card { border-radius: 8px; padding: 1.25rem 1.5rem; border: 1px solid var(--gray-mid); }
     .comm-card.yes { border-left: 4px solid #1a8a3a; background: #f4faf6; }
     .comm-card.no  { border-left: 4px solid var(--red); background: #fff8f8; }
-    .comm-card .cc-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
+    .comm-card .cc-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
     .comm-card.yes .cc-label { color: #1a8a3a; }
     .comm-card.no  .cc-label { color: var(--red); }
-    .comm-card ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 0.5rem;
-    }
-    .comm-card ul li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-      font-size: 0.88rem;
-      color: var(--text);
-      line-height: 1.55;
-    }
-    .comm-card ul li::before {
-      font-size: 0.85rem;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .comm-card.yes ul li::before { content: '\2714'; color: #1a8a3a; }
-    .comm-card.no  ul li::before { content: '\2717'; color: var(--red); }
+    .comm-card ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+    .comm-card ul li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.88rem; color: var(--text); line-height: 1.55; }
+    .comm-card ul li .ci { flex-shrink: 0; margin-top: 2px; font-size: 0.85rem; }
+    .comm-card.yes .ci { color: #1a8a3a; }
+    .comm-card.no  .ci { color: var(--red); }
+    .comm-card ul li span { white-space: nowrap; font-weight: 600; }
 
-    /* Report box */
-    .report-box {
-      background: var(--black);
-      border-radius: 10px;
-      padding: 2.5rem;
-      text-align: center;
-      margin-top: 3rem;
-    }
-    .report-box h3 {
-      font-family: var(--serif);
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 0.5rem;
-    }
-    .report-box p {
-      color: rgba(255,255,255,0.6);
-      font-size: 0.9rem;
-      margin-bottom: 1.75rem;
-      line-height: 1.7;
-    }
-    .report-box .report-btns {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+    .report-box { background: var(--black); border-radius: 10px; padding: 2.5rem; text-align: center; margin-top: 3rem; }
+    .report-box h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+    .report-box p { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 1.75rem; line-height: 1.7; }
+    .report-box .report-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
   </style>
 </head>
 <body>
@@ -240,7 +104,6 @@
   </div>
 </header>
 
-<!-- HERO -->
 <section class="scam-hero">
   <div class="container">
     <div class="scam-hero-badge"><span class="hero-badge">&#9888;&nbsp; Important Notice</span></div>
@@ -249,11 +112,9 @@
   </div>
 </section>
 
-<!-- BODY -->
 <section class="scam-body">
   <div class="container">
 
-    <!-- Alert box -->
     <div class="scam-alert-box">
       <div class="alert-icon">&#128680;</div>
       <div>
@@ -262,7 +123,6 @@
       </div>
     </div>
 
-    <!-- Warning signs -->
     <div class="scam-section">
       <h2>Warning Signs: How to Spot a <em>Scam</em></h2>
       <p>Fraudsters are becoming increasingly sophisticated. Here are the most common red flags to watch out for:</p>
@@ -270,14 +130,13 @@
         <li><div class="wi">!</div><div>You receive an unsolicited message on WhatsApp, Telegram, SMS or social media (e.g. LinkedIn, Facebook) claiming to be from a JonDavidson consultant offering you a job.</div></li>
         <li><div class="wi">!</div><div>The offer sounds too good to be true &mdash; high pay for minimal effort, work-from-home tasks, or &ldquo;guaranteed&rdquo; income with no interview required.</div></li>
         <li><div class="wi">!</div><div>You are asked to pay a fee, deposit, or purchase items (e.g. gift cards, vouchers) as part of a &ldquo;job requirement&rdquo; or &ldquo;training programme.&rdquo;</div></li>
-        <li><div class="wi">!</div><div>The sender&rsquo;s email does not end in <strong>@jondavidsongroup.com</strong>. Scammers often use Gmail, Hotmail, Yahoo, or slightly altered domains (e.g. jondavidsons.com, jon-davidson.net).</div></li>
+        <li><div class="wi">!</div><div>The sender&rsquo;s email does not end in <strong>@jondavidsongroup.com</strong>. Scammers often use Gmail, Hotmail, Yahoo, or slightly altered domains such as jondavidsons.com or jon-davidson.net.</div></li>
         <li><div class="wi">!</div><div>You are asked to provide sensitive personal or financial information &mdash; such as your bank account number, NRIC, or passport details &mdash; before any formal job offer or interview.</div></li>
         <li><div class="wi">!</div><div>The LinkedIn or social media profile of the supposed consultant has few connections, no work history, a generic photo, or was created recently.</div></li>
         <li><div class="wi">!</div><div>You are pressured to act quickly, sign documents immediately, or keep the &ldquo;opportunity&rdquo; confidential.</div></li>
       </ul>
     </div>
 
-    <!-- How JD communicates -->
     <div class="scam-section">
       <h2>How <em>JonDavidson</em> Will &amp; Will Not Contact You</h2>
       <p>Use this as your checklist whenever you receive a message claiming to be from us.</p>
@@ -285,29 +144,28 @@
         <div class="comm-card yes">
           <div class="cc-label">&#10003;&nbsp; JonDavidson will</div>
           <ul>
-            <li>Contact you from an official <strong>@jondavidsongroup.com</strong> email address</li>
-            <li>List roles on our website, RecruitCRM, JobStreet or MyCareersFuture</li>
-            <li>Conduct proper interviews before making any offer</li>
-            <li>Provide a signed offer letter on company letterhead</li>
-            <li>Ask only for standard information relevant to your application</li>
-            <li>Be listed on the MOM EA licence register under EA Licence No. 22S1412</li>
+            <li><span class="ci">&#10004;</span><div>Email you only from <span>@jondavidsongroup.com</span> &mdash; never Gmail, Hotmail or other free domains</div></li>
+            <li><span class="ci">&#10004;</span><div>List all roles on our website, RecruitCRM, JobStreet or MyCareersFuture</div></li>
+            <li><span class="ci">&#10004;</span><div>Conduct proper interviews before making any offer</div></li>
+            <li><span class="ci">&#10004;</span><div>Provide a signed offer letter on official company letterhead</div></li>
+            <li><span class="ci">&#10004;</span><div>Ask only for information standard to your application</div></li>
+            <li><span class="ci">&#10004;</span><div>Be verifiable on the MOM EA register under licence <span>22S1412</span></div></li>
           </ul>
         </div>
         <div class="comm-card no">
           <div class="cc-label">&#10007;&nbsp; JonDavidson will never</div>
           <ul>
-            <li>Ask you to pay any fee, deposit, or purchase gift cards</li>
-            <li>Request your banking details, CPF, or full NRIC before a formal offer</li>
-            <li>Guarantee a job with no interview or selection process</li>
-            <li>Contact you only via WhatsApp, Telegram, or personal social media</li>
-            <li>Ask you to transfer money for any reason</li>
-            <li>Offer unusually high salaries for simple or vague tasks</li>
+            <li><span class="ci">&#10008;</span><div>Ask you to pay any fee, deposit, or purchase gift cards</div></li>
+            <li><span class="ci">&#10008;</span><div>Request your banking details, CPF, or full NRIC before a formal offer</div></li>
+            <li><span class="ci">&#10008;</span><div>Guarantee a job with no interview or selection process</div></li>
+            <li><span class="ci">&#10008;</span><div>Contact you only via WhatsApp, Telegram, or personal social media</div></li>
+            <li><span class="ci">&#10008;</span><div>Ask you to transfer money for any reason</div></li>
+            <li><span class="ci">&#10008;</span><div>Offer unusually high salaries for simple or vague tasks</div></li>
           </ul>
         </div>
       </div>
     </div>
 
-    <!-- How to verify -->
     <div class="scam-section">
       <h2>How to <em>Verify</em> a JonDavidson Consultant</h2>
       <p>If you have received a message and are unsure whether it is genuine, here is what you can do:</p>
@@ -319,7 +177,6 @@
       </ul>
     </div>
 
-    <!-- If you've been scammed -->
     <div class="scam-section">
       <h2>If You Have Been <em>Targeted</em></h2>
       <p>If you believe you have been contacted by a scammer impersonating JonDavidson, or if you have already suffered a financial loss, please take the following steps immediately:</p>
@@ -332,7 +189,6 @@
       </ul>
     </div>
 
-    <!-- Report CTA -->
     <div class="report-box">
       <h3>Suspect a Scam? Get in Touch.</h3>
       <p>If you have received a suspicious message claiming to be from JonDavidson, please reach out to us directly. We will verify and respond promptly.</p>
