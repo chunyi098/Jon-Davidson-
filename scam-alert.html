@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scam Alert | JonDavidson Executive Search Singapore</title>
+  <meta name="description" content="JonDavidson warns jobseekers of fraudulent recruitment scams impersonating our firm. Learn how to identify scams, protect yourself, and verify genuine JonDavidson communications."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://chunyi098.github.io/Jon-Davidson-/scam-alert.html"/>
+  <link rel="icon" type="image/png" href="assets/JonDavidsonLogo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/nav.css"/>
+  <style>
+    .scam-hero {
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      padding: 9rem 0 5rem;
+      color: #fff;
+      text-align: center;
+    }
+    .scam-hero .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(158,4,3,0.2);
+      border: 1px solid rgba(158,4,3,0.5);
+      color: #ff8080;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+    .scam-hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 1rem;
+      line-height: 1.15;
+    }
+    .scam-hero h1 em { color: var(--red); font-style: italic; }
+    .scam-hero p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    /* ── CONTENT ── */
+    .scam-body { padding: 5rem 0; }
+    .scam-body .container { max-width: 860px; }
+
+    .scam-alert-box {
+      background: #fff8f8;
+      border: 2px solid var(--red);
+      border-radius: 10px;
+      padding: 2rem 2.25rem;
+      margin-bottom: 3rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+    }
+    .scam-alert-box .alert-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .scam-alert-box h3 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--red);
+      margin-bottom: 0.5rem;
+    }
+    .scam-alert-box p {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .scam-section { margin-bottom: 3.5rem; }
+    .scam-section h2 {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--gray-mid);
+    }
+    .scam-section h2 em { color: var(--red); font-style: italic; }
+    .scam-section p {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 1.8;
+      margin-top: 1rem;
+    }
+
+    /* Warning signs list */
+    .warning-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 0;
+      display: grid;
+      gap: 0.85rem;
+    }
+    .warning-list li {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      background: #fff;
+      border: 1px solid var(--gray-mid);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .warning-list li .wi {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(158,4,3,0.1);
+      color: var(--red);
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* How we communicate */
+    .comms-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    @media(max-width:640px){ .comms-grid { grid-template-columns: 1fr; } }
+    .comm-card {
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid var(--gray-mid);
+    }
+    .comm-card.yes { border-left: 4px solid #1a8a3a; background: #f4faf6; }
+    .comm-card.no  { border-left: 4px solid var(--red); background: #fff8f8; }
+    .comm-card .cc-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .comm-card.yes .cc-label { color: #1a8a3a; }
+    .comm-card.no  .cc-label { color: var(--red); }
+    .comm-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.5rem;
+    }
+    .comm-card ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .comm-card ul li::before {
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .comm-card.yes ul li::before { content: '\2714'; color: #1a8a3a; }
+    .comm-card.no  ul li::before { content: '\2717'; color: var(--red); }
+
+    /* Report box */
+    .report-box {
+      background: var(--black);
+      border-radius: 10px;
+      padding: 2.5rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .report-box h3 {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .report-box p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+      margin-bottom: 1.75rem;
+      line-height: 1.7;
+    }
+    .report-box .report-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+<div class="scam-alert-banner" role="alert">
+  &#9888; Scam alert: We never ask for payment or banking details. <a href="scam-alert.html">Read more &rarr;</a>
+</div>
+
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="assets/JonDavidsonLogo.webp%20.png" alt="JonDavidson"/><span class="tagline">WE GO THE DISTANCE</span></a>
+    <nav class="nav-links">
+      <div class="nav-item dropdown"><a href="about.html">About Us <span class="caret">&#9660;</span></a><div class="dropdown-menu"><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a></div></div>
+      <div class="nav-item dropdown"><a href="services.html">Services <span class="caret">&#9660;</span></a><div class="dropdown-menu"><a href="client-solutions.html">Client Solutions</a><a href="talent-profiling.html">Talent Profiling Tools</a></div></div>
+      <a href="jobs.html" class="nav-item">Browse Jobs</a>
+      <a href="news.html" class="nav-item">News &amp; Insights</a>
+      <a href="about.html#our-offices" class="nav-item">Offices</a>
+      <a href="login.html" class="btn-login-icon" title="Candidate Login"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+      <a href="contact.html" class="btn-contact">Contact Us</a>
+      <a href="hire.html" class="btn-hire">Hire Talent</a>
+    </nav>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="about.html">About Us</a><a href="services.html">Services</a><a href="jobs.html">Browse Jobs</a><a href="news.html">News &amp; Insights</a><a href="login.html">Candidate Login</a><a href="contact.html">Contact Us</a><a href="hire.html">Hire Talent</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="scam-hero">
+  <div class="container">
+    <div class="scam-hero-badge"><span class="hero-badge">&#9888;&nbsp; Important Notice</span></div>
+    <h1>Protecting Yourself from<br/><em>Recruitment Scams</em></h1>
+    <p>We are aware of fraudsters impersonating JonDavidson consultants to deceive jobseekers. Your safety is our priority &mdash; please read this page carefully.</p>
+  </div>
+</section>
+
+<!-- BODY -->
+<section class="scam-body">
+  <div class="container">
+
+    <!-- Alert box -->
+    <div class="scam-alert-box">
+      <div class="alert-icon">&#128680;</div>
+      <div>
+        <h3>JonDavidson has not been compromised</h3>
+        <p>We want to assure all candidates and clients that JonDavidson&rsquo;s systems, data, and infrastructure remain fully secure. Scammers are independently impersonating our brand and consultants &mdash; they have no affiliation with us whatsoever. We are actively monitoring and working to report these fraudulent activities.</p>
+      </div>
+    </div>
+
+    <!-- Warning signs -->
+    <div class="scam-section">
+      <h2>Warning Signs: How to Spot a <em>Scam</em></h2>
+      <p>Fraudsters are becoming increasingly sophisticated. Here are the most common red flags to watch out for:</p>
+      <ul class="warning-list">
+        <li><div class="wi">!</div><div>You receive an unsolicited message on WhatsApp, Telegram, SMS or social media (e.g. LinkedIn, Facebook) claiming to be from a JonDavidson consultant offering you a job.</div></li>
+        <li><div class="wi">!</div><div>The offer sounds too good to be true &mdash; high pay for minimal effort, work-from-home tasks, or &ldquo;guaranteed&rdquo; income with no interview required.</div></li>
+        <li><div class="wi">!</div><div>You are asked to pay a fee, deposit, or purchase items (e.g. gift cards, vouchers) as part of a &ldquo;job requirement&rdquo; or &ldquo;training programme.&rdquo;</div></li>
+        <li><div class="wi">!</div><div>The sender&rsquo;s email does not end in <strong>@jondavidsongroup.com</strong>. Scammers often use Gmail, Hotmail, Yahoo, or slightly altered domains (e.g. jondavidsons.com, jon-davidson.net).</div></li>
+        <li><div class="wi">!</div><div>You are asked to provide sensitive personal or financial information &mdash; such as your bank account number, NRIC, or passport details &mdash; before any formal job offer or interview.</div></li>
+        <li><div class="wi">!</div><div>The LinkedIn or social media profile of the supposed consultant has few connections, no work history, a generic photo, or was created recently.</div></li>
+        <li><div class="wi">!</div><div>You are pressured to act quickly, sign documents immediately, or keep the &ldquo;opportunity&rdquo; confidential.</div></li>
+      </ul>
+    </div>
+
+    <!-- How JD communicates -->
+    <div class="scam-section">
+      <h2>How <em>JonDavidson</em> Will &amp; Will Not Contact You</h2>
+      <p>Use this as your checklist whenever you receive a message claiming to be from us.</p>
+      <div class="comms-grid">
+        <div class="comm-card yes">
+          <div class="cc-label">&#10003;&nbsp; JonDavidson will</div>
+          <ul>
+            <li>Contact you from an official <strong>@jondavidsongroup.com</strong> email address</li>
+            <li>List roles on our website, RecruitCRM, JobStreet or MyCareersFuture</li>
+            <li>Conduct proper interviews before making any offer</li>
+            <li>Provide a signed offer letter on company letterhead</li>
+            <li>Ask only for standard information relevant to your application</li>
+            <li>Be listed on the MOM EA licence register under EA Licence No. 22S1412</li>
+          </ul>
+        </div>
+        <div class="comm-card no">
+          <div class="cc-label">&#10007;&nbsp; JonDavidson will never</div>
+          <ul>
+            <li>Ask you to pay any fee, deposit, or purchase gift cards</li>
+            <li>Request your banking details, CPF, or full NRIC before a formal offer</li>
+            <li>Guarantee a job with no interview or selection process</li>
+            <li>Contact you only via WhatsApp, Telegram, or personal social media</li>
+            <li>Ask you to transfer money for any reason</li>
+            <li>Offer unusually high salaries for simple or vague tasks</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to verify -->
+    <div class="scam-section">
+      <h2>How to <em>Verify</em> a JonDavidson Consultant</h2>
+      <p>If you have received a message and are unsure whether it is genuine, here is what you can do:</p>
+      <ul class="warning-list">
+        <li><div class="wi">1</div><div>Ask the person to send you an email from their official JonDavidson address. All genuine consultants use <strong>@jondavidsongroup.com</strong>.</div></li>
+        <li><div class="wi">2</div><div>Check our <a href="about.html#our-team" style="color:var(--red);font-weight:600">Our Team page</a> to see if the consultant&rsquo;s name appears. If they are not listed, treat the contact with caution.</div></li>
+        <li><div class="wi">3</div><div>Call our Singapore office directly on <a href="tel:+6562957155" style="color:var(--red);font-weight:600">+65 6295 7155</a> to confirm whether the consultant works with us and has contacted you.</div></li>
+        <li><div class="wi">4</div><div>Check the Ministry of Manpower&rsquo;s <a href="https://www.mom.gov.sg/employment-practices/employment-agencies/for-job-seekers/check-if-an-employment-agency-is-licensed" target="_blank" rel="noopener" style="color:var(--red);font-weight:600">EA licence register</a> to verify JonDavidson&rsquo;s licence (EA Licence No. 22S1412).</div></li>
+      </ul>
+    </div>
+
+    <!-- If you've been scammed -->
+    <div class="scam-section">
+      <h2>If You Have Been <em>Targeted</em></h2>
+      <p>If you believe you have been contacted by a scammer impersonating JonDavidson, or if you have already suffered a financial loss, please take the following steps immediately:</p>
+      <ul class="warning-list">
+        <li><div class="wi">&#10003;</div><div>Do not transfer any further money or share additional personal information.</div></li>
+        <li><div class="wi">&#10003;</div><div>Report the incident to the <strong>Singapore Police Force</strong> via the <a href="https://www.police.gov.sg/iwitness" target="_blank" rel="noopener" style="color:var(--red);font-weight:600">iWitness portal</a> or by calling <strong>999</strong> (emergency) or <strong>1800-255-0000</strong> (non-emergency).</div></li>
+        <li><div class="wi">&#10003;</div><div>Report the scam at <a href="https://www.scamalert.sg" target="_blank" rel="noopener" style="color:var(--red);font-weight:600">ScamAlert.sg</a>, the National Crime Prevention Council&rsquo;s official scam reporting portal.</div></li>
+        <li><div class="wi">&#10003;</div><div>Contact your bank immediately if you have made any payment, and request a transaction reversal or account freeze.</div></li>
+        <li><div class="wi">&#10003;</div><div>Let us know by emailing <a href="mailto:partners@jondavidsongroup.com" style="color:var(--red);font-weight:600">partners@jondavidsongroup.com</a> so we can track and report the fraudulent activity.</div></li>
+      </ul>
+    </div>
+
+    <!-- Report CTA -->
+    <div class="report-box">
+      <h3>Suspect a Scam? Get in Touch.</h3>
+      <p>If you have received a suspicious message claiming to be from JonDavidson, please reach out to us directly. We will verify and respond promptly.</p>
+      <div class="report-btns">
+        <a href="mailto:partners@jondavidsongroup.com" class="btn-primary">Email Us &rarr;</a>
+        <a href="tel:+6562957155" class="btn-outline-dark">+65 6295 7155</a>
+        <a href="contact.html" class="btn-outline-dark">Contact Page</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-top"><div class="container"><div class="footer-grid">
+    <div class="footer-brand"><img src="assets/JonDavidsonLogo.webp%20.png" alt="JonDavidson" class="footer-logo"/><p>Executive Search &amp; Staffing across Southeast Asia &mdash; built on trust, relationship, and integrity.</p><p class="licence">EA Licence No. 22S1412 | Member of ELITEZ Group</p></div>
+    <div class="footer-col"><h5>Company</h5><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a><a href="news.html">News &amp; Insights</a></div>
+    <div class="footer-col"><h5>Services</h5><a href="client-solutions.html">Client Solutions</a><a href="talent-profiling.html">Talent Profiling Tools</a></div>
+    <div class="footer-col"><h5>For Employers</h5><a href="hire.html">Hire Talent</a><a href="hire.html#employer-form">Submit a Brief</a></div>
+    <div class="footer-col"><h5>Contact</h5><p>2 Kallang Avenue, #03-05<br/>CT Hub, Singapore 339407</p><p>Tel: <a href="tel:+6562957155">+65 6295 7155</a></p><p>Email: <a href="mailto:partners@jondavidsongroup.com">partners@jondavidsongroup.com</a></p></div>
+  </div></div></div>
+  <div class="footer-bottom"><div class="container"><p>&copy; 2025 JonDavidson Pte Ltd. All rights reserved.</p><p>EA Licence No. 22S1412 | <a href="contact.html">Privacy Policy</a></p></div></div>
+</footer>
+
+<a href="https://wa.me/6562957155?text=Hi%20JonDavidson%2C%20I%20would%20like%20to%20report%20a%20suspected%20scam." target="_blank" rel="noopener" class="wa-float" aria-label="Chat with us on WhatsApp">
+  <span class="wa-float-tooltip">Chat with us</span>
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16 2C8.28 2 2 8.28 2 16c0 2.46.67 4.76 1.84 6.74L2 30l7.52-1.97A13.93 13.93 0 0 0 16 30c7.72 0 14-6.28 14-14S23.72 2 16 2zm7.26 19.64c-.3.85-1.77 1.62-2.44 1.72-.63.09-1.43.13-2.31-.14a21.2 21.2 0 0 1-2.09-.77C13.12 21.3 10.9 18.7 10.72 18.49c-.17-.2-1.45-1.93-1.45-3.68s.92-2.61 1.24-2.97c.33-.36.72-.45.96-.45.24 0 .48.01.69.01.22.01.52-.08.81.62.3.72 1.03 2.51 1.12 2.69.09.18.15.4.03.64-.12.24-.18.39-.36.6-.18.21-.38.47-.54.63-.18.18-.37.37-.16.73.21.36.95 1.57 2.04 2.54 1.4 1.25 2.58 1.64 2.95 1.82.36.18.58.15.79-.09.21-.24.9-1.05 1.14-1.41.24-.36.48-.3.81-.18.33.12 2.1 1 2.46 1.18.36.18.6.27.69.42.09.15.09.87-.21 1.72z"/></svg>
+</a>
+
+<script src="js/main.js"></script>
+</body>
+</html>
