@@ -1,6 +1,5 @@
 /* =============================================
    JONDAVIDSON — nav.css
-   Login icon, active nav, user avatar/dropdown
 ============================================= */
 
 /* ── SCAM ALERT BANNER ── */
@@ -41,15 +40,8 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-decoration: none;
 }
-.wa-float:hover {
-  transform: scale(1.08);
-  box-shadow: 0 6px 28px rgba(37,211,102,0.55);
-}
-.wa-float svg {
-  width: 30px;
-  height: 30px;
-  fill: #ffffff;
-}
+.wa-float:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,0.55); }
+.wa-float svg { width: 30px; height: 30px; fill: #ffffff; }
 .wa-float-tooltip {
   position: absolute;
   right: 66px;
@@ -73,13 +65,9 @@
 
 /* ── Candidate login icon ── */
 .btn-login-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  margin-left: 0.5rem;
-  margin-right: 0.25rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  margin-left: 0.5rem; margin-right: 0.25rem;
   border-radius: 50%;
   border: 2px solid var(--red);
   color: var(--red);
@@ -88,16 +76,7 @@
   flex-shrink: 0;
   position: relative;
 }
-.btn-login-icon svg {
-  width: 18px;
-  height: 18px;
-  fill: none;
-  stroke: var(--red);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  transition: stroke 0.25s ease;
-}
+.btn-login-icon svg { width: 18px; height: 18px; fill: none; stroke: var(--red); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.25s ease; }
 .btn-login-icon:hover { background: var(--red); border-color: var(--red); }
 .btn-login-icon:hover svg { stroke: #ffffff; }
 .btn-login-icon::after {
@@ -122,127 +101,25 @@
 
 /* ── Active page highlight ── */
 .nav-links .nav-item a.nav-active,
-.nav-links a.nav-item.nav-active {
-  color: var(--red);
-}
+.nav-links a.nav-item.nav-active { color: var(--red); }
 .nav-links .nav-item a.nav-active::after,
-.nav-links a.nav-item.nav-active::after {
-  content: '';
-  display: block;
-  height: 2px;
-  background: var(--red);
-  border-radius: 1px;
-  margin-top: 2px;
-}
+.nav-links a.nav-item.nav-active::after { content: ''; display: block; height: 2px; background: var(--red); border-radius: 1px; margin-top: 2px; }
 
 /* ── Logged-in user avatar ── */
-.nav-user-menu {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  margin-left: 0.5rem;
-  margin-right: 0.25rem;
-}
-.nav-user-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--red);
-  border: none;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: background 0.2s, transform 0.2s;
-}
+.nav-user-menu { position: relative; display: inline-flex; align-items: center; margin-left: 0.5rem; margin-right: 0.25rem; }
+.nav-user-btn { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--red); border: none; cursor: pointer; flex-shrink: 0; transition: background 0.2s, transform 0.2s; }
 .nav-user-btn:hover { background: var(--red-dark); transform: scale(1.05); }
-.nav-user-avatar {
-  font-family: var(--sans);
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 0.04em;
-  line-height: 1;
-  pointer-events: none;
-}
+.nav-user-avatar { font-family: var(--sans); font-size: 0.72rem; font-weight: 700; color: #fff; letter-spacing: 0.04em; line-height: 1; pointer-events: none; }
 
 /* ── User dropdown ── */
-.nav-user-dropdown {
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  min-width: 170px;
-  background: var(--white);
-  border: 1px solid var(--gray-mid);
-  border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-  padding: 0.5rem 0;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-6px);
-  transition: all 0.2s ease;
-  z-index: 2000;
-}
-.nav-user-dropdown.open {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-.nav-user-dropdown .nav-user-name {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--text);
-  padding: 0.5rem 1rem 0.4rem;
-  border-bottom: 1px solid var(--gray-mid);
-  margin-bottom: 0.3rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.nav-user-dropdown a,
-.nav-user-dropdown button {
-  display: block;
-  width: 100%;
-  text-align: left;
-  padding: 0.45rem 1rem;
-  font-family: var(--sans);
-  font-size: 0.83rem;
-  font-weight: 400;
-  color: var(--text);
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s;
-  text-decoration: none;
-}
-.nav-user-dropdown a:hover,
-.nav-user-dropdown button:hover {
-  background: var(--gray-light);
-  color: var(--red);
-}
+.nav-user-dropdown { position: absolute; top: calc(100% + 10px); right: 0; min-width: 170px; background: var(--white); border: 1px solid var(--gray-mid); border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); padding: 0.5rem 0; opacity: 0; visibility: hidden; transform: translateY(-6px); transition: all 0.2s ease; z-index: 2000; }
+.nav-user-dropdown.open { opacity: 1; visibility: visible; transform: translateY(0); }
+.nav-user-dropdown .nav-user-name { font-size: 0.78rem; font-weight: 600; color: var(--text); padding: 0.5rem 1rem 0.4rem; border-bottom: 1px solid var(--gray-mid); margin-bottom: 0.3rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nav-user-dropdown a, .nav-user-dropdown button { display: block; width: 100%; text-align: left; padding: 0.45rem 1rem; font-family: var(--sans); font-size: 0.83rem; font-weight: 400; color: var(--text); background: none; border: none; cursor: pointer; transition: background 0.15s, color 0.15s; text-decoration: none; }
+.nav-user-dropdown a:hover, .nav-user-dropdown button:hover { background: var(--gray-light); color: var(--red); }
 .nav-user-dropdown button { color: var(--gray); }
 .nav-user-dropdown button:hover { color: var(--red); background: var(--gray-light); }
 
-/* ── Save-toast (shared across pages) ── */
-#save-toast {
-  position: fixed;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%) translateY(20px);
-  background: #1a1a1a;
-  color: #fff;
-  padding: 0.65rem 1.5rem;
-  border-radius: 50px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s ease;
-  z-index: 9999;
-  white-space: nowrap;
-}
-#save-toast.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
+/* ── Save-toast ── */
+#save-toast { position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1a1a; color: #fff; padding: 0.65rem 1.5rem; border-radius: 50px; font-size: 0.85rem; font-weight: 500; opacity: 0; pointer-events: none; transition: all 0.3s ease; z-index: 9999; white-space: nowrap; }
+#save-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
