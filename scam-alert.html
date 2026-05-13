@@ -14,27 +14,8 @@
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/nav.css"/>
   <style>
-    .scam-hero {
-      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
-      padding: 9rem 0 5rem;
-      color: #fff;
-      text-align: center;
-    }
-    .scam-hero .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(158,4,3,0.2);
-      border: 1px solid rgba(158,4,3,0.5);
-      color: #ff8080;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.4rem 1rem;
-      border-radius: 50px;
-      margin-bottom: 1.5rem;
-    }
+    .scam-hero { background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%); padding: 9rem 0 5rem; color: #fff; text-align: center; }
+    .scam-hero .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(158,4,3,0.2); border: 1px solid rgba(158,4,3,0.5); color: #ff8080; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1.5rem; }
     .scam-hero h1 { font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 900; color: #fff; margin-bottom: 1rem; line-height: 1.15; }
     .scam-hero h1 em { color: var(--red); font-style: italic; }
     .scam-hero p { font-size: 1rem; color: rgba(255,255,255,0.65); max-width: 600px; margin: 0 auto; line-height: 1.75; }
@@ -70,7 +51,7 @@
     .comm-card ul li .ci { flex-shrink: 0; margin-top: 2px; font-size: 0.85rem; }
     .comm-card.yes .ci { color: #1a8a3a; }
     .comm-card.no  .ci { color: var(--red); }
-    .comm-card ul li span { white-space: nowrap; font-weight: 600; }
+    .comm-card ul li span.tag { white-space: nowrap; font-weight: 600; }
 
     .report-box { background: var(--black); border-radius: 10px; padding: 2.5rem; text-align: center; margin-top: 3rem; }
     .report-box h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
@@ -144,12 +125,12 @@
         <div class="comm-card yes">
           <div class="cc-label">&#10003;&nbsp; JonDavidson will</div>
           <ul>
-            <li><span class="ci">&#10004;</span><div>Email you only from <span>@jondavidsongroup.com</span> &mdash; never Gmail, Hotmail or other free domains</div></li>
+            <li><span class="ci">&#10004;</span><div>Email you only from <span class="tag">@jondavidsongroup.com</span>, never Gmail, Hotmail or other free domains</div></li>
             <li><span class="ci">&#10004;</span><div>List all roles on our website, RecruitCRM, JobStreet or MyCareersFuture</div></li>
             <li><span class="ci">&#10004;</span><div>Conduct proper interviews before making any offer</div></li>
             <li><span class="ci">&#10004;</span><div>Provide a signed offer letter on official company letterhead</div></li>
             <li><span class="ci">&#10004;</span><div>Ask only for information standard to your application</div></li>
-            <li><span class="ci">&#10004;</span><div>Be verifiable on the MOM EA register under licence <span>22S1412</span></div></li>
+            <li><span class="ci">&#10004;</span><div>Be verifiable on the MOM EA register under licence <span class="tag">22S1412</span></div></li>
           </ul>
         </div>
         <div class="comm-card no">
