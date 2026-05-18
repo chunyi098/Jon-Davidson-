@@ -92,7 +92,7 @@
       <a href="jobs.html" class="nav-item">Browse Jobs</a>
       <a href="news.html" class="nav-item">News &amp; Insights</a>
       <a href="about.html#our-offices" class="nav-item">Offices</a>
-      <a href="login.html" class="btn-login-icon" title="Candidate Login"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+      <a href="login.html" class="btn-login-icon" id="navLoginBtn" title="Candidate Login"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
       <a href="contact.html" class="btn-contact">Contact Us</a>
       <a href="hire.html" class="btn-hire">Hire Talent</a>
     </nav>
@@ -176,16 +176,73 @@
 </a>
 
 <script src="js/main.js"></script>
+<!-- Supabase for auth session check -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (function(){
   const PAGE_SIZE=10;
   let filtered=[],shown=0,showingSavedOnly=false;
+  let _currentUser=null; // will be set after Supabase session check
+
+  const _sb = supabase.createClient(
+    'https://dmnybalszwcnkdnilsiv.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRtbnliYWxzendjbmtkbmlsc2l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxMTY1ODcsImV4cCI6MjA5NDY5MjU4N30._x-Bt3YLoBEff-45JvkmFn5IpQZA3SWWdkZSxxQQehI'
+  );
+
   const R='https://recruitcrm.io/apply/',S='?source=Jobspage&new=yes',MCF='https://www.mycareersfuture.gov.sg';
   const rc=t=>R+t+S;
-  function isLoggedIn(){return!!localStorage.getItem('jd_user');}
+
+  function isLoggedIn(){ return !!_currentUser; }
   function getSaved(){try{return JSON.parse(localStorage.getItem('jd_saved_jobs')||'{}');}catch(e){return{};}}
   function setSaved(obj){try{localStorage.setItem('jd_saved_jobs',JSON.stringify(obj));}catch(e){}}
-  document.addEventListener('DOMContentLoaded',function(){if(!isLoggedIn()) document.getElementById('loginNudge').style.display='flex';updateSavedCount();});
+
+  // Check Supabase session on load
+  async function initAuth(){
+    const { data: { session } } = await _sb.auth.getSession();
+    _currentUser = session ? session.user : null;
+    if(!_currentUser){
+      document.getElementById('loginNudge').style.display='flex';
+    } else {
+      // Update nav icon to show logged-in state
+      const navBtn = document.getElementById('navLoginBtn');
+      if(navBtn) navBtn.title = 'My Profile (' + (_currentUser.email||'') + ')';
+    }
+    updateSavedCount();
+    applyFilters();
+  }
+
+  window.toggleSave=function(btn,id,title){
+    if(!isLoggedIn()){
+      sessionStorage.setItem('jd_save_pending',JSON.stringify({id,title}));
+      showToast('Please log in to save jobs');
+      setTimeout(()=>{window.location.href='login.html?from=save&job='+encodeURIComponent(title);},900);
+      return;
+    }
+    const saved=getSaved(),isSaved=!!saved[id];
+    if(isSaved){
+      delete saved[id];
+      btn.classList.remove('saved');
+      btn.innerHTML='&#128190; Save';
+      showToast('Removed from saved jobs');
+    } else {
+      saved[id]={id,title,savedAt:Date.now()};
+      btn.classList.add('saved');
+      btn.innerHTML='&#10003; Saved';
+      showToast('Job saved!');
+    }
+    setSaved(saved);
+    updateSavedCount();
+  };
+
+  function showToast(msg){const t=document.getElementById('jd-toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._tid);t._tid=setTimeout(()=>t.classList.remove('show'),2800);}
+  function updateSavedCount(){
+    if(!isLoggedIn()){document.getElementById('savedCountWrap').style.display='none';return;}
+    const n=Object.keys(getSaved()).length,wrap=document.getElementById('savedCountWrap'),num=document.getElementById('savedCountNum');
+    if(n>0){wrap.style.display='inline-flex';num.textContent=n;}else{wrap.style.display='none';showingSavedOnly=false;}
+  }
+  window.showSavedOnly=function(e){e.preventDefault();showingSavedOnly=true;applyFilters();};
+  window.showAllJobs=function(e){e.preventDefault();showingSavedOnly=false;applyFilters();};
+
   const JOBS=[
     {id:'r1275',title:'Enterprise Solution Architect (Public Sector | Pre-Sales)',location:'Singapore',country:'Singapore',type:'Permanent',category:'Technology',salary:'$15,000–$18,000/mo',desc:'Design enterprise technology solutions for public sector clients in a pre-sales capacity.',url:rc('17749795927740007886ZXM'),ref:'JD-1275',source:'rcrm',date:'2026-04-28'},
     {id:'r1282',title:'Operations Director (Restaurant)',location:'Manila',country:'Philippines',type:'Permanent',category:'Operations',salary:'',desc:'Senior operations leadership role overseeing restaurant operations across the Philippines.',url:rc('17770909077390007886ZTd'),ref:'JD-1282',source:'rcrm',date:'2026-04-20'},
@@ -232,18 +289,53 @@
     {id:'m13',title:'Assistant Manager / Senior Exec, Human Resources & Administration',location:'Singapore',country:'Singapore',type:'Permanent',category:'Human Resources',salary:'$5,000–$7,200/mo',desc:'Manage HR and administration operations including recruitment, employee engagement and office management.',url:MCF+'/job/admin/assistant-manager-senior-exec-human-resources-administration-jondavidson-74a158c4c637cb6c112e50d749c08180',ref:'',source:'mcf',date:'2026-04-17'},
     {id:'j1',title:'Cloud Native Support Engineer (Kubernetes / DevOps)',location:'Singapore',country:'Singapore',type:'Full Time',category:'Technology',salary:'$5,000–$6,500/mo',desc:'Hands-on Kubernetes troubleshooting in production environments. Regional exposure with enterprise cloud-native platforms. Hybrid work.',url:'https://sg.jobstreet.com/JonDavidson-Pte-Ltd-jobs/at-this-company',ref:'',source:'js',date:'2026-04-01'}
   ];
-  window.toggleSave=function(btn,id,title){if(!isLoggedIn()){sessionStorage.setItem('jd_save_pending',JSON.stringify({id,title}));showToast('Please log in to save jobs');setTimeout(()=>{window.location.href='login.html?from=save&job='+encodeURIComponent(title);},900);return;}const saved=getSaved(),isSaved=!!saved[id];if(isSaved){delete saved[id];btn.classList.remove('saved');btn.textContent='\u{1F4BE} Save';showToast('Removed from saved jobs');}else{saved[id]={id,title,savedAt:Date.now()};btn.classList.add('saved');btn.textContent='\u2713 Saved';showToast('Job saved!');}setSaved(saved);updateSavedCount();};
-  function showToast(msg){const t=document.getElementById('jd-toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._tid);t._tid=setTimeout(()=>t.classList.remove('show'),2800);}
-  function updateSavedCount(){if(!isLoggedIn()){document.getElementById('savedCountWrap').style.display='none';return;}const n=Object.keys(getSaved()).length,wrap=document.getElementById('savedCountWrap'),num=document.getElementById('savedCountNum');if(n>0){wrap.style.display='inline-flex';num.textContent=n;}else{wrap.style.display='none';showingSavedOnly=false;}}
-  window.showSavedOnly=function(e){e.preventDefault();showingSavedOnly=true;applyFilters();};
-  window.showAllJobs=function(e){e.preventDefault();showingSavedOnly=false;applyFilters();};
+
   const grid=document.getElementById('jobsGrid'),meta=document.getElementById('resultsMeta'),loadWrap=document.getElementById('loadMoreWrap'),loadBtn=document.getElementById('loadMoreBtn'),kwInput=document.getElementById('kwInput'),locFilter=document.getElementById('locFilter'),typeFilter=document.getElementById('typeFilter'),searchBtn=document.getElementById('searchBtn'),sortSel=document.getElementById('sortSel'),chipsEl=document.getElementById('chips');
-  function applyFilters(){const kw=kwInput.value.trim().toLowerCase(),loc=locFilter.value.toLowerCase(),type=typeFilter.value.toLowerCase(),cat=(chipsEl.querySelector('.chip.active')||{}).dataset.cat||'',sort=sortSel.value,saved=getSaved();filtered=JOBS.filter(j=>{if(showingSavedOnly&&!saved[j.id])return false;if(kw&&!j.title.toLowerCase().includes(kw)&&!j.desc.toLowerCase().includes(kw)&&!j.category.toLowerCase().includes(kw))return false;if(loc&&!j.location.toLowerCase().includes(loc)&&!j.country.toLowerCase().includes(loc))return false;if(type&&!j.type.toLowerCase().includes(type))return false;if(cat&&!j.category.toLowerCase().includes(cat.toLowerCase()))return false;return true;});if(sort==='title')filtered.sort((a,b)=>a.title.localeCompare(b.title));else if(sort==='location')filtered.sort((a,b)=>a.location.localeCompare(b.location));else filtered.sort((a,b)=>(b.date||'').localeCompare(a.date||''));shown=0;grid.innerHTML='';renderBatch();updateMeta();}
-  function renderBatch(){if(!filtered.length){grid.innerHTML='<div class="jd-state"><p style="font-size:1.05rem">'+(showingSavedOnly?'No saved jobs yet.':'No roles match your search.')+'</p></div>';loadWrap.style.display='none';return;}const saved=getSaved();filtered.slice(shown,shown+PAGE_SIZE).forEach(j=>grid.insertAdjacentHTML('beforeend',cardHTML(j,saved)));shown=Math.min(shown+PAGE_SIZE,filtered.length);loadWrap.style.display=shown<filtered.length?'block':'none';}
+
+  function applyFilters(){
+    const kw=kwInput.value.trim().toLowerCase(),loc=locFilter.value.toLowerCase(),type=typeFilter.value.toLowerCase(),cat=(chipsEl.querySelector('.chip.active')||{}).dataset.cat||'',sort=sortSel.value,saved=getSaved();
+    filtered=JOBS.filter(j=>{
+      if(showingSavedOnly&&!saved[j.id])return false;
+      if(kw&&!j.title.toLowerCase().includes(kw)&&!j.desc.toLowerCase().includes(kw)&&!j.category.toLowerCase().includes(kw))return false;
+      if(loc&&!j.location.toLowerCase().includes(loc)&&!j.country.toLowerCase().includes(loc))return false;
+      if(type&&!j.type.toLowerCase().includes(type))return false;
+      if(cat&&!j.category.toLowerCase().includes(cat.toLowerCase()))return false;
+      return true;
+    });
+    if(sort==='title')filtered.sort((a,b)=>a.title.localeCompare(b.title));
+    else if(sort==='location')filtered.sort((a,b)=>a.location.localeCompare(b.location));
+    else filtered.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+    shown=0;grid.innerHTML='';renderBatch();updateMeta();
+  }
+
+  function renderBatch(){
+    if(!filtered.length){
+      grid.innerHTML='<div class="jd-state"><p style="font-size:1.05rem">'+(showingSavedOnly?'No saved jobs yet.':'No roles match your search.')+'</p></div>';
+      loadWrap.style.display='none';return;
+    }
+    const saved=getSaved();
+    filtered.slice(shown,shown+PAGE_SIZE).forEach(j=>grid.insertAdjacentHTML('beforeend',cardHTML(j,saved)));
+    shown=Math.min(shown+PAGE_SIZE,filtered.length);
+    loadWrap.style.display=shown<filtered.length?'block':'none';
+  }
+
   const SL={rcrm:'RecruitCRM',js:'JobStreet',mcf:'MyCareersFuture'},SC={rcrm:'src-rcrm',js:'src-js',mcf:'src-mcf'};
-  function cardHTML(j,saved){const isSaved=isLoggedIn()&&!!saved[j.id];const loc=j.location?`<span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>${esc(j.location)}</span>`:'';const type=j.type?`<span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>${esc(j.type)}</span>`:'';const sal=j.salary?`<div><span class="jd-salary">&#128176; ${esc(j.salary)}</span></div>`:'';const src=`<span class="src-badge ${SC[j.source]||''}">${SL[j.source]||j.source}</span>`;const tag=j.category?`<span class="jd-tag">${esc(j.category)}</span>`:'';const ref=j.ref?`<span class="jd-ref">${esc(j.ref)}</span>`:'';const saveBtn=`<button class="jd-save${isSaved?' saved':''}" onclick="toggleSave(this,'${esc(j.id)}','${esc(j.title)}')" title="${isLoggedIn()?'Save job':'Log in to save'}">${isSaved?'\u2713 Saved':'\u{1F4BE} Save'}</button>`;return `<div class="jd-card"><div class="jd-card-top">${tag}${src}</div><p class="jd-title">${esc(j.title)}</p><div class="jd-meta">${loc}${type}</div>${sal}<p class="jd-desc">${esc(j.desc)}</p><div class="jd-actions"><a href="${esc(j.url)}" target="_blank" rel="noopener" class="jd-apply">Apply Now</a>${saveBtn}${ref}</div></div>`;}
+
+  function cardHTML(j,saved){
+    const isSaved=isLoggedIn()&&!!saved[j.id];
+    const loc=j.location?`<span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>${esc(j.location)}</span>`:'';
+    const type=j.type?`<span><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>${esc(j.type)}</span>`:'';
+    const sal=j.salary?`<div><span class="jd-salary">&#128176; ${esc(j.salary)}</span></div>`:'';
+    const src=`<span class="src-badge ${SC[j.source]||''}">${SL[j.source]||j.source}</span>`;
+    const tag=j.category?`<span class="jd-tag">${esc(j.category)}</span>`:'';
+    const ref=j.ref?`<span class="jd-ref">${esc(j.ref)}</span>`:'';
+    const saveBtn=`<button class="jd-save${isSaved?' saved':''}" onclick="toggleSave(this,'${esc(j.id)}','${esc(j.title)}')" title="${isLoggedIn()?'Save job':'Log in to save'}">${isSaved?'&#10003; Saved':'&#128190; Save'}</button>`;
+    return `<div class="jd-card"><div class="jd-card-top">${tag}${src}</div><p class="jd-title">${esc(j.title)}</p><div class="jd-meta">${loc}${type}</div>${sal}<p class="jd-desc">${esc(j.desc)}</p><div class="jd-actions"><a href="${esc(j.url)}" target="_blank" rel="noopener" class="jd-apply">Apply Now</a>${saveBtn}${ref}</div></div>`;
+  }
+
   function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
   function updateMeta(){meta.innerHTML=`Showing <strong>${shown}</strong> of <strong>${filtered.length}</strong> role${filtered.length===1?'':'s'}`;}
+
   searchBtn.addEventListener('click',applyFilters);
   kwInput.addEventListener('keydown',e=>{if(e.key==='Enter')applyFilters();});
   locFilter.addEventListener('change',applyFilters);
@@ -251,12 +343,14 @@
   sortSel.addEventListener('change',applyFilters);
   chipsEl.addEventListener('click',e=>{const chip=e.target.closest('.chip');if(!chip)return;chipsEl.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));chip.classList.add('active');applyFilters();});
   loadBtn.addEventListener('click',()=>{renderBatch();updateMeta();});
-  updateSavedCount();applyFilters();
+
   const params=new URLSearchParams(location.search);
   if(params.get('q'))kwInput.value=params.get('q');
   if(params.get('loc'))locFilter.value=params.get('loc');
   if(params.get('cat')){const chip=chipsEl.querySelector(`[data-cat="${params.get('cat')}"]`);if(chip){chipsEl.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));chip.classList.add('active');}}
-  applyFilters();
+
+  // Init auth first, then render
+  initAuth();
 })();
 </script>
 </body>
