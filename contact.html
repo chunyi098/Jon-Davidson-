@@ -1,139 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Us | JonDavidson</title>
-  <link rel="icon" type="image/png" href="assets/JonDavidsonLogo.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/nav.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us | JonDavidson Executive Search</title>
+  <link rel="icon" type="image/png" href="assets/JonDavidsonLogo.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/nav.css"/>
+  <style>
+    .contact-hero{background:linear-gradient(135deg,#0a0a0a 0%,#1a0808 100%);padding:9rem 0 4rem;color:#fff}
+    .contact-hero h1{font-family:var(--serif);font-size:clamp(2.2rem,4vw,3.2rem);font-weight:900;color:#fff;margin-bottom:0.5rem}
+    .contact-hero h1 em{color:var(--red)}
+    .contact-hero p{color:rgba(255,255,255,0.6);font-size:1rem;max-width:560px;line-height:1.75}
+    .contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;padding:5rem 0}
+    @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:2.5rem;padding:3rem 0}}
+    .contact-info h2{font-family:var(--serif);font-size:1.6rem;font-weight:700;margin-bottom:1.25rem}
+    .contact-info h2 em{color:var(--red)}
+    .contact-details{display:flex;flex-direction:column;gap:1.25rem;margin-bottom:2.5rem}
+    .contact-item{display:flex;align-items:flex-start;gap:1rem}
+    .contact-icon{width:40px;height:40px;background:rgba(158,4,3,0.08);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+    .contact-item-text h4{font-size:0.88rem;font-weight:600;margin-bottom:0.2rem}
+    .contact-item-text p,.contact-item-text a{font-size:0.88rem;color:var(--text-light);line-height:1.6}
+    .contact-item-text a{color:var(--red);text-decoration:none}
+    .contact-item-text a:hover{text-decoration:underline}
+    .offices-mini{margin-top:0.5rem}
+    .office-mini-card{background:var(--gray-light);border-radius:8px;padding:1rem 1.25rem;margin-bottom:0.75rem}
+    .office-mini-card h5{font-size:0.82rem;font-weight:700;margin-bottom:0.15rem}
+    .office-mini-card p{font-size:0.8rem;color:var(--text-light);line-height:1.5}
+    .contact-form-card{background:#fff;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,0.07);padding:2.5rem}
+    .contact-form-card h3{font-family:var(--serif);font-size:1.4rem;font-weight:700;margin-bottom:0.35rem}
+    .contact-form-card .form-sub{font-size:0.85rem;color:var(--text-light);margin-bottom:1.75rem}
+    .cf-group{margin-bottom:1rem}
+    .cf-group label{display:block;font-size:0.8rem;font-weight:600;margin-bottom:0.35rem;color:var(--text)}
+    .cf-group input,.cf-group select,.cf-group textarea{width:100%;padding:0.7rem 1rem;border:1.5px solid var(--gray-mid);border-radius:6px;font-family:var(--sans);font-size:0.88rem;color:var(--text);background:#fff;transition:border-color 0.2s;outline:none}
+    .cf-group input:focus,.cf-group select:focus,.cf-group textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(158,4,3,0.07)}
+    .cf-group textarea{min-height:110px;resize:vertical}
+    .cf-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
+    @media(max-width:540px){.cf-row{grid-template-columns:1fr}}
+    .btn-contact-submit{width:100%;padding:0.9rem;background:var(--red);color:#fff;border:none;border-radius:6px;font-family:var(--sans);font-size:0.95rem;font-weight:700;cursor:pointer;transition:background 0.2s,transform 0.2s;margin-top:0.25rem}
+    .btn-contact-submit:hover{background:var(--red-dark);transform:translateY(-1px)}
+    .btn-contact-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+    .form-success-msg{display:none;text-align:center;padding:2rem 1rem}
+    .form-success-msg .si{font-size:2.5rem;margin-bottom:0.75rem}
+    .form-success-msg h3{font-family:var(--serif);font-size:1.3rem;font-weight:700;margin-bottom:0.4rem}
+    .form-success-msg p{font-size:0.88rem;color:var(--text-light)}
+    .hire-cta{background:linear-gradient(135deg,#0a0a0a 0%,#1a0808 100%);color:#fff;padding:5rem 0;text-align:center}
+    .hire-cta h2{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;margin-bottom:0.75rem}
+    .hire-cta h2 em{color:var(--red)}
+    .hire-cta p{color:rgba(255,255,255,0.6);max-width:520px;margin:0 auto 2rem;line-height:1.75}
+    .hire-cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  </style>
 </head>
 <body>
 
 <header class="navbar" id="navbar">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="assets/JonDavidsonLogo.webp%20.png" alt="JonDavidson" />
-      <span class="tagline">WE GO THE DISTANCE</span>
-    </a>
+    <a href="index.html" class="nav-logo"><img src="assets/JonDavidsonLogo.webp%20.png" alt="JonDavidson"/><span class="tagline">WE GO THE DISTANCE</span></a>
     <nav class="nav-links">
-      <div class="nav-item dropdown">
-        <a href="about.html">About Us <span class="caret">&#9660;</span></a>
-        <div class="dropdown-menu">
-          <a href="about.html#who-we-are">Who We Are</a>
-          <a href="about.html#our-team">Our Team</a>
-          <a href="about.html#our-offices">Our Offices</a>
-        </div>
-      </div>
-      <div class="nav-item dropdown">
-        <a href="services.html">Services <span class="caret">&#9660;</span></a>
-        <div class="dropdown-menu">
-          <a href="client-solutions.html">Client Solutions</a>
-          <a href="talent-profiling.html">Talent Profiling Tools</a>
-        </div>
-      </div>
+      <div class="nav-item dropdown"><a href="about.html">About Us <span class="caret">&#9660;</span></a><div class="dropdown-menu"><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a></div></div>
+      <div class="nav-item dropdown"><a href="services.html">Services <span class="caret">&#9660;</span></a><div class="dropdown-menu"><a href="client-solutions.html">Client Solutions</a><a href="talent-profiling.html">Talent Profiling Tools</a></div></div>
       <a href="jobs.html" class="nav-item">Browse Jobs</a>
       <a href="news.html" class="nav-item">News &amp; Insights</a>
       <a href="about.html#our-offices" class="nav-item">Offices</a>
-      <a href="login.html" class="btn-login-icon" title="Candidate Login">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-      </a>
+      <a href="login.html" class="btn-login-icon" title="Candidate Login"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
       <a href="contact.html" class="btn-contact">Contact Us</a>
-      <a href="contact.html#hire" class="btn-hire">Hire Talent</a>
+      <a href="hire.html" class="btn-hire">Hire Talent</a>
     </nav>
     <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
   </div>
   <div class="mobile-menu" id="mobileMenu">
-    <a href="about.html">About Us</a>
-    <a href="services.html">Services</a>
-    <a href="jobs.html">Browse Jobs</a>
-    <a href="news.html">News &amp; Insights</a>
-    <a href="login.html">Candidate Login</a>
-    <a href="contact.html">Contact Us</a>
-    <a href="contact.html#hire">Hire Talent</a>
+    <a href="about.html">About Us</a><a href="services.html">Services</a><a href="jobs.html">Browse Jobs</a><a href="news.html">News &amp; Insights</a><a href="login.html">Candidate Login</a><a href="contact.html">Contact Us</a><a href="hire.html">Hire Talent</a>
   </div>
 </header>
 
-<section class="page-hero">
+<section class="contact-hero">
   <div class="container">
-    <p class="eyebrow" style="justify-content:center;margin-bottom:1rem"><span class="line"></span> CONTACT <span class="line"></span></p>
-    <h1>Let's <em>Connect</em></h1>
-    <p>Whether you're looking to hire top talent or explore your next career move, we'd love to hear from you.</p>
+    <p style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);font-weight:700;display:flex;align-items:center;gap:0.6rem;margin-bottom:1.25rem"><span style="display:block;width:24px;height:2px;background:var(--red)"></span> GET IN TOUCH</p>
+    <h1>Let&apos;s <em>Connect</em></h1>
+    <p>Whether you&apos;re looking for your next role or your next hire, our team is ready to help.</p>
   </div>
 </section>
 
-<section class="contact-section">
+<section style="background:#fff">
   <div class="container">
     <div class="contact-grid">
       <div class="contact-info">
-        <h2>Get in <em>Touch</em></h2>
-        <p>Our team of executive search specialists is ready to assist you. Reach out to discuss your hiring needs or to explore opportunities.</p>
-        <div style="margin-top:2rem">
-          <p><strong>📍 Singapore HQ</strong></p>
-          <p>2 Kallang Avenue, #03-05 CT Hub<br/>Singapore 339407</p>
-          <p style="margin-top:1rem"><strong>📞 Phone</strong></p>
-          <p><a href="tel:+6562957155" style="color:var(--red);font-weight:600">+65 6295 7155</a></p>
-          <p style="margin-top:1rem"><strong>✉️ Email</strong></p>
-          <p><a href="mailto:partners@jondavidsongroup.com" style="color:var(--red)">partners@jondavidsongroup.com</a></p>
-          <p style="margin-top:1rem"><strong>🪧 EA Licence</strong></p>
-          <p>No. 22S1412</p>
+        <h2>Talk to <em>Our Team</em></h2>
+        <div class="contact-details">
+          <div class="contact-item"><div class="contact-icon">&#128205;</div><div class="contact-item-text"><h4>Singapore HQ</h4><p>2 Kallang Avenue, #03-05<br/>CT Hub, Singapore 339407</p></div></div>
+          <div class="contact-item"><div class="contact-icon">&#128222;</div><div class="contact-item-text"><h4>Phone</h4><p><a href="tel:+6562957155">+65 6295 7155</a></p></div></div>
+          <div class="contact-item"><div class="contact-icon">&#9993;</div><div class="contact-item-text"><h4>Email</h4><p><a href="mailto:partners@jondavidsongroup.com">partners@jondavidsongroup.com</a></p></div></div>
+          <div class="contact-item"><div class="contact-icon">&#128336;</div><div class="contact-item-text"><h4>Office Hours</h4><p>Monday &ndash; Friday: 9:00am &ndash; 6:00pm SGT</p></div></div>
         </div>
-        <div style="margin-top:2.5rem;padding:1.5rem;background:var(--gray-light);border-radius:8px">
-          <h4 style="font-family:var(--serif);font-weight:700;margin-bottom:0.5rem">Our Networks</h4>
-          <p><a href="https://www.enexsearch.group" target="_blank" style="color:var(--red)">ENEX Global Search</a></p>
-          <p><a href="https://npaworldwide.com" target="_blank" style="color:var(--red)">NPA Worldwide</a></p>
-          <p><a href="https://www.elitez.asia" target="_blank" style="color:var(--red)">ELITEZ Group</a></p>
+        <h3 style="font-family:var(--serif);font-size:1.1rem;font-weight:700;margin-bottom:0.75rem">Our Offices</h3>
+        <div class="offices-mini">
+          <div class="office-mini-card"><h5>Singapore (HQ)</h5><p>2 Kallang Avenue, #03-05, CT Hub, S339407</p></div>
+          <div class="office-mini-card"><h5>Malaysia</h5><p>Kuala Lumpur &mdash; contact HQ for details</p></div>
+          <div class="office-mini-card"><h5>Indonesia</h5><p>Jakarta &mdash; contact HQ for details</p></div>
         </div>
       </div>
-      <div>
-        <!-- CONTACT FORM -->
-        <div style="background:var(--white);border:1px solid var(--gray-mid);border-radius:8px;padding:2.5rem;box-shadow:var(--shadow)">
-          <h3 style="font-family:var(--serif);font-size:1.4rem;font-weight:700;margin-bottom:0.5rem">Send Us a Message</h3>
-          <p style="font-size:0.875rem;color:var(--text-light);margin-bottom:1.75rem">We'll get back to you within 1 business day.</p>
-          <div id="contact-success" style="display:none;background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:1rem;margin-bottom:1rem;color:#15803d;font-weight:500">
-            ✓ Message sent! We'll be in touch within 1 business day.
+      <div class="contact-form-card">
+        <div id="contactFormView">
+          <h3>Send Us a Message</h3>
+          <p class="form-sub">We&apos;ll get back to you within one business day.</p>
+          <div class="cf-row">
+            <div class="cf-group"><label>First Name *</label><input type="text" id="cf-first" placeholder="Jane"/></div>
+            <div class="cf-group"><label>Last Name *</label><input type="text" id="cf-last" placeholder="Doe"/></div>
           </div>
-          <div class="form-group"><label>Full Name *</label><input id="c-name" type="text" placeholder="Your full name" /></div>
-          <div class="form-group"><label>Email Address *</label><input id="c-email" type="email" placeholder="your@email.com" /></div>
-          <div class="form-group"><label>Phone Number</label><input id="c-phone" type="tel" placeholder="+65 xxxx xxxx" /></div>
-          <div class="form-group"><label>I am a...</label>
-            <select id="c-type">
+          <div class="cf-group"><label>Email Address *</label><input type="email" id="cf-email" placeholder="you@example.com"/></div>
+          <div class="cf-group"><label>Phone Number</label><input type="tel" id="cf-phone" placeholder="+65 xxxx xxxx"/></div>
+          <div class="cf-group"><label>I am a...</label>
+            <select id="cf-type">
+              <option value="">Select...</option>
+              <option>Job seeker / Candidate</option>
               <option>Employer / Hiring Manager</option>
-              <option>Job Seeker / Candidate</option>
+              <option>Existing client</option>
               <option>Other</option>
             </select>
           </div>
-          <div class="form-group"><label>Message *</label><textarea id="c-message" placeholder="Tell us about your hiring needs or career goals..."></textarea></div>
-          <button id="contact-btn" class="btn-primary" style="width:100%;justify-content:center" onclick="submitContact()">Send Message &rarr;</button>
+          <div class="cf-group"><label>Message *</label><textarea id="cf-message" placeholder="How can we help you?"></textarea></div>
+          <button class="btn-contact-submit" id="cf-submit-btn" onclick="submitContactForm()">Send Message &rarr;</button>
         </div>
-
-        <!-- HIRE FORM -->
-        <div id="hire" style="margin-top:2rem;background:var(--black);color:white;border-radius:8px;padding:2.5rem">
-          <h3 style="font-family:var(--serif);font-size:1.3rem;font-weight:700;color:white;margin-bottom:0.5rem">Hire Top Talent</h3>
-          <p style="font-size:0.875rem;color:rgba(255,255,255,0.6);margin-bottom:1.5rem">Submit a search mandate and our team will be in touch within 24 hours.</p>
-          <div id="hire-success" style="display:none;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);border-radius:8px;padding:1rem;margin-bottom:1rem;color:white;font-weight:500">
-            ✓ Mandate submitted! Our team will contact you within 24 hours.
-          </div>
-          <div class="form-group"><label style="color:rgba(255,255,255,0.7)">Company Name *</label><input id="h-company" type="text" placeholder="Your company" style="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.15);color:white" /></div>
-          <div class="form-group"><label style="color:rgba(255,255,255,0.7)">Role to Fill *</label><input id="h-role" type="text" placeholder="e.g. CFO, VP Engineering" style="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.15);color:white" /></div>
-          <div class="form-group"><label style="color:rgba(255,255,255,0.7)">Contact Email *</label><input id="h-email" type="email" placeholder="your@email.com" style="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.15);color:white" /></div>
-          <button id="hire-btn" class="btn-primary" style="width:100%;justify-content:center" onclick="submitHire()">Submit Mandate &rarr;</button>
+        <div class="form-success-msg" id="contactFormSuccess">
+          <div class="si">&#9989;</div>
+          <h3>Message Sent!</h3>
+          <p>Thank you &mdash; we&apos;ll be in touch within one business day.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Hire Talent CTA — links directly to hire.html (no hash) -->
+<section class="hire-cta">
+  <div class="container">
+    <p style="font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:1rem">FOR EMPLOYERS</p>
+    <h2>Looking to <em>Hire Top Talent?</em></h2>
+    <p>Submit a hiring brief and a JonDavidson consultant will follow up within one business day.</p>
+    <div class="hire-cta-btns">
+      <a href="hire.html" class="btn-primary">Submit a Hiring Brief &rarr;</a>
+      <a href="hire.html" class="btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.4)">View Our Expertise</a>
+    </div>
+  </div>
+</section>
+
 <footer class="footer">
   <div class="footer-top"><div class="container"><div class="footer-grid">
-    <div class="footer-brand"><img src="assets/JonDavidsonLogo.webp%20.png" alt="JonDavidson" class="footer-logo" /><p>Executive Search &amp; Staffing across Southeast Asia.</p><p class="licence">EA Licence No. 22S1412 | Member of ELITEZ Group</p></div>
-    <div class="footer-col"><h5>Company</h5><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a></div>
+    <div class="footer-brand"><img src="assets/JonDavidsonLogo.webp%20.png" alt="JonDavidson" class="footer-logo"/><p>Executive Search &amp; Staffing across Southeast Asia &mdash; built on trust, relationship, and integrity.</p><p class="licence">EA Licence No. 22S1412 | Member of ELITEZ Group</p></div>
+    <div class="footer-col"><h5>Company</h5><a href="about.html#who-we-are">Who We Are</a><a href="about.html#our-team">Our Team</a><a href="about.html#our-offices">Our Offices</a><a href="news.html">News &amp; Insights</a></div>
     <div class="footer-col"><h5>Services</h5><a href="client-solutions.html">Client Solutions</a><a href="talent-profiling.html">Talent Profiling Tools</a></div>
-    <div class="footer-col"><h5>Candidates</h5><a href="login.html">Candidate Login</a><a href="jobs.html">Browse Jobs</a></div>
-    <div class="footer-col"><h5>Contact</h5><p>2 Kallang Avenue #03-05, Singapore 339407</p><p>Tel: <a href="tel:+6562957155">+65 6295 7155</a></p></div>
+    <div class="footer-col"><h5>For Employers</h5><a href="hire.html">Hire Talent</a><a href="hire.html#expertise">Our Expertise</a><a href="hire.html#employer-form">Submit a Brief</a></div>
+    <div class="footer-col"><h5>Contact</h5><p>2 Kallang Avenue, #03-05<br/>CT Hub, Singapore 339407</p><p>Tel: <a href="tel:+6562957155">+65 6295 7155</a></p><p>Email: <a href="mailto:partners@jondavidsongroup.com">partners@jondavidsongroup.com</a></p></div>
   </div></div></div>
   <div class="footer-bottom"><div class="container"><p>&copy; 2025 JonDavidson Pte Ltd. All rights reserved.</p><p>EA Licence No. 22S1412</p></div></div>
 </footer>
@@ -141,64 +161,30 @@
 <script src="js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const _jdsb = supabase.createClient(
+const _ctsb = supabase.createClient(
   'https://dmnybalszwcnkdnilsiv.supabase.co',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRtbnliYWxzendjbmtkbmlsc2l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxMTY1ODcsImV4cCI6MjA5NDY5MjU4N30._x-Bt3YLoBEff-45JvkmFn5IpQZA3SWWdkZSxxQQehI'
 );
-
-async function submitContact() {
-  const name = document.getElementById('c-name').value.trim();
-  const email = document.getElementById('c-email').value.trim();
-  const message = document.getElementById('c-message').value.trim();
-  if (!name || !email || !message) { alert('Please fill in your name, email and message.'); return; }
-  const btn = document.getElementById('contact-btn');
+async function submitContactForm() {
+  const first = document.getElementById('cf-first').value.trim();
+  const last  = document.getElementById('cf-last').value.trim();
+  const email = document.getElementById('cf-email').value.trim();
+  const phone = document.getElementById('cf-phone').value.trim();
+  const type  = document.getElementById('cf-type').value;
+  const msg   = document.getElementById('cf-message').value.trim();
+  if (!first || !email || !msg) { alert('Please fill in your name, email and message.'); return; }
+  const btn = document.getElementById('cf-submit-btn');
   btn.textContent = 'Sending...'; btn.disabled = true;
-  const { error } = await _jdsb.from('contact_submissions').insert({
-    full_name: name,
-    email: email,
-    phone: document.getElementById('c-phone').value.trim(),
-    subject: document.getElementById('c-type').value,
-    message: message,
-    source_page: 'contact'
+  const { error } = await _ctsb.from('contact_messages').insert({
+    first_name: first, last_name: last, email: email,
+    phone: phone, enquiry_type: type, message: msg
   });
   if (!error) {
-    document.getElementById('contact-success').style.display = 'block';
-    document.getElementById('c-name').value = '';
-    document.getElementById('c-email').value = '';
-    document.getElementById('c-phone').value = '';
-    document.getElementById('c-message').value = '';
-    btn.textContent = 'Send Message →';
-    btn.disabled = false;
+    document.getElementById('contactFormView').style.display = 'none';
+    document.getElementById('contactFormSuccess').style.display = 'block';
   } else {
-    alert('Something went wrong. Please try again or email us directly.');
-    btn.textContent = 'Send Message →';
-    btn.disabled = false;
-  }
-}
-
-async function submitHire() {
-  const company = document.getElementById('h-company').value.trim();
-  const role = document.getElementById('h-role').value.trim();
-  const email = document.getElementById('h-email').value.trim();
-  if (!company || !role || !email) { alert('Please fill in all fields.'); return; }
-  const btn = document.getElementById('hire-btn');
-  btn.textContent = 'Submitting...'; btn.disabled = true;
-  const { error } = await _jdsb.from('hire_submissions').insert({
-    company_name: company,
-    role_title: role,
-    email: email
-  });
-  if (!error) {
-    document.getElementById('hire-success').style.display = 'block';
-    document.getElementById('h-company').value = '';
-    document.getElementById('h-role').value = '';
-    document.getElementById('h-email').value = '';
-    btn.textContent = 'Submit Mandate →';
-    btn.disabled = false;
-  } else {
-    alert('Something went wrong. Please try again or email us directly.');
-    btn.textContent = 'Submit Mandate →';
-    btn.disabled = false;
+    alert('Something went wrong. Please email us directly at partners@jondavidsongroup.com');
+    btn.textContent = 'Send Message →'; btn.disabled = false;
   }
 }
 </script>
