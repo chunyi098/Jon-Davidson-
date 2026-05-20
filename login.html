@@ -193,16 +193,18 @@ const _sb = supabase.createClient(
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRtbnliYWxzendjbmtkbmlsc2l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxMTY1ODcsImV4cCI6MjA5NDY5MjU4N30._x-Bt3YLoBEff-45JvkmFn5IpQZA3SWWdkZSxxQQehI'
 );
 
+const DASHBOARD = 'https://chunyi098.github.io/Jon-Davidson-/candidate-dashboard.html';
+
 // Show save-redirect banner
 (function(){
   const p = new URLSearchParams(window.location.search);
   if(p.get('from') === 'save') document.getElementById('saveBanner').style.display = 'block';
 })();
 
-// Check if already logged in — redirect to jobs
+// Check if already logged in — redirect to dashboard
 (async function(){
   const { data: { session } } = await _sb.auth.getSession();
-  if (session) window.location.href = 'jobs.html';
+  if (session) window.location.href = DASHBOARD;
 })();
 
 function showMsg(text, ok) {
@@ -225,9 +227,7 @@ function switchTab(tab) {
 async function signInWithGoogle() {
   const { error } = await _sb.auth.signInWithOAuth({
     provider: 'google',
-    options: {
-      redirectTo: 'https://chunyi098.github.io/Jon-Davidson-/jobs.html'
-    }
+    options: { redirectTo: DASHBOARD }
   });
   if (error) showMsg('Google sign-in failed: ' + error.message, false);
 }
@@ -243,9 +243,7 @@ async function handleLogin() {
     showMsg('Login failed: ' + error.message, false);
     btn.textContent = 'Log In'; btn.disabled = false;
   } else {
-    const pending = sessionStorage.getItem('jd_save_pending');
-    if (pending) { sessionStorage.removeItem('jd_save_pending'); }
-    window.location.href = 'jobs.html';
+    window.location.href = DASHBOARD;
   }
 }
 
@@ -265,7 +263,7 @@ async function handleSignup() {
     password: pass,
     options: {
       data: { full_name: first + ' ' + last, job_title: document.getElementById('signupTitle').value.trim() },
-      emailRedirectTo: 'https://chunyi098.github.io/Jon-Davidson-/jobs.html'
+      emailRedirectTo: DASHBOARD
     }
   });
   if (error) {
@@ -282,7 +280,7 @@ async function handleForgotPassword() {
   const email = document.getElementById('loginEmail').value.trim();
   if (!email) { showMsg('Enter your email address above first.', false); return; }
   const { error } = await _sb.auth.resetPasswordForEmail(email, {
-    redirectTo: 'https://chunyi098.github.io/Jon-Davidson-/login.html'
+    redirectTo: DASHBOARD
   });
   if (!error) showMsg('✓ Password reset email sent! Check your inbox.', true);
   else showMsg('Failed to send reset email: ' + error.message, false);
