@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Candidate Portal | JonDavidson</title>
-  <link rel="icon" type="image/png" href="assets/JonDavidsonLogo.png"/>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -14,9 +14,10 @@
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:var(--sans);background:var(--gray-light);min-height:100vh;color:var(--text)}
     .portal-nav{background:var(--navy);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.3)}
-    .portal-nav .nav-logo{display:flex;align-items:center;gap:0.75rem;text-decoration:none}
-    .portal-nav .nav-logo img{height:36px;object-fit:contain}
-    .portal-nav .nav-logo span{color:rgba(255,255,255,0.5);font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;border-left:1px solid rgba(255,255,255,0.2);padding-left:0.75rem}
+    .portal-nav .nav-logo{display:flex;align-items:center;gap:0.85rem;text-decoration:none}
+    .portal-nav .nav-logo img{height:40px;width:auto;object-fit:contain;filter:brightness(0) invert(1);display:block}
+    .portal-nav .nav-logo .logo-divider{width:1px;height:28px;background:rgba(255,255,255,0.25);flex-shrink:0}
+    .portal-nav .nav-logo .logo-label{color:rgba(255,255,255,0.6);font-size:0.68rem;font-weight:700;letter-spacing:0.13em;text-transform:uppercase}
     .portal-nav .nav-right{display:flex;align-items:center;gap:1.25rem}
     .portal-nav a.nav-site{color:rgba(255,255,255,0.65);font-size:0.82rem;text-decoration:none;display:flex;align-items:center;gap:0.35rem}
     .portal-nav a.nav-site:hover{color:#fff}
@@ -135,8 +136,9 @@
 
 <nav class="portal-nav">
   <a href="index.html" class="nav-logo">
-    <img src="assets/JonDavidsonLogo.webp%20.png" alt="JonDavidson"/>
-    <span>Candidate Portal</span>
+    <img src="assets/JonDavidsonLogo.png" alt="JonDavidson"/>
+    <div class="logo-divider"></div>
+    <span class="logo-label">Candidate Portal</span>
   </a>
   <div class="nav-right">
     <a href="index.html" class="nav-site">
@@ -181,7 +183,6 @@
   </aside>
 
   <main class="portal-main">
-    <!-- DASHBOARD -->
     <div class="panel active" id="panel-dashboard">
       <div class="welcome-banner">
         <div><h2 id="welcomeMsg">Welcome back!</h2><p>Your career journey continues here &mdash; explore new roles and track your applications.</p></div>
@@ -198,296 +199,41 @@
       </div>
       <div class="panel-box" style="padding:1.5rem"><p class="section-label">Recommended for You</p><div class="rec-grid" id="recJobsGrid"></div></div>
     </div>
-
-    <!-- CVs -->
-    <div class="panel" id="panel-cvs">
-      <div class="panel-box">
-        <div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><h2>Your CVs</h2></div>
-        <div class="panel-body">
-          <div id="cvMsgBar" class="msg-bar"></div>
-          <p style="font-size:0.88rem;color:var(--text-light);margin-bottom:1.25rem">Upload up to 3 versions of your CV. Our consultants use these when matching you to roles.</p>
-          <div class="cv-list" id="cvList"></div>
-          <div id="cvUploadZone">
-            <div class="upload-zone" onclick="document.getElementById('cvFileInput').click()" ondragover="event.preventDefault()" ondrop="handleCVDrop(event)">
-              <div style="font-size:2rem">&#128196;</div>
-              <p><strong>Click to upload</strong> or drag &amp; drop</p>
-              <p style="font-size:0.78rem;margin-top:0.25rem">PDF, DOC, DOCX &mdash; max 5MB</p>
-            </div>
-            <input type="file" id="cvFileInput" accept=".pdf,.doc,.docx" style="display:none" onchange="handleCVSelect(event)"/>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PERSONAL DETAILS -->
-    <div class="panel" id="panel-profile">
-      <div class="panel-box">
-        <div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><h2>Personal Details</h2></div>
-        <div class="panel-body">
-          <p class="section-label">Personal Information</p>
-          <p style="font-size:0.82rem;color:var(--text-light);margin-bottom:1rem">Help us contact you when a suitable opportunity arises.</p>
-          <div class="detail-grid">
-            <div class="form-group"><label>Email</label><input type="email" id="pEmail" readonly/></div>
-            <div class="form-group"><label>Phone Number</label><input type="tel" id="pPhone" placeholder="+65 9XXX XXXX"/></div>
-            <div class="form-group"><label>First Name</label><input type="text" id="pFirst" placeholder="Jane"/></div>
-            <div class="form-group"><label>Last Name</label><input type="text" id="pLast" placeholder="Doe"/></div>
-            <div class="form-group"><label>City</label><input type="text" id="pCity" placeholder="Singapore"/></div>
-          </div>
-          <button class="btn-save-form" onclick="savePersonalInfo()">Save Changes</button>
-          <div class="form-success" id="personalSaved">&#10003; Saved!</div>
-          <hr class="detail-divider"/>
-          <p class="section-label">Employment Information</p>
-          <p style="font-size:0.82rem;color:var(--text-light);margin-bottom:1rem">Help us match you with the right roles.</p>
-          <div class="detail-grid">
-            <div class="form-group"><label>Current Job Title</label><input type="text" id="pJobTitle" placeholder="e.g. Head of Finance"/></div>
-            <div class="form-group"><label>Experience Level</label><select id="pExpLevel"><option value="">Select...</option><option>Entry Level (0-2 yrs)</option><option>Mid Level (3-5 yrs)</option><option>Senior Level (6-10 yrs)</option><option>Director / C-Suite (10+ yrs)</option></select></div>
-            <div class="form-group"><label>Industry</label><select id="pIndustry"><option value="">Select...</option><option>Technology</option><option>Finance &amp; Banking</option><option>Human Resources</option><option>Sales &amp; Marketing</option><option>Operations</option><option>Legal</option><option>Engineering</option><option>Consulting</option><option>Healthcare</option><option>Other</option></select></div>
-            <div class="form-group"><label>Job Type</label><select id="pJobType"><option value="">Select...</option><option>Permanent</option><option>Contract</option><option>Temporary</option><option>Any</option></select></div>
-          </div>
-          <div style="margin-bottom:1rem">
-            <label style="font-size:0.78rem;font-weight:600;color:var(--text-light);letter-spacing:0.04em;text-transform:uppercase;display:block;margin-bottom:0.5rem">Job Preferences</label>
-            <div class="pref-tags">
-              <button type="button" class="pref-tag" onclick="this.classList.toggle('sel')">Finance</button>
-              <button type="button" class="pref-tag" onclick="this.classList.toggle('sel')">Technology</button>
-              <button type="button" class="pref-tag" onclick="this.classList.toggle('sel')">HR</button>
-              <button type="button" class="pref-tag" onclick="this.classList.toggle('sel')">Sales</button>
-              <button type="button" class="pref-tag" onclick="this.classList.toggle('sel')">Legal</button>
-              <button type="button" class="pref-tag" onclick="this.classList.toggle('sel')">Operations</button>
-              <button type="button" class="pref-tag" onclick="this.classList.toggle('sel')">C-Suite</button>
-              <button type="button" class="pref-tag" onclick="this.classList.toggle('sel')">Consulting</button>
-            </div>
-          </div>
-          <button class="btn-save-form" onclick="saveEmploymentInfo()">Save Changes</button>
-          <div class="form-success" id="employmentSaved">&#10003; Saved!</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SAVED JOBS -->
-    <div class="panel" id="panel-saved">
-      <div class="panel-box">
-        <div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><h2>Saved Jobs</h2></div>
-        <div class="panel-body" id="savedJobsBody"></div>
-      </div>
-    </div>
-
-    <!-- APPLIED JOBS -->
-    <div class="panel" id="panel-applied">
-      <div class="panel-box">
-        <div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><h2>Applied Jobs</h2></div>
-        <div class="panel-body"><div class="empty-state"><div class="empty-icon">&#128203;</div><p>Jobs you apply for via JonDavidson will appear here.</p><a href="jobs.html">Browse Open Roles &rarr;</a></div></div>
-      </div>
-    </div>
-
-    <!-- SETTINGS -->
-    <div class="panel" id="panel-settings">
-      <div class="panel-box">
-        <div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><h2>Account Settings</h2></div>
-        <div class="panel-body">
-          <div id="settingsMsgBar" class="msg-bar"></div>
-          <p class="section-label">Change Password</p>
-          <div class="detail-grid" style="max-width:480px">
-            <div class="form-group"><label>Current Password</label><input type="password" id="pwCurrent" placeholder="Current password"/></div>
-            <div class="form-group"><label>New Password</label><input type="password" id="pwNew" placeholder="Min. 8 characters"/></div>
-          </div>
-          <button class="btn-save-form" onclick="changePassword()">Update Password</button>
-          <hr class="detail-divider"/>
-          <p class="section-label">One Click Apply</p>
-          <div class="one-click-toggle"><div class="label-group"><strong>Enable One Click Apply</strong><span>Automatically submit your CV and details when applying.</span></div><label class="toggle-switch"><input type="checkbox" id="oneClickToggle"/><span class="toggle-slider"></span></label></div>
-          <hr class="detail-divider"/>
-          <p class="section-label" style="color:#cc0000">Danger Zone</p>
-          <div class="danger-info">Closing your account will permanently remove your profile. This cannot be undone.</div>
-          <button style="background:none;border:1.5px solid #cc0000;color:#cc0000;padding:0.5rem 1.25rem;border-radius:var(--radius);font-family:var(--sans);font-size:0.85rem;font-weight:600;cursor:pointer" onclick="alert('To close your account email partners@jondavidsongroup.com')">Close Account</button>
-        </div>
-      </div>
-    </div>
+    <div class="panel" id="panel-cvs"><div class="panel-box"><div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><h2>Your CVs</h2></div><div class="panel-body"><div id="cvMsgBar" class="msg-bar"></div><p style="font-size:0.88rem;color:var(--text-light);margin-bottom:1.25rem">Upload up to 3 versions of your CV.</p><div class="cv-list" id="cvList"></div><div id="cvUploadZone"><div class="upload-zone" onclick="document.getElementById('cvFileInput').click()" ondragover="event.preventDefault()" ondrop="handleCVDrop(event)"><div style="font-size:2rem">&#128196;</div><p><strong>Click to upload</strong> or drag &amp; drop</p><p style="font-size:0.78rem;margin-top:0.25rem">PDF, DOC, DOCX &mdash; max 5MB</p></div><input type="file" id="cvFileInput" accept=".pdf,.doc,.docx" style="display:none" onchange="handleCVSelect(event)"/></div></div></div></div>
+    <div class="panel" id="panel-profile"><div class="panel-box"><div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><h2>Personal Details</h2></div><div class="panel-body"><p class="section-label">Personal Information</p><p style="font-size:0.82rem;color:var(--text-light);margin-bottom:1rem">Help us contact you when a suitable opportunity arises.</p><div class="detail-grid"><div class="form-group"><label>Email</label><input type="email" id="pEmail" readonly/></div><div class="form-group"><label>Phone Number</label><input type="tel" id="pPhone" placeholder="+65 9XXX XXXX"/></div><div class="form-group"><label>First Name</label><input type="text" id="pFirst" placeholder="Jane"/></div><div class="form-group"><label>Last Name</label><input type="text" id="pLast" placeholder="Doe"/></div><div class="form-group"><label>City</label><input type="text" id="pCity" placeholder="Singapore"/></div></div><button class="btn-save-form" onclick="savePersonalInfo()">Save Changes</button><div class="form-success" id="personalSaved">&#10003; Saved!</div><hr class="detail-divider"/><p class="section-label">Employment Information</p><div class="detail-grid"><div class="form-group"><label>Current Job Title</label><input type="text" id="pJobTitle" placeholder="e.g. Head of Finance"/></div><div class="form-group"><label>Experience Level</label><select id="pExpLevel"><option value="">Select...</option><option>Entry Level (0-2 yrs)</option><option>Mid Level (3-5 yrs)</option><option>Senior Level (6-10 yrs)</option><option>Director / C-Suite (10+ yrs)</option></select></div><div class="form-group"><label>Industry</label><select id="pIndustry"><option value="">Select...</option><option>Technology</option><option>Finance &amp; Banking</option><option>Human Resources</option><option>Sales &amp; Marketing</option><option>Operations</option><option>Legal</option><option>Engineering</option><option>Consulting</option><option>Healthcare</option><option>Other</option></select></div><div class="form-group"><label>Job Type</label><select id="pJobType"><option value="">Select...</option><option>Permanent</option><option>Contract</option><option>Temporary</option><option>Any</option></select></div></div><button class="btn-save-form" onclick="saveEmploymentInfo()">Save Changes</button><div class="form-success" id="employmentSaved">&#10003; Saved!</div></div></div></div>
+    <div class="panel" id="panel-saved"><div class="panel-box"><div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><h2>Saved Jobs</h2></div><div class="panel-body" id="savedJobsBody"></div></div></div>
+    <div class="panel" id="panel-applied"><div class="panel-box"><div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><h2>Applied Jobs</h2></div><div class="panel-body"><div class="empty-state"><div class="empty-icon">&#128203;</div><p>Jobs you apply for via JonDavidson will appear here.</p><a href="jobs.html">Browse Open Roles &rarr;</a></div></div></div></div>
+    <div class="panel" id="panel-settings"><div class="panel-box"><div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><h2>Account Settings</h2></div><div class="panel-body"><div id="settingsMsgBar" class="msg-bar"></div><p class="section-label">Change Password</p><div class="detail-grid" style="max-width:480px"><div class="form-group"><label>Current Password</label><input type="password" id="pwCurrent" placeholder="Current password"/></div><div class="form-group"><label>New Password</label><input type="password" id="pwNew" placeholder="Min. 8 characters"/></div></div><button class="btn-save-form" onclick="changePassword()">Update Password</button><hr class="detail-divider"/><p class="section-label">One Click Apply</p><div class="one-click-toggle"><div class="label-group"><strong>Enable One Click Apply</strong><span>Automatically submit your CV and details when applying.</span></div><label class="toggle-switch"><input type="checkbox" id="oneClickToggle"/><span class="toggle-slider"></span></label></div><hr class="detail-divider"/><p class="section-label" style="color:#cc0000">Danger Zone</p><div class="danger-info">Closing your account will permanently remove your profile.</div><button style="background:none;border:1.5px solid #cc0000;color:#cc0000;padding:0.5rem 1.25rem;border-radius:var(--radius);font-family:var(--sans);font-size:0.85rem;font-weight:600;cursor:pointer" onclick="alert('To close your account email partners@jondavidsongroup.com')">Close Account</button></div></div></div>
   </main>
 </div>
 
 <script>
-  var PORTAL_TABS = ['dashboard','cvs','profile','saved','applied','settings'];
-
-  function showTab(name) {
-    for (var i = 0; i < PORTAL_TABS.length; i++) {
-      var t = PORTAL_TABS[i];
-      var panel = document.getElementById('panel-' + t);
-      var tab   = document.getElementById('tab-' + t);
-      if (panel) { if (t === name) panel.classList.add('active'); else panel.classList.remove('active'); }
-      if (tab)   { if (t === name) tab.classList.add('active');   else tab.classList.remove('active'); }
-    }
-    if (name === 'saved') renderSavedJobs();
-    window.scrollTo(0, 0);
-  }
-
-  function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-  function getSaved() { try { return JSON.parse(localStorage.getItem('jd_saved_jobs')||'{}'); } catch(e) { return {}; } }
-  function updateBadge() {
-    var n = Object.keys(getSaved()).length;
-    var b = document.getElementById('savedBadge'); if(b){b.textContent=n;b.style.display=n>0?'inline':'none';}
-    var s = document.getElementById('statSaved');  if(s) s.textContent=n;
-  }
-  function showMsg(id,msg,ok) {
-    var el=document.getElementById(id); if(!el) return;
-    el.textContent=msg; el.className='msg-bar '+(ok?'ok':'err'); el.style.display='block';
-    setTimeout(function(){el.style.display='none';},4000);
-  }
-
-  // ---- SAVED JOBS — now stores & shows the direct apply URL ----
-  function renderSavedJobs() {
-    var saved=getSaved();
-    var keys=Object.keys(saved);
-    var body=document.getElementById('savedJobsBody'); if(!body) return;
-    if(!keys.length){
-      body.innerHTML='<div class="empty-state"><div class="empty-icon">&#11088;</div><p>No saved jobs yet.</p><a href="jobs.html">Browse Jobs &rarr;</a></div>';
-      return;
-    }
-    var html='<div class="saved-list">';
-    for(var i=0;i<keys.length;i++){
-      var j=saved[keys[i]];
-      var d='';
-      try{d=new Date(j.savedAt).toLocaleDateString('en-SG',{day:'numeric',month:'short',year:'numeric'});}catch(e){}
-      var jobUrl=j.url?j.url:'jobs.html';
-      html+='<div class="saved-card">';
-      html+='<div class="saved-card-info"><h4>'+esc(j.title)+'</h4>';
-      html+='<div class="sc-meta">'+esc(j.location||'Singapore')+' &middot; '+esc(j.type||'Permanent')+'</div>';
-      html+='<div class="sc-date">Saved '+d+'</div></div>';
-      html+='<div class="saved-card-actions">';
-      html+='<a href="'+esc(jobUrl)+'" target="_blank" rel="noopener" class="btn-view-job">View Job</a>';
-      html+='<button class="btn-unsave" onclick="removeSaved(\''+esc(j.id)+'\')" >Remove</button>';
-      html+='</div></div>';
-    }
-    html+='</div>';
-    body.innerHTML=html;
-  }
-  function removeSaved(id) {
-    var s=getSaved(); delete s[id]; localStorage.setItem('jd_saved_jobs',JSON.stringify(s));
-    updateBadge(); renderSavedJobs();
-  }
-
-  // ---- CVs ----
-  var cvFiles=[];
-  try{cvFiles=JSON.parse(localStorage.getItem('jd_cvs')||'[]');}catch(e){}
-
-  function renderCVs() {
-    var list=document.getElementById('cvList'),zone=document.getElementById('cvUploadZone');
-    if(!list) return;
-    var html='';
-    for(var i=0;i<cvFiles.length;i++){
-      var f=cvFiles[i];
-      html+='<div class="cv-item"><div class="cv-item-icon">&#128196;</div>';
-      html+='<div class="cv-item-info"><strong>'+esc(f.name)+'</strong><span>'+esc(f.size)+' &mdash; '+esc(f.date)+'</span></div>';
-      html+='<button class="btn-cv-del" onclick="removeCV('+i+')">&#128465; Remove</button></div>';
-    }
-    list.innerHTML=html;
-    if(zone) zone.style.display=cvFiles.length>=3?'none':'block';
-    var s=document.getElementById('statCVs'); if(s) s.textContent=cvFiles.length;
-  }
+  var PORTAL_TABS=['dashboard','cvs','profile','saved','applied','settings'];
+  function showTab(name){for(var i=0;i<PORTAL_TABS.length;i++){var t=PORTAL_TABS[i],panel=document.getElementById('panel-'+t),tab=document.getElementById('tab-'+t);if(panel){if(t===name)panel.classList.add('active');else panel.classList.remove('active');}if(tab){if(t===name)tab.classList.add('active');else tab.classList.remove('active');}}if(name==='saved')renderSavedJobs();window.scrollTo(0,0);}
+  function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function getSaved(){try{return JSON.parse(localStorage.getItem('jd_saved_jobs')||'{}');}catch(e){return{};}}
+  function updateBadge(){var n=Object.keys(getSaved()).length,b=document.getElementById('savedBadge'),s=document.getElementById('statSaved');if(b){b.textContent=n;b.style.display=n>0?'inline':'none';}if(s)s.textContent=n;}
+  function showMsg(id,msg,ok){var el=document.getElementById(id);if(!el)return;el.textContent=msg;el.className='msg-bar '+(ok?'ok':'err');el.style.display='block';setTimeout(function(){el.style.display='none';},4000);}
+  function renderSavedJobs(){var saved=getSaved(),keys=Object.keys(saved),body=document.getElementById('savedJobsBody');if(!body)return;if(!keys.length){body.innerHTML='<div class="empty-state"><div class="empty-icon">&#11088;</div><p>No saved jobs yet.</p><a href="jobs.html">Browse Jobs &rarr;</a></div>';return;}var html='<div class="saved-list">';for(var i=0;i<keys.length;i++){var j=saved[keys[i]],d='';try{d=new Date(j.savedAt).toLocaleDateString('en-SG',{day:'numeric',month:'short',year:'numeric'});}catch(e){}var jobUrl=j.url?j.url:'jobs.html';html+='<div class="saved-card"><div class="saved-card-info"><h4>'+esc(j.title)+'</h4><div class="sc-meta">'+esc(j.location||'Singapore')+' &middot; '+esc(j.type||'Permanent')+'</div><div class="sc-date">Saved '+d+'</div></div><div class="saved-card-actions"><a href="'+esc(jobUrl)+'" target="_blank" rel="noopener" class="btn-view-job">View Job</a><button class="btn-unsave" onclick="removeSaved(\'' +esc(j.id)+ '\')" >Remove</button></div></div>';}html+='</div>';body.innerHTML=html;}
+  function removeSaved(id){var s=getSaved();delete s[id];localStorage.setItem('jd_saved_jobs',JSON.stringify(s));updateBadge();renderSavedJobs();}
+  var cvFiles=[];try{cvFiles=JSON.parse(localStorage.getItem('jd_cvs')||'[]');}catch(e){}
+  function renderCVs(){var list=document.getElementById('cvList'),zone=document.getElementById('cvUploadZone');if(!list)return;var html='';for(var i=0;i<cvFiles.length;i++){var f=cvFiles[i];html+='<div class="cv-item"><div class="cv-item-icon">&#128196;</div><div class="cv-item-info"><strong>'+esc(f.name)+'</strong><span>'+esc(f.size)+' &mdash; '+esc(f.date)+'</span></div><button class="btn-cv-del" onclick="removeCV('+i+')">&#128465; Remove</button></div>';}list.innerHTML=html;if(zone)zone.style.display=cvFiles.length>=3?'none':'block';var s=document.getElementById('statCVs');if(s)s.textContent=cvFiles.length;}
   function removeCV(i){cvFiles.splice(i,1);localStorage.setItem('jd_cvs',JSON.stringify(cvFiles));renderCVs();}
   function handleCVSelect(e){processCV(e.target.files[0]);}
   function handleCVDrop(e){e.preventDefault();processCV(e.dataTransfer.files[0]);}
-  function processCV(file){
-    if(!file) return;
-    if(file.size>5*1024*1024){showMsg('cvMsgBar','File too large - max 5MB.',false);return;}
-    var ext=file.name.split('.').pop().toLowerCase();
-    if(['pdf','doc','docx'].indexOf(ext)===-1){showMsg('cvMsgBar','Only PDF, DOC or DOCX accepted.',false);return;}
-    cvFiles.push({name:file.name,size:(file.size/1024).toFixed(0)+' KB',date:new Date().toLocaleDateString('en-SG',{day:'numeric',month:'short',year:'numeric'})});
-    localStorage.setItem('jd_cvs',JSON.stringify(cvFiles)); renderCVs();
-    showMsg('cvMsgBar',file.name+' uploaded!',true);
-    document.getElementById('cvFileInput').value='';
-  }
-
-  // ---- Recommended jobs ----
-  var REC_JOBS=[
-    {id:'r1275',title:'Enterprise Solution Architect',cat:'Technology',loc:'Singapore',type:'Permanent',salary:'$15,000-$18,000/mo',url:'https://recruitcrm.io/apply/17749795927740007886ZXM?source=Jobspage&new=yes'},
-    {id:'r1277',title:'Sales Manager - Service Providers SEA',cat:'Sales',loc:'Singapore',type:'Permanent',salary:'$8,000-$15,000/mo',url:'https://recruitcrm.io/apply/17757873443980007886iQc?source=Jobspage&new=yes'},
-    {id:'r1280',title:'Contracts Performance Manager',cat:'Consulting',loc:'Singapore',type:'Permanent',salary:'$7,000-$15,000/mo',url:'https://recruitcrm.io/apply/17769320208170007886IBs?source=Jobspage&new=yes'},
-    {id:'r1278',title:'Assistant HR Manager',cat:'Human Resources',loc:'Singapore',type:'Permanent',salary:'$5,000-$7,200/mo',url:'https://recruitcrm.io/apply/17763982869950007886Kfw?source=Jobspage&new=yes'}
-  ];
-  function renderRecommended(){
-    var saved=getSaved(),g=document.getElementById('recJobsGrid');if(!g)return;
-    var html='';
-    for(var i=0;i<REC_JOBS.length;i++){
-      var j=REC_JOBS[i],isSaved=!!saved[j.id];
-      html+='<div class="rec-card"><span class="rec-tag">'+esc(j.cat)+'</span><h4>'+esc(j.title)+'</h4>';
-      html+='<div class="rec-meta">'+esc(j.loc)+' &middot; '+esc(j.type)+'</div>';
-      html+='<div class="rec-salary">'+esc(j.salary)+'</div>';
-      html+='<div class="rec-actions"><a href="'+esc(j.url)+'" target="_blank" rel="noopener" class="btn-apply">Apply Now</a>';
-      html+='<button class="btn-save-rec" onclick="toggleRecSave(this,\''+esc(j.id)+'\',\''+esc(j.title)+'\',\''+esc(j.url)+'\',\''+esc(j.loc)+'\',\''+esc(j.type)+'\')">'+(isSaved?'&#10003; Saved':'&#128190; Save')+'</button>';
-      html+='</div></div>';
-    }
-    g.innerHTML=html;
-  }
-  function toggleRecSave(btn,id,title,url,loc,type){
-    var s=getSaved();
-    if(s[id]){delete s[id];btn.innerHTML='&#128190; Save';}
-    else{s[id]={id:id,title:title,url:url,location:loc,type:type,savedAt:Date.now()};btn.innerHTML='&#10003; Saved';}
-    localStorage.setItem('jd_saved_jobs',JSON.stringify(s)); updateBadge();
-  }
-
-  // ---- Forms ----
-  function savePersonalInfo(){
-    var p={};try{p=JSON.parse(localStorage.getItem('jd_profile')||'{}');}catch(e){}
-    p.phone=document.getElementById('pPhone').value; p.city=document.getElementById('pCity').value;
-    p.first=document.getElementById('pFirst').value; p.last=document.getElementById('pLast').value;
-    localStorage.setItem('jd_profile',JSON.stringify(p));
-    var el=document.getElementById('personalSaved');el.style.display='block';setTimeout(function(){el.style.display='none';},3000);
-  }
-  function saveEmploymentInfo(){
-    var p={};try{p=JSON.parse(localStorage.getItem('jd_profile')||'{}');}catch(e){}
-    p.jobTitle=document.getElementById('pJobTitle').value; p.expLevel=document.getElementById('pExpLevel').value;
-    p.industry=document.getElementById('pIndustry').value; p.jobType=document.getElementById('pJobType').value;
-    localStorage.setItem('jd_profile',JSON.stringify(p));
-    var el=document.getElementById('employmentSaved');el.style.display='block';setTimeout(function(){el.style.display='none';},3000);
-  }
-  function changePassword(){
-    var nw=document.getElementById('pwNew').value;
-    if(!nw||nw.length<8){showMsg('settingsMsgBar','Password must be at least 8 characters.',false);return;}
-    if(window._sb){window._sb.auth.updateUser({password:nw}).then(function(res){
-      if(res.error)showMsg('settingsMsgBar','Error: '+res.error.message,false);
-      else{showMsg('settingsMsgBar','Password updated!',true);document.getElementById('pwCurrent').value='';document.getElementById('pwNew').value='';}
-    });}
-  }
-  function doLogout(){
-    if(window._sb) window._sb.auth.signOut().then(function(){window.location.href='login.html';});
-    else window.location.href='login.html';
-  }
-
-  // ---- Init ----
-  renderRecommended(); renderSavedJobs(); renderCVs(); updateBadge();
+  function processCV(file){if(!file)return;if(file.size>5*1024*1024){showMsg('cvMsgBar','File too large.',false);return;}var ext=file.name.split('.').pop().toLowerCase();if(['pdf','doc','docx'].indexOf(ext)===-1){showMsg('cvMsgBar','Only PDF, DOC or DOCX accepted.',false);return;}cvFiles.push({name:file.name,size:(file.size/1024).toFixed(0)+' KB',date:new Date().toLocaleDateString('en-SG',{day:'numeric',month:'short',year:'numeric'})});localStorage.setItem('jd_cvs',JSON.stringify(cvFiles));renderCVs();showMsg('cvMsgBar',file.name+' uploaded!',true);document.getElementById('cvFileInput').value='';}
+  var REC_JOBS=[{id:'r1275',title:'Enterprise Solution Architect',cat:'Technology',loc:'Singapore',type:'Permanent',salary:'$15,000-$18,000/mo',url:'https://recruitcrm.io/apply/17749795927740007886ZXM?source=Jobspage&new=yes'},{id:'r1277',title:'Sales Manager - Service Providers SEA',cat:'Sales',loc:'Singapore',type:'Permanent',salary:'$8,000-$15,000/mo',url:'https://recruitcrm.io/apply/17757873443980007886iQc?source=Jobspage&new=yes'},{id:'r1280',title:'Contracts Performance Manager',cat:'Consulting',loc:'Singapore',type:'Permanent',salary:'$7,000-$15,000/mo',url:'https://recruitcrm.io/apply/17769320208170007886IBs?source=Jobspage&new=yes'},{id:'r1278',title:'Assistant HR Manager',cat:'Human Resources',loc:'Singapore',type:'Permanent',salary:'$5,000-$7,200/mo',url:'https://recruitcrm.io/apply/17763982869950007886Kfw?source=Jobspage&new=yes'}];
+  function renderRecommended(){var saved=getSaved(),g=document.getElementById('recJobsGrid');if(!g)return;var html='';for(var i=0;i<REC_JOBS.length;i++){var j=REC_JOBS[i],isSaved=!!saved[j.id];html+='<div class="rec-card"><span class="rec-tag">'+esc(j.cat)+'</span><h4>'+esc(j.title)+'</h4><div class="rec-meta">'+esc(j.loc)+' &middot; '+esc(j.type)+'</div><div class="rec-salary">'+esc(j.salary)+'</div><div class="rec-actions"><a href="'+esc(j.url)+'" target="_blank" rel="noopener" class="btn-apply">Apply Now</a><button class="btn-save-rec" onclick="toggleRecSave(this,\'' +esc(j.id)+ '\',\'' +esc(j.title)+ '\',\'' +esc(j.url)+ '\',\'' +esc(j.loc)+ '\',\'' +esc(j.type)+ '\')">'+( isSaved?'&#10003; Saved':'&#128190; Save')+'</button></div></div>';}g.innerHTML=html;}
+  function toggleRecSave(btn,id,title,url,loc,type){var s=getSaved();if(s[id]){delete s[id];btn.innerHTML='&#128190; Save';}else{s[id]={id:id,title:title,url:url,location:loc,type:type,savedAt:Date.now()};btn.innerHTML='&#10003; Saved';}localStorage.setItem('jd_saved_jobs',JSON.stringify(s));updateBadge();}
+  function savePersonalInfo(){var p={};try{p=JSON.parse(localStorage.getItem('jd_profile')||'{}');}catch(e){}p.phone=document.getElementById('pPhone').value;p.city=document.getElementById('pCity').value;p.first=document.getElementById('pFirst').value;p.last=document.getElementById('pLast').value;localStorage.setItem('jd_profile',JSON.stringify(p));var el=document.getElementById('personalSaved');el.style.display='block';setTimeout(function(){el.style.display='none';},3000);}
+  function saveEmploymentInfo(){var p={};try{p=JSON.parse(localStorage.getItem('jd_profile')||'{}');}catch(e){}p.jobTitle=document.getElementById('pJobTitle').value;p.expLevel=document.getElementById('pExpLevel').value;p.industry=document.getElementById('pIndustry').value;p.jobType=document.getElementById('pJobType').value;localStorage.setItem('jd_profile',JSON.stringify(p));var el=document.getElementById('employmentSaved');el.style.display='block';setTimeout(function(){el.style.display='none';},3000);}
+  function changePassword(){var nw=document.getElementById('pwNew').value;if(!nw||nw.length<8){showMsg('settingsMsgBar','Password must be at least 8 characters.',false);return;}if(window._sb){window._sb.auth.updateUser({password:nw}).then(function(res){if(res.error)showMsg('settingsMsgBar','Error: '+res.error.message,false);else{showMsg('settingsMsgBar','Password updated!',true);document.getElementById('pwCurrent').value='';document.getElementById('pwNew').value='';}});}}
+  function doLogout(){if(window._sb)window._sb.auth.signOut().then(function(){window.location.href='login.html';});else window.location.href='login.html';}
+  renderRecommended();renderSavedJobs();renderCVs();updateBadge();
 </script>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" onload="initAuth()"></script>
 <script>
-  function initAuth(){
-    try{
-      window._sb=supabase.createClient('https://dmnybalszwcnkdnilsiv.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRtbnliYWxzendjbmtkbmlsc2l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxMTY1ODcsImV4cCI6MjA5NDY5MjU4N30._x-Bt3YLoBEff-45JvkmFn5IpQZA3SWWdkZSxxQQehI');
-      window._sb.auth.getSession().then(function(res){
-        var session=res&&res.data&&res.data.session;
-        if(!session){window.location.href='login.html';return;}
-        var user=session.user,email=user.email||'';
-        var meta=user.user_metadata||{};
-        var name=meta.full_name||meta.name||email.split('@')[0]||'Candidate';
-        var first=name.split(' ')[0];
-        var init=name.split(' ').map(function(w){return w[0]||'';}).join('').slice(0,2).toUpperCase()||'JD';
-        document.getElementById('navName').textContent=first;
-        document.getElementById('navAvatar').textContent=init;
-        document.getElementById('welcomeMsg').textContent='Welcome back, '+first+'!';
-        document.getElementById('pEmail').value=email;
-        if(meta.full_name){var pts=meta.full_name.split(' ');document.getElementById('pFirst').value=pts[0]||'';document.getElementById('pLast').value=pts.slice(1).join(' ')||'';}
-        var prof={};try{prof=JSON.parse(localStorage.getItem('jd_profile')||'{}');}catch(e){}
-        if(prof.phone)document.getElementById('pPhone').value=prof.phone;
-        if(prof.city)document.getElementById('pCity').value=prof.city;
-        if(prof.jobTitle)document.getElementById('pJobTitle').value=prof.jobTitle;
-        if(prof.expLevel)document.getElementById('pExpLevel').value=prof.expLevel;
-        if(prof.industry)document.getElementById('pIndustry').value=prof.industry;
-        if(prof.jobType)document.getElementById('pJobType').value=prof.jobType;
-        var pct=25;if(email)pct+=15;if(prof.phone)pct+=15;if(prof.jobTitle)pct+=15;
-        if(cvFiles.length)pct+=20;if(prof.industry)pct+=10;pct=Math.min(pct,100);
-        document.getElementById('profileBarFill').style.width=pct+'%';
-        document.getElementById('profileBarPct').textContent=pct+'% complete';
-      }).catch(function(e){console.warn('Session error',e);});
-    }catch(e){console.warn('Supabase init error',e);}
-  }
+  function initAuth(){try{window._sb=supabase.createClient('https://dmnybalszwcnkdnilsiv.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRtbnliYWxzendjbmtkbmlsc2l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxMTY1ODcsImV4cCI6MjA5NDY5MjU4N30._x-Bt3YLoBEff-45JvkmFn5IpQZA3SWWdkZSxxQQehI');window._sb.auth.getSession().then(function(res){var session=res&&res.data&&res.data.session;if(!session){window.location.href='login.html';return;}var user=session.user,email=user.email||'',meta=user.user_metadata||{},name=meta.full_name||meta.name||email.split('@')[0]||'Candidate',first=name.split(' ')[0],init=name.split(' ').map(function(w){return w[0]||'';}).join('').slice(0,2).toUpperCase()||'JD';document.getElementById('navName').textContent=first;document.getElementById('navAvatar').textContent=init;document.getElementById('welcomeMsg').textContent='Welcome back, '+first+'!';document.getElementById('pEmail').value=email;if(meta.full_name){var pts=meta.full_name.split(' ');document.getElementById('pFirst').value=pts[0]||'';document.getElementById('pLast').value=pts.slice(1).join(' ')||'';}var prof={};try{prof=JSON.parse(localStorage.getItem('jd_profile')||'{}');}catch(e){}if(prof.phone)document.getElementById('pPhone').value=prof.phone;if(prof.city)document.getElementById('pCity').value=prof.city;if(prof.jobTitle)document.getElementById('pJobTitle').value=prof.jobTitle;if(prof.expLevel)document.getElementById('pExpLevel').value=prof.expLevel;if(prof.industry)document.getElementById('pIndustry').value=prof.industry;if(prof.jobType)document.getElementById('pJobType').value=prof.jobType;var pct=25;if(email)pct+=15;if(prof.phone)pct+=15;if(prof.jobTitle)pct+=15;if(cvFiles.length)pct+=20;if(prof.industry)pct+=10;pct=Math.min(pct,100);document.getElementById('profileBarFill').style.width=pct+'%';document.getElementById('profileBarPct').textContent=pct+'% complete';}).catch(function(e){console.warn('Session error',e);});}catch(e){console.warn('Supabase init error',e);}}
 </script>
 </body>
 </html>
