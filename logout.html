@@ -1,8 +1,14 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"/><title>Logging out...</title></head><body><script>
-try{
-  var sb=window.supabase||null;
-  if(sb) sb.auth.signOut();
-}catch(e){}
+<!DOCTYPE html><html><head><meta charset="UTF-8"/><title>Logging out...</title></head><body>
+<script>
+try{ if(window.supabase) supabase.createClient('https://dmnybalszwcnkdnilsiv.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRtbnliYWxzendjbmtkbmlsc2l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxMTY1ODcsImV4cCI6MjA5NDY5MjU4N30._x-Bt3YLoBEff-45JvkmFn5IpQZA3SWWdkZSxxQQehI').auth.signOut(); }catch(e){}
 localStorage.setItem('jd_signed_out','1');
-window.location.replace('login.html');
+// Check if this is a password reset redirect
+var hash = window.location.hash;
+if(hash.includes('type=recovery')) {
+  window.location.replace('login.html?reset=1');
+} else if(hash.includes('error=access_denied') || hash.includes('otp_expired')) {
+  window.location.replace('login.html?msg=link_expired');
+} else {
+  window.location.replace('login.html');
+}
 </script></body></html>
