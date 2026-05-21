@@ -91,9 +91,8 @@
         </div>
         <div class="form-group"><label>Email address</label><input type="email" id="signupEmail" placeholder="you@example.com" /></div>
         <div class="form-group"><label>Password</label><input type="password" id="signupPassword" placeholder="Min. 8 characters" /></div>
-        <!-- Consent on one line -->
         <div style="display:flex;align-items:center;gap:0.6rem;margin:1rem 0;font-size:0.83rem;color:#555">
-          <input type="checkbox" id="signupConsent" style="flex-shrink:0;width:16px;height:16px;cursor:pointer" />
+          <input type="checkbox" id="signupConsent" style="flex-shrink:0;width:16px;height:16px;cursor:pointer;accent-color:#9e0403" />
           <span>I agree to the <a href="contact.html" style="color:#9e0403">Privacy Policy</a> and <a href="contact.html" style="color:#9e0403">Terms of Use</a></span>
         </div>
         <button class="btn-auth" id="signupBtn" onclick="handleSignup()">Create My Profile</button>
@@ -106,26 +105,37 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const _sb = supabase.createClient(
-  'https://dmnybalszwcnkdnilsiv.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRtbnliYWxzendjbmtkbmlsc2l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxMTY1ODcsImV4cCI6MjA5NDY5MjU4N30._x-Bt3YLoBEff-45JvkmFn5IpQZA3SWWdkZSxxQQehI'
-);
-const DASHBOARD = 'https://chunyi098.github.io/Jon-Davidson-/candidate-dashboard.html';
+var _sb = null;
+var DASHBOARD = 'https://chunyi098.github.io/Jon-Davidson-/candidate-dashboard.html';
 
+// Init Supabase
+try {
+  _sb = supabase.createClient(
+    'https://dmnybalszwcnkdnilsiv.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRtbnliYWxzendjbmtkbmlsc2l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxMTY1ODcsImV4cCI6MjA5NDY5MjU4N30._x-Bt3YLoBEff-45JvkmFn5IpQZA3SWWdkZSxxQQehI'
+  );
+} catch(e) { console.warn('Supabase init failed', e); }
+
+// Show save banner
 (function(){
-  const p = new URLSearchParams(window.location.search);
+  var p = new URLSearchParams(window.location.search);
   if(p.get('from') === 'save') document.getElementById('saveBanner').style.display = 'block';
   if(p.get('tab') === 'signup') switchTab('signup');
 })();
 
-(async function(){
-  localStorage.removeItem('jd_signed_out');
-  const { data: { session } } = await _sb.auth.getSession();
-  if (session) window.location.href = DASHBOARD;
-})();
+// Only auto-redirect if already logged in AND not coming from logout
+if(localStorage.getItem('jd_signed_out') !== '1') {
+  if(_sb) {
+    _sb.auth.getSession().then(function(res) {
+      var session = res && res.data && res.data.session;
+      if(session) window.location.href = DASHBOARD;
+    }).catch(function(){});
+  }
+}
+localStorage.removeItem('jd_signed_out');
 
 function showMsg(text, ok) {
-  const el = document.getElementById('authMsg');
+  var el = document.getElementById('authMsg');
   el.textContent = text;
   el.style.display = 'block';
   el.style.background = ok ? '#f0fdf4' : '#fef2f2';
@@ -141,64 +151,75 @@ function switchTab(tab) {
   document.getElementById('authMsg').style.display = 'none';
 }
 
-async function signInWithGoogle() {
-  const { error } = await _sb.auth.signInWithOAuth({
-    provider: 'google',
-    options: { redirectTo: DASHBOARD }
-  });
-  if (error) showMsg('Google sign-in failed: ' + error.message, false);
+function signInWithGoogle() {
+  if(!_sb) { showMsg('Service unavailable, please try again.', false); return; }
+  _sb.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: DASHBOARD } })
+    .then(function(res) { if(res.error) showMsg('Google sign-in failed: ' + res.error.message, false); })
+    .catch(function(e) { showMsg('Google sign-in failed.', false); });
 }
 
-async function handleLogin() {
-  const email = document.getElementById('loginEmail').value.trim();
-  const pass  = document.getElementById('loginPassword').value;
-  if (!email || !pass) { showMsg('Please enter your email and password.', false); return; }
-  const btn = document.getElementById('loginBtn');
+function handleLogin() {
+  var email = document.getElementById('loginEmail').value.trim();
+  var pass  = document.getElementById('loginPassword').value;
+  if(!email || !pass) { showMsg('Please enter your email and password.', false); return; }
+  if(!_sb) { showMsg('Service unavailable, please refresh.', false); return; }
+  var btn = document.getElementById('loginBtn');
   btn.textContent = 'Signing in...'; btn.disabled = true;
-  const { error } = await _sb.auth.signInWithPassword({ email, password: pass });
-  if (error) {
-    showMsg('Login failed: ' + error.message, false);
-    btn.textContent = 'Log In'; btn.disabled = false;
-  } else {
-    window.location.href = DASHBOARD;
-  }
+  _sb.auth.signInWithPassword({ email: email, password: pass })
+    .then(function(res) {
+      if(res.error) {
+        showMsg('Login failed: ' + res.error.message, false);
+        btn.textContent = 'Log In'; btn.disabled = false;
+      } else {
+        window.location.href = DASHBOARD;
+      }
+    })
+    .catch(function(e) {
+      showMsg('Login error. Please try again.', false);
+      btn.textContent = 'Log In'; btn.disabled = false;
+    });
 }
 
-async function handleSignup() {
-  const first   = document.getElementById('signupFirst').value.trim();
-  const last    = document.getElementById('signupLast').value.trim();
-  const email   = document.getElementById('signupEmail').value.trim();
-  const pass    = document.getElementById('signupPassword').value;
-  const consent = document.getElementById('signupConsent').checked;
-  if (!first || !email || !pass) { showMsg('Please fill in your name, email and password.', false); return; }
-  if (pass.length < 8) { showMsg('Password must be at least 8 characters.', false); return; }
-  if (!consent) { showMsg('Please tick the Privacy Policy checkbox to continue.', false); return; }
-  const btn = document.getElementById('signupBtn');
+function handleSignup() {
+  var first   = document.getElementById('signupFirst').value.trim();
+  var last    = document.getElementById('signupLast').value.trim();
+  var email   = document.getElementById('signupEmail').value.trim();
+  var pass    = document.getElementById('signupPassword').value;
+  var consent = document.getElementById('signupConsent').checked;
+  if(!first || !email || !pass) { showMsg('Please fill in your name, email and password.', false); return; }
+  if(pass.length < 8) { showMsg('Password must be at least 8 characters.', false); return; }
+  if(!consent) { showMsg('Please tick the Privacy Policy checkbox.', false); return; }
+  if(!_sb) { showMsg('Service unavailable, please refresh.', false); return; }
+  var btn = document.getElementById('signupBtn');
   btn.textContent = 'Creating profile...'; btn.disabled = true;
-  const { error } = await _sb.auth.signUp({
-    email,
+  _sb.auth.signUp({
+    email: email,
     password: pass,
-    options: {
-      data: { full_name: first + ' ' + last },
-      emailRedirectTo: DASHBOARD
+    options: { data: { full_name: first + ' ' + last }, emailRedirectTo: DASHBOARD }
+  }).then(function(res) {
+    if(res.error) {
+      showMsg('Sign up failed: ' + res.error.message, false);
+      btn.textContent = 'Create My Profile'; btn.disabled = false;
+    } else {
+      showMsg('\u2713 Account created! Check your email to confirm, then log in.', true);
+      btn.textContent = 'Create My Profile'; btn.disabled = false;
+      switchTab('login');
     }
+  }).catch(function(e) {
+    showMsg('Sign up error. Please try again.', false);
+    btn.textContent = 'Create My Profile'; btn.disabled = false;
   });
-  if (error) {
-    showMsg('Sign up failed: ' + error.message, false);
-    btn.textContent = 'Create My Profile'; btn.disabled = false;
-  } else {
-    showMsg('✓ Account created! Check your email to confirm, then log in.', true);
-    btn.textContent = 'Create My Profile'; btn.disabled = false;
-    switchTab('login');
-  }
 }
 
-async function handleForgotPassword() {
-  const email = document.getElementById('loginEmail').value.trim();
-  if (!email) { showMsg('Enter your email address above first.', false); return; }
-  const { error } = await _sb.auth.resetPasswordForEmail(email, { redirectTo: DASHBOARD });
-  if (!error) showMsg('✓ Password reset email sent! Check your inbox.', true);
-  else showMsg('Failed: ' + error.message, false);
+function handleForgotPassword() {
+  var email = document.getElementById('loginEmail').value.trim();
+  if(!email) { showMsg('Enter your email address above first.', false); return; }
+  if(!_sb) return;
+  _sb.auth.resetPasswordForEmail(email, { redirectTo: DASHBOARD })
+    .then(function(res) {
+      if(!res.error) showMsg('\u2713 Password reset email sent!', true);
+      else showMsg('Failed: ' + res.error.message, false);
+    });
 }
 </script>
 </body>
