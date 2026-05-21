@@ -133,7 +133,6 @@
 
 <nav class="portal-nav">
   <a href="index.html" class="nav-logo">
-    <!-- Inline SVG logo: red square + JD + wordmark. No image file = no overflow. -->
     <svg height="34" viewBox="0 0 195 34" xmlns="http://www.w3.org/2000/svg" style="display:block;flex-shrink:0">
       <rect width="34" height="34" rx="6" fill="#9e0403"/>
       <text x="17" y="25" font-family="Georgia,serif" font-size="16" font-weight="900" fill="#fff" text-anchor="middle">JD</text>
@@ -177,6 +176,7 @@
       <button class="sidebar-link" id="tab-settings" onclick="showTab('settings')">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>Account Settings
       </button>
+      <!-- Log Out always redirects immediately, regardless of Supabase -->
       <button class="sidebar-link sidebar-logout" onclick="doLogout()">
         <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Log Out
       </button>
@@ -229,7 +229,15 @@
   function savePersonalInfo(){var p={};try{p=JSON.parse(localStorage.getItem('jd_profile')||'{}');}catch(e){}p.phone=document.getElementById('pPhone').value;p.city=document.getElementById('pCity').value;p.first=document.getElementById('pFirst').value;p.last=document.getElementById('pLast').value;localStorage.setItem('jd_profile',JSON.stringify(p));var el=document.getElementById('personalSaved');el.style.display='block';setTimeout(function(){el.style.display='none';},3000);}
   function saveEmploymentInfo(){var p={};try{p=JSON.parse(localStorage.getItem('jd_profile')||'{}');}catch(e){}p.jobTitle=document.getElementById('pJobTitle').value;p.expLevel=document.getElementById('pExpLevel').value;p.industry=document.getElementById('pIndustry').value;p.jobType=document.getElementById('pJobType').value;localStorage.setItem('jd_profile',JSON.stringify(p));var el=document.getElementById('employmentSaved');el.style.display='block';setTimeout(function(){el.style.display='none';},3000);}
   function changePassword(){var nw=document.getElementById('pwNew').value;if(!nw||nw.length<8){showMsg('settingsMsgBar','Password must be at least 8 characters.',false);return;}if(window._sb){window._sb.auth.updateUser({password:nw}).then(function(res){if(res.error)showMsg('settingsMsgBar','Error: '+res.error.message,false);else{showMsg('settingsMsgBar','Password updated!',true);document.getElementById('pwCurrent').value='';document.getElementById('pwNew').value='';}}); }}
-  function doLogout(){if(window._sb)window._sb.auth.signOut().then(function(){window.location.href='login.html';});else window.location.href='login.html';}
+
+  // FIX: Log out always redirects immediately — never waits/blocks on Supabase
+  function doLogout(){
+    try {
+      if(window._sb){ window._sb.auth.signOut(); }
+    } catch(e){}
+    window.location.href = 'login.html';
+  }
+
   renderRecommended();renderSavedJobs();renderCVs();updateBadge();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" onload="initAuth()"></script>
