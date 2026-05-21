@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Candidate Portal | JonDavidson</title>
-  <link rel="icon" type="image/png" href="assets/JonDavidsonLogo.png" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -13,7 +13,6 @@
 </head>
 <body class="auth-body">
 
-<!-- MINIMAL HEADER -->
 <header class="auth-header">
   <a href="index.html" class="auth-logo">
     <img src="assets/JonDavidsonLogo.webp%20.png" alt="JonDavidson" />
@@ -21,17 +20,14 @@
   <a href="index.html" class="auth-back">← Back to site</a>
 </header>
 
-<!-- Banner shown when redirected from Save button -->
 <div id="saveBanner" style="display:none;background:#fff8e1;border-bottom:1px solid #ffe082;padding:0.85rem 2rem;text-align:center;font-size:0.9rem;color:#5a4000">
   &#128190; <strong>Log in or sign up</strong> to save this job and track your applications.
 </div>
 
-<!-- Error / success message bar -->
 <div id="authMsg" style="display:none;padding:0.85rem 2rem;text-align:center;font-size:0.9rem;font-weight:500"></div>
 
 <div class="auth-layout">
 
-  <!-- LEFT PANEL -->
   <div class="auth-left">
     <div class="auth-left-content">
       <p class="auth-eyebrow"><span class="line"></span> CANDIDATE PORTAL</p>
@@ -40,24 +36,15 @@
       <div class="auth-perks">
         <div class="perk">
           <div class="perk-icon">🔍</div>
-          <div>
-            <h4>Exclusive Roles</h4>
-            <p>Access positions not advertised elsewhere — from C-suite to senior management.</p>
-          </div>
+          <div><h4>Exclusive Roles</h4><p>Access positions not advertised elsewhere — from C-suite to senior management.</p></div>
         </div>
         <div class="perk">
           <div class="perk-icon">📌</div>
-          <div>
-            <h4>Save &amp; Track</h4>
-            <p>Bookmark roles, track your applications, and review past positions.</p>
-          </div>
+          <div><h4>Save &amp; Track</h4><p>Bookmark roles, track your applications, and review past positions.</p></div>
         </div>
         <div class="perk">
           <div class="perk-icon">🤝</div>
-          <div>
-            <h4>Direct Consultant Access</h4>
-            <p>Get matched with a JonDavidson consultant who specialises in your field.</p>
-          </div>
+          <div><h4>Direct Consultant Access</h4><p>Get matched with a JonDavidson consultant who specialises in your field.</p></div>
         </div>
       </div>
       <div class="auth-trusted">
@@ -69,30 +56,25 @@
     </div>
   </div>
 
-  <!-- RIGHT PANEL (FORM) -->
   <div class="auth-right">
     <div class="auth-card">
 
-      <!-- TAB TOGGLE -->
       <div class="auth-tabs">
         <button class="auth-tab active" id="tabLogin" onclick="switchTab('login')">Log In</button>
         <button class="auth-tab" id="tabSignup" onclick="switchTab('signup')">Sign Up</button>
       </div>
 
-      <!-- LOGIN FORM -->
+      <!-- LOGIN -->
       <div id="loginForm" class="auth-form active">
         <h2>Welcome back</h2>
         <p class="form-sub">Log in to your candidate profile</p>
-
         <div class="social-btns">
           <button class="btn-social btn-google" onclick="signInWithGoogle()">
             <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.5 1.2 8.9 3.2l6.6-6.6C35.4 2.5 30 0 24 0 14.7 0 6.8 5.5 3 13.5l7.7 6c1.8-5.4 6.8-10 13.3-10z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4 7.1-10 7.1-17z"/><path fill="#FBBC05" d="M10.7 28.5A14.8 14.8 0 0 1 9.5 24c0-1.6.3-3.1.7-4.5L2.5 13.5A24 24 0 0 0 0 24c0 3.9.9 7.5 2.5 10.7l8.2-6.2z"/><path fill="#34A853" d="M24 48c6 0 11.1-2 14.8-5.4l-7.5-5.8c-2 1.4-4.6 2.2-7.3 2.2-6.5 0-12-4.5-13.9-10.5l-8.1 6.2C6.7 42.5 14.7 48 24 48z"/></svg>
             Continue with Google
           </button>
         </div>
-
         <div class="auth-divider"><span>or</span></div>
-
         <div class="form-group">
           <label>Email address</label>
           <input type="email" id="loginEmail" placeholder="you@example.com" />
@@ -109,20 +91,17 @@
         <p class="auth-switch">Don't have an account? <a href="#" onclick="switchTab('signup')">Sign up</a></p>
       </div>
 
-      <!-- SIGNUP FORM -->
+      <!-- SIGNUP - simplified to just name, email, password -->
       <div id="signupForm" class="auth-form">
         <h2>Create your profile</h2>
         <p class="form-sub">Join thousands of professionals on JonDavidson</p>
-
         <div class="social-btns">
           <button class="btn-social btn-google" onclick="signInWithGoogle()">
             <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.5 1.2 8.9 3.2l6.6-6.6C35.4 2.5 30 0 24 0 14.7 0 6.8 5.5 3 13.5l7.7 6c1.8-5.4 6.8-10 13.3-10z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4 7.1-10 7.1-17z"/><path fill="#FBBC05" d="M10.7 28.5A14.8 14.8 0 0 1 9.5 24c0-1.6.3-3.1.7-4.5L2.5 13.5A24 24 0 0 0 0 24c0 3.9.9 7.5 2.5 10.7l8.2-6.2z"/><path fill="#34A853" d="M24 48c6 0 11.1-2 14.8-5.4l-7.5-5.8c-2 1.4-4.6 2.2-7.3 2.2-6.5 0-12-4.5-13.9-10.5l-8.1 6.2C6.7 42.5 14.7 48 24 48z"/></svg>
             Sign up with Google
           </button>
         </div>
-
         <div class="auth-divider"><span>or sign up with email</span></div>
-
         <div class="form-row-2">
           <div class="form-group">
             <label>First Name</label>
@@ -138,46 +117,15 @@
           <input type="email" id="signupEmail" placeholder="you@example.com" />
         </div>
         <div class="form-group">
-          <label>Current Job Title</label>
-          <input type="text" id="signupTitle" placeholder="e.g. Head of Finance" />
-        </div>
-        <div class="form-group">
           <label>Password</label>
           <input type="password" id="signupPassword" placeholder="Min. 8 characters" />
         </div>
-
-        <div class="form-group">
-          <label>Upload CV / Resume <span class="optional">(optional — you can do this after signing up)</span></label>
-          <div class="upload-zone" id="uploadZone" onclick="document.getElementById('cvFile').click()" ondragover="handleDragOver(event)" ondrop="handleDrop(event)">
-            <div class="upload-icon">📄</div>
-            <p><strong>Click to upload</strong> or drag &amp; drop</p>
-            <p class="upload-hint">PDF, DOCX, DOC — max 5MB</p>
-            <p class="upload-status" id="uploadStatus"></p>
-          </div>
-          <input type="file" id="cvFile" accept=".pdf,.doc,.docx" style="display:none" onchange="handleFileSelect(event)" />
-        </div>
-
-        <div class="form-group">
-          <label>Job Preferences</label>
-          <div class="pref-tags" id="prefTags">
-            <button type="button" class="pref-tag" onclick="togglePref(this)">Finance</button>
-            <button type="button" class="pref-tag" onclick="togglePref(this)">Technology</button>
-            <button type="button" class="pref-tag" onclick="togglePref(this)">HR</button>
-            <button type="button" class="pref-tag" onclick="togglePref(this)">Sales &amp; Marketing</button>
-            <button type="button" class="pref-tag" onclick="togglePref(this)">Legal</button>
-            <button type="button" class="pref-tag" onclick="togglePref(this)">Operations</button>
-            <button type="button" class="pref-tag" onclick="togglePref(this)">C-Suite</button>
-            <button type="button" class="pref-tag" onclick="togglePref(this)">Consulting</button>
-          </div>
-        </div>
-
         <div class="form-group">
           <label class="check-label full">
             <input type="checkbox" id="signupConsent" />
             I agree to the <a href="contact.html">Privacy Policy</a> and <a href="contact.html">Terms of Use</a>
           </label>
         </div>
-
         <button class="btn-auth" id="signupBtn" onclick="handleSignup()">Create My Profile</button>
         <p class="auth-switch">Already have an account? <a href="#" onclick="switchTab('login')">Log in</a></p>
       </div>
@@ -192,17 +140,17 @@ const _sb = supabase.createClient(
   'https://dmnybalszwcnkdnilsiv.supabase.co',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRtbnliYWxzendjbmtkbmlsc2l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxMTY1ODcsImV4cCI6MjA5NDY5MjU4N30._x-Bt3YLoBEff-45JvkmFn5IpQZA3SWWdkZSxxQQehI'
 );
-
 const DASHBOARD = 'https://chunyi098.github.io/Jon-Davidson-/candidate-dashboard.html';
 
-// Show save-redirect banner
 (function(){
   const p = new URLSearchParams(window.location.search);
   if(p.get('from') === 'save') document.getElementById('saveBanner').style.display = 'block';
+  if(p.get('tab') === 'signup') switchTab('signup');
 })();
 
-// Check if already logged in — redirect to dashboard
+// Clear logout flag and check if already logged in
 (async function(){
+  localStorage.removeItem('jd_signed_out');
   const { data: { session } } = await _sb.auth.getSession();
   if (session) window.location.href = DASHBOARD;
 })();
@@ -262,7 +210,7 @@ async function handleSignup() {
     email,
     password: pass,
     options: {
-      data: { full_name: first + ' ' + last, job_title: document.getElementById('signupTitle').value.trim() },
+      data: { full_name: first + ' ' + last },
       emailRedirectTo: DASHBOARD
     }
   });
@@ -270,7 +218,7 @@ async function handleSignup() {
     showMsg('Sign up failed: ' + error.message, false);
     btn.textContent = 'Create My Profile'; btn.disabled = false;
   } else {
-    showMsg('✓ Account created! Please check your email to confirm your account, then log in.', true);
+    showMsg('✓ Account created! Please check your email to confirm, then log in.', true);
     btn.textContent = 'Create My Profile'; btn.disabled = false;
     switchTab('login');
   }
@@ -279,36 +227,10 @@ async function handleSignup() {
 async function handleForgotPassword() {
   const email = document.getElementById('loginEmail').value.trim();
   if (!email) { showMsg('Enter your email address above first.', false); return; }
-  const { error } = await _sb.auth.resetPasswordForEmail(email, {
-    redirectTo: DASHBOARD
-  });
+  const { error } = await _sb.auth.resetPasswordForEmail(email, { redirectTo: DASHBOARD });
   if (!error) showMsg('✓ Password reset email sent! Check your inbox.', true);
   else showMsg('Failed to send reset email: ' + error.message, false);
 }
-
-function handleDragOver(e) {
-  e.preventDefault();
-  document.getElementById('uploadZone').classList.add('drag-over');
-}
-
-function handleDrop(e) {
-  e.preventDefault();
-  document.getElementById('uploadZone').classList.remove('drag-over');
-  const file = e.dataTransfer.files[0];
-  if (file) showFile(file);
-}
-
-function handleFileSelect(e) {
-  const file = e.target.files[0];
-  if (file) showFile(file);
-}
-
-function showFile(file) {
-  document.getElementById('uploadStatus').textContent = '✅ ' + file.name + ' (' + (file.size/1024).toFixed(0) + ' KB)';
-  document.getElementById('uploadZone').classList.add('uploaded');
-}
-
-function togglePref(el) { el.classList.toggle('selected'); }
 </script>
 </body>
 </html>
