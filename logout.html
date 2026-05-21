@@ -1,0 +1,8 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"/><title>Logging out...</title></head><body><script>
+try{
+  var sb=window.supabase||null;
+  if(sb) sb.auth.signOut();
+}catch(e){}
+localStorage.setItem('jd_signed_out','1');
+window.location.replace('login.html');
+</script></body></html>
