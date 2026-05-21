@@ -1,0 +1,37 @@
+  function initAuth(){
+    // Detect password reset token in URL hash — redirect immediately
+    var hash = window.location.hash;
+    if(hash.includes('type=recovery') || hash.includes('type=signup')) {
+      window.location.replace('reset-password.html' + hash);
+      return;
+    }
+    if(hash.includes('error=access_denied') || hash.includes('otp_expired')) {
+      window.location.replace('login.html');
+      return;
+    }
+    if(localStorage.getItem('jd_signed_out')==='1') return;
+    try{
+      window._sb=supabase.createClient('https://dmnybalszwcnkdnilsiv.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRtbnliYWxzendjbmtkbmlsc2l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxMTY1ODcsImV4cCI6MjA5NDY5MjU4N30._x-Bt3YLoBEff-45JvkmFn5IpQZA3SWWdkZSxxQQehI');
+      window._sb.auth.getSession().then(function(res){
+        var session=res&&res.data&&res.data.session;
+        if(!session){window.location.href='login.html';return;}
+        localStorage.removeItem('jd_signed_out');
+        var user=session.user,email=user.email||'',meta=user.user_metadata||{},name=meta.full_name||meta.name||email.split('@')[0]||'Candidate',first=name.split(' ')[0],init=name.split(' ').map(function(w){return w[0]||'';}).join('').slice(0,2).toUpperCase()||'JD';
+        document.getElementById('navName').textContent=first;
+        document.getElementById('navAvatar').textContent=init;
+        document.getElementById('welcomeMsg').textContent='Welcome back, '+first+'!';
+        document.getElementById('pEmail').value=email;
+        if(meta.full_name){var pts=meta.full_name.split(' ');document.getElementById('pFirst').value=pts[0]||'';document.getElementById('pLast').value=pts.slice(1).join(' ')||'';}
+        var prof={};try{prof=JSON.parse(localStorage.getItem('jd_profile')||'{}');}catch(e){}
+        if(prof.phone)document.getElementById('pPhone').value=prof.phone;
+        if(prof.city)document.getElementById('pCity').value=prof.city;
+        if(prof.jobTitle)document.getElementById('pJobTitle').value=prof.jobTitle;
+        if(prof.expLevel)document.getElementById('pExpLevel').value=prof.expLevel;
+        if(prof.industry)document.getElementById('pIndustry').value=prof.industry;
+        if(prof.jobType)document.getElementById('pJobType').value=prof.jobType;
+        var pct=25;if(email)pct+=15;if(prof.phone)pct+=15;if(prof.jobTitle)pct+=15;if(cvFiles.length)pct+=20;if(prof.industry)pct+=10;pct=Math.min(pct,100);
+        document.getElementById('profileBarFill').style.width=pct+'%';
+        document.getElementById('profileBarPct').textContent=pct+'% complete';
+      }).catch(function(e){console.warn('Session error',e);});
+    }catch(e){console.warn('Supabase init error',e);}
+  }
