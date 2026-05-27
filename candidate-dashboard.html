@@ -201,7 +201,6 @@
       </div>
       <div class="panel-box" style="padding:1.5rem"><p class="section-label">Recommended for You</p><div class="rec-grid" id="recJobsGrid"></div></div>
     </div>
-
     <div class="panel" id="panel-cvs"><div class="panel-box"><div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><h2>Your CVs</h2></div><div class="panel-body">
       <div id="cvMsgBar" class="msg-bar"></div>
       <p style="font-size:0.88rem;color:var(--text-light);margin-bottom:1.25rem">Upload up to 3 versions of your CV. Files are stored securely and shared with JonDavidson consultants.</p>
@@ -215,7 +214,6 @@
         <input type="file" id="cvFileInput" accept=".pdf,.doc,.docx" style="display:none" onchange="handleCVSelect(event)"/>
       </div>
     </div></div></div>
-
     <div class="panel" id="panel-profile"><div class="panel-box"><div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><h2>Personal Details</h2></div><div class="panel-body"><p class="section-label">Personal Information</p><div class="detail-grid"><div class="form-group"><label>Email</label><input type="email" id="pEmail" readonly/></div><div class="form-group"><label>Phone Number</label><input type="tel" id="pPhone" placeholder="+65 9XXX XXXX"/></div><div class="form-group"><label>First Name</label><input type="text" id="pFirst" placeholder="Jane"/></div><div class="form-group"><label>Last Name</label><input type="text" id="pLast" placeholder="Doe"/></div><div class="form-group"><label>City</label><input type="text" id="pCity" placeholder="Singapore"/></div></div><button class="btn-save-form" onclick="savePersonalInfo()">Save Changes</button><div class="form-success" id="personalSaved">&#10003; Saved!</div><hr class="detail-divider"/><p class="section-label">Employment Information</p><div class="detail-grid"><div class="form-group"><label>Current Job Title</label><input type="text" id="pJobTitle" placeholder="e.g. Head of Finance"/></div><div class="form-group"><label>Experience Level</label><select id="pExpLevel"><option value="">Select...</option><option>Entry Level (0-2 yrs)</option><option>Mid Level (3-5 yrs)</option><option>Senior Level (6-10 yrs)</option><option>Director / C-Suite (10+ yrs)</option></select></div><div class="form-group"><label>Industry</label><select id="pIndustry"><option value="">Select...</option><option>Technology</option><option>Finance &amp; Banking</option><option>Human Resources</option><option>Sales &amp; Marketing</option><option>Operations</option><option>Legal</option><option>Engineering</option><option>Consulting</option><option>Healthcare</option><option>Other</option></select></div><div class="form-group"><label>Job Type</label><select id="pJobType"><option value="">Select...</option><option>Permanent</option><option>Contract</option><option>Temporary</option><option>Any</option></select></div></div><button class="btn-save-form" onclick="saveEmploymentInfo()">Save Changes</button><div class="form-success" id="employmentSaved">&#10003; Saved!</div></div></div></div>
     <div class="panel" id="panel-saved"><div class="panel-box"><div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><h2>Saved Jobs</h2></div><div class="panel-body" id="savedJobsBody"></div></div></div>
     <div class="panel" id="panel-applied"><div class="panel-box"><div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><h2>Applied Jobs</h2></div><div class="panel-body"><div class="empty-state"><div class="empty-icon">&#128203;</div><p>Jobs you apply for via JonDavidson will appear here.</p><a href="jobs.html">Browse Open Roles &rarr;</a></div></div></div></div>
@@ -223,11 +221,20 @@
   </main>
 </div>
 
+<!-- Load Supabase first, then run all JS after it's ready -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   var SUPABASE_URL='https://dmnybalszwcnkdnilsiv.supabase.co';
   var SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRtbnliYWxzendjbmtkbmlsc2l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxMTY1ODcsImV4cCI6MjA5NDY5MjU4N30._x-Bt3YLoBEff-45JvkmFn5IpQZA3SWWdkZSxxQQehI';
   var PORTAL_TABS=['dashboard','cvs','profile','saved','applied','settings'];
   var _userId=null;
+
+  // Detect reset/error tokens before anything else
+  (function(){
+    var h=window.location.hash;
+    if(h.includes('type=recovery')){window.location.replace('reset-password.html'+h);return;}
+    if(h.includes('error=access_denied')||h.includes('otp_expired')){window.location.replace('login.html');return;}
+  })();
 
   function showTab(name){for(var i=0;i<PORTAL_TABS.length;i++){var t=PORTAL_TABS[i],panel=document.getElementById('panel-'+t),tab=document.getElementById('tab-'+t);if(panel){if(t===name)panel.classList.add('active');else panel.classList.remove('active');}if(tab){if(t===name)tab.classList.add('active');else tab.classList.remove('active');}}if(name==='saved')renderSavedJobs();if(name==='cvs')loadCVs();window.scrollTo(0,0);}
   function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
@@ -237,42 +244,25 @@
   function renderSavedJobs(){var saved=getSaved(),keys=Object.keys(saved),body=document.getElementById('savedJobsBody');if(!body)return;if(!keys.length){body.innerHTML='<div class="empty-state"><div class="empty-icon">&#11088;</div><p>No saved jobs yet.</p><a href="jobs.html">Browse Jobs &rarr;</a></div>';return;}var html='<div class="saved-list">';for(var i=0;i<keys.length;i++){var j=saved[keys[i]],d='';try{d=new Date(j.savedAt).toLocaleDateString('en-SG',{day:'numeric',month:'short',year:'numeric'});}catch(e){}var jobUrl=j.url?j.url:'jobs.html';html+='<div class="saved-card"><div class="saved-card-info"><h4>'+esc(j.title)+'</h4><div class="sc-meta">'+esc(j.location||'Singapore')+' &middot; '+esc(j.type||'Permanent')+'</div><div class="sc-date">Saved '+d+'</div></div><div class="saved-card-actions"><a href="'+esc(jobUrl)+'" target="_blank" rel="noopener" class="btn-view-job">View Job</a><button class="btn-unsave" onclick="removeSaved(\''+esc(j.id)+'\')">Remove</button></div></div>';}html+='</div>';body.innerHTML=html;}
   function removeSaved(id){var s=getSaved();delete s[id];localStorage.setItem('jd_saved_jobs',JSON.stringify(s));updateBadge();renderSavedJobs();}
 
-  // ── CV UPLOAD (Supabase Storage) ──────────────────────────
   function loadCVs(){
-    if(!window._sb||!_userId){renderCVsFallback();return;}
+    if(!window._sb||!_userId)return;
     window._sb.storage.from('cvs').list(_userId+'/',{sortBy:{column:'created_at',order:'desc'}})
       .then(function(res){
-        if(res.error){renderCVsFallback();return;}
+        if(res.error){showMsg('cvMsgBar','Could not load CVs: '+res.error.message,false);return;}
         var files=res.data||[];
         var list=document.getElementById('cvList');
         var zone=document.getElementById('cvUploadZone');
         var stat=document.getElementById('statCVs');
         if(stat)stat.textContent=files.length;
-        if(!files.length){list.innerHTML='';if(zone)zone.style.display='block';return;}
-        var html='';
+        list.innerHTML='';
         for(var i=0;i<files.length;i++){
           var f=files[i];
-          var url=SUPABASE_URL+'/storage/v1/object/public/cvs/'+_userId+'/'+encodeURIComponent(f.name);
+          var url=SUPABASE_URL+'/storage/v1/object/public/cvs/'+encodeURIComponent(_userId)+'/'+encodeURIComponent(f.name);
           var kb=f.metadata&&f.metadata.size?Math.round(f.metadata.size/1024)+' KB':'';
-          html+='<div class="cv-item"><div class="cv-item-icon">&#128196;</div><div class="cv-item-info"><strong>'+esc(f.name)+'</strong><span>'+kb+'</span></div>';
-          html+='<a href="'+url+'" target="_blank" class="btn-cv-dl">&#11123; Download</a>';
-          html+='<button class="btn-cv-del" onclick="deleteCV(\''+esc(f.name)+'\')" title="Remove">&#128465;</button></div>';
+          list.innerHTML+='<div class="cv-item"><div class="cv-item-icon">&#128196;</div><div class="cv-item-info"><strong>'+esc(f.name)+'</strong><span>'+kb+'</span></div><a href="'+url+'" target="_blank" class="btn-cv-dl">&#11123; Download</a><button class="btn-cv-del" onclick="deleteCV(\''+esc(f.name)+'\')" title="Remove">&#128465;</button></div>';
         }
-        list.innerHTML=html;
         if(zone)zone.style.display=files.length>=3?'none':'block';
       });
-  }
-
-  function renderCVsFallback(){
-    // fallback: show locally stored list if Supabase not ready
-    var cvFiles=[];try{cvFiles=JSON.parse(localStorage.getItem('jd_cvs')||'[]');}catch(e){}
-    var list=document.getElementById('cvList'),zone=document.getElementById('cvUploadZone');
-    if(!list)return;
-    var html='';
-    for(var i=0;i<cvFiles.length;i++){var f=cvFiles[i];html+='<div class="cv-item"><div class="cv-item-icon">&#128196;</div><div class="cv-item-info"><strong>'+esc(f.name)+'</strong><span>'+esc(f.size)+'</span></div></div>';}
-    list.innerHTML=html;
-    if(zone)zone.style.display=cvFiles.length>=3?'none':'block';
-    var s=document.getElementById('statCVs');if(s)s.textContent=cvFiles.length;
   }
 
   function handleCVSelect(e){processCV(e.target.files[0]);}
@@ -283,48 +273,39 @@
     if(file.size>5*1024*1024){showMsg('cvMsgBar','File too large — max 5MB.',false);return;}
     var ext=file.name.split('.').pop().toLowerCase();
     if(['pdf','doc','docx'].indexOf(ext)===-1){showMsg('cvMsgBar','Only PDF, DOC or DOCX accepted.',false);return;}
-    if(!window._sb||!_userId){showMsg('cvMsgBar','Please wait for the page to finish loading.',false);return;}
-    // Show uploading state
+    if(!window._sb||!_userId){showMsg('cvMsgBar','Not logged in. Please refresh the page.',false);return;}
     var icon=document.getElementById('cvUploadIcon');
-    if(icon)icon.textContent='⏳';
-    showMsg('cvMsgBar','Uploading '+file.name+'...', true);
+    if(icon)icon.innerHTML='&#9203;';
+    showMsg('cvMsgBar','Uploading '+file.name+'...',true);
     var path=_userId+'/'+Date.now()+'_'+file.name;
     window._sb.storage.from('cvs').upload(path,file,{upsert:false})
       .then(function(res){
-        if(icon)icon.textContent='📄';
+        if(icon)icon.innerHTML='&#128196;';
         document.getElementById('cvFileInput').value='';
-        if(res.error){
-          showMsg('cvMsgBar','Upload failed: '+res.error.message,false);
-        } else {
-          showMsg('cvMsgBar','✓ '+file.name+' uploaded successfully!',true);
-          loadCVs();
-        }
+        if(res.error){showMsg('cvMsgBar','Upload failed: '+res.error.message,false);}
+        else{showMsg('cvMsgBar','\u2713 '+file.name+' uploaded!',true);loadCVs();}
       })
-      .catch(function(e){
-        if(icon)icon.textContent='📄';
-        showMsg('cvMsgBar','Upload error. Please try again.',false);
-      });
+      .catch(function(){if(icon)icon.innerHTML='&#128196;';showMsg('cvMsgBar','Upload error. Please try again.',false);});
   }
 
   function deleteCV(name){
     if(!window._sb||!_userId)return;
-    // find the full path — list files and match by name
     window._sb.storage.from('cvs').list(_userId+'/')
       .then(function(res){
-        if(res.error)return;
-        var files=res.data||[];
-        var match=files.find(function(f){return f.name===name||(f.name&&f.name.split('_').slice(1).join('_')===name);});
-        if(!match){showMsg('cvMsgBar','Could not find file to delete.',false);return;}
+        if(res.error||!res.data)return;
+        var match=null;
+        for(var i=0;i<res.data.length;i++){if(res.data[i].name===name){match=res.data[i];break;}}
+        if(!match){showMsg('cvMsgBar','File not found.',false);return null;}
         return window._sb.storage.from('cvs').remove([_userId+'/'+match.name]);
       })
       .then(function(res){
-        if(res&&res.error){showMsg('cvMsgBar','Delete failed: '+res.error.message,false);return;}
+        if(!res)return;
+        if(res.error){showMsg('cvMsgBar','Delete failed: '+res.error.message,false);return;}
         showMsg('cvMsgBar','CV removed.',true);
         loadCVs();
       })
       .catch(function(){showMsg('cvMsgBar','Delete error.',false);});
   }
-  // ────────────────────────────────────────────────────────
 
   var REC_JOBS=[{id:'r1275',title:'Enterprise Solution Architect',cat:'Technology',loc:'Singapore',type:'Permanent',salary:'$15,000-$18,000/mo',url:'https://recruitcrm.io/apply/17749795927740007886ZXM?source=Jobspage&new=yes'},{id:'r1277',title:'Sales Manager - Service Providers SEA',cat:'Sales',loc:'Singapore',type:'Permanent',salary:'$8,000-$15,000/mo',url:'https://recruitcrm.io/apply/17757873443980007886iQc?source=Jobspage&new=yes'},{id:'r1280',title:'Contracts Performance Manager',cat:'Consulting',loc:'Singapore',type:'Permanent',salary:'$7,000-$15,000/mo',url:'https://recruitcrm.io/apply/17769320208170007886IBs?source=Jobspage&new=yes'},{id:'r1278',title:'Assistant HR Manager',cat:'Human Resources',loc:'Singapore',type:'Permanent',salary:'$5,000-$7,200/mo',url:'https://recruitcrm.io/apply/17763982869950007886Kfw?source=Jobspage&new=yes'}];
   function renderRecommended(){var saved=getSaved(),g=document.getElementById('recJobsGrid');if(!g)return;var html='';for(var i=0;i<REC_JOBS.length;i++){var j=REC_JOBS[i],isSaved=!!saved[j.id];html+='<div class="rec-card"><span class="rec-tag">'+esc(j.cat)+'</span><h4>'+esc(j.title)+'</h4><div class="rec-meta">'+esc(j.loc)+' &middot; '+esc(j.type)+'</div><div class="rec-salary">'+esc(j.salary)+'</div><div class="rec-actions"><a href="'+esc(j.url)+'" target="_blank" rel="noopener" class="btn-apply">Apply Now</a><button class="btn-save-rec" onclick="toggleRecSave(this,\''+esc(j.id)+'\',\''+esc(j.title)+'\',\''+esc(j.url)+'\',\''+esc(j.loc)+'\',\''+esc(j.type)+'\')">'+(isSaved?'&#10003; Saved':'&#128190; Save')+'</button></div></div>';}g.innerHTML=html;}
@@ -332,50 +313,44 @@
   function savePersonalInfo(){var p={};try{p=JSON.parse(localStorage.getItem('jd_profile')||'{}');}catch(e){}p.phone=document.getElementById('pPhone').value;p.city=document.getElementById('pCity').value;p.first=document.getElementById('pFirst').value;p.last=document.getElementById('pLast').value;localStorage.setItem('jd_profile',JSON.stringify(p));var el=document.getElementById('personalSaved');el.style.display='block';setTimeout(function(){el.style.display='none';},3000);}
   function saveEmploymentInfo(){var p={};try{p=JSON.parse(localStorage.getItem('jd_profile')||'{}');}catch(e){}p.jobTitle=document.getElementById('pJobTitle').value;p.expLevel=document.getElementById('pExpLevel').value;p.industry=document.getElementById('pIndustry').value;p.jobType=document.getElementById('pJobType').value;localStorage.setItem('jd_profile',JSON.stringify(p));var el=document.getElementById('employmentSaved');el.style.display='block';setTimeout(function(){el.style.display='none';},3000);}
   function changePassword(){var nw=document.getElementById('pwNew').value;if(!nw||nw.length<8){showMsg('settingsMsgBar','Password must be at least 8 characters.',false);return;}if(window._sb){window._sb.auth.updateUser({password:nw}).then(function(res){if(res.error)showMsg('settingsMsgBar','Error: '+res.error.message,false);else{showMsg('settingsMsgBar','Password updated!',true);document.getElementById('pwCurrent').value='';document.getElementById('pwNew').value='';}}); }}
+
   renderRecommended();renderSavedJobs();updateBadge();
-</script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" onload="initAuth()"></script>
-<script>
-  function initAuth(){
-    var h=window.location.hash;
-    if(h.includes('type=recovery')){window.location.replace('reset-password.html'+h);return;}
-    if(h.includes('error=access_denied')||h.includes('otp_expired')){window.location.replace('login.html');return;}
-    if(localStorage.getItem('jd_signed_out')==='1') return;
-    try{
-      window._sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-      window._sb.auth.getSession().then(function(res){
-        var session=res&&res.data&&res.data.session;
-        if(!session){window.location.href='login.html';return;}
-        localStorage.removeItem('jd_signed_out');
-        var user=session.user;
-        _userId=user.id;
-        var email=user.email||'',meta=user.user_metadata||{},name=meta.full_name||meta.name||email.split('@')[0]||'Candidate',first=name.split(' ')[0],init=name.split(' ').map(function(w){return w[0]||'';}).join('').slice(0,2).toUpperCase()||'JD';
-        document.getElementById('navName').textContent=first;
-        document.getElementById('navAvatar').textContent=init;
-        document.getElementById('welcomeMsg').textContent='Welcome back, '+first+'!';
-        document.getElementById('pEmail').value=email;
-        if(meta.full_name){var pts=meta.full_name.split(' ');document.getElementById('pFirst').value=pts[0]||'';document.getElementById('pLast').value=pts.slice(1).join(' ')||'';}
-        var prof={};try{prof=JSON.parse(localStorage.getItem('jd_profile')||'{}');}catch(e){}
-        if(prof.phone)document.getElementById('pPhone').value=prof.phone;
-        if(prof.city)document.getElementById('pCity').value=prof.city;
-        if(prof.jobTitle)document.getElementById('pJobTitle').value=prof.jobTitle;
-        if(prof.expLevel)document.getElementById('pExpLevel').value=prof.expLevel;
-        if(prof.industry)document.getElementById('pIndustry').value=prof.industry;
-        if(prof.jobType)document.getElementById('pJobType').value=prof.jobType;
-        var pct=25;if(email)pct+=15;if(prof.phone)pct+=15;if(prof.jobTitle)pct+=15;if(prof.industry)pct+=10;
-        // load CVs from Supabase to get count for profile bar
-        window._sb.storage.from('cvs').list(_userId+'/').then(function(r){
-          var n=(r.data||[]).length;
-          if(n)pct=Math.min(pct+20,100);
-          document.getElementById('profileBarFill').style.width=pct+'%';
-          document.getElementById('profileBarPct').textContent=pct+'% complete';
-          document.getElementById('statCVs').textContent=n;
-        });
-        pct=Math.min(pct,100);
+
+  // Init auth after Supabase is already loaded (script is synchronous above)
+  window._sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  if(localStorage.getItem('jd_signed_out')!=='1'){
+    window._sb.auth.getSession().then(function(res){
+      var session=res&&res.data&&res.data.session;
+      if(!session){window.location.href='login.html';return;}
+      localStorage.removeItem('jd_signed_out');
+      var user=session.user;
+      _userId=user.id;
+      var email=user.email||'',meta=user.user_metadata||{},name=meta.full_name||meta.name||email.split('@')[0]||'Candidate',first=name.split(' ')[0],init=name.split(' ').map(function(w){return w[0]||'';}).join('').slice(0,2).toUpperCase()||'JD';
+      document.getElementById('navName').textContent=first;
+      document.getElementById('navAvatar').textContent=init;
+      document.getElementById('welcomeMsg').textContent='Welcome back, '+first+'!';
+      document.getElementById('pEmail').value=email;
+      if(meta.full_name){var pts=meta.full_name.split(' ');document.getElementById('pFirst').value=pts[0]||'';document.getElementById('pLast').value=pts.slice(1).join(' ')||'';}
+      var prof={};try{prof=JSON.parse(localStorage.getItem('jd_profile')||'{}');}catch(e){}
+      if(prof.phone)document.getElementById('pPhone').value=prof.phone;
+      if(prof.city)document.getElementById('pCity').value=prof.city;
+      if(prof.jobTitle)document.getElementById('pJobTitle').value=prof.jobTitle;
+      if(prof.expLevel)document.getElementById('pExpLevel').value=prof.expLevel;
+      if(prof.industry)document.getElementById('pIndustry').value=prof.industry;
+      if(prof.jobType)document.getElementById('pJobType').value=prof.jobType;
+      var pct=25;
+      if(email)pct+=15;if(prof.phone)pct+=15;if(prof.jobTitle)pct+=15;if(prof.industry)pct+=10;
+      window._sb.storage.from('cvs').list(_userId+'/').then(function(r){
+        var n=(r.data||[]).length;
+        if(n)pct=Math.min(pct+20,100);
         document.getElementById('profileBarFill').style.width=pct+'%';
         document.getElementById('profileBarPct').textContent=pct+'% complete';
-      }).catch(function(e){console.warn('Session error',e);});
-    }catch(e){console.warn('Supabase init error',e);}
+        document.getElementById('statCVs').textContent=n;
+      });
+      pct=Math.min(pct,100);
+      document.getElementById('profileBarFill').style.width=pct+'%';
+      document.getElementById('profileBarPct').textContent=pct+'% complete';
+    }).catch(function(e){console.warn('Session error',e);});
   }
 </script>
 </body>
