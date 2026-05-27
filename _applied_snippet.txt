@@ -1,0 +1,17 @@
+  // render applied jobs panel
+  function renderAppliedJobs(){
+    var applied=getApplied(),keys=Object.keys(applied),body=document.getElementById('appliedJobsBody');
+    if(!body)return;
+    if(!keys.length){
+      body.innerHTML='<div class="empty-state"><div class="empty-icon">&#128203;</div><p>Jobs you apply for via JonDavidson will appear here.</p><a href="jobs.html">Browse Open Roles &rarr;</a></div>';
+      return;
+    }
+    var html='<div class="saved-list">';
+    for(var i=0;i<keys.length;i++){
+      var j=applied[keys[i]],d='';
+      try{d=new Date(j.appliedAt).toLocaleDateString('en-SG',{day:'numeric',month:'short',year:'numeric'});}catch(e){}
+      html+='<div class="saved-card"><div class="saved-card-info"><h4>'+esc(j.title)+'</h4><div class="sc-meta">'+esc(j.location||'Singapore')+' &middot; '+esc(j.type||'Permanent')+'</div><div class="sc-date">Applied '+d+'</div></div><div class="saved-card-actions"><a href="'+esc(j.url||'jobs.html')+'" target="_blank" rel="noopener" class="btn-view-job">View Job</a></div></div>';
+    }
+    html+='</div>';
+    body.innerHTML=html;
+  }
