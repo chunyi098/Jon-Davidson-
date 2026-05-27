@@ -196,7 +196,7 @@
       </div>
       <div class="stats-row">
         <div class="stat-card" onclick="showTab('saved')"><div class="stat-icon si-red">&#11088;</div><div><div class="stat-num" id="statSaved">0</div><div class="stat-label">Saved Jobs</div></div></div>
-        <div class="stat-card" onclick="showTab('applied')"><div class="stat-icon si-navy">&#128203;</div><div><div class="stat-num">0</div><div class="stat-label">Applications</div></div></div>
+        <div class="stat-card" onclick="showTab('applied')"><div class="stat-icon si-navy">&#128203;</div><div><div class="stat-num" id="statApplied">0</div><div class="stat-label">Applications</div></div></div>
         <div class="stat-card" onclick="showTab('cvs')"><div class="stat-icon si-gold">&#128196;</div><div><div class="stat-num" id="statCVs">0</div><div class="stat-label">CVs Uploaded</div></div></div>
       </div>
       <div class="panel-box" style="padding:1.5rem"><p class="section-label">Recommended for You</p><div class="rec-grid" id="recJobsGrid"></div></div>
@@ -216,12 +216,11 @@
     </div></div></div>
     <div class="panel" id="panel-profile"><div class="panel-box"><div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><h2>Personal Details</h2></div><div class="panel-body"><p class="section-label">Personal Information</p><div class="detail-grid"><div class="form-group"><label>Email</label><input type="email" id="pEmail" readonly/></div><div class="form-group"><label>Phone Number</label><input type="tel" id="pPhone" placeholder="+65 9XXX XXXX"/></div><div class="form-group"><label>First Name</label><input type="text" id="pFirst" placeholder="Jane"/></div><div class="form-group"><label>Last Name</label><input type="text" id="pLast" placeholder="Doe"/></div><div class="form-group"><label>City</label><input type="text" id="pCity" placeholder="Singapore"/></div></div><button class="btn-save-form" onclick="savePersonalInfo()">Save Changes</button><div class="form-success" id="personalSaved">&#10003; Saved!</div><hr class="detail-divider"/><p class="section-label">Employment Information</p><div class="detail-grid"><div class="form-group"><label>Current Job Title</label><input type="text" id="pJobTitle" placeholder="e.g. Head of Finance"/></div><div class="form-group"><label>Experience Level</label><select id="pExpLevel"><option value="">Select...</option><option>Entry Level (0-2 yrs)</option><option>Mid Level (3-5 yrs)</option><option>Senior Level (6-10 yrs)</option><option>Director / C-Suite (10+ yrs)</option></select></div><div class="form-group"><label>Industry</label><select id="pIndustry"><option value="">Select...</option><option>Technology</option><option>Finance &amp; Banking</option><option>Human Resources</option><option>Sales &amp; Marketing</option><option>Operations</option><option>Legal</option><option>Engineering</option><option>Consulting</option><option>Healthcare</option><option>Other</option></select></div><div class="form-group"><label>Job Type</label><select id="pJobType"><option value="">Select...</option><option>Permanent</option><option>Contract</option><option>Temporary</option><option>Any</option></select></div></div><button class="btn-save-form" onclick="saveEmploymentInfo()">Save Changes</button><div class="form-success" id="employmentSaved">&#10003; Saved!</div></div></div></div>
     <div class="panel" id="panel-saved"><div class="panel-box"><div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><h2>Saved Jobs</h2></div><div class="panel-body" id="savedJobsBody"></div></div></div>
-    <div class="panel" id="panel-applied"><div class="panel-box"><div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><h2>Applied Jobs</h2></div><div class="panel-body"><div class="empty-state"><div class="empty-icon">&#128203;</div><p>Jobs you apply for via JonDavidson will appear here.</p><a href="jobs.html">Browse Open Roles &rarr;</a></div></div></div></div>
+    <div class="panel" id="panel-applied"><div class="panel-box"><div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><h2>Applied Jobs</h2></div><div class="panel-body" id="appliedJobsBody"><div class="empty-state"><div class="empty-icon">&#128203;</div><p>Jobs you apply for via JonDavidson will appear here.</p><a href="jobs.html">Browse Open Roles &rarr;</a></div></div></div></div>
     <div class="panel" id="panel-settings"><div class="panel-box"><div class="panel-header"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><h2>Account Settings</h2></div><div class="panel-body"><div id="settingsMsgBar" class="msg-bar"></div><p class="section-label">Change Password</p><div class="detail-grid" style="max-width:480px"><div class="form-group"><label>Current Password</label><input type="password" id="pwCurrent" placeholder="Current password"/></div><div class="form-group"><label>New Password</label><input type="password" id="pwNew" placeholder="Min. 8 characters"/></div></div><button class="btn-save-form" onclick="changePassword()">Update Password</button><hr class="detail-divider"/><p class="section-label">One Click Apply</p><div class="one-click-toggle"><div class="label-group"><strong>Enable One Click Apply</strong><span>Automatically submit your CV and details when applying.</span></div><label class="toggle-switch"><input type="checkbox" id="oneClickToggle"/><span class="toggle-slider"></span></label></div><hr class="detail-divider"/><p class="section-label" style="color:#cc0000">Danger Zone</p><div class="danger-info">Closing your account will permanently remove your profile.</div><button style="background:none;border:1.5px solid #cc0000;color:#cc0000;padding:0.5rem 1.25rem;border-radius:var(--radius);font-family:var(--sans);font-size:0.85rem;font-weight:600;cursor:pointer" onclick="alert('To close your account email partners@jondavidsongroup.com')">Close Account</button></div></div></div>
   </main>
 </div>
 
-<!-- Load Supabase first, then run all JS after it's ready -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
   var SUPABASE_URL='https://dmnybalszwcnkdnilsiv.supabase.co';
@@ -229,20 +228,28 @@
   var PORTAL_TABS=['dashboard','cvs','profile','saved','applied','settings'];
   var _userId=null;
 
-  // Detect reset/error tokens before anything else
   (function(){
     var h=window.location.hash;
     if(h.includes('type=recovery')){window.location.replace('reset-password.html'+h);return;}
     if(h.includes('error=access_denied')||h.includes('otp_expired')){window.location.replace('login.html');return;}
   })();
 
-  function showTab(name){for(var i=0;i<PORTAL_TABS.length;i++){var t=PORTAL_TABS[i],panel=document.getElementById('panel-'+t),tab=document.getElementById('tab-'+t);if(panel){if(t===name)panel.classList.add('active');else panel.classList.remove('active');}if(tab){if(t===name)tab.classList.add('active');else tab.classList.remove('active');}}if(name==='saved')renderSavedJobs();if(name==='cvs')loadCVs();window.scrollTo(0,0);}
+  function showTab(name){for(var i=0;i<PORTAL_TABS.length;i++){var t=PORTAL_TABS[i],panel=document.getElementById('panel-'+t),tab=document.getElementById('tab-'+t);if(panel){if(t===name)panel.classList.add('active');else panel.classList.remove('active');}if(tab){if(t===name)tab.classList.add('active');else tab.classList.remove('active');}}if(name==='saved')renderSavedJobs();if(name==='cvs')loadCVs();if(name==='applied')renderAppliedJobs();window.scrollTo(0,0);}
   function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
   function getSaved(){try{return JSON.parse(localStorage.getItem('jd_saved_jobs')||'{}');}catch(e){return{};}}
-  function updateBadge(){var n=Object.keys(getSaved()).length,b=document.getElementById('savedBadge'),s=document.getElementById('statSaved');if(b){b.textContent=n;b.style.display=n>0?'inline':'none';}if(s)s.textContent=n;}
+  function getApplied(){try{return JSON.parse(localStorage.getItem('jd_applied_jobs')||'{}');}catch(e){return{};}}
+  function updateBadge(){
+    var n=Object.keys(getSaved()).length,b=document.getElementById('savedBadge'),s=document.getElementById('statSaved');
+    if(b){b.textContent=n;b.style.display=n>0?'inline':'none';}if(s)s.textContent=n;
+    var an=Object.keys(getApplied()).length,as=document.getElementById('statApplied');
+    if(as)as.textContent=an;
+  }
   function showMsg(id,msg,ok){var el=document.getElementById(id);if(!el)return;el.textContent=msg;el.className='msg-bar '+(ok?'ok':'err');el.style.display='block';setTimeout(function(){el.style.display='none';},4000);}
+
   function renderSavedJobs(){var saved=getSaved(),keys=Object.keys(saved),body=document.getElementById('savedJobsBody');if(!body)return;if(!keys.length){body.innerHTML='<div class="empty-state"><div class="empty-icon">&#11088;</div><p>No saved jobs yet.</p><a href="jobs.html">Browse Jobs &rarr;</a></div>';return;}var html='<div class="saved-list">';for(var i=0;i<keys.length;i++){var j=saved[keys[i]],d='';try{d=new Date(j.savedAt).toLocaleDateString('en-SG',{day:'numeric',month:'short',year:'numeric'});}catch(e){}var jobUrl=j.url?j.url:'jobs.html';html+='<div class="saved-card"><div class="saved-card-info"><h4>'+esc(j.title)+'</h4><div class="sc-meta">'+esc(j.location||'Singapore')+' &middot; '+esc(j.type||'Permanent')+'</div><div class="sc-date">Saved '+d+'</div></div><div class="saved-card-actions"><a href="'+esc(jobUrl)+'" target="_blank" rel="noopener" class="btn-view-job">View Job</a><button class="btn-unsave" onclick="removeSaved(\''+esc(j.id)+'\')">Remove</button></div></div>';}html+='</div>';body.innerHTML=html;}
   function removeSaved(id){var s=getSaved();delete s[id];localStorage.setItem('jd_saved_jobs',JSON.stringify(s));updateBadge();renderSavedJobs();}
+
+  function renderAppliedJobs(){var applied=getApplied(),keys=Object.keys(applied),body=document.getElementById('appliedJobsBody');if(!body)return;if(!keys.length){body.innerHTML='<div class="empty-state"><div class="empty-icon">&#128203;</div><p>Jobs you apply for via JonDavidson will appear here.</p><a href="jobs.html">Browse Open Roles &rarr;</a></div>';return;}var html='<div class="saved-list">';for(var i=0;i<keys.length;i++){var j=applied[keys[i]],d='';try{d=new Date(j.appliedAt).toLocaleDateString('en-SG',{day:'numeric',month:'short',year:'numeric'});}catch(e){}html+='<div class="saved-card"><div class="saved-card-info"><h4>'+esc(j.title)+'</h4><div class="sc-meta">'+esc(j.location||'Singapore')+' &middot; '+esc(j.type||'Permanent')+'</div><div class="sc-date">Applied '+d+'</div></div><div class="saved-card-actions"><a href="'+esc(j.url||'jobs.html')+'" target="_blank" rel="noopener" class="btn-view-job">View Job</a></div></div>';}html+='</div>';body.innerHTML=html;}
 
   function loadCVs(){
     if(!window._sb||!_userId)return;
@@ -250,9 +257,7 @@
       .then(function(res){
         if(res.error){showMsg('cvMsgBar','Could not load CVs: '+res.error.message,false);return;}
         var files=res.data||[];
-        var list=document.getElementById('cvList');
-        var zone=document.getElementById('cvUploadZone');
-        var stat=document.getElementById('statCVs');
+        var list=document.getElementById('cvList'),zone=document.getElementById('cvUploadZone'),stat=document.getElementById('statCVs');
         if(stat)stat.textContent=files.length;
         list.innerHTML='';
         for(var i=0;i<files.length;i++){
@@ -267,7 +272,6 @@
 
   function handleCVSelect(e){processCV(e.target.files[0]);}
   function handleCVDrop(e){e.preventDefault();document.getElementById('cvDropZone').style.borderColor='';processCV(e.dataTransfer.files[0]);}
-
   function processCV(file){
     if(!file)return;
     if(file.size>5*1024*1024){showMsg('cvMsgBar','File too large — max 5MB.',false);return;}
@@ -287,7 +291,6 @@
       })
       .catch(function(){if(icon)icon.innerHTML='&#128196;';showMsg('cvMsgBar','Upload error. Please try again.',false);});
   }
-
   function deleteCV(name){
     if(!window._sb||!_userId)return;
     window._sb.storage.from('cvs').list(_userId+'/')
@@ -301,8 +304,7 @@
       .then(function(res){
         if(!res)return;
         if(res.error){showMsg('cvMsgBar','Delete failed: '+res.error.message,false);return;}
-        showMsg('cvMsgBar','CV removed.',true);
-        loadCVs();
+        showMsg('cvMsgBar','CV removed.',true);loadCVs();
       })
       .catch(function(){showMsg('cvMsgBar','Delete error.',false);});
   }
@@ -316,8 +318,7 @@
 
   renderRecommended();renderSavedJobs();updateBadge();
 
-  // Init auth after Supabase is already loaded (script is synchronous above)
-  window._sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  window._sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
   if(localStorage.getItem('jd_signed_out')!=='1'){
     window._sb.auth.getSession().then(function(res){
       var session=res&&res.data&&res.data.session;
